@@ -8,7 +8,7 @@ output:
 
 Welcome to the R tutorial of Social Data Science! Exercise sessions and self-study tasks will help you to apply the knowledge learned in class and gain experience.
 
-#Introduction to R
+# Introduction to R
 
 R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS. In this course we will be using R in the RStudio environtment to perform our exercises. Exercise sheets and solutions will be R Markdown documents that combine and format text, code, and code output.
 
