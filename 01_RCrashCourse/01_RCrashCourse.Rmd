@@ -1,9 +1,7 @@
 ---
 title: "Social Data Science R Crash Course"
 author: "Dr. David Garcia"
-output: 
-  html_document:
-    keep_md: true
+output: github_document
 ---
 
 Welcome to the R tutorial of Social Data Science! Exercise sessions and self-study tasks will help you to apply the knowledge learned in class and gain experience.
@@ -34,7 +32,7 @@ Crash course overview:
 
 # 0. Getting help
 
-If you don't know what a function does, try searching for help wiht "?"
+If you don't know what a function does, try searching for help with "?"
 ```{r}
 ? mean
 ```
