@@ -1,6 +1,8 @@
 ---
 title: "Introduction to Social Data Science"
+author: "David Garcia"
+date: "2021"
+output: html_document
 ---
 
-Test
-Test
+
