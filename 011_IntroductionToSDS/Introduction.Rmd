@@ -5,4 +5,37 @@ date: "2021"
 output: html_document
 ---
 
+### What is the aim of Social Data Science?
+
+The aim of Social Data Science is **the Quantitative Understanding of Human Behavior**.  
+Each word in this aim is important:  
+- **Quantitative:** As opposed to qualitative or descriptive, we aim for robust findings grounded in strong evidence that can be quantified.  
+- **Understanding:** Not just predicting, we want to be able to generalize and combine knowledge, and even to motivate interventions or policies.  
+- **Human:**  We will not study particles or objects. Measurement validity and ethics will be a challenge.  
+- **Behavior:** Observable changes, structures, dynamics, and patterns; not just stories or theories
+
+###  How are we going to do it?
+**Retrieving, processing, analyzing, and interpreting Digital traces.**  
+Digital traces are the leftovers of information that we leave behind when we use Information and Communication Technologies. These happen when you use your mobile phone, when you use a search engine, and when you post something on social media. A famous example of digital trace data is this map:
+
+![Facebook Friendship map](FBMap.png)
+
+This maps shows the friendship links among half a billion people. The links connnect the locations where these people live. Note that there are no map lines drawn below the friendship links, the contour of countries and continents is visible thanks to the data of user locations. You can also see that, while there are some international friendships, most links happen between close regions, making the inner part of countries brighter than the onceans between. You can learn more about this map in [this Facebook blog post.](https://www.facebook.com/notes/facebook-engineering/visualizing-friendships/469716398919)
+
+### Why digital traces?
+
+The data captured by digital traces can have six qualities that complement other data sources:
+
+- **Big Data:** Observing large amounts of humans across demographics  
+ Example: Large-scale sentiment analysis for opinion estimation  
+- **Fast Data:** Quantifying aspects of human behavior in real time  
+ Example: Earthquake detection with social media  
+- **Long Data:** Retrieving longitudinal data and at various timescales  
+ Example: Culturomics with Google books  
+- **Deep Data:** Gathering persistent information on individuals  
+ Example: Estimating personality with Facebook likes  
+- **Mixed Data:** Combining heterogeneous datasources and unstructured data  
+ Example: Data mashups in algorithmic trading  
+- **Strange Data:** Locating small subcommunities or deviant behavior  
+ Example: Mass shooting fans and rare disease discussions
 
