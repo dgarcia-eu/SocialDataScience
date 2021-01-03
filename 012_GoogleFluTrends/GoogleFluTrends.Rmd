@@ -1,0 +1,52 @@
+---
+title: "<span style=\"color: darkgreen\">The Parable of Google Flu Trends</span>"
+subtitle: "<span style=\"color: darkgreen\">A Social Data Science Story</span>"
+author: "David Garcia, 2021"
+output: html_document
+---
+
+### Gooogle Trends
+
+Google Trends is a website hosted by Google that allows you to get a measurement of Google search volume for a term. You can try it yourself here: https://trends.google.com/trends/.
+
+<img src="EU.png" alt="" width="600"/>  
+Example of Google Trends volume for "european union" from the United Kindgom around the Brexit vote.
+
+You can learn more about Google Trends in the next topic [Measuring temporal orientation with Google Trends]() and in the [gtrendsR tutorial]().
+
+### Nowcasting flu incidence with Google Trends
+
+**Nowcasting** is predicting the present. It provides an estimation of the value of a quantity based on signals that appear at the same time. Nowcasting is valuable when data reporting is delayed, for example in the case of flu incidence.
+
+Google Flu Trends aimed at nowcasting influenza-related physician visits based on Google search volumes. The reports from the Centers for Disease Control are delayed by two weeks, making this a good case for nowcasting. Google Flu Trends used a set of 45 search terms as predictors from a set of 50 million candidate terms.
+
+<img src="GoogleFluTrends.jpg" alt="drawing" width="600"/>  
+
+As reported in the [Nature paper](http://www.nature.com/nature/journal/v457/n7232/full/nature07634.html), Google Flu Trends achieved a high weekly accuracy between 2003 and 2008. It was applied worked for various regions in the US, not just the total. The figure above shows the nowcast of Google Flu Trends two weeks ahead of the report from the CDC.
+
+### When Google Flu Trends Stopped working
+
+In February 2013, Google Flu Trends [started overestimating](https://www.nature.com/news/when-google-got-flu-wrong-1.12413) the incidence of flu cases.
+
+<img src="FluFail.jpg" alt="drawing" width="600"/>  
+
+
+
+
+
+
+A [follow-up study in Science](http://science.sciencemag.org/content/343/6176/1203
+) showed that just a lagged CDC prediction with 2 week-old data outperformed Google Flu Trends, without using any Google data. Since many details about how Google and Google Trends work are not public, we cannot know for sure what was the surce of the error. Some candidates are news-related searches, seasonal effects, or changes in Google's algorithm and interface.
+
+Google Flu Trends is an example of **Big Data Hubris**: ”The often implicit assumption that big data are a substitute for, rather than a supplement to, traditional data collection and analysis” [(Lazer et al, Science, 2014)](http://science.sciencemag.org/content/343/6176/1203)
+
+> Take home message: **All data is better than Big Data**
+
+### Beware of Making a Data Piñata
+
+![Definition of data piñata from the [Urban Dictionary](https://www.urbandictionary.com/define.php?term=data%20pi%C3%B1ata)](Pinata.png)
+
+Also known as kitchen-sink regression, garbage-in garbage-out, and post hoc storytelling. Some patterns will always come out with sufficient data, what matters is making sense of them.
+To sum up, paraphrasing [Boyd et al., 2020](https://onlinelibrary.wiley.com/doi/abs/10.1002/per.2254), in statistics the essential challenge is to make *sound inferences from too little data*, while in data science the challence is to make *meaningful inferences from too much data*. 
+
+
