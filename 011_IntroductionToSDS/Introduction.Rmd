@@ -72,9 +72,9 @@ With the great potential of digital traces, aslo come great challenges:
 - **Observational data:** Testing causal mechanisms is not straightforward. We should always consider alternative explanations.
 - **The data deluge:** Too much data enables black-box predictions that can be useful but limit our understanding.
 
-This course has *Social Data Science Stories* that illustrate these limitations with examples from previous research. 
+A great reference about these limitations is the 2019 review by [Olteanu et al.](https://www.frontiersin.org/articles/10.3389/fdata.2019.00013/full). 
 
-One of the aims of the course is for you to get a **critical understanding of the use of digital trace data to study human behavior**. Even though they have limitations, digital traces are a great data source and in this course you will learn how to use them!
+This course has *Social Data Science Stories* that illustrate these limitations with examples from previous research. One of the aims of the course is for you to get a **critical understanding of the use of digital trace data to study human behavior**. Even though they have limitations, like every other scientific method, digital traces are a great data source and in this course you will learn how to use them!
 
 
 ### The importance of questions in Social Data Science
