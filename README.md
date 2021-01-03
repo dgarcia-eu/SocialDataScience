@@ -18,10 +18,10 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 1. **Introduction to Social Data Science**  
 1.1. [What is Social Data Science?](https://dgarcia-eu.github.io/SocialDataScience/011_IntroductionToSDS/Introduction.html)  
 1.2. [SDS Story: Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/012_GoogleFluTrends/GoogleFluTrends.html)  
-1.3. [Measuring temporal orientation with Google Trends](013_TemporalOrientation/TemporalOrientationGtrends.html)  
-1.4. Measuring correlation  
-1.5. R crash course  
-1.6. Google Trends data in R  
+1.3. [Measuring temporal orientation with Google Trends](https://dgarcia-eu.github.io/SocialDataScience/013_TemporalOrientation/TemporalOrientationGtrends.html)  
+1.4. [Measuring correlation](https://dgarcia-eu.github.io/SocialDataScience/014_Correlation/MeasuringCorrelation.html)  
+1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/015_RCrashCourse/RCrashCourse.html)  
+1.6. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/016_gtrendsR/gtrendsR.html)
 1.7. Accessing the World Development Indicators from R  
 1.8. Exercise: Future orientation and economic development  
 
