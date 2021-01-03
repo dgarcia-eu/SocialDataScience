@@ -33,11 +33,11 @@ This maps shows the friendship links among half a billion people. The links conn
 
 ![PhD Comics: http://phdcomics.com/comics.php?f=1816](http://www.phdcomics.com/comics/archive/phd080715s.gif)
 
-### What is Social Data Science?
 
 <div style="float:right">
 <img src="https://images.squarespace-cdn.com/content/v1/5150aec6e4b0e340ec52710a/1364352051365-HZAS3CLBF7ABLE3F5OBY/ke17ZwdGBToddI8pDm48kB2M2-8_3EzuSSXvzQBRsa1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxPe_8B-x4gq2tfVez1FwLYYZXud0o-3jV-FAs7tmkMHY-a7GzQZKbHRGZboWC-fOc/Data_Science_VD.png" alt="Data Science discipline Venn diagram" width="250px"/>
 </div>
+### What is Social Data Science?
 
 **Data Science** is the application of methods from Computer Science and
 Statistics to empirical questions and practical problems. In Data Science, sometimes the ability to combine methods is more important than excellence in individual disciplines. Communicating resutls and methods and synthesizing what we learn from data is very important.
