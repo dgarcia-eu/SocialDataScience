@@ -1,54 +1,131 @@
 ---
-title: "Measuring temporal orientation with Google Trends"
+title: "Google Trends data in R"
 author: "David Garcia, 2021"
 output: html_document
 ---
 
-### Time, culture, and the economy
+### Exporting a Google Trends time series as csv
 
-What is the relationship between culture and the economy? Max Weber proposed that culture shapes economic activity, especially as individualist cultures develop free markets. Karl Marx proposed the opposite: that economic relationships shape cultural values and shape institutions. These are not exclusive, there is an interplay between cluture and the economy, and this topic focuses on a particular aspect of culture:
+You can visit https://trends.google.com/ to make a query and download the data as csv. For example, if you query the terms "lockdown" and "minecraft", the first graph you see is this one:
 
-> **Long-Term Orientation (Geert Hofstede)**  
-Long-term oriented societies believe that the most important events in life will occur in the future; short-term oriented societies believe that those events occurred in the past or take place now.
+![Seems that people play minecraft during lockdowns.](GoogleTrendsExport1.png)
 
-Geert Hofstede developed a model of culture based on surveys to IBM employees around the world, which then he expanded to culture in general. He identified six dimensions tha differentiated work cultures:
-individualism, uncertainty avoidance, power distance, masculinity, long-term orientation, and indulgence. You can see the values measured for various cultures on [this website](https://www.hofstede-insights.com/product/compare-countries/).
+The arrow button allows you to download a csv version of the data behind the plot. The first lines of the file will look approximately like this:
 
-Long-term orientation is postulated to have a relationship with economic development. In particular [Hofstede hypothesizes](http://mchmielecki.pbworks.com/w/file/fetch/64591689/hofstede_dobre.pdf) that a poor country that is short-term oriented usually has little to no economic development, while long-term oriented countries continue to develop to a point. 
+```
+Category: All categories
+   
+Week,lockdown: (United States),minecraft: (United States)
+2020-01-05,1,37
+2020-01-12,1,36
+2020-01-19,1,38
+```
 
-If we measure economic development as the Gross Domestic Product per capita of a country, this hypothesis can be depicted as a function like this:
+You might see the headers in another language if you are using a Google account with certain language settings.
 
-![Hypothetical relationship between GDP per capita and long-term orientation.](FOIGDP.png)
+We can read the data in R, but we want to ignore the first two lines of header. It is also a good practice to rename columns to something familiar:
 
-### Measuring the Future Orientation Index
+```{r}
+df <- read.csv("multiTimeline-lockdown.csv", skip=2)
+names(df) <- c("week","lockdown","minecraft")
+head(df)
+```
 
-[Pres et al. 2012](https://www.nature.com/articles/srep00350) proposed a way to measure how much a society looks towards the future with Google Trends, the Future Orientation Index (FOI). The FOI for a country *c* on year *y* is calculated as:
+And you can do your own plot of the time series to make sure that you loaded the data well.
 
-<p align=center>
-$FOI_{c,y} = \frac{G(y+1,y,c)}{G(y-1,y,c)}$
-</p>
+```{r, fig.height=3}
+plot(as.Date(df$week), df$lockdown, type="l", col="blue", 
+     lwd=2, ylab="volume", xlab="date")
+lines(as.Date(df$week), df$minecraft, col="red", lwd=2)
+```
 
-where $G(y_1,y_2,c)$ is the Google Trends volume for searches for $y_1$ during year $y_2$ from country $c$. Essentially it measures the ratio of search volume from a country for next year divided by the search volume for the previous year in the same country.
+### Exporting a Google Trends map as csv
 
-Remember that Google trends gives you search volume information for a search query, in this case a year expressed with Arab numerals (e.g. "2016"). Check out the [Social Data Science story about Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/012_GoogleFluTrends/GoogleFluTrends.html) to learn more about Google Trends.
+Below the time series plot, Google Trends offers a map comparing a region. The above query was for the US, but you can configure it for the whole world or for another country or area:
 
-A measurement of the FOI for a year in many countries can be done with one visit to Google Trends. For example, for the year 2014:
+![All over the US minecraft is more searched than lockdown.](GoogleTrendsExport2.png)
 
-![](FOI1.png){width=60%}![](FOI2.png){width=40%}
+Clicking on the same download symbol, you will download a file that looks like this:  
+```
+Category: All categories
 
-You can see that the search volume for "2013" decreased over the year 2014 and that the volume for "2015" increased over the year and had a spike close to the end of the year. The map shows you that most countries searched more for "2013" than for "2015" in 2014.
+Region,lockdown: (1/3/20 - 1/3/21),minecraft: (1/3/20 - 1/3/21)
+Utah,8%,92%
+Alaska,6%,94%
+Idaho,8%,92%
+```
 
+Same as before, you can read it ignoring the first two lines and renaming the columns. 
 
+```{r}
+geodf <- read.csv("geoMap-lockdown.csv", skip=2)
+names(geodf) <- c("region","lockdown","minecraft")
+head(geodf)
+```
 
+Those percentage signs are a problem. The fractions are read as character strings rather than as numeric. We can convert them by removing the percentage sign and converting to numeric like this:
 
-### Exporting Google Trends data
+```{r}
+geodf$lockdown <- as.numeric(gsub("%", "", geodf$lockdown))
+geodf$minecraft <- as.numeric(gsub("%", "", geodf$minecraft))
+head(geodf)
+```
 
-You can export data as csv with Google trends. For a time series of search volume:
+### The gtrendsR package
 
-![](Gtrends1.png)
+The [gtrendsR package](https://cran.r-project.org/web/packages/gtrendsR/index.html) provides a way to access Google Trends from R. It is useful to make searches reproducible, but **do not make many calls in a short period of time because Google will block you.** Always save the data as soon as you got it.
 
-And for volumes across countries:
-![](Gtrends2.png)
+Installing the package is as simple as any other package:
+```{r, eval=F}
+install.packages("gtrendsR")
+```
 
+And loading it as well:
+```{r}
+library(gtrendsR)
+```
 
-You can also do this automatically with the gtrendsR package in R. Learn how to do it with the 
+Its main fuction is call gtrends, which allows you to query Google Trends automatically. Take a look to the documentation of the function with this command:
+```{r}
+?gtrends
+```
+
+Among its parameters, four are important for us:
+
+- keyword: term or terms to query  
+- geo: identifier of the regions to cover with the query  
+- time: a time identifier as in Google Trends URLs, see the help  
+- low_search_volume: should be set to TRUE if you want to include small countries  
+
+For example, we can search for the terms "2013" and "2015" from all over the world including low search volume regions and on the year 2014:
+```{r}
+result <- gtrends(keyword = c("2013","2015"), geo = "", time="2014-01-01 2014-12-31", low_search_volume = T)
+```
+
+The result is an object with various data frames. For example, interest_over_time contains the time series with the volume on its column "hits":
+```{r}
+head(result$interest_over_time)
+```
+ 
+And interest_by_country contains the volume across countries:
+```{r}
+head(result$interest_by_country)
+```
+
+### Appendix: Disambiguated trends
+
+On Google Trends you can also search for freebase entries. This way, Google disambiguates and translate search terms, mapping them to entry terms like "Zürich (city in Switzerland)" to the code "/m/08966". You can see the freebase entry for Zurich at https://freebase.toolforge.org/m/08966 . You can do the same for any code, appending it at the end of https://freebase.toolforge.org to see what the database entry refers to.
+
+For example, you can search for terms across languages like this:
+
+![You can see which religion is more widespread in each country.](jesusmohammad2021.png)
+
+Here, "Jesus" has been disambiguated to the id "/m/045m1_" and "Mohammad" to the id "/m/04s9n". Google trends shows the volume aggregated for queries including the way to say both words in other languages.
+
+And you can use the freebase ids  in gtrendsR to get the data directly:
+
+```{r}
+result <- gtrends(keyword = c("/m/045m1_","/m/04s9n"), low_search_volume = T)
+head(result$interest_by_country)
+```
+
