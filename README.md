@@ -17,13 +17,13 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 
 1. **Introduction to Social Data Science**  
 1.1. [What is Social Data Science?](https://dgarcia-eu.github.io/SocialDataScience/011_IntroductionToSDS/Introduction.html)  
-1.2. Measuring temporal orientation with Google Trends  
-1.3. SDS Story: Google Flu Trends  
+1.2. [SDS Story: Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/012_GoogleFluTrends/GoogleFluTrends.html)  
+1.3. [Measuring temporal orientation with Google Trends](013_TemporalOrientation/TemporalOrientationGtrends.html)  
 1.4. Measuring correlation  
 1.5. R crash course  
 1.6. Google Trends data in R  
 1.7. Accessing the World Development Indicators from R  
-1.8. Future orientation and economic development  
+1.8. Exercise: Future orientation and economic development  
 
 2. **Social dynamics**  
 2.1. Social Impact Theory  
@@ -33,7 +33,7 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 2.5. Bootstrapping  
 2.6. Data wrangling with dplyr  
 2.7. The Twitter API in R  
-2.8. Division of impact on Twitter  
+2.8. Exercise: Division of impact on Twitter  
 	
 3. **Computational Affective Science**  
 3.1. Measuring emotions  
@@ -42,8 +42,8 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 3.4. Supervised sentiment analysis  
 3.5. Dealing with text in R  
 3.6. Running sentiment analysis  
-3.7. Evaluating sentiment analysis methods  
-3.8. Generating your own annotations  
+3.7. Exercise: Evaluating sentiment analysis methods  
+3.8. Exercise: Generating your own annotations  
 
 4. **Social network analysis**  
 4.1. Introduction to social networks  
@@ -52,8 +52,8 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 4.4. Centrality  
 4.5. Igraph in R  
 4.6. Visualizing networks  
-4.7. The friendship paradox on Twitter  
-4.8. Swiss politicians on Twitter  
+4.7. Exercise: The friendship paradox on Twitter  
+4.8. Exercise: Swiss politicians on Twitter  
 
 5. **Social network phenomena**  
 5.1. Social resilience  
@@ -63,8 +63,7 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 5.5. Permutation tests   
 5.6. Community detection  
 5.7. Visualizing centrality  
-5.8. Assortativity among Swiss politicians on Twitter
-
+5.8. Exercise: Assortativity among Swiss politicians on Twitter
 
 ## Where to access materials
 
