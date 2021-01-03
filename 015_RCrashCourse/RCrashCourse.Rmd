@@ -30,7 +30,7 @@ Crash course overview:
 - Plotting and summary statistics
 
 
-#0. Getting help
+# 0. Getting help
 
 If you don't know what a function does, try searching for help wiht "?"
 ```{r}
