@@ -21,8 +21,8 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 1.3. [Measuring temporal orientation with Google Trends](https://dgarcia-eu.github.io/SocialDataScience/013_TemporalOrientation/TemporalOrientationGtrends.html)  
 1.4. [Measuring correlation](https://dgarcia-eu.github.io/SocialDataScience/014_Correlation/MeasuringCorrelation.html)  
 1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/015_RCrashCourse/RCrashCourse.html)  
-1.6. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/016_gtrendsR/gtrendsR.html)  
-1.7. Accessing the World Development Indicators from R  
+1.6. Accessing the World Development Indicators from R  
+1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/016_gtrendsR/gtrendsR.html)  
 1.8. Exercise: Future orientation and economic development  
 
 2. **Social dynamics**  
@@ -50,7 +50,7 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 4.2. The Friendship paradox  
 4.3. SDS story: sampling opinions on Twitter  
 4.4. Centrality  
-4.5. Igraph in R  
+4.5. igraph in R  
 4.6. Visualizing networks  
 4.7. Exercise: The friendship paradox on Twitter  
 4.8. Exercise: Swiss politicians on Twitter  
