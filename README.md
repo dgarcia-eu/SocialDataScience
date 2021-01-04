@@ -12,6 +12,7 @@ This course focuses both on the fundamentals and applications of Data Science in
 
 I am the Professor for Computational Behavioral and Social Sciences the Graz University of Technology, where I lead the [Computational Social Science Lab](http://www.csslab.at). I am also group leader at the Medical University of Vienna and at the Complexity Science Hub Vienna and I am teaching faculty at ETH Zurich, where I teach this course every February. My background is Computer Science but I worked my whole career with Psychologists, Sociologists and Physicists to learn new ways to understand human behavior. I got my PhD from ETH Zurich in 2012 and a habilitation in 2018, starting to work as full professor TU Graz in 2020. To learn more about my research, check my [publications](https://dgarcia.eu/full-publication-list/).
 
+The course is organized in five blocks with several topics each. Each block has one or more exercises for you to apply what you learned in the block. In exercises, you collect your own data and try to answer Social Data Science questions. The online materials do not contain the solutions to the exercises, but if you are stuck or want to start from an easier point, in the github folder of the exercise you can find a version of the exercise with hints.
 
 ## Course Contents
 
@@ -20,10 +21,10 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 1.2. [SDS Story: Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/012_GoogleFluTrends/GoogleFluTrends.html)  
 1.3. [Measuring temporal orientation with Google Trends](https://dgarcia-eu.github.io/SocialDataScience/013_TemporalOrientation/TemporalOrientationGtrends.html)  
 1.4. [Measuring correlation](https://dgarcia-eu.github.io/SocialDataScience/014_Correlation/MeasuringCorrelation.html)  
-1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/015_RCrashCourse/RCrashCourse.html)  
-1.6. Accessing the World Development Indicators from R  
-1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/016_gtrendsR/gtrendsR.html)  
-1.8. Exercise: Future orientation and economic development  
+1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/015_RCrashCourse/RCrashCourse.html) -- [R crash course github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/015_RCrashCourse)  
+1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/016_WDI/WDI.html)  
+1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/017_gtrendsR/gtrendsR.html)  
+1.8. [Exercise: Future orientation and economic development](018_FOIExercise/GDP_FOI.html) -- [Exercise github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/018_FOIExercise)
 
 2. **Social dynamics**  
 2.1. Social Impact Theory  
