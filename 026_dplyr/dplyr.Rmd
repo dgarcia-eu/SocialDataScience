@@ -1,0 +1,154 @@
+---
+title: "Social Data Science: Data wrangling with dplyr"
+author: "Dr. David Garcia"
+output: html_document
+---
+
+Welcome to the Social Data Science dplyr tutorial! This will be a quick introduction into one of the most useful tools to handle large datasets by producing code that is easy to read.
+
+You can find this script to run in Rstudio cloud: <https://rstudio.cloud/project/892606>
+
+# Introduction to dplyr
+
+dplyr  <https://https://dplyr.tidyverse.org/> is a package for data manipulation, which is the process of  re-sorting, rearranging, and moving data, without fundamentally changing it. It provides a way to make your data more readable and organized in an efficient way.
+
+dplyr provides "verbs" that you can apply to the data frame that you are working on. Here we are going to see the following:
+
+- *select* columns from a data frame
+- *filter* rows that you want in a data frame
+- *arrange* a data frame to sort it
+- *group_by* when you want to run analyses over groups defined by one column or more
+- *summarise* to run analyses over those groups
+- *inner_join* to merge data frames very efficiently
+
+# 0. Installing dplyr
+
+Some versions of RStudio bring dplyr installed by default, but run the following chunk to install it in any case:
+```{r install, eval=F}
+install.packages("dplyr")
+```
+
+Once you have it install, load it with the library function.
+```{r load}
+library(dplyr)
+```
+
+For this tutorial we are going to use the data from the National Health Interview Survey of 2007.
+```{r data}
+NHIS2007 <- read.csv("NHIS2007.csv")
+head(NHIS2007)
+```
+
+
+# 1. Selecting columns
+
+select() lets you subset by columns. The first parameter of select() is the data frame, the second is a selection of columns. For example to get just the column BMI:
+```{r select1}
+head(select(NHIS2007, BMI))
+```
+
+But you can also select subsets of colums like the first three:
+```{r select2}
+head(select(NHIS2007, 1:3))
+```
+
+or a range:
+```{r select3}
+head(select(NHIS2007, SEX:educ))
+```
+
+Your turn: select the first and last columns.
+```{r select4}
+# Your code here
+```
+
+# 2. Filtering rows
+
+filter() allows you to subset rows that fulfill a condition. The second parameter is a logical statement to take only rows for which it is TRUE.
+ 
+For example, to get the rows corresponding to people that sleep less than 8 hours:
+```{r filter1}
+head(filter(NHIS2007, SLEEP < 8))
+```
+
+Your turn: get the rows with BMI between 20 and 30
+```{r filter2}
+# Your code here
+```
+
+# 3. Arranging to sort
+
+arrange() sorts the rows by one or more columns in ascending or descending order
+
+For example, to arrange the rows in the order of ascending "BMI"
+```{r arrange1}
+head(arrange(NHIS2007, BMI))
+```
+
+And in the order of descending "BMI"
+```{r arrange2}
+head(arrange(NHIS2007, desc(BMI)))
+```
+
+Or sorted first by SLEEP and then by BMI
+```{r arrange3}
+head(arrange(NHIS2007, SLEEP, BMI))
+```
+
+your turn: by descending weight first and then by height
+```{r arrange4}
+# Your code here
+```
+
+# 4. Pipes
+
+When you load dplyr, you also load another package called magrittr, which includes a special command called the pipe (%>%). Pipes are useful to simplify code. Pipes connect two commands such that the *result of the first command* is the input to the *first parameter of the second command*. 
+
+For example, to filter first for BMI lower than 30, select the columns height and education, and then sort by height:
+```{r}
+NHIS2007 %>%
+  filter(BMI < 30) %>%
+    select(height, educ) %>%
+      arrange(height) %>% head()
+```
+
+Your turn: sort reversed by BMI and then fiter by weight below 150
+```{r}
+# Your code here
+```
+
+# 5. Grouping and summarising
+
+The commands group_by and summarise are very useful to calcualte aggregated values over groups of rows determined by one or more columns. The result has only the columns used for the group_by and the ones calculated by summarise.
+```{r}
+NHIS2007 %>%
+  group_by(SEX) %>%
+    summarise(AvgBMI = mean(BMI, na.rm = TRUE)) %>% head()
+```
+
+Your turn: calculate the minimum height for each education level
+```{r}
+# Your code here
+```
+
+# 6. Merging with inner join
+
+Sometimes you have two data frames and you want to merge them according to the values of a column. The merge function of R can do that, but the inner_join function of dplyr is much, much faster:
+
+```{r}
+df1 <- data.frame(a=c(1,2,3), b=c("one","two","three"))
+df2 <- data.frame(a=c(2,3,3), x=c("x","y","z"), z=c(1,1,1))
+head(inner_join(df1,df2))
+```
+
+inner_join automatically takes the common columns for the merging, but you can also specify which columns to use:
+```{r}
+head(inner_join(df1,df2, by=c("a"="z")))
+```
+
+For further practice: Take your solution of our FOI and GDP exercise and change the merge commands to inner_join commands.
+
+To learn more:
+
+- Tutorial on dplyr by Sean Anderson <http://seananderson.ca/2014/09/13/dplyr-intro.html>
+- Data Camp interactive tutorial on dplyr <https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial>
