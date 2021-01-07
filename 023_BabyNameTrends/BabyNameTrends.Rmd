@@ -1,0 +1,102 @@
+---
+title: "Social Data Science Story: Baby name trends"
+author: "David Garcia, 2021"
+output: html_document
+---
+
+### Baby name data
+
+The website of the US Social Security Administration provides baby name data, but sometimes it can be a bit unstable or hard to reach. In the github repository of this script you can find a file with the latest data (BabyData2019.csv.gz), so far including baby name statistics between 1880 and 2019. If you want to know more about how to access and process this data, check the .Rmd version of this handout on Github.
+
+```{r, echo=F, eval=F}
+library(crunch)
+
+unzip("names.zip", exdir="namedata")
+
+df <- data.frame(name=NULL, gender=NULL, count=NULL, year=NULL)
+yearList <- seq(1880, 2019)
+for (year in yearList)
+{
+  print(year)
+  print(dim(df))
+  babyData <- read.table(paste("namedata/yob",year,".txt",sep=""),sep=",", stringsAsFactors = FALSE)
+  names(babyData) <- c("name","gender","count")
+  babyData$year <- year
+  df <- rbind(df, babyData)
+}
+
+write.csv.gz(df, file="BabyData2019.csv.gz", row.names=F)
+```
+
+You can read the data without decompressing it using the gzfile function. In the following code we read and plot the total count of babies in the dataset per year:
+```{r, message=F, results='hide', fig.width=8, fig.height=5}
+library(dplyr)
+df <- read.csv(gzfile("BabyData2019.csv.gz"))
+df %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+plot(total, ylab="babies", type="l", lwd=2)
+```
+
+You can see the baby boom of the 1950s, but keep in mind that only baby name counts of 5 or more are reported. If names become to diverse it would look like the total count is lower. We will come back to that a bit later.
+
+Let's look at the trend of two names as an example. Here we plot the number of babies called "Angelina" and "Leonardo" (regardless of gender):
+
+```{r, message=F, results='hide', fig.width=8, fig.height=5}
+name1 <- "Angelina"
+name2 <- "Leonardo"
+df %>% filter(name==name1) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+plot(total, ylab="babies", type="l", lwd=2)
+df %>% filter(name==name2) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+lines(total, lwd=2, col="red")
+legend("topleft",legend=c(name1, name2), col=c("black","red"), lwd=2)
+```
+
+### The QWERTY effect in baby names
+
+The QWERTY effect is a theory in Psychology that postulates that words that are written with more right-hand letters of the keyboard are, on average, more positive than words that are written with more left-hand letters of the keyboard. Kyle Jasmin and Daniel Casasanto have found this effect in English, Portuguese, and German,  when comparing how words are written and how they are scored in a scale of positive to negative. It appears both in left-handed and right-handed people, and even in pseudowords (words that look like they could mean something but are meaningless). I also found some evidence of the effect in the way people give likes to online content and review products. 
+
+One of the most surprising manifestations of the QWERTY effect is baby names. If we try to give "nice" names to our babies, in theory there should be a trend to give more right-handed names to babies since keyboards became popular when computers penetrated society in the 1990s. Here, we reproduce previous evidence that looked at these trends since the 1960s, with a slightly different calculation. We average the number of right-handed letters minus the number of left-handed letters of all baby names in a year and plot the resulting trend:
+
+```{r, message=F, results='hide', fig.width=8, fig.height=5}
+library(stringr)
+df %>% group_by(name,year) %>% summarize(count=sum(count)) %>% filter(year>1960)-> ngdf
+
+df$R <- str_count(pattern='[yuiophjklnm]',tolower(df$name))
+df$L <- str_count(pattern='[qwertasdfgzxcvb]',tolower(df$name))
+
+df %>% group_by(year) %>% summarize(RSA = sum(count *(R-L)), n=sum(count)) %>% filter(year>=1960)-> RSAdf
+plot(RSAdf$year, RSAdf$RSA/RSAdf$n, type="l", lwd=2, xlab="year", ylab="mean RSA")
+```
+
+Looks like the original result by Casasanto et al replicates, but we can see a difference with their analysis that was until 2012. Since the early 2010s, the trend seems to have stopped. Perhaps the QWERTY effect getting softer since phones and tablets are replacing keyboards. While this result replicates, you cannot see the QWERTY effect when you correlate baby name popularity and they way it is typed over the decades, as [this paper has shown](http://www.tandfonline.com/doi/abs/10.1179/0027773812Z.00000000039). So there might be a trend, but not strong enough to say that names with more right-hand letters are more popular than names with more left-hand letters.
+
+### Other wacky baby name research
+
+
+```{r, fig.width=7, fig.height=6}
+tempdf <- read.csv("https://www.epa.gov/sites/production/files/2016-08/temperature_fig-1.csv", skip=6)
+
+df %>% filter(year>=1937) %>% group_by(year,gender) %>% summarize (nnames=n()) -> udf
+sdf <- inner_join(udf, tempdf, by=c("year"="Year"))
+
+plot(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"], col="lightblue", pch=19, xlim=range(sdf$Earth.s.surface), ylim=range(sdf$nnames), ylab="Number of Unique Names", xlab="US temperature annomaly (Farenheit)")
+model <- lm(nnames~Earth.s.surface, data=sdf, subset=gender=="M")
+abline(model$coefficients[1], model$coefficients[2], col="lightblue")
+points(sdf$Earth.s.surface[sdf$gender=="F"], sdf$nnames[sdf$gender=="F"], col="pink", pch=19)
+model <- lm(nnames~Earth.s.surface, data=sdf, subset=gender=="F")
+abline(model$coefficients[1], model$coefficients[2], col="pink")
+```
+
+
+```{r}
+cor.test(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"])
+cor.test(sdf$Earth.s.surface[sdf$gender=="F"], sdf$nnames[sdf$gender=="F"])
+```
+
+```{r}
+cor.test(diff(sdf$Earth.s.surface[sdf$gender=="M"]), diff(sdf$nnames[sdf$gender=="M"]))
+cor.test(diff(sdf$Earth.s.surface[sdf$gender=="F"]), diff(sdf$nnames[sdf$gender=="F"]))
+```
+
+### The limits of baby name predictability
+
+
