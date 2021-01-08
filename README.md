@@ -27,14 +27,14 @@ The course is organized in five blocks with several topics each. Each block has 
 1.8. [Exercise: Future orientation and economic development](018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/018_FOIExercise)
 
 2. **Social dynamics**  
-2.1. Social Impact Theory  
-2.2. The Simmel Effect  
-2.3. SDS Story: Baby name trends  
+2.1. [Social Impact Theory](https://dgarcia-eu.github.io/SocialDataScience/021_SocialImpactTheory/SIT.html)  
+2.2. [The Simmel Effect](https://dgarcia-eu.github.io/SocialDataScience/022_SimmelEffect/SimmelEffect.html)  
+2.3. [SDS Story: Baby name trends](https://dgarcia-eu.github.io/SocialDataScience/023_BabyNameTrends/BabyNameTrends.html)  
 2.4. Linear regression  
 2.5. Bootstrapping  
-2.6. Data wrangling with dplyr  
+2.6. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/026_dplyr/dplyr.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/026_dplyr)  
 2.7. The Twitter API in R  
-2.8. Exercise: Division of impact on Twitter  
+2.8. [Exercise: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/028_SITTwitter)
 	
 3. **Computational Affective Science**  
 3.1. Measuring emotions  
