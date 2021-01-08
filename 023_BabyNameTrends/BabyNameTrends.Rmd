@@ -6,7 +6,7 @@ output: html_document
 
 ### Baby name data
 
-The website of the US Social Security Administration provides baby name data, but sometimes it can be a bit unstable or hard to reach. In the github repository of this script you can find a file with the latest data (BabyData2019.csv.gz), so far including baby name statistics between 1880 and 2019. If you want to know more about how to access and process this data, check the .Rmd version of this handout on Github.
+The website of the US Social Security Administration provides baby name data, but sometimes it can be a bit unstable or hard to reach. In the github repository of this script you can find a file with the latest data (BabyData2019.csv.gz), so far including baby name statistics between 1880 and 2019. If you want to know more about how to access and process this data, as well as codes to reproduce this analysis, check the [Rmd version of this handout on Github](https://github.com/dgarcia-eu/SocialDataScience/blob/master/023_BabyNameTrends/BabyNameTrends.Rmd). Fist, let's look at how much data per year we get from the dataset:
 
 ```{r, echo=F, eval=F}
 library(crunch)
@@ -28,35 +28,38 @@ for (year in yearList)
 write.csv.gz(df, file="BabyData2019.csv.gz", row.names=F)
 ```
 
-You can read the data without decompressing it using the gzfile function. In the following code we read and plot the total count of babies in the dataset per year:
-```{r, message=F, results='hide', fig.width=8, fig.height=5}
+```{r, message=F, results='hide', fig.width=8, fig.height=5, echo=F}
+# You can read the data without decompressing it using the gzfile function. 
 library(dplyr)
 df <- read.csv(gzfile("BabyData2019.csv.gz"))
 df %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
 plot(total, ylab="babies", type="l", lwd=2)
 ```
 
-You can see the baby boom of the 1950s, but keep in mind that only baby name counts of 5 or more are reported. If names become to diverse it would look like the total count is lower. We will come back to that a bit later.
+There are several million babies per year. The speed up around the late 30s is due to the change how the US SSA recorded data. People registered themselves as adults before 1937 and only from the 1940s it became widespread to register babies when newly born. So it is better not to read trends that predate that decade.
+
 
 Let's look at the trend of two names as an example. Here we plot the number of babies called "Angelina" and "Leonardo" (regardless of gender):
 
-```{r, message=F, results='hide', fig.width=8, fig.height=5}
+```{r, message=F, results='hide', fig.width=8, fig.height=5, echo=F}
 name1 <- "Angelina"
 name2 <- "Leonardo"
-df %>% filter(name==name1) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+df %>% filter(name==name1 & year>=1940) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
 plot(total, ylab="babies", type="l", lwd=2)
-df %>% filter(name==name2) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+df %>% filter(name==name2 & year>=1940) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
 lines(total, lwd=2, col="red")
 legend("topleft",legend=c(name1, name2), col=c("black","red"), lwd=2)
 ```
 
+You can see the peak of the fashion of naming your daughter like a Hollywood actress, while the level of popularity of the name is pretty much back to before it was fashionable. The case for Leonardo is a bit different, a slower increase but so far, for a longer period. The Simmel effect predicts that nothing stays fashionable forever, which in this case would mean that sooner or later we will see a decay in popularity like the one you see for Angelina. 
+
 ### The QWERTY effect in baby names
 
-The QWERTY effect is a theory in Psychology that postulates that words that are written with more right-hand letters of the keyboard are, on average, more positive than words that are written with more left-hand letters of the keyboard. Kyle Jasmin and Daniel Casasanto have found this effect in English, Portuguese, and German,  when comparing how words are written and how they are scored in a scale of positive to negative. It appears both in left-handed and right-handed people, and even in pseudowords (words that look like they could mean something but are meaningless). I also found some evidence of the effect in the way people give likes to online content and review products. 
+The QWERTY effect is a hypothesis in Psychology that postulates that words that are written with more right-hand letters of the keyboard are, on average, more positive than words that are written with more left-hand letters of the keyboard. [Kyle Jasmin and Daniel Casasanto](https://link.springer.com/article/10.3758/s13423-012-0229-7) found this effect for the first time when comparing how words are written and how they are scored in a scale of positive to negative. They got further results in [English, Portuguese, and German](https://www.casasanto.com/papers/CasasantoJasminBrookshireGijssels_CogSci_2014.pdf). It appears both in left-handed and right-handed people, and even in pseudowords (words that look like they could mean something but are meaningless). I also found some evidence of the effect in the way people give [likes to online content and review products](https://dl.acm.org/doi/10.1145/2872427.2883019), but figuring out the mechanism behind the effect is still an open research question.  
 
-One of the most surprising manifestations of the QWERTY effect is baby names. If we try to give "nice" names to our babies, in theory there should be a trend to give more right-handed names to babies since keyboards became popular when computers penetrated society in the 1990s. Here, we reproduce previous evidence that looked at these trends since the 1960s, with a slightly different calculation. We average the number of right-handed letters minus the number of left-handed letters of all baby names in a year and plot the resulting trend:
+One of the most surprising manifestations of the QWERTY effect is baby names. If we try to give "nice" names to our babies, in theory there should be a trend to give more right-handed names to babies since keyboards became popular when computers penetrated society in the 1990s. Here, we [reproduce previous evidence](https://www.casasanto.com/papers/CasasantoJasminBrookshireGijssels_CogSci_2014.pdf) that looked at these trends since the 1960s, with a slightly different calculation. We average the number of right-handed letters minus the number of left-handed letters of all baby names in a year and plot the resulting trend:
 
-```{r, message=F, results='hide', fig.width=8, fig.height=5}
+```{r, message=F, results='hide', fig.width=8, fig.height=5, echo=F}
 library(stringr)
 df %>% group_by(name,year) %>% summarize(count=sum(count)) %>% filter(year>1960)-> ngdf
 
@@ -67,18 +70,19 @@ df %>% group_by(year) %>% summarize(RSA = sum(count *(R-L)), n=sum(count)) %>% f
 plot(RSAdf$year, RSAdf$RSA/RSAdf$n, type="l", lwd=2, xlab="year", ylab="mean RSA")
 ```
 
-Looks like the original result by Casasanto et al replicates, but we can see a difference with their analysis that was until 2012. Since the early 2010s, the trend seems to have stopped. Perhaps the QWERTY effect getting softer since phones and tablets are replacing keyboards. While this result replicates, you cannot see the QWERTY effect when you correlate baby name popularity and they way it is typed over the decades, as [this paper has shown](http://www.tandfonline.com/doi/abs/10.1179/0027773812Z.00000000039). So there might be a trend, but not strong enough to say that names with more right-hand letters are more popular than names with more left-hand letters.
+Looks like the original result by [Casasanto et al.](https://www.casasanto.com/papers/CasasantoJasminBrookshireGijssels_CogSci_2014.pdf) replicates, but we can see a difference with their analysis, which covered data only until 2012. Since the early 2010s, the trend seems to have stopped. Perhaps the QWERTY effect getting softer since phones and tablets are replacing keyboards. While this result replicates, you cannot see the QWERTY effect when you correlate baby name popularity and they way it is typed over the decades, as [this paper has shown](http://www.tandfonline.com/doi/abs/10.1179/0027773812Z.00000000039). So there might be a trend, but not strong enough to say that names with more right-hand letters are more popular than names with more left-hand letters.
 
-### Other wacky baby name research
+### Wacky baby name research
 
+There are many papers using the SSA baby name database, some of them published in prestigious journals like PNAS and PRSB. There is a sarcastic journal called ["Proceedings of the Natural Institute of Science" (PNIS)](https://instsci.org/) that made fun of this trend in a parody paper titled ["We are entering an unprecedented age in baby name flux"](https://instsci.org/h7.html). The most cheeky graph is Figure 2, where the authors show a scatter plot of the number of unique baby names for girls and for boys versus the yearly average US temperature, reaching the conclusion that "baby name diversity also seems to have risen with the increasing annual temperature of the US (i.e., climate change)". Here we reproduce that analysis using the average US temperature annomaly from the US Environmental Protection Agency:
 
-```{r, fig.width=7, fig.height=6}
+```{r, fig.width=7, fig.height=6, echo=F, message=F}
 tempdf <- read.csv("https://www.epa.gov/sites/production/files/2016-08/temperature_fig-1.csv", skip=6)
 
 df %>% filter(year>=1937) %>% group_by(year,gender) %>% summarize (nnames=n()) -> udf
 sdf <- inner_join(udf, tempdf, by=c("year"="Year"))
 
-plot(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"], col="lightblue", pch=19, xlim=range(sdf$Earth.s.surface), ylim=range(sdf$nnames), ylab="Number of Unique Names", xlab="US temperature annomaly (Farenheit)")
+plot(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"], col="lightblue", pch=19, xlim=range(sdf$Earth.s.surface), ylim=range(sdf$nnames), ylab="Number of Unique Names", xlab="US temperature annomaly (Fahrenheit)")
 model <- lm(nnames~Earth.s.surface, data=sdf, subset=gender=="M")
 abline(model$coefficients[1], model$coefficients[2], col="lightblue")
 points(sdf$Earth.s.surface[sdf$gender=="F"], sdf$nnames[sdf$gender=="F"], col="pink", pch=19)
@@ -86,17 +90,37 @@ model <- lm(nnames~Earth.s.surface, data=sdf, subset=gender=="F")
 abline(model$coefficients[1], model$coefficients[2], col="pink")
 ```
 
-
-```{r}
-cor.test(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"])
-cor.test(sdf$Earth.s.surface[sdf$gender=="F"], sdf$nnames[sdf$gender=="F"])
-```
-
-```{r}
-cor.test(diff(sdf$Earth.s.surface[sdf$gender=="M"]), diff(sdf$nnames[sdf$gender=="M"]))
-cor.test(diff(sdf$Earth.s.surface[sdf$gender=="F"]), diff(sdf$nnames[sdf$gender=="F"]))
-```
+The lines show the results of linear regression for boys and girls separately, check our [linear regression tutorial]() to learn more about it. We find the same result as the PNIS article, a positive correlation between the number of unique baby names in a year and the average US temperature, even though we measure it as anomaly rather than raw Fahrenheit like in the original paper. In particular, we get a correlation coefficient of ```r round(cor(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"]),3)``` for boys and of ```r round(cor(sdf$Earth.s.surface[sdf$gender=="F"], sdf$nnames[sdf$gender=="F"]),3)``` for girls. But do not be deceived, this does not mean that climate change is causing baby name diversity. Both quantities have an upwards trend and this correlation is a result of that. If you want to dig more on this topic, you can run yourself a [Granger test](http://math.furman.edu/~dcs/courses/math47/R/library/lmtest/html/grangertest.html) and you will see how we do not have evidence that rising temperatures cause larger numbers of names in any of the genders.
 
 ### The limits of baby name predictability
+
+Baby names are a popular example to illustrate scientific topics. The book [Freakonomics](https://freakonomics.com/books/) explains the imitation part of the Simmel effect and explains how people imitate their richer neighbors when naming their babies. The book goes as far as making a prediction of what will be the top US baby names in 2015, based on a data analysis exercise that is never explained in detail in the article. Here is the prediction:
+
+![](FreakonomicsPrediction.png)
+
+Enough time has passed and now we can evaluate the prediction with the SSA dataset. We can get the top 24 male and female names in 2015:
+
+```{r, fig.width=7, fig.height=6, echo=F, message=F, results="asis"}
+library(knitr)
+
+df %>% filter(year==2015 & gender=="F") %>% arrange(desc(count)) -> Fdf
+head(Fdf, 24) %>% arrange(name) %>% select(name) -> Fdf
+df %>% filter(year==2004 & gender=="F") %>% arrange(desc(count)) -> Fdf4
+head(Fdf4, 24) %>% arrange(name) %>% select(name) -> Fdf4
+
+df %>% filter(year==2015 & gender=="M") %>% arrange(desc(count)) -> Mdf
+head(Mdf, 24) %>% arrange(name) %>% select(name) -> Mdf
+df %>% filter(year==2004 & gender=="M") %>% arrange(desc(count)) -> Mdf4
+head(Mdf4, 24) %>% arrange(name) %>% select(name) -> Mdf4
+
+kable(data.frame(topFemale2015=Fdf$name, topFemale2004=Fdf4$name, topMale2015=Mdf$name, topMale2004=Mdf4$name))
+```
+
+As you see, there is not much overlap between the prediction and the results for 2015. As a comparison, the table includes the same top list for 2004, the year when the Freakonomics book was published. Just using the 2004 list, you would have made a better prediction. The Freakonomics prediction still has some credit, like the increase in popularity of names like "Ava", "Avery", "Ella", "Carter", "Jackson", "Liam", and "Oliver".
+
+What you see is that predicting which names in particular will be the most popular is a very difficult task. The Simmel effect describes forces that create observable patterns, but that does not mean that the model is predictive to tell us which of all names will become popular ten years from now, even if we had data of the social status of parents. This is the difference between explanatory and predictive power of a model. A model can explain phenomena without being useful to make predictions, as in this case, but can also be predictive without giving explanations, like in the case of deep learning or other black-box approaches.
+
+> **Take home message:** understanding does not imply predictive power and vice versa
+
 
 
