@@ -1,0 +1,181 @@
+---
+title: "Linear regression"
+author: "David Garcia"
+output: html_document
+---
+
+
+### Regression analysis
+
+Regression models formalize an equation in which one numeric variable $Y$ is formulated as a function of other variables $X_1$, $X_2$, $X_3$, etc:  
+<center>
+$Y = f(X_1,X_2,X_3...) + \epsilon$
+</center>
+
+$\epsilon$ is called the residual, which is an error term in case the function does not fit perfectly $Y$. 
+
+In this tutorial we will learn about linear regression, which are regression models in which the function $f()$ is a linear combination of variables. More precisely:
+
+$Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 ... + \epsilon$
+
+- $Y$ is called the dependent variable
+- $X_1$, $X_2$, $X_3$, etc are called independent variables
+- $a$ is the intercept, which measures the expected value of $Y$ that does not depend on the dependent variables
+- $b_1$, $b_2$, $b_3$, etc are called the slopes or the coefficients of the independent variables. They measure how much $Y$ grows with the corresponding variable. These coefficents are measure in the units of $Y$ divided by the units of $X$
+- $\epsilon$ are the residuals, as in the equation before
+
+For example, when we studied how GDP per capita depended on the FOI, we have a case where $Y$ is GDP and there is one independent variable $X$, the FOI. Here you see a scatter plot of GDP vs FOI with a line that shows a regression result:
+
+```{r echo=F, message=F, results='hide'}
+library(dplyr)
+df <- read.csv("FOI.csv")
+df$GDP <- df$NY.GDP.PCAP.PP.KD
+df %>% filter(SP.POP.TOTL*IT.NET.USER.ZS/100 > 5000000) -> df
+model <- lm(GDP~FOI, df)
+
+plot(df$FOI, df$GDP, xlab="FOI", ylab="GDP per capita")
+abline(model$coefficients[1], model$coefficients[2], col="red")
+```
+
+
+### Regression residuals
+
+Residuals ($\epsilon$) are the differences in between the empirical values $Y_i$ and their fitted values $\hat Y_i$. In the following plot you see them for the case of GDP and FOI as vertical green lines:
+
+```{r echo=F, message=F, results='hide'}
+library(dplyr)
+plot(df$FOI, df$GDP, xlab="FOI", ylab="GDP per capita")
+abline(model$coefficients[1], model$coefficients[2], col="red")
+segments(df$FOI,model$fitted.values, df$FOI,df$GDP, col="darkgreen")
+```
+
+Linear regression analyses might have some assumptions regarding residuals. For example, the standard assumptions in many research projects is that residuals have zero mean, are normally distributed with some standard deviation ($\epsilon \sim N(0,\sigma)$, and that are uncorrelated with both $X$ and $Y$. At the end of this tutorial you have ways to inspect if these assumptions are met.
+
+### Ordinary Least Squares (OLS)
+
+**Fitting** a regression model is the task of finding the values of the coefficients ($a$, $b_1$, $b_2$, etc) in a way that reduce a way to aggregate the residuals of the model. One approach is called Residual Sum of Squares (RSS), which aggregates residuals as:
+<center>
+$RSS = \sum_i (\hat Y_i - Y_i)^2$
+</center>
+
+The Ordinary Least Squares method (OLS) looks for the values of coefficients that minimize the RSS. This way, you can think about the OLS result as the line that minimizes the sum of squared lengths of the vertical lines in the figure above.
+
+
+### Regression in R
+
+The lm() function in R fits a linear regression model with OLS. You have to specify the *formula* of your regression model. For the case of one independent variable, a formula reads like this:  
+```{r eval=F}
+DependentVariable ∼ IndependentVariable
+```
+If you print the result of lm(), you will see the best fitting values for the coefficients (intercept and slope):
+
+```{r message=F}
+model <- lm(GDP~FOI, df)
+print(model)
+```
+You can access the estimated values of the coefficients like this:
+
+```{r }
+model$coefficients
+```
+
+Remember that the unit of the slope coefficient is measured in the units of $Y$ divided by the units of $X$. Since the FOI is a fraction, the slope here is telling us that an increase of one in the scale of FOI means an increase of $54631$ USD of GDP per capita.
+
+To see the regression result over a scatter plot as we did above, you can use the abline() function. To do so, set the first parameter of abline() as the intercept of the model and the second one as the slope:
+
+```{r }
+plot(df$FOI, df$GDP, xlab="FOI", ylab="GDP per capita")
+abline(model$coefficients[1], model$coefficients[2], col="red")
+```
+
+You can access the residuals of the model with the residuals() function:
+```{r }
+head(residuals(model))
+```
+
+and the estimated values $\hat Y_i$ with the predict() function. This function will apply the equation of our model $a + b X$ with the estimated values of the coefficients to the FOI values to predict the GDP values. The result is one estimate of $Y$ per row in the data:
+
+```{r }
+head(predict(model))
+```
+
+### Goodness of fit
+
+After fitting the model, you should ask yourself how good are the predictions of the model or what is the quality of the fit. A way to measure this is to calculate the proportion of variance of the dependent variable ($V[Y]$) that is explained by the model. We can do this by comparing the variance of residuals ($V[\epsilon]$) to the variance of $Y$. If the variance of residuals is very small in comparison, we have a good fit. This is captured by the coefficient of determination, also known as $R^2$:
+<center>
+$R^2 = 1 − \frac{V[\epsilon]}{V[Y]}$
+</center>
+
+For our model example:
+```{r }
+var(df$GDP)
+var(residuals(model))
+1-var(residuals(model))/var(df$GDP)
+```
+The function summary, among other things, calculates the $R^2$ of the model:
+
+```{r }
+summary(model)
+
+summary(model)$r.squared
+```
+
+The table shows you the estimates of the coefficients, in this case there is an intercept and a coefficient for FOI. The last column of the table shows what is called a p-value, if you want to learn more about that, check the [permutation tests tutorial](). The $R^2$ of 0.44 we get means that we can explain 44\% of the variance of the GPD per capita with the FOI values of the countries alone.
+
+The coefficient of determination is called $R^2$ because it is a way to measure the correlation coefficient between the true values of the dependent variable $Y$ and the estimated ones $\hat Y$. You can verify this in R:
+```{r }
+summary(model)$r.squared
+cor(df$GDP, predict(model))^2
+```
+
+You can specify models with more than one independent variable by using "+" in the formula. For example, for three independent variables:
+```{r eval=F}
+DependentVariable ∼ IndependentVariable1 + IndependentVariable2 + IndependentVariable3
+```
+
+If we wanted to fit a model of GDP as a linear combination of the FOI and the internet penetration in countries, we can do it as follows:
+
+```{r message=F}
+model2 <- lm(GDP~FOI+IT.NET.USER.ZS, df)
+```
+
+And you can see the quality of the result like this:
+
+```{r message=F}
+summary(model2)
+```
+
+This $R^2$ of 0.81 is much higher than for the case without Internet penetration. The quality of the model has improved a lot, as Internet Penetration is also an important predictor of GDP besides what the FOI explains.
+
+### Regression diagnostics
+
+Common assumptions of regression models relate to the distribution of residuals and their correlation with other variables. Later in this course you will learn methods that do not have many assumptions like these, but in case you use any model, read the documentation to learn its assumptions and then see if they are met with R.
+
+For example, we want the model to be unbiased in the sense that it cannot be easily improved by changing the value of the coefficients. You can verify this by checking that the mean value of residuals is very close to zero:
+
+```{r }
+mean(residuals(model))
+```
+
+A common assumption is that residuals are normally distributed, which is a necessary condition for the additional information in the summary tables to be correct. You can see the distribution of residuals with a histogram:
+
+```{r }
+hist(residuals(model))
+```
+
+The example above is close to a normal distribution, as it is symmetric, has a mode in the center, and the characteristic bell curve of a normal distribution.
+
+Other assumptions are that residuals are uncorrelated with predicted values:
+```{r }
+cor(residuals(model))
+```
+
+and that the variance of residuals is constant across the predicted value range. You can have an idea of that by looking at a scatter plot of residuals and predicted values:
+
+```{r }
+plot(predict(model), residuals(model))
+```
+
+In this case you see that the spread of residuals is a bit lower for low predicted values, but overall the difference in the spread along the X axis is not very dramatic.
+
+You can apply what you learned here in the [Twitter Division of Impact exercise](https://dgarcia-eu.github.io/SocialDataScience/028_SITTwitter/SIT_Twitter.html), but before I recommend you to check the handout about [bootstrapping]() and the tutorials about [data wrangling]() and about the [Twitter API in R]().
