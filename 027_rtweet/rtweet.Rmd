@@ -1,0 +1,73 @@
+---
+title: "The Twitter API in R"
+author: "Dr. David Garcia"
+output: html_document
+---
+
+### Twitter
+
+<div style="float:right">
+<img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg" alt="Twitter logo" width="150px"/>  
+<center>Twitter's logo</center>
+</div>
+A quick overview of [Twitter](www.twitter.com):  
+
+- Users write public tweets of limited length. In the beginning the maximum length was 140 characters, now it is 280  
+- A user can follow another to see their tweets in their feed  
+- Tweets can be copied by other users, or retweeted  
+- Tweets can contain links and @ mentions to other users  
+- Hasthags start with # and identify discussion topics  
+- In 2016, Twitter had more than 300 million active users  
+- User profiles are public unless set as private. Public Twitter user profiles can be seen by anyone, even without a Twitter account. For example www.twitter.com/dgarcia_eu  
+
+Twitter has an Application Programming Interface (API) to access tweets and user data. You can access this API from various packages in programming languages like R, python, or java. To access the API you need to make a Twitter account, and when you do so you agree to the [terms of Twitter](https://twitter.com/en/tos) to access their service and their data. There is an additional set of [terms for developers](https://developer.twitter.com/en/developer-terms/agreement-and-policy) that access the API and to limit how data can be shared outside Twitter. All exercises in this course respect the Twitter terms of service and the developer policy, but you should keep in mind these rules in case you do further projects with the Twitter API.
+
+### The rtweet package
+
+There are several R package to access the Twitter API. The Twitter API changes very often and package developers have to adapt their packages if they want them to keep on working as expected. As of 2021 the best maintained package for R is [rtweet](https://cran.r-project.org/web/packages/rtweet/). You can find many examples and functionalities of the package in its [github repository](https://github.com/ropensci/rtweet) and documentation about its functions at [https://docs.ropensci.org/rtweet/reference/index.html](https://docs.ropensci.org/rtweet/reference/index.html).
+
+You can install it with the typical install.packages() call. This tutorial will use some functions of rtweet that need you to have the package httpuv installed too:
+```{r eval=FALSE}
+install.packages("rtweet")
+install.packages("httpuv")
+```
+
+To start using rtweet, you only need to load it with the library() function. The dependencies with httpuv are handled inside rtweet, so you only need to load one package:
+```{r}
+library(rtweet)
+```
+
+### Connecting to the Twitter API
+
+rtweet allows a very easy way to access the Twitter API from R thanks to the rstats2twitter application. Before you run this code, open a browser and log into your Twitter account. Then in an interactive R session (for example what you have in the Console of RStudio), call one of rtweet functions like this one:
+
+```{r}
+lookup_users("dgarcia_eu")
+```
+
+The first time you run this function will open a window in your browser asking for permissions to the rstats2twitter app in your Twitter account. This app on Twitter will allow you to use the API with your Twitter account. If you do not want to use rtweet this way in the future, you can always disconnect the app from your Twitter account at https://twitter.com/settings/connected_apps.
+
+![](rstats2twitter.png){width=80%}
+
+Once you have given permissions, rtweet will save your connection in your R configuration and you can access the Twitter API from R from now on. This will work from interactive R sessions like when you are running R chunks in RStudio. If you want to run automated scripts or knit markdown, you will need to connect with a token as a developer. Check the appendix at the end of this tutorial if you want to learn more.
+
+### User profiles
+
+### User timelines
+
+### Tweet content
+
+### Appendix: connecting as developer
+
+Using the Twitter API as a developer is more convenient because it allows you to run R codes automatically and it provides more stable and easy-to-track permissions.
+
+The rtweet package provides an excellent vignette explaining how to connect like this. You will have to fill a form for Twitter to give you access as a developer. In this form, they will ask you questions about what you want to do with the API. In the part "tell us how this app will be used", explain in your own words that this app is for a Social Data Science course (mention that you are enrolled if that is the case) and say that you won't interact with users in any way. This is important so Twitter can avoid developers from creating malicious bots that automatically interact with real users, if you don't say this or are not specific enough, your application might take long to be approved.
+
+Running the following code will take you to the vignette. Follow the steps in the vignette to set up your access token:
+
+```{r } 
+vignette("auth", package = "rtweet")
+```
+
+Once you have the token created, it will be saved and you can load it in future R sessions with "get_token()". Other tutorials and exercises in this course will use the get_token() function, for example the [Twitter networks tutorial](), but if you run the code in an interactive R session, you can still run the tutorial even if you didn't get a developer account yet.
+
