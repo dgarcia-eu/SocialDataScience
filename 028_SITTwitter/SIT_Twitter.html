@@ -435,12 +435,198 @@ summary {
 <pre class="r"><code>install.packages(&quot;rtweet&quot;)</code></pre>
 <p>Now we will load the rtweet package:</p>
 <pre class="r"><code>library(rtweet)</code></pre>
-<p>You can connect to the Twitter API in two ways. One is just to continue with these exercises, when you run the next line of code in interactive mode, your browser will prompt to ask you to give permissions to the rstats2twitter. Once you give it permissions, you will be able to access the Twitter API. The second way is getting a developer account and making an app. It is more complicated but better if you do a longer project with this API. You have more details about it in the appendix.</p>
+<p>You can connect to the Twitter API in two ways. One is just to continue with these exercises, when you run the next line of code in interactive mode, your browser will prompt to ask you to give permissions to the rstats2twitter. Once you give it permissions, you will be able to access the Twitter API. The second way is getting a developer account and making an app. It is more complicated but better if you do a longer project with this API. Check the <a href="https://github.com/dgarcia-eu/SocialDataScience/blob/master/027_rtweet/rtweet.Rmd">rtweet tutorial</a> for more details.</p>
 <p><strong>1.2 Testing the connection with some examples</strong></p>
 <p>After that you will be able to access the Twitter API from R. For example, we can get basic information on the Twitter account of the New York Times:</p>
-<pre class="r"><code>lookup_users(users = &quot;nytimes&quot;)</code></pre>
+<pre class="r"><code>library(dplyr)
+glimpse(lookup_users(users = &quot;nytimes&quot;))</code></pre>
+<pre><code>## Rows: 1
+## Columns: 90
+## $ user_id                 &lt;chr&gt; &quot;807095&quot;
+## $ status_id               &lt;chr&gt; &quot;1348243212129996803&quot;
+## $ created_at              &lt;dttm&gt; 2021-01-10 12:20:05
+## $ screen_name             &lt;chr&gt; &quot;nytimes&quot;
+## $ text                    &lt;chr&gt; &quot;For decades, psychiatric hospitals were grim…
+## $ source                  &lt;chr&gt; &quot;SocialFlow&quot;
+## $ display_text_width      &lt;int&gt; NA
+## $ reply_to_status_id      &lt;lgl&gt; NA
+## $ reply_to_user_id        &lt;lgl&gt; NA
+## $ reply_to_screen_name    &lt;lgl&gt; NA
+## $ is_quote                &lt;lgl&gt; FALSE
+## $ is_retweet              &lt;lgl&gt; FALSE
+## $ favorite_count          &lt;int&gt; 489
+## $ retweet_count           &lt;int&gt; 98
+## $ quote_count             &lt;int&gt; NA
+## $ reply_count             &lt;int&gt; NA
+## $ hashtags                &lt;list&gt; [NA]
+## $ symbols                 &lt;list&gt; [NA]
+## $ urls_url                &lt;list&gt; [&quot;twitter.com/i/web/status/1…&quot;]
+## $ urls_t.co               &lt;list&gt; [&quot;https://t.co/mePESld4kx&quot;]
+## $ urls_expanded_url       &lt;list&gt; [&quot;https://twitter.com/i/web/status/134824321…
+## $ media_url               &lt;list&gt; [NA]
+## $ media_t.co              &lt;list&gt; [NA]
+## $ media_expanded_url      &lt;list&gt; [NA]
+## $ media_type              &lt;list&gt; [NA]
+## $ ext_media_url           &lt;list&gt; [NA]
+## $ ext_media_t.co          &lt;list&gt; [NA]
+## $ ext_media_expanded_url  &lt;list&gt; [NA]
+## $ ext_media_type          &lt;chr&gt; NA
+## $ mentions_user_id        &lt;list&gt; [NA]
+## $ mentions_screen_name    &lt;list&gt; [NA]
+## $ lang                    &lt;chr&gt; &quot;en&quot;
+## $ quoted_status_id        &lt;chr&gt; NA
+## $ quoted_text             &lt;chr&gt; NA
+## $ quoted_created_at       &lt;dttm&gt; NA
+## $ quoted_source           &lt;chr&gt; NA
+## $ quoted_favorite_count   &lt;int&gt; NA
+## $ quoted_retweet_count    &lt;int&gt; NA
+## $ quoted_user_id          &lt;chr&gt; NA
+## $ quoted_screen_name      &lt;chr&gt; NA
+## $ quoted_name             &lt;chr&gt; NA
+## $ quoted_followers_count  &lt;int&gt; NA
+## $ quoted_friends_count    &lt;int&gt; NA
+## $ quoted_statuses_count   &lt;int&gt; NA
+## $ quoted_location         &lt;chr&gt; NA
+## $ quoted_description      &lt;chr&gt; NA
+## $ quoted_verified         &lt;lgl&gt; NA
+## $ retweet_status_id       &lt;chr&gt; NA
+## $ retweet_text            &lt;chr&gt; NA
+## $ retweet_created_at      &lt;dttm&gt; NA
+## $ retweet_source          &lt;chr&gt; NA
+## $ retweet_favorite_count  &lt;int&gt; NA
+## $ retweet_retweet_count   &lt;int&gt; NA
+## $ retweet_user_id         &lt;chr&gt; NA
+## $ retweet_screen_name     &lt;chr&gt; NA
+## $ retweet_name            &lt;chr&gt; NA
+## $ retweet_followers_count &lt;int&gt; NA
+## $ retweet_friends_count   &lt;int&gt; NA
+## $ retweet_statuses_count  &lt;int&gt; NA
+## $ retweet_location        &lt;chr&gt; NA
+## $ retweet_description     &lt;chr&gt; NA
+## $ retweet_verified        &lt;lgl&gt; NA
+## $ place_url               &lt;chr&gt; NA
+## $ place_name              &lt;chr&gt; NA
+## $ place_full_name         &lt;chr&gt; NA
+## $ place_type              &lt;chr&gt; NA
+## $ country                 &lt;chr&gt; NA
+## $ country_code            &lt;chr&gt; NA
+## $ geo_coords              &lt;list&gt; [&lt;NA, NA&gt;]
+## $ coords_coords           &lt;list&gt; [&lt;NA, NA&gt;]
+## $ bbox_coords             &lt;list&gt; [&lt;NA, NA, NA, NA, NA, NA, NA, NA&gt;]
+## $ status_url              &lt;chr&gt; &quot;https://twitter.com/NA/status/13482432121299…
+## $ name                    &lt;chr&gt; &quot;The New York Times&quot;
+## $ location                &lt;chr&gt; &quot;New York City&quot;
+## $ description             &lt;chr&gt; &quot;News tips? Share them here: https://t.co/ghL…
+## $ url                     &lt;chr&gt; &quot;http://t.co/ahvuWqicF9&quot;
+## $ protected               &lt;lgl&gt; FALSE
+## $ followers_count         &lt;int&gt; 48784132
+## $ friends_count           &lt;int&gt; 903
+## $ listed_count            &lt;int&gt; 206178
+## $ statuses_count          &lt;int&gt; 418838
+## $ favourites_count        &lt;int&gt; 18370
+## $ account_created_at      &lt;dttm&gt; 2007-03-02 20:41:42
+## $ verified                &lt;lgl&gt; TRUE
+## $ profile_url             &lt;chr&gt; &quot;http://t.co/ahvuWqicF9&quot;
+## $ profile_expanded_url    &lt;chr&gt; &quot;http://www.nytimes.com/&quot;
+## $ account_lang            &lt;lgl&gt; NA
+## $ profile_banner_url      &lt;chr&gt; &quot;https://pbs.twimg.com/profile_banners/807095…
+## $ profile_background_url  &lt;chr&gt; &quot;http://abs.twimg.com/images/themes/theme14/b…
+## $ profile_image_url       &lt;chr&gt; &quot;http://pbs.twimg.com/profile_images/10982445…</code></pre>
+<p>The glimpse() function of dplyr helps us to see a bit better the returning data beacuse it has too many columns to be readable otherwise.</p>
 <p>You can also get the last ten tweets posted by the New York Times account:</p>
-<pre class="r"><code>get_timeline(user=&quot;nytimes&quot;, n=10)</code></pre>
+<pre class="r"><code>glimpse(get_timeline(user=&quot;nytimes&quot;, n=10))</code></pre>
+<pre><code>## Rows: 10
+## Columns: 90
+## $ user_id                 &lt;chr&gt; &quot;807095&quot;, &quot;807095&quot;, &quot;807095&quot;, &quot;807095&quot;, &quot;8070…
+## $ status_id               &lt;chr&gt; &quot;1348243212129996803&quot;, &quot;1348228104007856128&quot;,…
+## $ created_at              &lt;dttm&gt; 2021-01-10 12:20:05, 2021-01-10 11:20:03, 20…
+## $ screen_name             &lt;chr&gt; &quot;nytimes&quot;, &quot;nytimes&quot;, &quot;nytimes&quot;, &quot;nytimes&quot;, &quot;…
+## $ text                    &lt;chr&gt; &quot;For decades, psychiatric hospitals were grim…
+## $ source                  &lt;chr&gt; &quot;SocialFlow&quot;, &quot;SocialFlow&quot;, &quot;SocialFlow&quot;, &quot;So…
+## $ display_text_width      &lt;dbl&gt; 247, 188, 179, 166, 129, 83, 225, 164, 185, 2…
+## $ reply_to_status_id      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ reply_to_user_id        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ reply_to_screen_name    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ is_quote                &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL…
+## $ is_retweet              &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL…
+## $ favorite_count          &lt;int&gt; 489, 189, 256, 367, 141, 850, 1431, 297, 392,…
+## $ retweet_count           &lt;int&gt; 98, 23, 34, 104, 21, 191, 354, 56, 89, 137
+## $ quote_count             &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ reply_count             &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ hashtags                &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ symbols                 &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ urls_url                &lt;list&gt; [&quot;nyti.ms/39iLi0V&quot;, &quot;nyti.ms/3q1rllN&quot;, &quot;nyti…
+## $ urls_t.co               &lt;list&gt; [&quot;https://t.co/QAurPf23wn&quot;, &quot;https://t.co/k7…
+## $ urls_expanded_url       &lt;list&gt; [&quot;https://nyti.ms/39iLi0V&quot;, &quot;https://nyti.ms…
+## $ media_url               &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ media_t.co              &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ media_expanded_url      &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ media_type              &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ ext_media_url           &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ ext_media_t.co          &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ ext_media_expanded_url  &lt;list&gt; [NA, NA, NA, NA, NA, NA, NA, NA, NA, NA]
+## $ ext_media_type          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ mentions_user_id        &lt;list&gt; [NA, NA, NA, NA, &quot;18998006&quot;, NA, NA, NA, NA,…
+## $ mentions_screen_name    &lt;list&gt; [NA, NA, NA, NA, &quot;kurtstreeter&quot;, NA, NA, NA,…
+## $ lang                    &lt;chr&gt; &quot;en&quot;, &quot;en&quot;, &quot;en&quot;, &quot;en&quot;, &quot;en&quot;, &quot;en&quot;, &quot;en&quot;, &quot;en…
+## $ quoted_status_id        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_text             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_created_at       &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_source           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_favorite_count   &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_retweet_count    &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_user_id          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_screen_name      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_name             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_followers_count  &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_friends_count    &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_statuses_count   &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_location         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_description      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ quoted_verified         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_status_id       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_text            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_created_at      &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_source          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_favorite_count  &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_retweet_count   &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_user_id         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_screen_name     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_name            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_followers_count &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_friends_count   &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_statuses_count  &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_location        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_description     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ retweet_verified        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ place_url               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ place_name              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ place_full_name         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ place_type              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ country                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ country_code            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ geo_coords              &lt;list&gt; [&lt;NA, NA&gt;, &lt;NA, NA&gt;, &lt;NA, NA&gt;, &lt;NA, NA&gt;, &lt;NA…
+## $ coords_coords           &lt;list&gt; [&lt;NA, NA&gt;, &lt;NA, NA&gt;, &lt;NA, NA&gt;, &lt;NA, NA&gt;, &lt;NA…
+## $ bbox_coords             &lt;list&gt; [&lt;NA, NA, NA, NA, NA, NA, NA, NA&gt;, &lt;NA, NA, …
+## $ status_url              &lt;chr&gt; &quot;https://twitter.com/nytimes/status/134824321…
+## $ name                    &lt;chr&gt; &quot;The New York Times&quot;, &quot;The New York Times&quot;, &quot;…
+## $ location                &lt;chr&gt; &quot;New York City&quot;, &quot;New York City&quot;, &quot;New York C…
+## $ description             &lt;chr&gt; &quot;News tips? Share them here: https://t.co/ghL…
+## $ url                     &lt;chr&gt; &quot;http://t.co/ahvuWqicF9&quot;, &quot;http://t.co/ahvuWq…
+## $ protected               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL…
+## $ followers_count         &lt;int&gt; 48784132, 48784132, 48784132, 48784132, 48784…
+## $ friends_count           &lt;int&gt; 903, 903, 903, 903, 903, 903, 903, 903, 903, …
+## $ listed_count            &lt;int&gt; 206178, 206178, 206178, 206178, 206178, 20617…
+## $ statuses_count          &lt;int&gt; 418838, 418838, 418838, 418838, 418838, 41883…
+## $ favourites_count        &lt;int&gt; 18370, 18370, 18370, 18370, 18370, 18370, 183…
+## $ account_created_at      &lt;dttm&gt; 2007-03-02 20:41:42, 2007-03-02 20:41:42, 20…
+## $ verified                &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRU…
+## $ profile_url             &lt;chr&gt; &quot;http://t.co/ahvuWqicF9&quot;, &quot;http://t.co/ahvuWq…
+## $ profile_expanded_url    &lt;chr&gt; &quot;http://www.nytimes.com/&quot;, &quot;http://www.nytime…
+## $ account_lang            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+## $ profile_banner_url      &lt;chr&gt; &quot;https://pbs.twimg.com/profile_banners/807095…
+## $ profile_background_url  &lt;chr&gt; &quot;http://abs.twimg.com/images/themes/theme14/b…
+## $ profile_image_url       &lt;chr&gt; &quot;http://pbs.twimg.com/profile_images/10982445…</code></pre>
 </div>
 <div id="construct-the-timelines-of-twitter-users" class="section level1">
 <h1>2. Construct the timelines of Twitter users</h1>
@@ -511,11 +697,6 @@ summary {
 <li><p>Is the value of the relationship within the ranges predicted by Social Impact Theory?</p></li>
 <li><p>Under that relationship, if I have 1000 followers, how many more followers do I need to double my social impact?</p></li>
 </ol>
-</div>
-<div id="appendix-authenticating-twitter-api-requests" class="section level1">
-<h1>Appendix: Authenticating Twitter API requests</h1>
-<p>If you want to download more data or access other kind of data from Twitter, you might need a developer account on Twitter. You can apply for one following the steps in the vignette below. The process requires an employee of Twitter to check your application, so it might take a few days before you get it:</p>
-<pre class="r"><code>vignette(&quot;auth&quot;, &quot;rtweet&quot;)</code></pre>
 </div>
 
 

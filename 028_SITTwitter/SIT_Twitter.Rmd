@@ -34,18 +34,20 @@ Now we will load the rtweet package:
 library(rtweet)
 ```
 
-You can connect to the Twitter API in two ways. One is just to continue with these exercises, when you run the next line of code in interactive mode, your browser will prompt to ask you to give permissions to the rstats2twitter. Once you give it permissions, you will be able to access the Twitter API. The second way is getting a developer account and making an app. It is more complicated but better if you do a longer project with this API. You have more details about it in the appendix.
+You can connect to the Twitter API in two ways. One is just to continue with these exercises, when you run the next line of code in interactive mode, your browser will prompt to ask you to give permissions to the rstats2twitter. Once you give it permissions, you will be able to access the Twitter API. The second way is getting a developer account and making an app. It is more complicated but better if you do a longer project with this API. Check the [rtweet tutorial](https://github.com/dgarcia-eu/SocialDataScience/blob/master/027_rtweet/rtweet.Rmd) for more details.
 
 **1.2 Testing the connection with some examples**
 
 After that you will be able to access the Twitter API from R. For example, we can get basic information on the Twitter account of the New York Times:
-```{r test1}
-lookup_users(users = "nytimes")
+```{r test1, message=F, warning=F}
+library(dplyr)
+glimpse(lookup_users(users = "nytimes"))
 ```
+The glimpse() function of dplyr helps us to see a bit better the returning data because it has too many columns to be readable otherwise.
 
 You can also get the last ten tweets posted by the New York Times account:
 ```{r test2}
-get_timeline(user="nytimes", n=10)
+glimpse(get_timeline(user="nytimes", n=10))
 ```
 
 # 2. Construct the timelines of Twitter users
@@ -185,12 +187,3 @@ Plot a histogram of the values resulting from the permutations and a vertical li
 3. Is the value of the relationship within the ranges predicted by Social Impact Theory?
 
 4. Under that relationship, if I have 1000 followers, how many more followers do I need to double my social impact?
-
-
-# Appendix: Authenticating Twitter API requests
-
-If you want to download more data or access other kind of data from Twitter, you might need a developer account on Twitter. You can apply for one following the steps in the vignette below. The process requires an employee of Twitter to check your application, so it might take a few days before you get it:
-
-```{r vignette, eval=FALSE}
-vignette("auth", "rtweet")
-```
