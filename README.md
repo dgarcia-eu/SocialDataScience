@@ -33,7 +33,7 @@ The course is organized in five blocks with several topics each. Each block has 
 2.4. [Linear regression](https://dgarcia-eu.github.io/SocialDataScience/024_LinearRegression/LinearRegression.html)  
 2.5. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/025_Bootstrapping/Bootstrapping.html) -- [[Github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/025_Bootstrapping)  
 2.6. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/026_dplyr/dplyr.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/026_dplyr)  
-2.7. The Twitter API in R  
+2.7. [The Twitter API in R](https://dgarcia-eu.github.io/SocialDataScience/027_rtweet/rtweet.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/027_rtweet)  
 2.8. [Exercise: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/028_SITTwitter)
 	
 3. **Computational Affective Science**  
@@ -52,7 +52,7 @@ The course is organized in five blocks with several topics each. Each block has 
 4.3. SDS story: sampling opinions on Twitter  
 4.4. Centrality  
 4.5. igraph in R  
-4.6. Visualizing networks  
+4.6. Twitter network data  
 4.7. Exercise: The friendship paradox on Twitter  
 4.8. Exercise: Swiss politicians on Twitter  
 
