@@ -37,7 +37,7 @@ The course is organized in five blocks with several topics each. Each block has 
 2.8. [Exercise: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/028_SITTwitter)
 	
 3. **Computational Affective Science**  
-3.1. Measuring emotions  
+3.1. [Measuring emotions](https://dgarcia-eu.github.io/SocialDataScience/031_MeasuringEmotions/Emotions.html)  
 3.2. Unsupervised sentiment analysis  
 3.3. SDS Story: Emotions in pagers after 9/11  
 3.4. Supervised sentiment analysis  
