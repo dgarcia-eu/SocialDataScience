@@ -1,0 +1,31 @@
+---
+title: "Social Data Science - Are negative tweets retweeted more?"
+author: "Dr. David Garcia"
+output: html_document
+---
+
+
+
+```{r rtweet}
+library(rtweet)
+
+tweets <- get_timeline(user="barackobama", n=3200)
+
+library(vader)
+
+sent <- vader_df(tweets$text)
+
+tweets$class <- "Neutral"
+tweets$class[sent$compound< -0.05] <- "Negative"
+tweets$class[sent$compound>  0.05] <- "Positive"
+
+tweets$class <- relevel(as.factor(tweets$class), ref="Neutral")
+
+model <- lm(log(retweet_count) ~ class, tweets, is.na(retweet_status_id) & retweet_count>0)
+summary(model)
+
+model <- lm(log(favorite_count) ~ class, tweets, is.na(retweet_status_id) & favorite_count>0)
+summary(model)
+
+```
+
