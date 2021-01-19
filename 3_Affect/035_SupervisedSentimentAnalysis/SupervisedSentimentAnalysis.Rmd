@@ -1,0 +1,21 @@
+---
+title: "Supervised Sentiment Analysis"
+author: "David Garcia, 2021"
+output: html_document
+---
+
+### How to train your model
+
+### Gold Standards and Ground Truths
+
+### What model to use?
+
+### Evaluating classifiers
+
+<div style="float:right">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg" alt="Precision and Recall" width="250px"/>  
+Visualization of precision and recall. [[source]](https://en.wikipedia.org/wiki/Precision_and_recall)
+</div>
+
+### Let someone else do it: Black-box APIs
+
