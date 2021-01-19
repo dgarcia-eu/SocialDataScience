@@ -1,0 +1,44 @@
+---
+title: "Training supervised text models in R"
+author: "Dr. David Garcia"
+output: html_document
+---
+
+
+
+```{r }
+library(RTextTools)
+
+
+df <- read.csv("2018-E-c-En-train.txt", sep="\t")
+df$Tweet <- gsub("#","",df$Tweet)
+
+doc_matrix <- create_matrix(df$Tweet, language="english", removeNumbers=TRUE,
+stemWords=TRUE, removeSparseTerms=.998)
+
+container <- create_container(doc_matrix, df$anger, trainSize=1:6000, testSize=6001:6838, virgin=FALSE)
+
+SVM <- train_model(container,"SVM")
+SVM_CLASSIFY <- classify_model(container, SVM)
+
+sum(df$anger[6001:6838]== SVM_CLASSIFY$SVM_LABEL)/nrow(SVM_CLASSIFY)
+
+SVM <- cross_validate(container, 4, "SVM")
+
+
+df.test <- read.csv("2018-E-c-En-test-gold.txt", sep="\t")
+df.test$Tweet <- gsub("#","",df.test$Tweet)
+
+df.all <- rbind(df, df.test)
+
+doc_matrix.all <- create_matrix(df.all$Tweet, language="english", removeNumbers=TRUE,
+stemWords=TRUE, removeSparseTerms=.998)
+
+container.all <- create_container(doc_matrix.all, df.all$anger, trainSize=1:6838, testSize=6839:nrow(df.all), virgin=FALSE)
+
+SVM <- train_model(container.all,"SVM")
+SVM_CLASSIFY <- classify_model(container.all, SVM)
+analytics <- create_analytics(container.all, SVM_CLASSIFY)
+analytics
+```
+
