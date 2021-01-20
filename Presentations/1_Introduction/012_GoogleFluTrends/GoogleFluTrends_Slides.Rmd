@@ -1,0 +1,92 @@
+---
+title: "The Parable of Google Flu Trends"
+subtitle: "A Social Data Science Story"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+
+---
+
+# Gooogle Trends
+
+Google Trends is a website hosted by Google that allows you to get a measurement of Google search volume for a term
+
+<center>
+<img src="EU.png" alt="" width="900"/>  
+</center>
+---
+
+## Nowcasting flu incidence with Google Trends
+
+<div style="float:right">
+<img src="GoogleFluTrends.jpg" alt="Data Science discipline Venn diagram" width="500px"/>  
+</div>
+
+**Nowcasting** is predicting the present. It provides an estimation of the value of a quantity based on signals that appear at the same time. 
+
+Google Flu Trends aimed at nowcasting influenza-related physician visits based on Google search volumes. 
+
+As reported in the [Nature paper](http://www.nature.com/nature/journal/v457/n7232/full/nature07634.html), Google Flu Trends achieved a high weekly accuracy between 2003 and 2008.
+
+The figure shows the nowcasting result of Google flu trends. CDC data is published with a delay of two weeks.
+
+---
+## When Google Flu Trends Stopped working
+
+<center>
+<img src="FluFail.jpg" alt="drawing" width="750"/>  
+</center>
+
+---
+## When Google Flu Trends Stopped working
+
+In 2013, Google Flu Trends [started overestimating](https://www.nature.com/news/when-google-got-flu-wrong-1.12413) the incidence of flu cases.
+
+A [follow-up study in Science](http://science.sciencemag.org/content/343/6176/1203
+) showed that just a lagged CDC prediction with 2 week-old data outperformed Google Flu Trends, without using any Google data.
+
+Since many details about how Google and Google Trends work are not public, we cannot know for sure what was the surce of the error. Some candidates are news-related searches, seasonal effects, or changes in Google's algorithm and interface.
+
+Google Flu Trends is an example of **Big Data Hubris**: ”The often implicit assumption that big data are a substitute for, rather than a supplement to, traditional data collection and analysis” [(Lazer et al, Science, 2014)](http://science.sciencemag.org/content/343/6176/1203)
+
+> Take home message: **All data is better than Big Data**
+
+---
+
+## Beware of Making a Data Piñata
+
+![Definition of data piñata from the [Urban Dictionary](https://www.urbandictionary.com/define.php?term=data%20pi%C3%B1ata)](Pinata.png)
+
+Also known as kitchen-sink regression, garbage-in garbage-out, and post hoc storytelling. Some patterns will always come out with sufficient data, what matters is making sense of them.
