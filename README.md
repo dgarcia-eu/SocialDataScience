@@ -17,41 +17,41 @@ I am the Professor for Computational Behavioral and Social Sciences the Graz Uni
 The course is organized in five blocks with several topics each. Each block has one or more exercises for you to apply what you learned in the block. In exercises, you collect your own data and try to answer Social Data Science questions. The online materials do not contain the solutions to the exercises, but if you are stuck or want to start from an easier point, in the github folder of the exercise you can find a version of the exercise with hints.
 
 1. **Introduction to Social Data Science**  
-1.1. [What is Social Data Science?](https://dgarcia-eu.github.io/SocialDataScience/011_IntroductionToSDS/Introduction.html)  
-1.2. [SDS Story: Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/012_GoogleFluTrends/GoogleFluTrends.html)  
-1.3. [Measuring temporal orientation with Google Trends](https://dgarcia-eu.github.io/SocialDataScience/013_TemporalOrientation/TemporalOrientationGtrends.html)  
-1.4. [Measuring correlation](https://dgarcia-eu.github.io/SocialDataScience/014_Correlation/MeasuringCorrelation.html)  
-1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/015_RCrashCourse/RCrashCourse.html) -- [[R crash course github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/015_RCrashCourse)  
-1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/016_WDI/WDI.html)  
-1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/017_gtrendsR/gtrendsR.html)  
-1.8. [Exercise: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/018_FOIExercise)
+1.1. [What is Social Data Science?](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/011_IntroductionToSDS/Introduction.html)  
+1.2. [SDS Story: Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/012_GoogleFluTrends/GoogleFluTrends.html)  
+1.3. [Measuring temporal orientation with Google Trends](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/013_TemporalOrientation/TemporalOrientationGtrends.html)  
+1.4. [Measuring correlation](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/014_Correlation/MeasuringCorrelation.html)  
+1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/015_RCrashCourse/RCrashCourse.html) -- [[R crash course github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/015_RCrashCourse)  
+1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/016_WDI/WDI.html)  
+1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/017_gtrendsR/gtrendsR.html)  
+1.8. [Exercise: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise)
 
 2. **Social dynamics**  
-2.1. [Social Impact Theory](https://dgarcia-eu.github.io/SocialDataScience/021_SocialImpactTheory/SIT.html)  
-2.2. [The Simmel Effect](https://dgarcia-eu.github.io/SocialDataScience/022_SimmelEffect/SimmelEffect.html)  
-2.3. [SDS Story: Baby name trends](https://dgarcia-eu.github.io/SocialDataScience/023_BabyNameTrends/BabyNameTrends.html)  
-2.4. [Linear regression](https://dgarcia-eu.github.io/SocialDataScience/024_LinearRegression/LinearRegression.html)  
-2.5. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/025_Bootstrapping/Bootstrapping.html) -- [[Github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/025_Bootstrapping)  
-2.6. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/026_dplyr/dplyr.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/026_dplyr)  
-2.7. [The Twitter API in R](https://dgarcia-eu.github.io/SocialDataScience/027_rtweet/rtweet.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/027_rtweet)  
-2.8. [Exercise: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/028_SITTwitter)
+2.1. [Social Impact Theory](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/021_SocialImpactTheory/SIT.html)  
+2.2. [The Simmel Effect](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/022_SimmelEffect/SimmelEffect.html)  
+2.3. [SDS Story: Baby name trends](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/023_BabyNameTrends/BabyNameTrends.html)  
+2.4. [Linear regression](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/024_LinearRegression/LinearRegression.html)  
+2.5. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/025_Bootstrapping/Bootstrapping.html) -- [[Github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/025_Bootstrapping)  
+2.6. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/026_dplyr/dplyr.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/026_dplyr)  
+2.7. [The Twitter API in R](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/027_rtweet/rtweet.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/027_rtweet)  
+2.8. [Exercise: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter)
 	
 3. **Computational Affective Science**  
-3.1. [Measuring emotions](https://dgarcia-eu.github.io/SocialDataScience/031_MeasuringEmotions/Emotions.html)  
-3.2. [Unsupervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html)  
-3.3. SDS Story: Emotions in pagers after 9/11  
-3.4. Supervised sentiment analysis  
-3.5. Dealing with text in R  
-3.6. Running sentiment analysis  
-3.7. Exercise: Evaluating sentiment analysis methods  
-3.8. Exercise: Generating your own annotations  
+3.1. [Measuring emotions](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html)  
+3.2. [Unsupervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html)  
+3.3. [SDS Story: Emotions in pagers after 9/11](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/033_PagerEmotions/PagerEmotions.html)  
+3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)  
+3.5. Running unsupervised sentiment analysis in R  
+<!-- 3.6. Training supervised text models in R  -->
+3.6. Exercise: Evaluating sentiment analysis methods  
+3.7. Exercise: Twitter sentiment and retweeting
 
 4. **Social network analysis**  
 4.1. Introduction to social networks  
 4.2. The Friendship paradox  
 4.3. SDS story: sampling opinions on Twitter  
 4.4. Centrality  
-4.5. igraph in R  
+4.5. Analyzing networks in R  
 4.6. Twitter network data  
 4.7. Exercise: The friendship paradox on Twitter  
 4.8. Exercise: Swiss politicians on Twitter  
