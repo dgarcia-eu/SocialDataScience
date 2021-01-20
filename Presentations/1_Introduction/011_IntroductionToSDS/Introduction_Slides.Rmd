@@ -1,0 +1,130 @@
+---
+title: "Introduction to Social Data Science"
+author: "David Garcia <br> *ETH Zurich*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+
+---
+# What is the aim of Social Data Science?
+
+> The aim of Social Data Science is   
+**the Quantitative Understanding of Human Behavior**.  
+
+- **Quantitative:** As opposed to qualitative or descriptive, we aim for robust findings grounded in strong evidence that can be quantified.  
+
+- **Understanding:** Not just predicting, we want to be able to generalize and combine knowledge, and even to motivate interventions or policies.  
+
+- **Human:**  We will not study particles or objects. Measurement validity and ethics will be a challenge.  
+
+- **Behavior:** Observable changes, structures, dynamics, and patterns; not just stories or theories
+
+---
+#  How are we going to do it?
+**Retrieving, processing, analyzing, and interpreting Digital traces.**  
+<center>
+![:scale 80%](FBMap.png)
+</center>
+---
+
+# What is data?
+
+> **Data:** Facts in the form of stored and transmittable information.  
+
+- *Data* is the plural of the Latin word *datum*. *Data* means ”given (things)”.  
+- Data is given to us, it is not fabricated nor simulated.
+![:scale 85%](http://www.phdcomics.com/comics/archive/phd080715s.gif)
+
+
+
+---
+
+# What is Social Data Science?
+
+<div style="float:right">
+<img src="https://images.squarespace-cdn.com/content/v1/5150aec6e4b0e340ec52710a/1364352051365-HZAS3CLBF7ABLE3F5OBY/ke17ZwdGBToddI8pDm48kB2M2-8_3EzuSSXvzQBRsa1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxPe_8B-x4gq2tfVez1FwLYYZXud0o-3jV-FAs7tmkMHY-a7GzQZKbHRGZboWC-fOc/Data_Science_VD.png" alt="Data Science discipline Venn diagram" width="450px"/>
+</div>
+
+**Data Science** is the application of methods from Computer Science and Statistics to empirical questions and practical problems.
+
+**Social Data Science** is the application of Data Science to study human behavior and social interaction. 
+
+- Importance of combining methods, synthesis, and communication
+- Gathering digital traces with Computer Science techniques
+- Analysis interpretation with respect to what is known in the relevant Social Sciences
+---
+
+# Why digital traces?
+
+Data from digital traces have six properties that can complement other traditional data sources in the social sciences:
+
+- **Big Data:** Observing large amounts of humans across demographics  
+
+- **Fast Data:** Quantifying aspects of human behavior in real time  
+
+- **Long Data:** Retrieving longitudinal data and at various timescales  
+
+- **Deep Data:** Gathering persistent information on individuals  
+
+- **Mixed Data:** Combining heterogeneous datasources and unstructured data  
+
+- **Strange Data:** Locating small subcommunities or deviant behavior  
+
+---
+
+# What are the limitations of digital traces?
+
+With the great potential of digital traces, aslo come great challenges:
+
+- **Platform biases:** caused by their design, algorithms, social bots, etc
+
+- **Data gatekeepers:** Not everyone can access some data sources
+
+- **Performative behavior:** Talking online is not the same than offline.
+
+- **Representativity issues:** Not everyone leaves digital traces. 
+
+- **Observational data:** Testing causal mechanisms is not straightforward. 
+
+- **The data deluge:** Too much data enables black-box predictions that can be useful but limit our understanding.
+
+---
+
+### The importance of questions in Social Data Science
+
+![:scale 100%](DeepThought.jpeg)  
+Deep Thought, from the movie version of The Hitchhiker's Guide to the Galaxy.
+
+> **Understanding our questions is a prerequisite to understanding their answers.**
+
