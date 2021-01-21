@@ -40,8 +40,8 @@ The course is organized in five blocks with several topics each. Each block has 
 3.1. [Measuring emotions](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html)  
 3.2. [Unsupervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html)  
 3.3. [SDS Story: Emotions in pagers after 9/11](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/033_PagerEmotions/PagerEmotions.html)  
-3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)  
-3.5. Running unsupervised sentiment analysis in R  
+3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)  
+3.5. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html)  
 <!-- 3.6. Training supervised text models in R  -->
 3.6. Exercise: Evaluating sentiment analysis methods  
 3.7. Exercise: Twitter sentiment and retweeting
