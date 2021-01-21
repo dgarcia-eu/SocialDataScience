@@ -1,0 +1,149 @@
+---
+title: "Exercise: How well can we measure sentiment in text?"
+author: "David Garcia, 2011"
+output: html_document
+---
+
+In this exercise we will learn how to use Syuzhet and VADER for social media texts. We will use evaluation datasets of annotated text to compare Syuzhet and VADER against GoogleNLP in Youtube and Twitter datasets.
+
+## Tasks:
+
+1. Install packages and load evaluation datasets with Google NLP scores
+
+2. Run VADER over evaluation texts
+
+3. Run syuzhet over evaluation texts
+
+4. Evaluate against sentiment annotations and compare with Google NLP
+
+5. Conclusions
+
+# 1. Load evaluation datasets and Google NLP scores
+
+**1.1 Install and load Syuzhet and VADER**
+```{r}
+library(syuzhet)
+library(vader)
+```
+
+**1.3 Load datasets**
+
+Read the two .csv files into three data frames (twitterdf, youtubedf). Set the stringsAsFactors parameter to FALSE so the texts do not get converted into factors.
+```{r}
+#Your code here
+```
+
+# 2. Run VADER over evaluation texts
+
+**2.1 Run VADER over the first tweet**
+
+Use the get_vader function over the text of the first tweet. Look at the text and the output of VADER. Does it look like a good classification?
+```{r}
+#Your code here
+```
+
+**2.2 Run VADER over each text**
+
+Run VADER over each text (for Twitter and Youtube) and save the compound result in a column of each data frame. If this process is very slow in your computer, you can use the precomputed values of the VADER column of the provided file.
+```{r, eval=F}
+#Your code here
+```
+
+**2.3 VADER as a classifier**
+
+Convert the compound score into classes by using -0.5 and 0.5 as thresholds. In the following, create a new column with the VADER class for each dataset that is "Negative" if the score is below -0.5, "Positive" if it is above 0.5, and "Neutral" otherwise.
+
+```{r}
+#Your code here
+```
+
+# 3. Run syuzhet over evaluation texts
+
+**3.1 Syuzhet test**
+
+Run the get_sentiment function of syuzhet over the first 5 examples of tweets. Print the text, the result of syuzhet, and the annotations of each text.
+
+```{r, warning=FALSE, message=FALSE}
+#Your code here
+```
+
+
+**3.2 Apply syuzhet to all texts**
+
+For each text in the BBC, Twitter, and YouTube datasets, run the get_sentiment function of syuzhet. You can use get_sentiment for the whole column of texts to get a new column of sentiment values without coding a loop. It's very fast!
+
+```{r, eval=TRUE, warning=FALSE}
+#Your code here
+```
+
+
+**3.3 Syuzhet as a classifier**
+
+As with VADER, compute classes from Syuzhet using -0.5 and 0.5 as thresholds.
+
+```{r}
+#Your code here
+```
+
+# 4. Evaluate against sentiment annotations and compare with Google NLP
+
+**4.1 Convert GoogleNLP scores to classes**
+
+As with VADER and Syuzhet, compute classes from GoogleNLP using -0.3 and 0.3 as thresholds.
+
+```{r}
+#Your code here
+```
+
+**4.2 Evaluate on Twitter**
+
+First, let's calculate the accuracy for all three classifiers on twitter
+```{r}
+#Your code here
+```
+
+Then we can study the precision and recall of the positive and negative sentiment classes. Let's start with the precision of the positive class for Twitter:
+```{r}
+#Your code here
+```
+
+and the recall of the positive class for Twitter:
+```{r}
+#Your code here
+```
+
+Let's compare to the negative class by computing also precision and recall:
+```{r}
+#Your code here
+```
+
+**4.3 Evaluate on Youtube**
+
+First, let's calculate the accuracy for all three classifiers on youtube
+```{r}
+#Your code here
+```
+
+Then we can study the precision and recall of the positive and negative sentiment classes. Let's start with the precision of the positive class for Youtube:
+```{r}
+#Your code here
+```
+
+and the recall of the positive class for Youtube:
+```{r}
+#Your code here
+```
+
+Let's compare to the negative class by computing also precision and recall:
+```{r}
+#Your code here
+```
+
+
+# 5. Conclusions
+
+1. What was the best performing method for Youtube? Did that fit your expectations?
+
+2. What was the best performing method for Twitter? Did that fit your expectations?
+
+4. Do you observe any differences between prediction of positive and negative sentiment? What is the role of the imbalance between postive and negative classes in the calculation of accuracy?
