@@ -71,7 +71,9 @@ Supervised classifiers train their model by finding the values for parameters th
 Visualization of precision and recall. [[source]](https://en.wikipedia.org/wiki/Precision_and_recall)
 </div>
 
-Based on this table, a classifier has two quality measures:
+The most basic measure of performance is **accuracy**, which in this case is the fraction of correct predictions over all predictions:  
+$Accuracy = \frac{TP+TN}{TP+FP+TN+FN}$  
+However, there can be an imbalance between positives and negatives that gives too much importance to the majority class in the calculation of accuracy. To give a more nuanced understanding of the performance of the classifier, we have two measures:
 
 - **Precision:** the fraction of all positive predictions that are correct  
 $Precision = \frac{TP}{TP+FP}$  

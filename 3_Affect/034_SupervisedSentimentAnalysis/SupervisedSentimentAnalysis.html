@@ -516,7 +516,9 @@ Supervised sentiment analysis trains a predictive model <span class="math inline
 Visualization of precision and recall. <a href="https://en.wikipedia.org/wiki/Precision_and_recall">[source]</a></p>
 </div></li>
 </ul>
-<p>Based on this table, a classifier has two quality measures:</p>
+<p>The most basic measure of performance is <strong>accuracy</strong>, which in this case is the fraction of correct predictions over all predictions:<br />
+<span class="math inline">\(Accuracy = \frac{TP+TN}{TP+FP+TN+FN}\)</span><br />
+However, there can be an imbalance between positives and negatives that gives too much importance to the majority class in the calculation of accuracy. To give a more nuanced understanding of the performance of the classifier, we have two measures:</p>
 <ul>
 <li><strong>Precision:</strong> the fraction of all positive predictions that are correct<br />
 <span class="math inline">\(Precision = \frac{TP}{TP+FP}\)</span><br />
