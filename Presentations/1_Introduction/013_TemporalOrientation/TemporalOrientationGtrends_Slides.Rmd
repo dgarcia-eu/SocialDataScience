@@ -75,5 +75,7 @@ The FOI measures the ratio of search volume from a country for next year divided
 ---
 
 # Example of trends for FOI
-.center[![:scale 80%](FOI2.png)]
+.center[![:scale 85%](FOI2.png)]
 
+---
+.center[![:scale 65%](DIY.jpg)]
