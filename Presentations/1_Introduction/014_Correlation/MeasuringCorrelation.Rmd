@@ -1,0 +1,97 @@
+---
+title: "Measuring correlation"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+
+---
+
+# Some univariate statistics notation
+
+
+- $X$ is a random variable
+  - In data: $X_i$ is the value of the variable for entry $i$
+  - For example the GDP of a country
+
+- $E[X]$ is the expected value of $X$
+  - We estimate the expected value as the mean of $X$: $\mu_X = \frac{1}{N}\sum_i X_i$
+  - $N$ is the number of data points, for example the number of countries
+
+---
+
+# Some more univariate statistics notation
+
+- $V[X]$ is the variance of $X$
+  - We calculate it as the expected squared difference to the mean X: $V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)$
+  - It is measured in squared units of $X$
+
+- $\sigma_X$ is the standard deviation of X
+  -  $\sigma_X = \sqrt{V[X]}$, which is convenient because it measures dispersion in the same units as $X$
+  - in R you can calculate it with the function sd()
+
+---
+
+## Pearson's Correlation Coefficient $\rho(X,Y)$
+
+> **Correlation:** Linear association or dependence between the values of variables $X$ and $Y$
+ 
+- If $X$ and $Y$ are independent, they satisfy that the expectation of the product equals the product of expectations:  
+
+<p align=center>
+$E[XY] = E[X]E[Y]$  
+</p>
+- The principle: correlation as the deviation from $E[XY] − E [X]E[Y] = 0$  
+- The absolute value of this difference can be at most $\sigma_X\sigma_Y$  
+- $\rho(X,Y)$ rescales the difference to be between −1 and 1  
+
+<p align=center>
+$\rho(X,Y) = \frac{E[XY] − E [X]E[Y]}{\sigma_X\sigma_Y}$  
+</p>
+---
+
+### Some examples of Pearson's Correlation Coefficient
+![](pearson1.png)
+
+---
+![](pearson2.png)
+
+Independent variables will have a correlation close to zero, but a correlation close to zero does not mean independence
+---
+## Anscombe's quartet  ( $\rho=0.816$ )
+
+.center[![:scale 65%](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Anscombe%27s_quartet_3.svg/638px-Anscombe%27s_quartet_3.svg.png)]
+---
+## The Datasaurus dozen
+.center[![:scale 68%](https://d2f99xq7vri1nk.cloudfront.net/AllDinosGrey_1.png)]
