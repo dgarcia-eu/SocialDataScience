@@ -26,7 +26,7 @@ Before analyzing the data, we should clean it. Use dplyr to delete from the data
 
 The plan is to fit a regression model of the logarithm of the number of retweets of a tweet as a function of the sentiment class of the tweet. Before fitting we are going to "relevel" the class so that the reference class is "Neutral". This will help to make the results of the fit more interpretable:
 
-```{r, eval=F}
+```{r}
 tweetsfit$class <- relevel(as.factor(tweetsfit$class), ref="Neutral")
 ```
 
@@ -41,11 +41,24 @@ The summary gives you the idea that some tweets might be retweeted more if their
 Want to have an estimate of the uncertainty of the coefficient for the negative class. To do so, you can apply bootstrapping as we did in previous exercises. You can do it with a loop or by defining a function for the library boot. When you have the values of coefficients in each bootstrap sample, plot a histogram. Does it look far from zero?
 ```{r}
 #Your code here
+library(boot)
+library(dplyr)
+ReturnSlopeNegative <- function(dataframe, sampleindices) 
+{
+  d <- dataframe[sampleindices,] # we will use this for bootstrapping
+  model <- lm(log(retweet_count) ~ class, d)
+  return( model$coefficients[2] )
+}
+
+#Your code here
 ```
 
 Now repeat the above analysis for the count of favorites as a dependent variable. Fit only for tweets with at least one favorite and that are not retweets. Do you see a difference?
 
 ```{r}
+#Your code here
+model <- lm(log(favorite_count) ~ class, tweets, is.na(retweet_status_id) & favorite_count>0)
+
 #Your code here
 ```
 
@@ -54,7 +67,7 @@ Now repeat the above analysis for the count of favorites as a dependent variable
 We are going to address the question by generating a random tweets sample in English. Look for the coordinates of a major city in the US or the UK and use them to define the "geocode" parameter ot a search in the Twitter API. Set a radius around the point of few miles and search up to 5000 tweets in English and do not keep retweets.
 
 ```{r}
-#Your code here
+tweets <- search_tweets(geocode="40.7128,-74.0060,10mi", n=5000, include_rts = F,lang="en")
 ```
 
 Now, as we did in the previous case, run VADER over the tweets and classify them into sentiment classes of positive, negative, and neutral tweets.
@@ -76,6 +89,9 @@ Remove tweets from users without followers as they are likely bots/spam or too n
 Now following the example of the models of retweets above, relevel the sentiment classes and fit a linear regression model of the logarithm of the number of followers as a function of class, ignoring tweets that are retweets. 
 ```{r}
 #Your code here
+tweets$class <- relevel(as.factor(tweets$class), ref="Neutral")
+model <- lm(log(followers_count) ~ class, tweets, is.na(retweet_status_id))
+summary(model)
 ```
 To assess the uncertainty in the value of coefficients, apply the same bootstrapping approach as for the other models for the coefficient of negative sentiment here. Does it look far from zero? 
 
