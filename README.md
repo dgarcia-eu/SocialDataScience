@@ -43,15 +43,15 @@ The course is organized in five blocks with several topics each. Each block has 
 3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)  
 3.5. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html)  
 <!-- 3.6. Training supervised text models in R  -->
-3.6. Exercise: Evaluating sentiment analysis methods  
-3.7. Exercise: Twitter sentiment and retweeting
+3.6. [Exercise: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
+3.7. [Exercise: Twitter sentiment and retweeting](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/038_TwitterSentiment)
 
 4. **Social network analysis**  
 4.1. Introduction to social networks  
 4.2. The Friendship paradox  
 4.3. SDS story: sampling opinions on Twitter  
 4.4. Centrality  
-4.5. Analyzing networks in R  
+4.5. Handling network data in R  
 4.6. Twitter network data  
 4.7. Exercise: The friendship paradox on Twitter  
 4.8. Exercise: Swiss politicians on Twitter  
@@ -62,8 +62,8 @@ The course is organized in five blocks with several topics each. Each block has 
 5.3. Structural holes and communities  
 5.4. Assortativity  
 5.5. Permutation tests   
-5.6. Community detection  
-5.7. Visualizing centrality  
+5.6. Network visualization  
+5.7. Community detection  
 5.8. Exercise: Assortativity among Swiss politicians on Twitter
 
 ## Where to access materials
