@@ -1,0 +1,161 @@
+---
+title: "Linear Regression"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+
+---
+
+# Linear Regression
+
+Regression models formalize an equation in which one numeric variable $Y$ is formulated as a linear function of other variables $X_1$, $X_2$, $X_3$, etc: <center>
+$Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 ... + \epsilon$
+</center>
+- $Y$ is called the dependent variable
+
+- $X_1$, $X_2$, $X_3$, etc are called independent variables
+
+- $a$ is the intercept, which measures the expected value of $Y$ that does not depend on the dependent variables
+
+- $b_1$, $b_2$, $b_3$, etc are called the slopes or the coefficients
+
+- $\epsilon$ are the residuals, the errors of the equation in the data
+
+---
+
+![:scale 92%](https://pbs.twimg.com/media/EXRxFKwU4AAhB-x?format=jpg&name=large)
+
+---
+# Example: FOI vs GDP
+
+```{r echo=F, message=F, results='hide', fig.width=9, fig.align='center'}
+library(dplyr)
+df <- read.csv("FOI.csv")
+df$GDP <- df$NY.GDP.PCAP.PP.KD
+df %>% filter(SP.POP.TOTL*IT.NET.USER.ZS/100 > 5000000) -> df
+model <- lm(GDP~FOI, df)
+par(mar=c(4,5,0,0))
+plot(df$FOI, df$GDP, xlab="FOI", ylab="GDP per capita", cex.axis=2, cex.lab=2)
+abline(model$coefficients[1], model$coefficients[2], col="red")
+```
+
+---
+
+# Regression residuals
+
+Residuals ( $\epsilon$ ) are the differences in between the empirical values $Y_i$ and their fitted values $\hat Y_i$.
+```{r echo=F, message=F, results='hide', fig.width=10, fig.height=6, fig.align='center'}
+library(dplyr)
+par(mar=c(4,5,0,0))
+plot(df$FOI, df$GDP, xlab="FOI", ylab="GDP per capita", cex.axis=2, cex.lab=2)
+abline(model$coefficients[1], model$coefficients[2], col="red")
+segments(df$FOI,model$fitted.values, df$FOI,df$GDP, col="darkgreen")
+```
+
+---
+
+# Ordinary Least Squares (OLS)
+
+**Fitting** a regression model is the task of finding the values of the coefficients ( $a$, $b_1$, $b_2$, etc ) in a way that reduce a way to aggregate the residuals of the model. One approach is called Residual Sum of Squares (RSS), which aggregates residuals as:
+
+<center>
+$RSS = \sum_i (\hat Y_i - Y_i)^2$
+</center>  
+The Ordinary Least Squares method (OLS) looks for the values of coefficients that minimize the RSS. This way, you can think about the OLS result as the line that minimizes the sum of squared lengths of the vertical lines in the figure above.
+
+---
+
+# Regression in R
+
+The lm() function in R fits a linear regression model with OLS. You have to specify the *formula* of your regression model. For the case of one independent variable, a formula reads like this:  
+```{r eval=F}
+DependentVariable ∼ IndependentVariable
+```
+If you print the result of lm(), you will see the best fitting values for the coefficients (intercept and slope):
+
+```{r message=F}
+model <- lm(GDP~FOI, df)
+model$coefficients
+```
+
+---
+
+# Goodness of fit
+
+A way to measure the quality of a model fit this is to calculate the proportion of variance of the dependent variable ( $V[Y]$ ) that is explained by the model. We can do this by comparing the variance of residuals ( $V[\epsilon]$ ) to the variance of $Y$. 
+
+This is captured by the coefficient of determination, also known as $R^2$:
+<center>
+$R^2 = 1 − \frac{V[\epsilon]}{V[Y]}$
+</center>  
+For our model example:
+```{r }
+1-var(residuals(model))/var(df$GDP)
+```
+
+---
+
+# Multiple regression
+
+You can specify models with more than one independent variable by using "+":
+```{r eval=F}
+DependentVariable ∼ IndependentVariable1 + IndependentVariable2 + IndependentVariable3
+```
+If we wanted to fit a model of GDP as a linear combination of the FOI and the internet penetration in countries, we can do it as follows:
+```{r message=F}
+model2 <- lm(GDP~FOI+IT.NET.USER.ZS, df)
+model2$coefficients
+summary(model2)$r.squared
+```
+
+---
+
+# Regression diagnostics
+
+```{r fig.width=9, fig.height=6, fig.align="center"}
+hist(residuals(model), main="", cex.lab=1.5, cex.axis=2)
+```
+
+---
+# Regression diagnostics
+
+```{r fig.width=9, fig.height=6, fig.align="center"}
+plot(predict(model), residuals(model), cex.lab=1.5, cex.axis=2)
+```
+
+---
+<center>
+![:scale 90%](https://imgs.xkcd.com/comics/extrapolating.png)
+</center>

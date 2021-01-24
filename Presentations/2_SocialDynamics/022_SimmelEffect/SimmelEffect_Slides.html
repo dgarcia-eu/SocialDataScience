@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Simmel Effect</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The Simmel Effect
+### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+### Social Data Science, 2021
+
+---
+
+
+
+
+
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt;
+
+---
+
+## How does social impact aggregate in a society?
+
+.center[![:scale 53%](Sharing.png)]
+
+---
+
+# Theory of fashion: the Simmel Effect
+
+Georg immel defined fashion as the *non-cumulative change in cultural features*, where cultural features are displayed as *status symbols*. Status symbols are externally displayed traits associated with high social class, e.g. surnames, clothing, sport, food, etc.
+
+&gt; **The Simmel effect:** The persistence of social differences under the instability of status symbols
+
+Simmel noticed that fashions come and go, but fashion is always present. When something becomes popular, it is bound to lose its popularity. Simmel introduced this theory in his 1904 article ["Fashion"](https://www.jstor.org/stable/2773129?seq=1), describing observations that are still relevant, such as how going against fashion is a way to acknowledge its relevance (the hipster paradox).
+
+---
+
+## The mechanisms of Simmel's theory: Imitation
+
+&lt;div style="float:right"&gt;
+&lt;/br&gt;
+&lt;img src="Imitation.gif" alt="Social sharing of emotions." width="500px"/&gt;  
+&lt;/div&gt;
+
+Simmel's theory explains the emergence and instability of fashions based on two mechanisms: imitation and differentiation.
+  
+The mechanism of **imitation** describes how individuals adopt the symbols displayed by others, in particular of other individuals of higher social class. 
+
+Individuals are motivated to display the symbols of higher social classes to receive the benefits of being perceived as of higher social class.
+
+
+---
+
+## The mechanisms of Simmel's theory: Differentiation
+
+&lt;div style="float:right"&gt;
+&lt;img src="Differentiation.gif" alt="Social sharing of emotions." width="500px"/&gt;  
+&lt;/div&gt;
+
+The mechanism of **differentiation** is what high-status individuals follow when they don't have who to imitate. Once a status symbol has been adopted by a majority of the population, it loses its association with status. In this case, high-status individuals choose new symbols that make them look different from the rest, signaling their status by that differentiation. 
+
+New symbols can be arbitrary, borrowed from far cultures, or old fashions.
+
+---
+.center[![:scale 40%](https://img.buzzfeed.com/buzzfeed-static/static/2015-10/1/7/enhanced/webdr12/enhanced-4347-1443697457-1.jpg)]
+---
+
+# The case of baby names
+.center[![:scale 58%](Kevins.png)]
+First names can be status symbols and carry subjective and social values. Copying the name of your baby from someone else is an example of imitation.
+---
+
+# Social trends in online platforms
+
+Google search trends can capture data about these large-scale social trends:
+
+.center[![](endoExoTimeSeries.png)]
+
+Exogenously triggered search volume after a tsunami (left) and endogenously driven search for the Harry Potter movie (right).
+
+---
+
+# The endo-exo model
+
+&lt;div style="float:right"&gt;
+&lt;img src="endoExoOverview.png" alt="Summary of shock model." width="550px"/&gt;
+&lt;/div&gt;
+
+[The endo-exo model of Riley Crane and Didier Sornette](http://www.pnas.org/content/105/41/15649.abstract) captures these types of dynamics. In this model, a trend can have two properties:  
+
+- It can have an **exogenous trigger** when a central event influences lots of people at the same time, as in the tsunami example.
+- It can be **critical** when the social interaction between individuals leads to further responses and it is stronger than the rate of losing interest.
+
+---
+
+# The endo-exo model
+
+&lt;div style="float:right"&gt;
+&lt;img src="endoExoOverview.png" alt="Summary of shock model." width="550px"/&gt;
+&lt;/div&gt;
+
+These two properties are not exclusive, leading to four types of responses:  
+
+1. **Endogenous sub-critical**: no clear peak, absence of trend.
+2. **Endogenous critical**: "viral" peak driven by word of mouth.
+3. **Exogenous sub-critical**: sharp peak but fast decay due to lack of strong social interaction.
+4. **Exogenous critical**: sharp peak but slow decay due to strong interaction after shock.
+
+
+---
+
+# Trends on Twitter
+
+This model has been applied to classify Twitter hashtag trends by [Lehmann et al.](http://dl.acm.org/citation.cfm?id=2187871). The figure shows activity volumes related to three of the classes in the model. 
+
+![Trend classes in Twitter hashtags.](TwitterTrends.png)
+Gathering this kind of volume data is best done by using the Twitter API. You can learn how to do this from R in the [Twitter API tutorial.]()
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

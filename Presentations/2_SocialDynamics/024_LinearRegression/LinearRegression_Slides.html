@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Linear Regression</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Linear Regression
+### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+### Social Data Science, 2021
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# Linear Regression
+
+Regression models formalize an equation in which one numeric variable `\(Y\)` is formulated as a linear function of other variables `\(X_1\)`, `\(X_2\)`, `\(X_3\)`, etc: &lt;center&gt;
+`\(Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 ... + \epsilon\)`
+&lt;/center&gt;
+- `\(Y\)` is called the dependent variable
+
+- `\(X_1\)`, `\(X_2\)`, `\(X_3\)`, etc are called independent variables
+
+- `\(a\)` is the intercept, which measures the expected value of `\(Y\)` that does not depend on the dependent variables
+
+- `\(b_1\)`, `\(b_2\)`, `\(b_3\)`, etc are called the slopes or the coefficients
+
+- `\(\epsilon\)` are the residuals, the errors of the equation in the data
+
+---
+
+![:scale 92%](https://pbs.twimg.com/media/EXRxFKwU4AAhB-x?format=jpg&amp;name=large)
+
+---
+# Example: FOI vs GDP
+
+&lt;img src="LinearRegression_Slides_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Regression residuals
+
+Residuals ( `\(\epsilon\)` ) are the differences in between the empirical values `\(Y_i\)` and their fitted values `\(\hat Y_i\)`.
+&lt;img src="LinearRegression_Slides_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Ordinary Least Squares (OLS)
+
+**Fitting** a regression model is the task of finding the values of the coefficients ( `\(a\)`, `\(b_1\)`, `\(b_2\)`, etc ) in a way that reduce a way to aggregate the residuals of the model. One approach is called Residual Sum of Squares (RSS), which aggregates residuals as:
+
+&lt;center&gt;
+`\(RSS = \sum_i (\hat Y_i - Y_i)^2\)`
+&lt;/center&gt;  
+The Ordinary Least Squares method (OLS) looks for the values of coefficients that minimize the RSS. This way, you can think about the OLS result as the line that minimizes the sum of squared lengths of the vertical lines in the figure above.
+
+---
+
+# Regression in R
+
+The lm() function in R fits a linear regression model with OLS. You have to specify the *formula* of your regression model. For the case of one independent variable, a formula reads like this:  
+
+```r
+DependentVariable ∼ IndependentVariable
+```
+If you print the result of lm(), you will see the best fitting values for the coefficients (intercept and slope):
+
+
+```r
+model &lt;- lm(GDP~FOI, df)
+model$coefficients
+```
+
+```
+## (Intercept)         FOI 
+##   -4309.223   54631.170
+```
+
+---
+
+# Goodness of fit
+
+A way to measure the quality of a model fit this is to calculate the proportion of variance of the dependent variable ( `\(V[Y]\)` ) that is explained by the model. We can do this by comparing the variance of residuals ( `\(V[\epsilon]\)` ) to the variance of `\(Y\)`. 
+
+This is captured by the coefficient of determination, also known as `\(R^2\)`:
+&lt;center&gt;
+`\(R^2 = 1 − \frac{V[\epsilon]}{V[Y]}\)`
+&lt;/center&gt;  
+For our model example:
+
+```r
+1-var(residuals(model))/var(df$GDP)
+```
+
+```
+## [1] 0.4432583
+```
+
+---
+
+# Multiple regression
+
+You can specify models with more than one independent variable by using "+":
+
+```r
+DependentVariable ∼ IndependentVariable1 + IndependentVariable2 + IndependentVariable3
+```
+If we wanted to fit a model of GDP as a linear combination of the FOI and the internet penetration in countries, we can do it as follows:
+
+```r
+model2 &lt;- lm(GDP~FOI+IT.NET.USER.ZS, df)
+model2$coefficients
+```
+
+```
+##    (Intercept)            FOI IT.NET.USER.ZS 
+##    -16154.2983     20528.8273       539.8481
+```
+
+```r
+summary(model2)$r.squared
+```
+
+```
+## [1] 0.8140538
+```
+
+---
+
+# Regression diagnostics
+
+
+```r
+hist(residuals(model), main="", cex.lab=1.5, cex.axis=2)
+```
+
+&lt;img src="LinearRegression_Slides_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Regression diagnostics
+
+
+```r
+plot(predict(model), residuals(model), cex.lab=1.5, cex.axis=2)
+```
+
+&lt;img src="LinearRegression_Slides_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+&lt;center&gt;
+![:scale 90%](https://imgs.xkcd.com/comics/extrapolating.png)
+&lt;/center&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

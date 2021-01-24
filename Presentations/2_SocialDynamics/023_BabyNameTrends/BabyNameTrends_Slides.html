@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>What to learn from baby names</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# What to learn from baby names
+## A Social Data Science Story
+### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+### Social Data Science, 2021
+
+---
+
+
+
+
+
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt;
+
+---
+# US SSA baby name data
+&lt;img src="BabyNameTrends_Slides_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+# Baby name trend examples
+
+&lt;img src="BabyNameTrends_Slides_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# The QWERTY effect in baby names
+
+The QWERTY effect is a hypothesis in Psychology that postulates that words that are written with more right-hand letters of the keyboard are, on average, more positive than words that are written with more left-hand letters of the keyboard. The fraction of right-hand letters in US baby names has been increasing:
+&lt;img src="BabyNameTrends_Slides_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+# Wacky baby name research
+
+&lt;img src="BabyNameTrends_Slides_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+A parody paper titled ["We are entering an unprecedented age in baby name flux"](https://instsci.org/h7.html) reported; "baby name diversity also seems to have risen with the increasing annual temperature of the US (i.e., climate change)". 
+---
+
+# The limits of baby name predictability
+
+Baby names are a popular example to illustrate scientific topics. The book [Freakonomics](https://freakonomics.com/books/) explains the imitation part of the Simmel effect and explains how people imitate their richer neighbors when naming their babies. The book goes as far as making a prediction of what will be the top US baby names in 2015, based on a data analysis exercise that is never explained in detail in the article. Here is the prediction:
+
+![](FreakonomicsPrediction.png)
+
+---
+
+### Top 10 names in 2015 and 2004
+
+|topFemale2015 |topFemale2004 |topMale2015 |topMale2004 |
+|:-------------|:-------------|:-----------|:-----------|
+|Abigail       |Abigail       |Alexander   |Andrew      |
+|Ava           |Ashley        |Benjamin    |Christopher |
+|Charlotte     |Elizabeth     |Ethan       |Daniel      |
+|Emily         |Emily         |Jacob       |Ethan       |
+|Emma          |Emma          |James       |Jacob       |
+|Harper        |Hannah        |Liam        |Joseph      |
+|Isabella      |Isabella      |Mason       |Joshua      |
+|Mia           |Madison       |Michael     |Matthew     |
+|Olivia        |Olivia        |Noah        |Michael     |
+|Sophia        |Samantha      |William     |William     |
+
+---
+## Predicting is hard
+There is not much overlap between the prediction and the results for 2015. Just using the 2004 list, you would have made a better prediction.
+
+What you see is that predicting which names in particular will be the most popular is a very difficult task. The Simmel effect describes forces that create observable patterns, but that does not mean that the model is predictive to tell us which of all names will become popular ten years from now, even if we had data of the social status of parents. 
+
+This is the difference between explanatory and predictive power of a model. A model can explain phenomena without being useful to make predictions, as in this case, but can also be predictive without giving explanations, like in the case of deep learning or other black-box approaches.
+
+&gt; **Take home message:** understanding does not imply predictive power
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

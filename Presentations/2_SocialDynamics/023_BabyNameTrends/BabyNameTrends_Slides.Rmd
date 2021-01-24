@@ -1,0 +1,138 @@
+---
+title: "What to learn from baby names"
+subtitle: "A Social Data Science Story"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div>
+
+---
+# US SSA baby name data
+```{r, message=F, results='hide', fig.width=14, fig.height=6.5, echo=F, cache=T, fig.align='center'}
+# You can read the data without decompressing it using the gzfile function. 
+library(dplyr)
+df <- read.csv(gzfile("BabyData2019.csv.gz"))
+df %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+par(mar=c(4.5,4.5,0,0))
+plot(total, ylab="babies", type="l", lwd=2, cex.lab=2, cex.axis=2)
+```
+---
+
+# Baby name trend examples
+
+```{r, message=F, results='hide', fig.width=14, fig.height=6.5, echo=F, cache=T, fig.align='center'}
+name1 <- "Angelina"
+name2 <- "Leonardo"
+df %>% filter(name==name1 & year>=1940) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+par(mar=c(4.5,4.5,0,0))
+plot(total, ylab="babies", type="l", lwd=2, cex.lab=2, cex.axis=2)
+df %>% filter(name==name2 & year>=1940) %>% group_by(year) %>% summarize(nbabies=sum(count)) -> total
+lines(total, lwd=2, col="red")
+legend("topleft",legend=c(name1, name2), col=c("black","red"), lwd=2, cex=3)
+```
+
+
+---
+
+# The QWERTY effect in baby names
+
+The QWERTY effect is a hypothesis in Psychology that postulates that words that are written with more right-hand letters of the keyboard are, on average, more positive than words that are written with more left-hand letters of the keyboard. The fraction of right-hand letters in US baby names has been increasing:
+```{r, message=F, results='hide', fig.width=14, fig.height=5, echo=F, cache=T, fig.align='center'}
+library(stringr)
+df %>% group_by(name,year) %>% summarize(count=sum(count)) %>% filter(year>1960)-> ngdf
+
+df$R <- str_count(pattern='[yuiophjklnm]',tolower(df$name))
+df$L <- str_count(pattern='[qwertasdfgzxcvb]',tolower(df$name))
+
+df %>% group_by(year) %>% summarize(RSA = sum(count *(R-L)), n=sum(count)) %>% filter(year>=1960)-> RSAdf
+par(mar=c(4.5,4.5,1.5,0))
+plot(RSAdf$year, RSAdf$RSA/RSAdf$n, type="l", lwd=2, xlab="year", ylab="mean RSA", cex.lab=2, cex.axis=2)
+```
+---
+
+# Wacky baby name research
+
+```{r, message=F, results='hide', fig.width=14, fig.height=5.5, echo=F, cache=T, fig.align='center'}
+tempdf <- read.csv("https://www.epa.gov/sites/production/files/2016-08/temperature_fig-1.csv", skip=6)
+
+df %>% filter(year>=1937) %>% group_by(year,gender) %>% summarize (nnames=n()) -> udf
+sdf <- inner_join(udf, tempdf, by=c("year"="Year"))
+par(mar=c(4.5,4.5,1.5,0))
+
+plot(sdf$Earth.s.surface[sdf$gender=="M"], sdf$nnames[sdf$gender=="M"], col="lightblue", pch=19, xlim=range(sdf$Earth.s.surface), ylim=range(sdf$nnames), ylab="Number of Unique Names", xlab="US temperature anomaly (Fahrenheit)", cex.lab=2, cex.axis=2)
+model <- lm(nnames~Earth.s.surface, data=sdf, subset=gender=="M")
+abline(model$coefficients[1], model$coefficients[2], col="lightblue")
+points(sdf$Earth.s.surface[sdf$gender=="F"], sdf$nnames[sdf$gender=="F"], col="pink", pch=19)
+model <- lm(nnames~Earth.s.surface, data=sdf, subset=gender=="F")
+abline(model$coefficients[1], model$coefficients[2], col="pink")
+```
+A parody paper titled ["We are entering an unprecedented age in baby name flux"](https://instsci.org/h7.html) reported; "baby name diversity also seems to have risen with the increasing annual temperature of the US (i.e., climate change)". 
+---
+
+# The limits of baby name predictability
+
+Baby names are a popular example to illustrate scientific topics. The book [Freakonomics](https://freakonomics.com/books/) explains the imitation part of the Simmel effect and explains how people imitate their richer neighbors when naming their babies. The book goes as far as making a prediction of what will be the top US baby names in 2015, based on a data analysis exercise that is never explained in detail in the article. Here is the prediction:
+
+![](FreakonomicsPrediction.png)
+
+---
+
+### Top 10 names in 2015 and 2004
+```{r, fig.width=7, fig.height=6, echo=F, message=F, results="asis", cache=T}
+library(knitr)
+
+df %>% filter(year==2015 & gender=="F") %>% arrange(desc(count)) -> Fdf
+head(Fdf, 10) %>% arrange(name) %>% select(name) -> Fdf
+df %>% filter(year==2004 & gender=="F") %>% arrange(desc(count)) -> Fdf4
+head(Fdf4, 10) %>% arrange(name) %>% select(name) -> Fdf4
+
+df %>% filter(year==2015 & gender=="M") %>% arrange(desc(count)) -> Mdf
+head(Mdf, 10) %>% arrange(name) %>% select(name) -> Mdf
+df %>% filter(year==2004 & gender=="M") %>% arrange(desc(count)) -> Mdf4
+head(Mdf4, 10) %>% arrange(name) %>% select(name) -> Mdf4
+
+kable(data.frame(topFemale2015=Fdf$name, topFemale2004=Fdf4$name, topMale2015=Mdf$name, topMale2004=Mdf4$name))
+```
+
+---
+## Predicting is hard
+There is not much overlap between the prediction and the results for 2015. Just using the 2004 list, you would have made a better prediction.
+
+What you see is that predicting which names in particular will be the most popular is a very difficult task. The Simmel effect describes forces that create observable patterns, but that does not mean that the model is predictive to tell us which of all names will become popular ten years from now, even if we had data of the social status of parents. 
+
+This is the difference between explanatory and predictive power of a model. A model can explain phenomena without being useful to make predictions, as in this case, but can also be predictive without giving explanations, like in the case of deep learning or other black-box approaches.
+
+> **Take home message:** understanding does not imply predictive power
+
+
+

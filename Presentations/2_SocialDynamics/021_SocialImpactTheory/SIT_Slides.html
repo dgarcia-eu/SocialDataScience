@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Social Impact Theory</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Social Impact Theory
+### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+### Social Data Science, 2021
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# What is Social Impact?
+
+&lt;div style="float:right"&gt;
+&lt;img src="Intervention.jpg" alt="How I Met your Mother intervention" width="350px"/&gt;  
+&lt;/div&gt;
+
+&gt; **Social Impact:** Changes in behavior that occur in an individual as a result of presence or actions of other individuals
+
+Examples of behavior: subjective feelings, motives, emotions, thoughts, customs, decisions...  
+
+The presence or actions of others can be:  
+
+- *real:* the physical presence of others  
+- *implied:* expected or manipulated presence, e.g. a cardboard policeman  
+- *imagined:* mental representation of others, e.g. supporters of your team when watching TV sports
+
+---
+
+# Asch's conformity experiments
+
+![:scale 130%](Elevator.png)
+
+Elevator experiment in Candid Camera (1962)
+
+---
+
+# Social Impact Theory (Bibb Latané)
+&lt;center&gt;
+![:scale 50%](SIT-schema1.png)
+&lt;/center&gt;
+
+---
+
+# Social forces in SIT
+
+In [Social Impact Theory](http://psycnet.apa.org/psycinfo/1982-01296-001), social impact is driven by three forces in the following equation:
+&lt;p align=center&gt;
+I = f (S × i × N)
+&lt;/p&gt;
+
+- `\(I\)` is the magnitude of social impact
+
+- `\(f()\)` is a multiplicative function of three conditions of the impacting situation:
+
+  1. **Strength** `\(S\)` or power of the source(s)  
+
+  2. **Immediacy** `\(i\)` or proximity of the source(s)
+
+  3. **Number of sources** `\(N\)` or number of people
+
+---
+
+# N: Number of sources
+
+&lt;div style="float:right"&gt;
+&lt;img src="SIT1.png" alt="Conformity experiment result." width="400px"/&gt;  &lt;/div&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+SIT predicts that impact should grow with N. Asch's conformity experiments test this hypothesis, where:
+
+- `\(I\)`: increase in percentage of wrong answers given by students that were experiment subjects
+
+- `\(N\)`: controlled number of confederates
+
+The result: the percentage of wrong answers grows with the amount of sources.
+
+---
+
+# The Psychosocial Law
+
+&lt;div style="float:right"&gt;
+&lt;img src="SIT1.png" alt="Conformity experiment result." width="400px"/&gt;  &lt;/div&gt;
+
+&gt; **The Psychosocial Law:** The extent of social impact grows sublinearly with the number of sources  
+
+This can be translated to the equation:
+&lt;center&gt;
+`\(I \propto N^t, t &lt; 1\)`
+&lt;/center&gt;  
+
+This means that the hundredth source has less additional effect than the first (*diminishing returns*).
+
+The equation is what is called a power-law with exponent `\(t\)`. In the case of conformity among high school students, `\(t\)` was estimated to be 0.48.
+
+---
+
+&lt;div style="float:right"&gt;
+&lt;img src="SIT2.png" alt="Anxiety experiment result." width="450px"/&gt;  
+&lt;/div&gt;
+
+# S: Strength of sources
+
+The strength in SIT is the perceived social status, power, wealth, importance, or intensity of the sources. Poem experiment example:
+
+- `\(I\)`: anxiety of the students recorded with a dial they use to measure their own anxiety
+
+- `\(N\)`: number of people in the audience
+
+- `\(S\)`: audience is middle-aged (strong) or teenagers (weak)
+
+**Multiplicative effect:** The impact of the number of sources grows faster when they are strong than when they are weak
+
+---
+
+# i: Immediacy of sources
+
+&lt;div style="float:right"&gt;
+&lt;img src="SIT3.png" alt="Newspaper experiment result." width="400px"/&gt;  
+&lt;/div&gt;
+
+Immediacy is defined as the proximity between the sources and the target of social impact. Immediacy can be spatial, temporal, or social.
+The effect of immediacy in media bias experiments: 
+- `\(I\)`: number of lines used to report the news by the students
+- `\(N\)`: number of people reported dead in the accident
+- `\(i\)`: is the distance to the place of the accident (close vs far conditions)
+
+Results: The growth of impact with N was steeper for the close condition
+
+---
+
+# Division of impact
+&lt;center&gt;
+![:scale 55%](SIT-schema2.png)
+&lt;/center&gt;
+---
+
+# Division of impact
+
+Social Impact Theory also covers situations with one source but when when targets are not alone. It formulates the impact `\(I\)` on **each** target as:  
+&lt;center&gt;
+`\(I = f(\frac{1}{S × i × N})\)`
+&lt;/center&gt;
+Where the terms are:  
+
+- `\(S\)` strength of the targets: the stronger the targets, the harder to impact each one.  
+- `\(i\)` immediacy between the targets: the closer or more connected the targets, the harder to impact each one.  
+- `\(N\)` the more the targets in the group, the harder to impact each one.
+- `\(f()\)` is another multiplicative function but with negative exponents for the terms.
+
+---
+&lt;div style="float:right"&gt;
+&lt;img src="SIT4.png" alt="Results of tipping study." width="450px"/&gt;  
+&lt;/div&gt;
+# Division of impact
+
+The most widely studied divisor of impact is group size (N). An observational study finds the effect for the case of restaurant tips:
+
+- `\(I\)`: Percentage of tip (assumed evenly shared among customers)
+- `\(N\)`: number of customers at the table
+
+Result: `\(I\)` decreases as `\(N\)` increases. The more people sitting at the same table, the less obliged each one feels to leave a tip. The resulting shape of I as a function of N is well fitted by a negative power of N. 
+
+---
+
+# Online social impact
+
+The psychosocial law can be observed in various social media:
+&lt;center&gt;
+![:scale 90%](exposureResponse.png)
+&lt;/center&gt;
+Probability to Digg or Retweet as a function of number of friends who already did so. Taken from Kristina Lerman's review ["Information Is Not a Virus, and Other Consequences of Human Cognitive Limits"](http://www.mdpi.com/1999-5903/8/2/21). 
+
+---
+
+&lt;center&gt;
+![:scale 80%](test-all-the-theories.jpg)
+&lt;/center&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
