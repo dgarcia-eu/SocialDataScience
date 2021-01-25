@@ -47,7 +47,7 @@ The course is organized in five blocks with several topics each. Each block has 
 3.7. [Exercise: Twitter sentiment and retweeting](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/038_TwitterSentiment)
 
 4. **Social network analysis**  
-4.1. Introduction to social networks  
+4.1. [Introduction to social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_SNAIntro/SNAIntro.html)  
 4.2. The Friendship paradox  
 4.3. SDS story: sampling opinions on Twitter  
 4.4. Centrality  
