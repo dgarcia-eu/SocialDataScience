@@ -1,0 +1,130 @@
+---
+title: "Unsupervised Sentiment Analysis"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+
+---
+
+#  What is Sentiment Analysis?
+
+> **Sentiment Analysis:** Computerized quantification of subjective states from text
+
+.center[![](SentimentSchema.png)]
+
+- Examples of subjective states: Emotions, feelings, attitudes, opinions...  
+- Often vaguely defined and roughly equivalent to the dimension of valence in the circumplex model
+- Sentiment quantification can have various formats: polarity, scores, labels...  
+
+---
+
+# The Sentiment Analysis Boom
+
+```{r echo=F, fig.width=14, fig.height=7, cache=T, fig.align='center'}
+library(gtrendsR)
+library(ggplot2)
+trend <- gtrends("sentiment analysis", time="all")
+ggplot(trend$interest_over_time, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + theme_bw() + theme(text = element_text(size=30)) 
+```
+
+---
+
+# Supervised vs Unsupervised Methods
+
+- **Unsupervised sentiment analysis:**  
+  - Uses expert knowledge (e.g. from psychologists) to quantify emotions  
+  - Expert knowledge is encoded as a set of rules or a lexicon (dictionary) of words. Also known as "dictionary methods"  
+  - Pros: Simple implementation, large coverage and recall  
+  - Cons: Hard to customize for a particular context, low precision, expert bias
+
+- **Supervised sentiment analysis:**  
+  - Uses a set of annotated texts to fit a model  
+  - Annotations can come from readers or the authors of texts  
+  - Pros: Automatic calibration, high precision  
+  - Cons: Lower recall and coverage, need very large training datasets  
+
+---
+
+# The General Inquirer
+
+<div style="float:right">
+<img src="GI.jpg" alt="General Inquirer" width="320px"/>  
+</div>
+
+The pioneer work of [Philip Stone in 1966](https://mitpress.mit.edu/books/general-inquirer
+) proposed to process text with a computer to detect the use of words of various categories. This set the basis for **dictionary methods** in unsupervised sentiment analysis, which are based on counting the number of appearances of the words of a list in a text. 
+
+The lists of [positive words](http://www.wjh.harvard.edu/~inquirer/Positiv.html) and of [negative words](http://www.wjh.harvard.edu/~inquirer/Negativ.html) of this version, which served as input for later methods like [SentiStrength](http://sentistrength.wlv.ac.uk/).
+
+The [SentimentAnalysis R package](https://cran.r-project.org/web/packages/SentimentAnalysis/index.html) contains the General Inquirer (GI) dictionary and methods to match words in text.
+
+---
+
+## Linguistic Inquiry and Word Count (LIWC)
+
+.center[![:scale 82%](LIWCexample.png)]  
+LIWC (pronounced "Luke") was developed as a click-and-run software by [James Pennebaker in 2001](https://liwc.wpengine.com/), including word lists for emotions and ther classes.
+
+---
+
+# SentiStrength
+
+</br>
+
+.center[![](SentiStrength.png)]
+
+---
+
+# VADER 
+<div style="float:right">
+<img src="https://t-redactyl.io/figure/Vader_1.jpg" alt="VADER" width="395px"/>  
+</div>
+
+VADER (Valence Aware Dictionary and sEntiment Reasoner) is a tool very similar to SentiStrength in the steps it follows:
+
+1. Text preprocessing  
+2. Word matching from a lexicon of positive/negative scored words  
+3. Application of modifiers to the scores based on language rules
+ 
+VADER's name suggests it is the "dark version" of LIWC ("Luke"). As the authors of VADER say: *"VADER distinguishes itself from LIWC in that it is more sensitive to sentiment expressions in social media contexts."*
+
+---
+
+# Evaluating Sentiment Analysis
+
+.center[![](SentiBench.jpg)]
+
+A guide to see an overview of off-the-self (i.e. ready to use) sentiment analysis methods is [SentiBench](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-016-0085-1). The figure shows a summary of 24 methods.
+
