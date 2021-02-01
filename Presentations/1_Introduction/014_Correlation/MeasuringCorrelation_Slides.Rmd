@@ -56,7 +56,7 @@ layout: true
 
 - $V[X]$ is the variance of $X$
   - We calculate it as the expected squared difference to the mean X: 
-  $$V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)$$
+  $$V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)^2$$
   - It is measured in squared units of $X$
 
 - $\sigma_X$ is the standard deviation of X
