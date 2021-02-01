@@ -42,15 +42,15 @@ The course is organized in five blocks with several topics each. Each block has 
 3.3. [SDS Story: Emotions in pagers after 9/11](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/033_PagerEmotions/PagerEmotions.html)  
 3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)  
 3.5. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html)  
-<!-- 3.6. Training supervised text models in R  -->
-3.6. [Exercise: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
-3.7. [Exercise: Twitter sentiment and retweeting](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/038_TwitterSentiment)
+3.6. [Training supervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/036_SupervisedTextClassification/SupervisedTextClassification.html)  
+3.7. [Exercise: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
+3.8. [Exercise: Twitter sentiment and retweeting](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/038_TwitterSentiment)
 
 4. **Social network analysis**  
 4.1. [Introduction to social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/041_SNAIntro/SNAIntro.html)  
 4.2. [The Friendship paradox](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/042_FriendshipParadox/FriendshipParadox.html)  
-4.3. SDS story: sampling opinions on Twitter  
-4.4. Centrality  
+4.3. [SDS story: sampling opinions on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/043_TwitterOpinions/TwitterOpinions.html)  
+4.4. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html)  
 4.5. Handling network data in R  
 4.6. Twitter network data  
 4.7. Exercise: The friendship paradox on Twitter  
