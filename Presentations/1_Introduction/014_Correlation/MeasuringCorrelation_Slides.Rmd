@@ -46,7 +46,8 @@ layout: true
   - For example the GDP of a country
 
 - $E[X]$ is the expected value of $X$
-  - We estimate the expected value as the mean of $X$: $\mu_X = \frac{1}{N}\sum_i X_i$
+  - We estimate the expected value as the mean of $X$: 
+  $$\mu_X = \frac{1}{N}\sum_i X_i$$
   - $N$ is the number of data points, for example the number of countries
 
 ---
@@ -54,7 +55,8 @@ layout: true
 # Some more univariate statistics notation
 
 - $V[X]$ is the variance of $X$
-  - We calculate it as the expected squared difference to the mean X: $V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)$
+  - We calculate it as the expected squared difference to the mean X: 
+  $$V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)$$
   - It is measured in squared units of $X$
 
 - $\sigma_X$ is the standard deviation of X
@@ -68,17 +70,12 @@ layout: true
 > **Correlation:** Linear association or dependence between the values of variables $X$ and $Y$
  
 - If $X$ and $Y$ are independent, they satisfy that the expectation of the product equals the product of expectations:  
-
-<p align=center>
-$E[XY] = E[X]E[Y]$  
-</p>
+$$E[XY] = E[X]E[Y]$$  
 - The principle: correlation as the deviation from $E[XY] − E [X]E[Y] = 0$  
 - The absolute value of this difference can be at most $\sigma_X\sigma_Y$  
 - $\rho(X,Y)$ rescales the difference to be between −1 and 1  
 
-<p align=center>
-$\rho(X,Y) = \frac{E[XY] − E [X]E[Y]}{\sigma_X\sigma_Y}$  
-</p>
+$$\rho(X,Y) = \frac{E[XY] − E [X]E[Y]}{\sigma_X\sigma_Y}$$
 ---
 
 ### Some examples of Pearson's Correlation Coefficient
