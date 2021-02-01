@@ -74,9 +74,7 @@ Elevator experiment in Candid Camera (1962)
 # Social forces in SIT
 
 In [Social Impact Theory](http://psycnet.apa.org/psycinfo/1982-01296-001), social impact is driven by three forces in the following equation:
-<p align=center>
-I = f (S × i × N)
-</p>
+$$I = f (S × i × N)$$
 
 - $I$ is the magnitude of social impact
 
@@ -114,9 +112,7 @@ The result: the percentage of wrong answers grows with the amount of sources.
 > **The Psychosocial Law:** The extent of social impact grows sublinearly with the number of sources  
 
 This can be translated to the equation:
-<center>
-$I \propto N^t, t < 1$
-</center>  
+$$I \propto N^t, t < 1$$
 
 This means that the hundredth source has less additional effect than the first (*diminishing returns*).
 
@@ -167,15 +163,11 @@ Results: The growth of impact with N was steeper for the close condition
 # Division of impact
 
 Social Impact Theory also covers situations with one source but when when targets are not alone. It formulates the impact $I$ on **each** target as:  
-<center>
-$I = f(\frac{1}{S × i × N})$
-</center>
-Where the terms are:  
-
+$$I = f\left(\frac{1}{S × i × N}\right)$$ Where the terms are:  
 - $S$ strength of the targets: the stronger the targets, the harder to impact each one.  
 - $i$ immediacy between the targets: the closer or more connected the targets, the harder to impact each one.  
 - $N$ the more the targets in the group, the harder to impact each one.
-- $f()$ is another multiplicative function but with negative exponents for the terms.
+- $f()$ is a multiplicative function with negative exponents for the terms.
 
 ---
 <div style="float:right">
