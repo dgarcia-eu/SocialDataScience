@@ -13,8 +13,8 @@ output: html_document
   - $N$ is the number of data points, for example the number of countries
   - In R you can calculate it with the function mean()
 - $V[X]$ is the variance of $X$
-  - We calculate it as the expected squared difference to the mean X: $V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)$
-  - The variance is measued in the square of units of X (e.g. if X is GDP measured in USD, then V[X] is USD$^2$)  
+  - We calculate it as the expected squared difference to the mean X: $V[X] = \frac{1}{N}\sum_i (X_i - \mu_X)^2$
+  - The variance is measured in the square of units of X (e.g. if X is GDP measured in USD, then V[X] is USD$^2$)  
   
 - $\sigma_X$ is the standard deviation of X
   -  $\sigma_X = \sqrt{V[X]}$, which is convenient because it measures dispersion in the same units as $X$
@@ -24,7 +24,7 @@ output: html_document
 
 > **Correlation:** Linear association or dependence between the values of variables X and Y
 
-Pearson’s way to measure correlation between variables $X$ and $Y$, deonted as $\rho(X,Y)$:  
+Pearson's way to measure correlation between variables $X$ and $Y$, denoted as $\rho(X,Y)$:  
 
 - If X and Y are independent, they satisfy that the expectation of the product equals the product of expectations:  
 
