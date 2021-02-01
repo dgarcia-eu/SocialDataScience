@@ -4,41 +4,167 @@ author: "Dr. David Garcia"
 output: html_document
 ---
 
+In this tutorial, we are going to fit a supervised sentiment analysis model to detect the expression of anger in tweets. We will use the dataset of tweets with emotion annotations from the [SemEval 2018 competition](https://alt.qcri.org/semeval2018/). Here we will only use the training file, making our own test dataset, but you can use the test files of the competition if you want further testing of your results. We will compare those results with a dictionary method based on the [NRC emotion lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) to compare which tool performs better.
 
+# 1. Data processing
+
+On the github folder of this tutorial you can find the files with the gold standard data to fit and test the model. We read the training file and take a look at its size and contents:
+```{r }
+df <- read.csv("2018-E-c-En-train.txt", sep="\t", stringsAsFactors = F)
+head(df$Tweet)
+dim(df)
+```
+If you open the file with a text editor you might notice that things look a bit different from what you see in RStudio. The text of tweets is HTML encoded to include special characters. To fit our model, we will transform those special codes to normal strings with the HTMLdecode() function of the textutils package:
+```{r }
+library(textutils)
+df$Tweet <- HTMLdecode(df$Tweet)
+```
+
+A good practice before fitting any model is to shuffle the rows in the dataset. This way you prevent issues if rows are sorted by date or some other feature. Here we set the seed to a given number so you can replicate the same results as this tutorial:
+```{r }
+set.seed(1985)  
+df <- df[sample(nrow(df)),]
+```
+
+In this tutorial we are going to use two packages to deal with the text data. One is tm, which includes useful functions to manipulate text. The second one is RTextTools, which includes machine learning models and useful functions for text classification:
 
 ```{r }
 library(RTextTools)
-
-
-df <- read.csv("2018-E-c-En-train.txt", sep="\t")
-df$Tweet <- gsub("#","",df$Tweet)
-
-doc_matrix <- create_matrix(df$Tweet, language="english", removeNumbers=TRUE,
-stemWords=TRUE, removeSparseTerms=.998)
-
-container <- create_container(doc_matrix, df$anger, trainSize=1:6000, testSize=6001:6838, virgin=FALSE)
-
-SVM <- train_model(container,"SVM")
-SVM_CLASSIFY <- classify_model(container, SVM)
-
-sum(df$anger[6001:6838]== SVM_CLASSIFY$SVM_LABEL)/nrow(SVM_CLASSIFY)
-
-SVM <- cross_validate(container, 4, "SVM")
-
-
-df.test <- read.csv("2018-E-c-En-test-gold.txt", sep="\t")
-df.test$Tweet <- gsub("#","",df.test$Tweet)
-
-df.all <- rbind(df, df.test)
-
-doc_matrix.all <- create_matrix(df.all$Tweet, language="english", removeNumbers=TRUE,
-stemWords=TRUE, removeSparseTerms=.998)
-
-container.all <- create_container(doc_matrix.all, df.all$anger, trainSize=1:6838, testSize=6839:nrow(df.all), virgin=FALSE)
-
-SVM <- train_model(container.all,"SVM")
-SVM_CLASSIFY <- classify_model(container.all, SVM)
-analytics <- create_analytics(container.all, SVM_CLASSIFY)
-analytics
+library(tm)
 ```
+
+Using these two libraries it is very easy to pre-process the data before fitting the model. The function create_matrix of RTextTools processess the data frame with texts to create a term-document matrix. A term-document matrix contains one row per document and one column per possible word in the whole dataframe. Each entry in the matrix is the number of times a given word apprears in the text of the corresponding row. This is a way to model a bag of words representation of the text.
+
+```{r }
+mat <- create_matrix(df$Tweet, language="english", 
+                   removeStopwords=TRUE, removeNumbers=TRUE, 
+                   stemWords=TRUE, weightTfIdf)
+```
+
+Some parameters of the create_matrix function can be used to process the text. We define the text as English and remove English stopwords. We remove numbers and stem the words such that the matrix is smaller and denser, with less columns. We use the function weightTfIdf of the tm package to fill the matrix with a calculation called tf-idf (term frequency - inverse document frequency), which is the count of times each word appears in the document divided over the total number of rows that contain that word at least once. This way, very frequent words have their entries penalized in the matrix.
+
+# 2. Cross-validation
+
+As a first step, we perform cross-validation on a subset of the dataset to have an idea of the power that our model will have to generalize its estimations of anger in tweets. The function create_container generates an object that RTextTools can use to cross-validate. We need to give it the matrix we created in the previous section, the annotations of anger (0 if not angry, 1 if angry), and in this case we tell it to use only the first 2000 rows.
+
+```{r }
+container <- create_container(mat, df$anger,
+                             trainSize=1:2000,virgin=FALSE)
+```
+
+The parameter virgin=FALSE above is a rather confusing way of telling RTextTools that all rows in our data frame are annotated. 
+
+Once the container is created, we can run the cross_validate function to perfrom a 10-fold cross-validation. Here we are using a Support Vector Machine as a Machine Learning model, but you can try others by checking what RTextTools contains with the print_algorithms() function.
+
+```{r }
+cvres <- cross_validate(container, nfold=10, algorithm="SVM", seed=1985)
+```
+
+The above run will show you the accuracy of the classifier in the ten fold of the cross-validation. Remember that we divide the dataset in ten parts, fitting in the joint set of nine parts and evaluating on the tenth. The results are for each of the ten parts as the validation set. As you see above, accuracy is rather moderate, between 0.6 and 0.7. Given that we have only used 2000 rows for the cross-validation, we can expect the final model to be a bit more accurate. You can try yourself how the values increase if you use a larger dataset, as the model is able to generalize better when more text is available in each run of the cross-validation.
+
+# 3. Final model fitting
+
+Now that we have an idea of the performance of the model with cross-validation, we can fit a final model and evaluate over a test set. Here we take the first 80% of the data as the training dataset and the last 20% as the test dataset. We build the corresponding container using only the training data and train a Support Vector Machine as above:
+
+```{r }
+trainids <- seq(1, floor(nrow(df)*0.8))
+testids <- seq(floor(nrow(df)*0.8)+1, nrow(df))
+
+container <- create_container(mat, df$anger,
+                             trainSize=trainids,virgin=FALSE)
+
+models <- train_models(container, algorithms="SVM")
+```
+
+Now we can take a look at how the classifier behaves with two tweet examples. Below we take an example of an angry tweet and a non-angry tweet and create a term-document matrix using the original column definition of our data processing step:
+
+```{r }
+texts <- c("I'm so happy", "I'm so angry at you")
+newmatrix <- create_matrix(texts, language="english", 
+                           removeStopwords=TRUE, removeNumbers=TRUE, 
+                           stemWords=TRUE, weightTfIdf, originalMatrix = mat)
+```
+
+The function predict() of the resulting model can now be applied to this matrix to classify each row according to the model:
+```{r }
+predict(models[[1]], newmatrix)
+```
+Above we are accessing models as a list. We have to do this beacause the RTextTools package is designed to fit many machine learning models for the same term-document matrix, and thus it returns a list of fitted models rather than just one. You see in the result that the angry tweet is classified as 1, while the happy one as 0.
+
+# 4. Evaluation
+
+The above example is nice, but we need to be more formal with the evaluation. We can use the test dataset to do this. Below, we build a term-document matrix as above but with all the texts in the test dataset:
+
+```{r }
+texts <- df$Tweet[testids]
+trueclass <- df$anger[testids]
+testmatrix <- create_matrix(texts, language="english", 
+                           removeStopwords=TRUE, removeNumbers=TRUE, 
+                           stemWords=TRUE, weightTfIdf, originalMatrix = mat)
+```
+
+Now we can run the classifier over this resulting matrix and have an idea of its quality by looking at the contingency matrix of predicted and true values:
+```{r }
+results = predict(models[[1]], testmatrix)
+table(trueclass, results)
+```
+Seems that when a tweet is predicted as angry, it has high changes to be truly angry, but tweets predicted as not angry might be both angry and not. We can measure this better if we calculate accuracy, precision, and recall:
+
+```{r }
+#Accuracy Anger
+sum(trueclass==results)/length(results)
+
+#Precision Anger
+sum(trueclass==results & results==1)/sum(results==1)
+
+#Recall Anger
+sum(trueclass==results & trueclass==1)/sum(trueclass==1)
+```
+As you see, the precision is high but the recall is low. The model has learned well from the examples in its training data, but new expressions of anger might use words the model has never seen and thus it misses many other ways of expressing anger.
+
+# 5. Comparing with dictionary methods
+
+The code below uses a similar approach as what you can find in the [unsupervised sentiment analysis tutorial](). We use tidytext to process the data and to match words with the entries of the NRC emotion dictionary, which is distributed through tidytext. We classify a tweet as angry if it contains at least one word from the dictionary and measure the accuracy, precision, and recall of this approach:
+
+```{r }
+library(tidytext)
+library(dplyr)
+
+texts <- df$Tweet[testids]
+textdf <- tibble(text=texts, anger=df$anger[testids], ID=df$ID[testids])
+
+textdf %>% 
+  unnest_tokens(word, text) -> wordsdf
+
+wordsdf %>% 
+  inner_join(get_sentiments("nrc")) %>%
+  group_by(ID) %>%
+  summarize(sent=sum(sentiment=="anger"), n=n()) -> nrcdf
+
+nrcdf <- full_join(nrcdf, data.frame(ID=df$ID[testids], trueclass=df$anger[testids]))
+
+nrcdf$results <- rep(0,nrow(nrcdf))
+nrcdf$results[nrcdf$sent>0] <- 1
+table(nrcdf$trueclass, nrcdf$results)
+
+#Accuracy Anger
+sum(nrcdf$trueclass==nrcdf$results)/length(nrcdf$results)
+
+#Precision Anger
+sum(nrcdf$trueclass==nrcdf$results & nrcdf$results==1)/sum(nrcdf$results==1)
+
+#Recall Anger
+sum(nrcdf$trueclass==nrcdf$results & nrcdf$trueclass==1)/sum(nrcdf$trueclass==1)
+```
+The result is a similar accuracy, a much lower precision, but a much higher recall. Dictionary methods can find expressions that are not included in the training data of supervised methods, hence the higher recall. However, the lists of words are produced outside the context of Twitter and some terms that can be considered angry outside Twitter are not so angry in Twitter, leading to false positives and thus a lower precision.
+
+In this example we found a trade off between precision and recall in the comparison between a supervised model and a dictionary method. Current approaches to supervised model use additional language models fitted against large corpora, such as BERT and RoBERTa. This way, supervised models can "guess" the sentiment associated with words not appearing in the training data. In many current research cases, supervised models are outperforming dictionary methods thansk to these advances in NLP.
+
+# 6. Further exercises
+
+1. The SemEval dataset contains other emotions like sadness. Try another emotion label and compare whether your results are better or worse than for anger. Some of these cases also appear in the NRC lexicon, so you can also compare with a dictionary method.
+2. Try other ML models, e.g. neural networks (NNET) and random forests (RF). This might take a bit of time to train depending on your PC, but can give you an idea of what can outperform SVM.
+3. The SemEval datasets also include polarity data in which tweets are classified as positive, negative, or neutral. Try the supervised approach in that classification case or using the same datasets as in the unsupervised sentiment analysis tutorial.
+
+
 
