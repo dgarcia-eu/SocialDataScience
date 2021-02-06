@@ -1,0 +1,111 @@
+---
+title: "Network models"
+author: "David Garcia, 2021"
+output: html_document
+---
+
+In this tutorial, we will learn how to generate networks from various models provided by tidygraph through their implementation in igraph. As usual, we start by loading the dplyr and tidygraph packages:
+```{r, message=FALSE}
+library(dplyr)
+library(tidygraph)
+```
+
+The functions we are going to use start with "play_" as the resemble a kind of zero-player games like [Conway's game of life](https://playgameoflife.com/), where something is simulated based on initial conditions for our amusement.
+
+### Random graphs: the Erdős–Rényi model
+
+One of the first random graph models is the [Erdős–Rényi model](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model). This is a model of a network with N nodes and M edges between them, such that the M edges are distributed completely at random from among the possible ones. With tidygraph you can generate this kind of networks with the play_erdos_renyi, setting its parameters n and m:
+
+```{r}
+ergraph <- play_erdos_renyi(n=50,m=50,directed=F)
+ergraph
+plot(ergraph)
+```
+
+This model can be rephrased as a mode with N nodes and a probability p that any pair of nodes is connected. This is also commonly known as the Gilbert model, as it was invented as the same time as the ER model above. You can generate it in R with the same function as above but with the parameter p:
+```{r}
+gilbertgraph <- play_erdos_renyi(n=50,p=1/50,directed=F)
+gilbertgraph
+plot(gilbertgraph)
+```
+
+The model above generates a giant connected component when p is larger than 1/50. If we increase p to 2/50, you will see the difference:
+```{r}
+gilbertgraph <- play_erdos_renyi(n=50,p=2/50,directed=F)
+gilbertgraph
+plot(gilbertgraph)
+```
+
+
+### Small worlds: Watts-Strogatz networks
+
+Another interesting network model is the [small world model by Duncan Watts and Steven Strogatz](https://en.wikipedia.org/wiki/Watts%E2%80%93Strogatz_model). This model starts by generating a circle of nodes connected to their neighbors in the next positions in the circle, such that each node is connected to the N next nodes. Then edges are rewired to a random other node with a probability p, which generates long-distance connections that drastically reduce the average distance between nodes.
+
+This model can be simulated with tidygraph using the play_smallworld() function. For example, here we generate the ring of 10 nodes with connections up to distance 2:
+
+```{r}
+plot(play_smallworld(n_dim=1 , dim_size=10 , p_rewire=0, order=2))
+```
+
+We can increase the rewire probability to generate long-distance connections:
+```{r}
+plot(play_smallworld(n_dim=1 , dim_size=10 , p_rewire=0.1, order=2))
+```
+
+Just with a probability of 0.1, the result is pretty different. This model can generate networks with a high clustering coefficient and a low average path length, similar as some social networks you can learn about in the [structural holes topic]().
+
+### Scale-free networks: The Barabási-Albert model
+
+Social networks tend to have some nodes with a lot of links and many with just a few, for example in the case of the number of followers of Twitter users. The [Barabási-Albert model](https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model) generates scale-free networks with this property by simulating the growth of the network. The network grows node by node, connecting each node to a fixed number of neighbors such that nodes with higher degree are more likely to be selected as the neighbor. This mechanism is called preferential attachment.
+
+The function play_barabasi_albert allows you to generate this kind of networks. The power parameter, which is required, determines the power of the preferential attachment function, with originally was linear, i.e. power=1:
+```{r}
+plot(play_barabasi_albert(n = 30, growth = 2, power=1))
+```
+
+The network has some early nodes with high degree and some later nodes with smaller degrees. The distribution of degree values in this network follows a power-law, meaning that the probability of finding a node with degree k is proportional to $k^{-\alpha}. This property does not depend on the number of nodes in the network, that's why it is called scale-free.
+
+You can have an idea of this skewness in node degrees if you plot the histogram of degrees, where you should see many nodes with a moderate in-degree and some with quite a large one:
+
+```{r}
+hist(play_barabasi_albert(n = 1000, growth = 2, power=1) %>% activate(nodes) %>% mutate(degree=centrality_degree(mode = "in")) %>% pull(degree), main="", xlab="degree")
+```
+
+### Fixed degree frequencies
+
+Sometimes we want to compare a social network to a random one that has the same sequence of degrees. This allows us to see if some other property can be explained by the degree sequence alone, as we do in the [permutation tests topic](). Tidygraph helps for this with the play_degree() function, which generates networks of fixed degree sequences but with edges distributed at random. For example:
+
+```{r}
+plot(play_degree(out_degree = c(1,2,3,3,3)))
+```
+
+The model that generates the sequences above allows multiple connections between nodes and self-loops, which are rare in social networks. You can avoid that by setting the method parameter:
+
+```{r}
+plot(play_degree(out_degree = c(1,2,3,3,3), method="simple.no.multiple"))
+```
+
+
+This model is useful when you take the degree sequence of another network and you want to explore how it would look like when everything else is random. Here we simulate a scale-free network, we take its sequence of indegrees and outdegrees, and use them to generate another random network with the same degree sequence:
+
+```{r}
+g <- play_barabasi_albert(n = 30, growth = 2, power=1)
+g %>% activate(nodes) %>% mutate(degree=centrality_degree(mode = "in")) %>% pull(degree) -> indegs
+g %>% activate(nodes) %>% mutate(degree=centrality_degree(mode = "out")) %>% pull(degree) -> outdegs
+
+plot(play_degree(in_degree = indegs, out_degree = outdegs, method="simple.no.multiple"))
+```
+
+### Fixed communities: The Stochastic Block Model
+
+Social networks also tend to have communities with higher density inside. You can learn more about this in the [structural holes]() topic. You can generate random networks with a given community structure using the play_blocks() function, which uses a [Stochasic Block Model](https://en.wikipedia.org/wiki/Stochastic_block_model). To this function, you have to tell the number of nodes, a vector of sizes of communities (blocks) that sum up to the number of nodes, and a matrix of probabilities of connection within blocks and across blocks in the same spirit as the Gilbert model. 
+
+In the example below, we generate a network with two communities of 20 and 30 nodes, with much higher density within the communities than across:
+
+```{r}
+pm <- cbind( c(.5, .01), c(.01, .5) )
+plot(play_blocks(n=50, size_blocks = c(30,20), p_between = pm, directed=F))
+```
+
+The models to generate networks with fixed degree sequences and community structures are useful to ask ourselves if something we observe can be explained because of the distribution of degrees or because these communities are present. You can use these as null models as in a permutation test to discard those explanations following what you can learn in the [permutation tests tutorial]().
+
