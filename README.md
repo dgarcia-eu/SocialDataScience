@@ -51,9 +51,9 @@ The course is organized in five blocks with several topics each. Each block has 
 4.2. [The Friendship paradox](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/042_FriendshipParadox/FriendshipParadox.html)  
 4.3. [SDS story: sampling opinions on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/043_TwitterOpinions/TwitterOpinions.html)  
 4.4. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html)  
-4.5. Handling network data in R  
-4.6. Twitter network data  
-4.7. Exercise: The friendship paradox on Twitter  
+4.5. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html)  
+4.6. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
+4.7. Twitter network data  
 4.8. Exercise: Swiss politicians on Twitter  
 
 5. **Social network phenomena**  
@@ -62,11 +62,11 @@ The course is organized in five blocks with several topics each. Each block has 
 5.3. Structural holes and communities  
 5.4. Assortativity  
 5.5. Permutation tests   
-5.6. Network visualization  
+5.6. Network visualization (Gephi)  
 5.7. Community detection  
 5.8. Exercise: Assortativity among Swiss politicians on Twitter
 
 ## Where to access materials
 
 - Handouts, codes, and data can be found on the [Github repository of the course](https://github.com/dgarcia-eu/SocialDataScience).
-- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=14192) to get additional information and to participate in the forums and quizzes.
+- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=14192) to get videos and additional information and to participate in the forums and quizzes.
