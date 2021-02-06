@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Social Networks</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to Social Networks
+### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+### Social Data Science, 2021
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# Social networks
+&lt;div style="float:right"&gt;
+&lt;img src="MorenoNetwork.png" alt="Jacob Moreno network." width=450px/&gt;  
+&lt;/br&gt;
+Jacob Moreno's sociogram
+&lt;/div&gt;
+
+Social Networks are models to represent individuals and the relationships between them. The minimal components of a social network are:  
+
+- **Nodes** (or vertices), which represent individuals. These individuals are social actors, for example humans, animals, fictional characters...
+- **Links** (or edges) are relationships between individuals, for example friendship, family ties, interaction, communication...
+
+---
+
+# Representing social networks
+&lt;div style="float:right"&gt;
+&lt;img src="networkDirected.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+A graph or network is a tuple `\(G = (V, E)\)`  
+  - V is a set of vertices or nodes  
+  - E ⊆ V × V is a set of edges or links  
+  - V × V is the Cartesian product (i.e. the set of all possible links)  
+
+Edges are denoted as ordered pairs `\((i, j)\)`, which means that a link points from node `\(i\)` to node `\(j\)`. 
+
+The example of the picture can be written as:  
+`\(V = {a, b, c, d, e}\)`  
+`\(E = {(b, a),(c, a),(e, a),(d, e),(c, b),(b, c)}\)`
+
+---
+
+# Adjacency matrix
+&lt;div style="float:right"&gt;
+&lt;img src="networkDirected.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+The above list is what is called an *edge list*, but there are other ways to represent a network. A common one is to use an **adjacency matrix** `\(\mathbf{A}\)` with 1 in the entries of nodes connected by an edge and 0 otherwise. 
+
+|a|b|c|d|e
+--|--|--|--|--
+a|0|0|0|0|0
+b|1|0|1|0|0
+c|1|1|0|0|0
+d|0|0|0|0|1
+e|1|0|0|0|0
+---
+
+# Undirected networks
+&lt;div style="float:right"&gt;
+&lt;img src="networkUndirected.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+Networks might be **undirected** if a link between two nodes is always reciprocal.  
+
+Their adjacency matrices satisfy the condition `\(A_{ij}=A_{ji}\)`. 
+
+An example of an undirected network is the network of friendships on Facebook.
+
+---
+
+# Mulit-edge networks
+
+&lt;div style="float:right"&gt;
+&lt;img src="networkPhonecalls.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+In a **multi-edge network**, multiple links are allowed from one node to another. Multi-edge networks can be both directed and undirected. 
+
+The adjacency matrix of multi-edge networks is not well-defined, as each entry of the matrix would have to contain more than just a number.
+
+A common example is a network of phone calls between people, where edges can be differentiated by the timestamp when the call was initiated. 
+
+---
+
+# Weighted networks
+
+&lt;div style="float:right"&gt;
+&lt;img src="networkWeighted.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+The nodes of a network can have weights associated to them, then we talk about a **weighted network**. 
+
+The weighting function `\(w\)` maps links to weights:  `\(w:E \rightarrow \mathbb{R}\)`. 
+
+Weighted networks can be represented by adjacency matrices with real values in their entries that correspond to the link weights: `\(A_{ij}= w(i, j)\)`.
+ 
+---
+
+# Paths and cycles
+
+&lt;div style="float:right"&gt;
+&lt;img src="pathsExample.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+One of the most important concepts in a network is that of a **path**. A path is defined as a sequence of nodes, where any pair of consecutive nodes is connected by a link.
+
+A **cycle** is a path starting and ending in the same node. A **triangle** is a cycle of length 3, in the example the nodes `\(a\)`, `\(b\)` and `\(c\)` form a triangle.
+
+---
+
+# Self-loops
+
+&lt;div style="float:right"&gt;
+&lt;img src="networkSelfLoops.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+Some networks might contain **self-loops**, which are links that start and end in the same node, i.e. they have the form `\((i,i)\)`. 
+
+Self-loops appear as ones in the diagonal of the adjacency matrix. 
+
+Self-loops are rare in social networks. They can appear in some communication networks, for example when a Twitter user retweets their own tweet or sends an email to themselves.
+---
+
+# Connected components
+
+&lt;div style="float:right"&gt;
+&lt;img src="networkConnectedComponents.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+A network is **connected** if, for each pair of nodes in the network, there is at least one path connecting them. 
+
+If a network is not connected, it can be divided in **connected components**, which are maximally connected subgraphs. The example is not a connected network, as it has two connected components.
+
+---
+
+# Node degree
+
+A node's **degree** measures the number of links connected to it. 
+
+In undirected networks there is only one measure of degree `\(d(i)\)`, which is exactly the number of edges connected to the node `\(i\)`. 
+
+In directed networks there are two kinds of degree: 
+- **in-degree** `\(d_{in}(i)\)` that is the number of edges ending in `\(i\)`, i.e. `\((j,i)\)`
+- **out-degree** `\(d_{out}(i)\)` that is the number of edges leaving from `\(i\)`, i.e. `\((i,j)\)`. In the first network example above, `\(d_{in}(c) = 1\)` and `\(d_{out}(c) = 2\)`.
+
+In weighted networks, **weighted node degrees** are sums of incoming and outgoing link weights. This way there are two weighted node degrees, the weighted in-degree and the weighted out-degree.
+---
+
+# Distance
+
+&lt;div style="float:right"&gt;
+&lt;img src="networkUndirected.png" alt="Social network example." width=400px/&gt;  
+&lt;/div&gt;
+
+The **distance** between nodes `\(v\)` and `\(w\)` is denoted as `\(dist(v,w)\)` and measures the minimum length among all the paths connecting `\(v\)` and `\(w\)`. 
+
+If there is no path between `\(v\)` and `\(w\)`, the distance between them is defined as `\(dist(v,w) := \infty\)`. 
+
+Example: `\(dist(b, e) = 2\)` 
+
+In directed networks, it might happen that `\(dist(v,w) \neq dist(w,v)\)`. 
+
+**proximity:** `\(prox(v,w)=\frac{1}{dist(v,w)}\)`. 
+
+---
+![](astronauts.png)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
