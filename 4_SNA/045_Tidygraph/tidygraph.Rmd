@@ -1,0 +1,147 @@
+---
+title: "Handling network data in R"
+author: "Dr. David Garcia"
+output: html_document
+---
+
+### The tidygraph package
+
+The tidygraph package is part of the [tidyverse](https://www.tidyverse.org/) and combines very well with other packages like dplyr or tidytext. In this tutorial, we will use dplyr and tidygraph to start handling network data:
+
+```{r}
+library(dplyr)
+library(tidygraph)
+```
+
+After loading the packages, we can use the functions of tidygraph. These functions can be used to read network data from files, to manipulate that data, and also to analyze it and visualize it. Tidygraph allows you to generate random networks or fixed network structures from a variety of methods. For example, here we build a ring graph, which takes the form of a single cycle with N nodes:
+
+```{r}
+ringgraph <- create_ring(12) 
+ringgraph
+```
+When you call ringgraph above, you see that the output is of the type tbl_graph, a special kind of tibble that contains graph information. It has 12 nodes and edges, and you get some information on the endpoints of few edges of the graph.
+
+You can have a better idea of the graph if you run the plot() function over it, which automatically uses parts of another package called igraph:
+
+```{r}
+plot(ringgraph)
+```
+
+As you see, the nodes of the graph above form a single cycle, a ring, and are numbered from 1 to 12.
+
+You can generate other kinds of graphs, some of them with a random component. You can learn more about these models in the [network models]() tutorial.
+
+### Reading network data
+
+We are going to use as an example the social network of interactions between the characters of [Star Wars Episode IV](http://evelinag.com/blog/2015/12-15-star-wars-social-network/). You can find an example of the visualization of that network in my previous work about [gender and networks in movie scripts and social media](https://arxiv.org/abs/1404.0163).
+
+The dataset has two dataframes that we can use to get the information about nodes and the information about edges. We rename the columns of the interactions dataframe to fit the edges definition and we add an id to the characters dataframe to refer to characters by their node id:
+```{r}
+charactersdf <- read.csv("Characters-IV.csv")
+interactionsdf <- read.csv("Interactions-IV.csv")
+names(interactionsdf) <- c("to","from","weight") #for tbl_graph
+charactersdf$id <- seq(1:(nrow(charactersdf)))
+```
+
+The original dataset of movie characters has characters numbered from zero, but tidygraph (and most packages in R) have indices that start in 1. For that we add 1 to the entries of the edges table:
+```{r}
+interactionsdf$to <- interactionsdf$to+1
+interactionsdf$from <- interactionsdf$from+1
+```
+
+Now both dataframes are ready to build a graph. With the function tbl_graph, we can use both dataframes, telling it to build an undirected network with the parameter directed set to FALSE:
+
+```{r}
+starwars<-tbl_graph(charactersdf,interactionsdf, directed=F)
+starwars
+```
+
+As you see, the result has a nodes part with the name of characters and their node id. The edges have endpoints in the columns "to" and "from" and a weight that counts the number of times those two characters interacted in the movie.
+
+We can plot this network as we did with the ring graph:
+```{r}
+plot(starwars)
+```
+
+
+Now nodes are labeled with the character name rather than a number as before. Depending on your resolution, you might be able to see some groups better than others, but ideally you should see the main characters making a dense community in the center. One character, "gold five", has degree zero, as it talks in the movie but not clearly in a scene with another character.
+
+### Handling network data
+
+The data structure for networks in tidygraph contains various components that you might want to use in your analyses. Sometimes you want to do things with nodes, other times with edges. Tidygraph contains the function activate() for that, the result cab be converted to a tibble dataframe so you can analyze that data in particular:
+
+```{r}
+starwars %>% activate(nodes) %>% as_tibble()
+starwars %>% activate(edges) %>% as_tibble()
+```
+
+
+The result of activate() can be handled with the typical dplyr functions. For example here, we sort the edges by descending value of their weight and print the 6 with the highest weight:
+```{r}
+starwars %>% activate(edges) %>% arrange(desc(weight)) %>% as_tibble() %>% head()
+```
+
+Tidygraph allows you to get a particular column or variable from edges and nodes with the pull() function. For example here we take the weight out of the edges and plot their histogram:
+
+```{r}
+starwars %>% activate(edges) %>% pull(weight) -> frequencies
+hist(frequencies)
+```
+
+You can do similar operations with other dplyr verbs. For example, here we first operate on the edges to remove the ones with weight lower than or equal to 10, then caculate node degree in the resulting network, and plot with the nodes that had degree larger than zero:
+
+```{r}
+starwars %>% activate(edges) %>% filter(weight>10) %>% activate(nodes) %>% mutate(degree=centrality_degree()) %>% filter(degree>0) %>% plot()
+```
+
+Above we have visualized a kind of "network core" where only nodes connected to another node with sufficient weight are plotted.
+
+Many calculations on a network depend on the neighbors of a node. The function local_members allows you to get neighborhoods at various distances, the first neighbors would be of order 1 but you can also get them for farther distances with higher orders. In the code below, we mutate each node to add its first-order neighbors and look at the neighborhood of the first:
+
+```{r}
+starwars %>% activate(nodes) %>% mutate(neighborhood = local_members(mindist = 1, order=1))  %>% as_tibble() -> nodedata
+
+nodedata$neighborhood[1]
+```
+The result is a list of arrays with the ids of the nodes connected to the first. This structure is a bit complex because it was designed to have various arrays for different distances. If you want to get just the first array entry, you can use the index you want with double brackets "[[ ]]":
+
+```{r}
+nodedata$neighborhood[[3]]
+```
+
+Often, having node ids like above is not the most useful if we identify better nodes by their name. For example, we can get the name of the node with id 3:
+
+```{r}
+nodedata$name[3]
+```
+
+And the naes of its neighbors by using the information que calculated above:
+
+```{r}
+nodedata$name[nodedata$neighborhood[[3]]]
+```
+
+### Basic network visualization
+
+It is good to make simple plots of the networks we handle as above, so we have an idea of how it looks like and that there are no obvious errors. The library ggraph is useful to plot graphs in a clearer way than just the plot() function that comes with tidygraph. It is based on the ggplot2 package, which is a useful package to make professional plots. We do not cover ggplot2 in this course, but you can learn more about it in [this tutorial](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
+
+The basic call to ggraph() generates an object to plot. The geom_node_point() function tells that we want to plot nodes as solid points, and the geom_edge_link() function that we want to connect them with straight lines. Finally, the theme_graph() function tells that we are trying to plot a network with the above information, so it uses a layout algorithm to chose the position of the nodes:
+
+```{r}
+library(ggraph)
+starwars %>% ggraph() + geom_node_point() + geom_edge_link()  +  theme_graph()
+```
+
+Above you can get an idea of the network, but it is a very minimalistic plot without node names. You can add that by adding a "node text" with the geom_node_text() function. As a parameter it takes an aesthetics definition built with the function aes(), where we say that text labels should be the name variable of the node:
+
+```{r}
+starwars %>% ggraph() + geom_node_point() + geom_edge_link()  + geom_node_text(aes(label=name)) +  theme_graph()
+```
+
+You can customize many things in ggraph visualization, for example here we use the Kamada-Kawai layout algorithm with gray edges, light blue large nodes, and moving the labels so they don't overlap:
+
+```{r}
+starwars %>% ggraph(layout = "kk")  + geom_edge_link(color="gray") + geom_node_point(colour="lightblue", size=3) + geom_node_text(aes(label=name), repel=T) +  theme_graph()
+```
+
+You can learn more about how to customize ggraph visualization in [this tutorial](http://mr.schochastics.net/netVizR.html). For a more interactive way of visualizing networks, especially large ones, check our [tutorial on visualization with Gephi]().
