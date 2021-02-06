@@ -8,7 +8,7 @@ output: html_document
 
 The tidygraph package is part of the [tidyverse](https://www.tidyverse.org/) and combines very well with other packages like dplyr or tidytext. In this tutorial, we will use dplyr and tidygraph to start handling network data:
 
-```{r}
+```{r, message=F}
 library(dplyr)
 library(tidygraph)
 ```
@@ -127,7 +127,7 @@ It is good to make simple plots of the networks we handle as above, so we have a
 
 The basic call to ggraph() generates an object to plot. The geom_node_point() function tells that we want to plot nodes as solid points, and the geom_edge_link() function that we want to connect them with straight lines. Finally, the theme_graph() function tells that we are trying to plot a network with the above information, so it uses a layout algorithm to chose the position of the nodes:
 
-```{r}
+```{r, message=F}
 library(ggraph)
 starwars %>% ggraph() + geom_node_point() + geom_edge_link()  +  theme_graph()
 ```
