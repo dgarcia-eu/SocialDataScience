@@ -1,0 +1,136 @@
+---
+title: "Social Data Science - Twitter network data"
+author: "David Garcia, 2021"
+output: html_document
+---
+
+In this tutorial we will learn how to retrieve different kinds of network data from Twitter and how to process them in R.
+
+### Follower links
+
+One of the most interesting networks in Twitter is the follower network, in which nodes are users and links connect user $u$ with user $v$ if $u$ follows $v$. The rtweet package allows you to get the list of followers of a user with the get_followers() function:
+```{r, message=F}
+library(rtweet)
+followers <- get_followers("dgarcia_eu")
+head(followers)
+```
+
+The result is a data frame with a column user_id that has the ids of the followers of the user you specified. The function will require a request to the API per 5000 followers, so users with millions of followers will require many requests. This is very important because the rate limits for getting followers are very low: a standard developer account can only call make 15 requests like this per time window. As an example, it took more than 11 days to get the list of 80 million followers that Donald Trump used to have on Twitter.
+
+Sometimes you are interested on retrieving the links in the direction they follow, which would be by getting the list of accounts followed by certain one. In the Twitter API, the people followed by a user are called the "friends" of that uses, so the get_friends() function gives you that list:
+
+```{r }
+followings <- get_friends("dgarcia_eu")
+head(followings)
+```
+
+Getting friends has also a low rate limit as in the case of followers, but at least these limits are parallel so you can request both at the same time.
+
+The list of people we follow can tell a lot about ourselves in a similar way as [likes on Facebook reveal private attributes](https://www.pnas.org/content/110/15/5802). For example, the work of Pablo Barberá shows that following lists are useful to calculate [a score of political orientation in the US](https://journals.sagepub.com/doi/abs/10.1177/0956797615594620).
+
+### Reply networks
+
+First, we retrieve the basic profile information of the users of a Twitter list. Here we are using the list of professor and department accounts of ETH Zurich (https://twitter.com/i/lists/984765033673646080). The function list_members retrieves the user ids in the list and the profile objects for each user:
+
+```{r, message=F}
+library(dplyr)
+users <- lists_members(list_id = 984765033673646080)
+head(users)
+nrow(users)
+```
+
+We are going to focus on a random sample of 100 and retrieve their latest 100 tweets with the get_timelines() function:
+
+```{r }
+userids <- sample(users$user_id, 100)
+tweets <- get_timelines(userids, n=100)
+head(tweets)
+```
+
+Accessing timelines in Twitter has a much higher limit of 900 requests per 15-minute window. This way you can get at most 3200 tweets per user and you have another limit of at most [100000 calls per 24-hour period.](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline)
+
+Tweets that are replies will generate rows in the result with the reply_to_user_id column set to the numeric id of the user being replied to:
+```{r }
+head(tweets$reply_to_user_id, n=20)
+```
+We can extract all reply links in our data by taking this information and filtering for users in our sample:
+```{r }
+tweets %>% 
+  select(user_id, reply_to_user_id) %>% 
+  filter(!is.na(reply_to_user_id)) %>% 
+  inner_join(data.frame(user_id=userids)) %>%
+  inner_join(data.frame(reply_to_user_id=userids)) -> repliesdf
+dim(repliesdf)
+```
+
+And construct the edges by counting reply instances as their weight:
+```{r }
+names(repliesdf) <- c("from", "to")
+repliesdf %>% 
+  group_by(to, from) %>%
+  summarize(weight = n()) -> edgesdf
+head(edgesdf)
+```
+
+We can convert the user ids to their corresponding ids with as.factor and then as.numeric, to then create the graph and plot it:
+```{r }
+library(tidygraph)
+edgesdf$from <- as.numeric(as.factor(edgesdf$from))
+edgesdf$to <- as.numeric(as.factor(edgesdf$to))
+graph<-tbl_graph(data.frame(id=as.numeric(as.factor(userids))),edgesdf, directed=F)
+plot(graph)
+```
+
+If you see many self-loops, that might be due to accounts building threads of replies.
+
+### Retweet networks
+
+You can follow a similar process to build a retweet network. First, we extract entries using the retweet_user_id column:
+
+```{r }
+tweets %>% 
+  select(user_id, retweet_user_id) %>% 
+  filter(!is.na(retweet_user_id)) %>% 
+  inner_join(data.frame(user_id=userids)) %>%
+  inner_join(data.frame(retweet_user_id=userids)) -> retweetsdf
+dim(retweetsdf)
+```
+
+We then construct edges. The directionality of retween networks can be decided in both ways, either from retweeted to retweeted as an information flow network or from retweeter to retweeted as a "giving credit" or endorsement network. We choose this last option to resemple the follower networks:
+```{r }
+names(retweetsdf) <- c("from", "to")
+retweetsdf %>% 
+  group_by(to, from) %>%
+  summarize(weight = n()) -> edgesdf
+head(edgesdf)
+```
+
+And then we can plot as we did with the replies network:
+```{r }
+edgesdf$from <- as.numeric(as.factor(edgesdf$from))
+edgesdf$to <- as.numeric(as.factor(edgesdf$to))
+graph<-tbl_graph(data.frame(id=as.numeric(as.factor(userids))),edgesdf, directed=F)
+plot(graph)
+```
+
+You might notice quite some differences here, for example there are less self-loops. Users are less likely to retweet themselves than reply to themselves on Twitter.
+
+### Likes information
+
+Twitter allows you to get some data on the likes given by a user to tweets with the get_favorites() function:
+
+```{r }
+likes <- get_favorites("dgarcia_eu", n = 2000)
+head(likes)
+```
+
+The result is a dataframe with the latest tweets liked by the user. A request this way gives you the latest 200 likes, thus the above code can take up to 10 requests. The rate limit for this is 75 requests per 15-min window, so building the likes network for the above list of Twitter users would take a while. 
+The naming of "favorites" instead of likes comes from the earlier desgin of Twitter, where likes did not exist and users could favorite tweets with a star symbol. Now it's a heart and since the change to likes, it is used much more frequently.
+
+### To learn more
+
+- Get the whole follower list overnight for a set of accounts and plot the resulting network
+- With the resulting data, you can measure the overlap in followers between two users as the [Jaccard coefficient](https://en.wikipedia.org/wiki/Jaccard_index). This gives you an undirected, weighted network of follower similarity that you can also plot.
+- Build reply and retweet network for the example above but getting all tweets up to the 3200-tweet limit. Is it different from the one plotted based on a sample?
+- Based on the latest tweets of a user, you can calculate the T-index of the user as the maximum number T such that the user has posted T tweets with at least T likes (similar to the h-index for scientists). Which account from ETH has the highest T-index?
+
