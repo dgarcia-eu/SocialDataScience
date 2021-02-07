@@ -53,7 +53,7 @@ The course is organized in five blocks with several topics each. Each block has 
 4.4. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html)  
 4.5. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html)  
 4.6. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
-4.7. Twitter network data  
+4.7. [Twitter network data](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html)  
 4.8. Exercise: Swiss politicians on Twitter  
 
 5. **Social network phenomena**  
