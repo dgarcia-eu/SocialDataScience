@@ -1,0 +1,134 @@
+---
+title: "Twitter social networks of Swiss politicians"
+author: "David Garcia"
+output: html_document
+---
+
+In this exercise we will construct the social network of information sharing between Swiss politicians on Twitter. We will retrieve the latest tweets of the politicians and identify retweet links to construct a social network. We will visualize the network and rank politicians by centrality using two different metrics.
+
+You can find the markdown files and data for this exercise in the [corresponding Github folder]()
+
+## Tasks:
+
+1. Construct the timelines of Twitter users
+
+2. Build social network of retweets
+
+3. Network visualization
+
+4. Centrality rankings
+
+# 1. Construct the timelines of Twitter users
+
+First connect to the Twitter API using your credentials as in previous exercises:
+```{r, message=FALSE}
+#Your code here
+```
+
+Download the file SwissPoliticians.csv and read it as a csv in R. Take into account that separators are tabs.
+```{r}
+#Your code here
+```
+
+Request the profile information of those users by using their screen name. How many are still accessible on Twitter with the same screen name?
+```{r}
+#Your code here
+```
+
+Calculate how many of those users have a protected account and how many you have left if you remove those that are protected. Filter out protected users using dplyr and save the resulting dataframe in a file called "users.RData".
+```{r userlistprotected}
+#Your code here
+```
+
+Now let's check that we have a rate limit high enough to do a query for each users. Use the rate_limit function to find out how many queries you can make to get data on user timelines. You can use as parameter the name of the rtweet function that you want to use (get_timeline) or the name of the API function ("statuses/user_timeline").
+```{r }
+#Your code here
+```
+
+As a test, we are going to get the last 200 tweets of the first user in our list. We set the parameter check to FALSE so rtweet doesn't check the rate limit before every request, since checking the rate limit has its own rate limit.
+```{r timelines}
+#Your code here
+```
+
+Repeat the above operation for all users in your dataset. You can do it in just one line! But it will take a bit to run and get data. Save the result in a file called "timelines.RData" so you don't lose any data.
+```{r}
+#Your code here
+```
+
+# 2. Build social network of retweets
+
+If you had problems gathering data in previous steps, you can load the example datasets provided here (timelines.RData and users.Rdata). After that, filter the tweets in the timeline such that the user id that is being retweeted is one of the user ids in the user list (the command %in% is useful here or you can use one of the join functions of dplyr):
+
+```{r}
+#Your code here
+```
+
+Now we remove self-loops, i.e. cases when a user retweeted themselves.
+```{r}
+#Your code here
+```
+
+To build a graph, we have to prepare two data frames. First, construct a vertices data frame with the user ids and screen_names of the vertices. Then build a dataframe for the edges with a weight as a count of the number of retweets from one user to the other. Direct the edges from the retweeted user to the retweeter to model information flow.
+```{r}
+#Your code here
+```
+
+Now do the corresponding call to tbl_graph to build your directed graph, using the column id of nodes as identifier (node_key).
+```{r}
+#Your code here
+```
+
+# 3. Network visualization
+
+We are going to visualize the network. Let's try first with the simplest visualization.
+```{r}
+#Your code here
+```
+
+Here you have the example of a call using ggraph, such that edges have arrows and are colored gray and with a width proportional to their weight:
+```{r, message=F, eval=F}
+library(ggraph)
+graph %>% ggraph() +  geom_edge_link(color="gray", aes(width = weight), arrow=arrow(type = "closed", length = unit(5,"pt")))  + geom_node_point() + theme_graph()
+```
+
+Change the layout algorithm to use Fruchterman-Reingold and change the color of nodes.
+```{r}
+#Your code here
+```
+
+Let's filter out disconnected nodes. First, calculate the total centrality (taking into account both in and out links) and make a new graph having only nodes with degree larger than zero.
+```{r}
+#Your code here
+```
+
+Now visualize the resulting network with node sizes proportional to the centrality of the node:
+```{r}
+#Your code here
+```
+
+# 4. Centrality rankings
+
+Here we are going to use the graph without disconnected nodes to calculate rankings of degree and betweeness centrality.
+
+Calculate the weighted out-degree centrality of each node and get the top 10. Who is the most important politician with this definition?
+```{r}
+#Your code here
+```
+
+Calculate the betweeness centrality of nodes (ignoring weights) and get the top 10. Is this top similar to the one based on out-degree centrality?
+```{r}
+#Your code here
+```
+
+Now build a dataframe that contains both the closeness centrality and the weighted out-degree centrality of each node. Make a scatter plot and calculate the correlation coefficient between both. How similar are they?
+```{r}
+#Your code here
+```
+  
+# To learn more
+
+- Test the friendship paradox with this network. Are most politicians influenced on average by more influential politicians?
+- Instead of using retweets to build links, use replies. Do you get the same centrality rank?
+- Running your code overnight, get the lists of friends of the Swiss politicians and build their follower network. Are centralities the same?
+- Repeat the above analysis but with one of the Twitter lists in this document: https://docs.google.com/spreadsheets/d/1tcNy1q_eQH3HXGt-0hkmSNEGbcOUiC5si3kZ6-F0pB8/edit?usp=sharing Does this network look very different to the case of Swiss politicians?
+
