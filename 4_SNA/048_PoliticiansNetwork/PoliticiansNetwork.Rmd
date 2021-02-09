@@ -6,7 +6,7 @@ output: html_document
 
 In this exercise we will construct the social network of information sharing between Swiss politicians on Twitter. We will retrieve the latest tweets of the politicians and identify retweet links to construct a social network. We will visualize the network and rank politicians by centrality using two different metrics.
 
-You can find the markdown files and data for this exercise in the [corresponding Github folder]()
+You can find the markdown files and data for this exercise in the [corresponding Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/048_PoliticiansNetwork)
 
 ## Tasks:
 
