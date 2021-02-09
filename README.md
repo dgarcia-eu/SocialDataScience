@@ -52,19 +52,18 @@ The course is organized in five blocks with several topics each. Each block has 
 4.3. [SDS story: sampling opinions on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/043_TwitterOpinions/TwitterOpinions.html)  
 4.4. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html)  
 4.5. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html)  
-4.6. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
-4.7. [Twitter network data](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html)  
-4.8. Exercise: Swiss politicians on Twitter  
+4.6. [Twitter network data](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html)  
+4.7. [Exercise: Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/048_PoliticiansNetwork/PoliticiansNetwork) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/048_PoliticiansNetwork)  
 
 5. **Social network phenomena**  
 5.1. Social resilience  
 5.2. SDS story: the death of social networks  
 5.3. Structural holes and communities  
 5.4. Assortativity  
-5.5. Permutation tests   
-5.6. Network visualization (Gephi)  
-5.7. Community detection  
-5.8. Exercise: Assortativity among Swiss politicians on Twitter
+5.5. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
+5.6. Permutation tests   
+5.7. Network analysis in R  
+5.8. Exercise: Assortativity among Swiss politicians on Twitter -- [[Exercise github folder]]()  
 
 ## Where to access materials
 
