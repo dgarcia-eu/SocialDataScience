@@ -5,6 +5,7 @@ author: "Dr. David Garcia"
 
 This exercise reproduces the findings of the article "Quantifying tthe Advantage of Looking Forward" <http://www.nature.com/articles/srep00350>. According to the results, the GDP per capita of countries is positively correlated to how much their population searches in Google for the next year, relative to how much they search for the previous year. This ratio is called the Future Orientation Index (FOI). So for example for the year 2017 the FOI can be calculated as: FOI = number of searches for the term "2018" / number of searches for the term "2016".
 
+You can find the markdown files and data for this exercise in the [corresponding Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise)
 
 # 1. Package installation and setup
 
