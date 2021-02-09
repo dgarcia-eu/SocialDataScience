@@ -6,7 +6,7 @@ output: html_document
 
 Welcome to the R tutorial of Social Data Science! Exercise sessions and self-study tasks will help you to apply the knowledge learned in class and gain experience.
 
-# Introduction to R
+#Introduction to R
 
 R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS. In this course we will be using R in the RStudio environment to perform our exercises. Exercise sheets and solutions will be R Markdown documents that combine and format text, code, and code output.
 
@@ -32,7 +32,7 @@ Crash course overview:
 
 # 0. Getting help
 
-If you don't know what a function does, try searching for help wiht "?"
+If you don't know what a function does, try searching for help with "?"
 ```{r}
 ? mean
 ```
@@ -56,11 +56,11 @@ The "c" in the above vector assignment stands for combine into a vector. The ele
 You can see the result by typing the variable name to the console.
 ```{r}
 a
-b
+d
 ```
 
 ```{r}
-d[3]
+b[3]
 ```
 
 Now we can do some arithmetic with the vectors.
@@ -70,8 +70,8 @@ a*b
 ```
 
 ```{r}
+d+1
 b+d
-b+1
 ```
 
 Notice when a vector is multiplied with a scalar, each of the element is multiplied. And when vectors are added/multiplied, they must be the same dimension and the arithmetic happens elementwise.
@@ -84,35 +84,34 @@ b2 <- 1>2
 ```
 
 ```{r}
-b1 & b2
-b1 | b2
+
+
 ```
 
 rep, seq, and rev are useful functions to produce and manipulate simple vectors
 
 ```{r}
-rep(1,7)
+rep(1,300)
 ```
 
 ```{r}
-seq(1,7,by=2)
+seq(to=10,from=1, by=2)
 ```
 
 ```{r}
-rev(seq(1,7))
+rev(seq(to=10,from=1, by=2))
 ```
 
 Your turn:
 
 **1.1) We create a vector V with the even numbers between 1 and 10. Show its content.**
 ```{r}
-V <- seq(by =2, from=2, to =10)
-V
+
+
 ```
 
 **1.2) We look at its third entry and test if it is larger than 3.**
 ```{r}
-V[3] > 3
 
 ```
 
@@ -134,20 +133,27 @@ R is a programming language after all, how do we check for conditions or go thro
 if/else statements allow you to check for conditions:
 ```{r}
 x <- 4
-if (x>4)
+
+if (x > 4)
 {
   print("larger than four")
-} 
+} else
+{
+  print("four or less")
+}
+
 ```
 
 for loops are fixed length iterations:
 
 ```{r}
-sequence <- seq(1,5)
+sequence <- seq(1,10)
+
 for (i in sequence)
 {
   print(i+1)
 }
+
 ```
 
 while loops let you iterate as long as a condition is met:
@@ -157,6 +163,7 @@ i <- 1
 while (i<5)
 {
   print(i) #infinte loop!!!!!!
+  i <- i+1
 }
 ```
 
@@ -175,10 +182,7 @@ Your turn:
 Data is essential for our tasks.  A table can be easily imported from local files csv file via read.csv(). Or you may try other functions like read.table() and adjust to different data formats. In this exercise, we use a survey result stored in a .csv file:
 
 ```{r}
-testDF <- read.csv("TutorialHeights_Test.csv", header = TRUE, sep = ",", quote = "\"",
-                           stringsAsFactors = FALSE)
-head(testDF, n=10)
-SurveyDF <- testDF
+testDF <- read.csv("TutorialHeights_Test.csv", stringsAsFactors = FALSE)
 ```
 
 The read.csv and read.table functions have some important parameters:
@@ -193,8 +197,7 @@ Your turn:
 **3.1) Open the file "TutorialHeightsSurvey.dat" in a plain text reader to see its content. Then load it into R and name it SurveyDF. Print its first 7 lines.**
 
 ```{r}
-SurveyDF <- read.table(file = "TutorialHeightsSurvey.dat", header=T, sep = "\t",stringsAsFactors = F )
-head(SurveyDF,n=7)
+
 ```
 
 # 4. Data frames
@@ -217,30 +220,30 @@ SurveyDF[3,4]
 
 Columns in dataframes are accessed with the "$" operator:
 ```{r}
-SurveyDF$Height
+SurveyDF$Gender
 ```
 
 You can index entries in the column:
 ```{r}
-SurveyDF$Height[1:3]
+SurveyDF$Gender[3]
 ```
 
 You can add a column
 ```{r}
-SurveyDF$sequence <- seq(1,nrow(SurveyDF))
-head(SurveyDF, n=3)
+SurveyDF$sequence <- seq(1, nrow(SurveyDF))
+
 ```
 
 You can manually produce your own data frame. Use NA (Not Available) to mark missing values
 ```{r}
-newrow <- data.frame(Timestamp=NA, Age=31, Gender="Male", Height=185, sequence=0)
+newrow <- data.frame(Timestamp=NA, Age=31, Gender="Male", Height=180, sequence=0)
 print(newrow)
 ```
 
 And add to the other dataframe row-wise
 ```{r}
-SurveyDF2 <- rbind(SurveyDF, newrow)
-tail(SurveyDF2)
+SurveyDF <- rbind(SurveyDF, newrow)
+tail(SurveyDF)
 ```
 
 Your turn:
@@ -252,7 +255,6 @@ Your turn:
 
 **4.2) Print the heights of the rows in SurveyDF of gender "female".**
 ```{r}
-SurveyDF$Height[SurveyDF$Gender=="female"]
 
 ```
 
@@ -260,7 +262,7 @@ SurveyDF$Height[SurveyDF$Gender=="female"]
 
 We can produce a simple scatterplot of the data using the plot() function
 ```{r}
-plot(SurveyDF$Age, SurveyDF$Height)
+plot(SurveyDF$Age, SurveyDF$Height, cex=2)
 ```
 
 We are aware that height might depend on gender. What genders do we have in the dataset?
@@ -271,33 +273,25 @@ unique(SurveyDF$Gender)
 Some genders might not be in our list of values and capitalization should be taken into account. To clean genders:
 ```{r}
 SurveyDF$Gender <- tolower(SurveyDF$Gender)
-err <- SurveyDF$Gender!= "male" & SurveyDF$Gender != "female"
-SurveyDF$Gender[err] <- NA
-SurveyDF$Gender <- as.factor(SurveyDF$Gender)
+unique(SurveyDF$Gender)
+f <- SurveyDF$Gender != "male" & SurveyDF$Gender != "female"
+SurveyDF$Gender[f] <- NA
 unique(SurveyDF$Gender)
 ```
 
 Now we make a better scatter plot with points colored by gender and proper axes labels:
 ```{r}
-plot(SurveyDF$Age, SurveyDF$Height, xlab="Age", 
-     ylab="Heights (cm)", main="Scatter Plot of Height~Age", pch=19,
-     col=c("blue","red")[SurveyDF$Gender])
-legend("bottomright", legend = levels(SurveyDF$Gender),
-       col=c("blue","red"), pch=19)
+plot(SurveyDF$Age, SurveyDF$Height, xlab="Age (years)", ylab="Height (cm)", pch=19, col=c("red","blue")[as.factor(SurveyDF$Gender)])
 ```
 
 What is the mean height of each gender, and how much do they vary?
 
 ```{r}
-MaleDF <- SurveyDF[SurveyDF$Gender=="male",]
-mean(MaleDF$Height, na.rm=TRUE)
-sqrt(var(MaleDF$Height, na.rm=TRUE))
+mean(SurveyDF$Height[SurveyDF$Gender=="female"], na.rm=T)
 ```
 
 ```{r}
-FemaleDF <- SurveyDF[SurveyDF$Gender=="female",]
-mean(FemaleDF$Height, na.rm=TRUE)
-sd(FemaleDF$Height, na.rm=TRUE)
+
 ```
 
 Your turn:
@@ -319,22 +313,14 @@ Your turn:
 Now we will learn Gaussian distribution and plot it in R. The rnorm function lets you sample values from a normal distribution, and hist shows a histogram of values.
 
 ```{r, fig.height=3}
-# Set seed for random generator
-set.seed(23-2-2017)
-# Generate 100000 random numbers from normal distribution
-RandomNum <- rnorm(100000, mean=0, sd=1)
-# Calculate and plot histogram
-hist(RandomNum, breaks = 1000)
+rndnums <- rnorm(n=10000, mean=1, sd=0.1)
+hist(rndnums, breaks=5)
 ```
 
 The *dnorm* function returns the value of the Gaussian density function at the specified point. Below are a few examples and a plot for a range of values.
 
 ```{r, fig.height=3}
-dnorm(0)
-dnorm(1, mean=2, sd=2)
-x <- seq(-5,5,by=.1)
-y <- dnorm(x)
-plot(x,y, type="l")
+
 ```
 
 Your turn:
