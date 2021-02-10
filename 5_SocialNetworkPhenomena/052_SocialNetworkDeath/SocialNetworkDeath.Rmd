@@ -11,7 +11,7 @@ Some online social networks lost so many users at such a fast speed that they ca
 
 **Friendster,** as we saw in the [social resilience topic](), went from 80 Million active users to disappear completely.
 
-```{r echo=F, fig.width=8, fig.height=3, cache=TRUE, message=FALSE}
+```{r echo=F, fig.width=8, fig.height=3, message=FALSE}
 library(gtrendsR)
 library(ggplot2)
 library(dplyr)
@@ -22,7 +22,7 @@ ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume
 
 **MySpace** went from being valued more than 12 Billion USD in 2008 to be bought by [Justin Timberlake for 35 Million USD](https://www.theguardian.com/technology/2011/jun/30/myspace-internet). It's still online, but not very far from the user base it had in the past.
 
-```{r echo=F, fig.width=8, fig.height=3, cache=TRUE}
+```{r echo=F, fig.width=8, fig.height=3}
 trend <- gtrends("MySpace", time="all")
 trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
 ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("MySpace") + theme_bw()
@@ -30,7 +30,7 @@ ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume
 
 **Orkut** was the first attempt of Google to launch an online social network. It was very popular in some countries but lost users to Facebook and it was eventually taken offline.
 
-```{r echo=F, fig.width=8, fig.height=3, cache=TRUE}
+```{r echo=F, fig.width=8, fig.height=3}
 trend <- gtrends("Orkut", time="all")
 trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
 ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Orkut") + theme_bw()
@@ -38,7 +38,7 @@ ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume
 
 **Google+** was the much promoted second attempt at social networks by Google. Despite the initial hype, it lost users pretty quickly and it has been discontinued too.
 
-```{r echo=F, fig.width=8, fig.height=3, cache=TRUE}
+```{r echo=F, fig.width=8, fig.height=3}
 trend <- gtrends("Google Plus", time="all")
 trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
 ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Google+") + theme_bw()
@@ -70,13 +70,13 @@ The Facebook examples show that decrease in search volume is a decrease in infor
 
 For you to take the plots at the beginning of this topic with a grain of salt, here are the equivalent for Facebook and Twitter:
 
-```{r echo=F, fig.width=8, fig.height=3, cache=TRUE}
+```{r echo=F, fig.width=8, fig.height=3}
 trend <- gtrends("Facebook", time="all")
 trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
 ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Facebook") + theme_bw()
 ```
 
-```{r echo=F, fig.width=8, fig.height=3, cache=TRUE}
+```{r echo=F, fig.width=8, fig.height=3}
 trend <- gtrends("Twitter", time="all")
 trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
 ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Twitter") + theme_bw()
