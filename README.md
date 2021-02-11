@@ -61,8 +61,8 @@ The course is organized in five blocks with several topics each. Each block has 
 5.3. Structural holes and communities  
 5.4. Assortativity  
 5.5. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
-5.6. Permutation tests   
-5.7. Network analysis in R  
+5.6. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests)   
+5.7. [Network analysis in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/057_Tidygraph2/tidygraph2.html)  
 5.8. Exercise: Assortativity among Swiss politicians on Twitter -- [[Exercise github folder]]()  
 
 ## Where to access materials
