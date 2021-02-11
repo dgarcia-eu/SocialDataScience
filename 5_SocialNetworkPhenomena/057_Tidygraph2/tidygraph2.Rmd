@@ -1,0 +1,176 @@
+---
+title: "Network analysis in R"
+author: "Dr. David Garcia"
+output: html_document
+---
+
+In this tutorial we will learn how to analyze network data in R to measure complex metrics. As in the [introduction tutorial about how to handle network data in R](), we are going to use as an example the social network of interactions between the characters of [Star Wars Episode IV](http://evelinag.com/blog/2015/12-15-star-wars-social-network/).
+
+### Aggregate network metrics
+
+We start our tutorial by loading the libraries for data manipulation dplyr and tidygraph and creating the social network from data using tbl_graph:
+
+```{r, message=F}
+library(dplyr)
+library(tidygraph)
+library(ggraph)
+
+charactersdf <- read.csv("Characters-IV.csv")
+interactionsdf <- read.csv("Interactions-IV.csv")
+names(interactionsdf) <- c("to","from","weight") #for tbl_graph
+charactersdf$id <- seq(1:(nrow(charactersdf)))
+interactionsdf$to <- interactionsdf$to+1
+interactionsdf$from <- interactionsdf$from+1
+
+starwars<-tbl_graph(charactersdf,interactionsdf, directed=F)
+plot(starwars)
+```
+
+Tidygraph has functions to calculate metrics on the network, they generally start with graph_ and you can see a list and their documentation if you run "?graph_measures". They are a way to call other functions from the igraph package, you can find details about how each one is calculated in the links that you see in the help.
+
+Using these functions in tidygraph is a bit different than how it works with other analysis packages. Tidygraph wants you to run the functions inside a pipeline, for example in a mutate call, rather than over the graph object. For example, we can measure the mean distance between all pairs of nodes in the network like this:
+
+```{r}
+starwars %>% 
+  mutate(mndist = graph_mean_dist()) %>% 
+  pull(mndist) %>% 
+  head(1)
+```
+In the code above, we call graph_mean_dist() inside the mutate function to calculate the global mean distance between all pairs of nodes. The pull command gives us the column we just calculated (mndist) and the last head simplifies the output because we would get the same number for each node.
+
+This pipeline is a bit overcomplicated for a single network aggregate, but it is useful when we want to get local node or edge metrics and then study their distribution. For example, here we calculate the local number of triangles, which is part of the calculation we use for the clustering coefficient:
+
+```{r}
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(tri = local_triangles()) %>% 
+  as_tibble() -> trianglesdf
+
+head(trianglesdf)
+```
+
+We can also calculate degree and filter out nodes with degree below 2 and calculate the local clustering coefficient. Since we have all values now we can plot their distribution, compute the mean, and even calculate the global clustering coefficient:
+
+```{r}
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(tri = local_triangles(), deg=centrality_degree()) %>%  
+  as_tibble() %>% 
+  filter(deg>1)-> df
+
+df %>% mutate(localclust = 2*tri/(deg*(deg-1))) -> df
+
+hist(df$localclust)
+mean(df$localclust)
+2*sum(df$tri)/sum(df$deg*(df$deg-1))
+```
+
+### Assortativity
+
+The developers of igraph have coded lots of metrics to calculate on networks, and they are accessible through tidygraph. Assortativity is one of them. Here, we take the attribute "side" of the nodes, which is set to "good" or "evil" in the movie. Using graph_assortativity(), we can calculate the assortativity coeficient of the network with respect to the side attribute:
+
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(assort = graph_assortativity(attr=side)) %>% 
+  pull(assort) %>% 
+  as_tibble() %>% 
+  head(1)
+```
+
+As you see, the network is rather assortative. We can see this if we make a plot with nodes colored according to their side:
+```{r }
+starwars %>% 
+  ggraph("fr")  + geom_edge_link()  + geom_node_point(aes(color=side), size=3) + theme_graph()
+```
+
+Assortativity can also be calculated according to numeric values. For example, in the following code we calculate the degree assortativity of the network, which is similar to a correlation coefficient between the degrees of the nodes at the ends of each edge:
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(deg=centrality_degree()) %>% 
+  mutate(assort = graph_assortativity(attr=deg)) %>% 
+  pull(assort) %>% 
+  as_tibble() %>% 
+  head(1)
+```
+
+The network is a bit diassortative with respect to degree, meaning that nodes of high degree tend to be connected to nodes of lower degree, hence a bit the star-like shape of the network.
+
+### Community detection and modularity
+
+With tidygraph, you can also apply commmunity detection algorithms to find densely connected subgraphs. For example, you can use the Louvain algorithm, which is a fast and common way to find a division into communities that maximizes modularity:
+
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(community=as.character(group_louvain())) -> starwars
+
+starwars %>% 
+  activate(nodes) %>% 
+  as_tibble()
+```
+
+You can see the communities by drawing the nework with nodes colored by community. We casted the comunity values to characters so they get very distinct colors in the plot:
+
+```{r }
+starwars %>% 
+  ggraph("fr")  + geom_edge_link()  + geom_node_point(aes(color=community), size=3) + theme_graph()
+```
+
+As other functions, you can calculate the Q-modularity of the network with respect to the communities you detected on the step above:
+
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(modularity = graph_modularity(group=community)) %>% 
+  pull(modularity) %>% 
+  as_tibble() %>% 
+  head(1)
+```
+
+You can calculate the Q-modularity for any partition of the nodes. For example, we can evaluate the modularity of dividing characters into good and evil:
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(modularity = graph_modularity(group=side)) %>% 
+  pull(modularity) %>% 
+  as_tibble() %>% 
+  head(1)
+```
+
+Finding a partition of the network into communities that maximizes Q-modularity is a computationally expensive task. There are several algorithms, the best is to apply several and take the result that had the highest modularity. Some cases can give better or worse results, for example here the fast greedy algorithm to detect communities gives a community assignment with lower modularity as what Louvain finds:
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(community=as.character(group_fast_greedy())) %>% 
+  mutate(modularity = graph_modularity(group=community)) %>% 
+  pull(modularity) %>% 
+  as_tibble() %>% 
+  head(1)
+```
+
+### k-core decomposition
+
+Through tidygraph, you can also calculate the k-core decomposition of the network. It is as imple as using the node_coreness() function in our pipeline:
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(kcore=node_coreness()) %>% 
+  as_tibble()
+```
+
+You can see the result when plotting the network colored by k-core values. To make the values clearly distinguishable, we cast to character as we did above with the communities:
+```{r }
+starwars %>% 
+  activate(nodes) %>% 
+  mutate(kcore=as.character(node_coreness())) %>% 
+  ggraph("fr")  + geom_edge_link()  + geom_node_point(aes(color=kcore), size=3) + theme_graph()
+```
+
+Tidygraph and igraph are open source projects, you can find out more about [tidygraph here](https://github.com/thomasp85/tidygraph) and about [igraph here](https://github.com/igraph/igraph). As most open source projects, their development is constant and are never really finished. This is good because developers often add new measures and algorithms to the packages, but might also make the software more unstable and the documentation might be pretty unclear at some parts. If you have questions or problems, other developers can be very helpful in platforms like stack overflow and they might have already discussed a problem very similar to yours!
+
+
+
+
+
