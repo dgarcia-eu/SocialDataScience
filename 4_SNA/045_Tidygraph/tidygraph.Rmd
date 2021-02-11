@@ -112,7 +112,7 @@ nodedata$neighborhood[[3]]
 Often, having node ids like above is not the most useful if we identify better nodes by their name. For example, we can get the name of the node with id 3:
 
 ```{r}
-nodedata$name[3]
+nodedata$name[1]
 ```
 
 And the naes of its neighbors by using the information que calculated above:
@@ -144,4 +144,5 @@ You can customize many things in ggraph visualization, for example here we use t
 starwars %>% ggraph(layout = "kk")  + geom_edge_link(color="gray") + geom_node_point(colour="lightblue", size=3) + geom_node_text(aes(label=name), repel=T) +  theme_graph()
 ```
 
-You can learn more about how to customize ggraph visualization in [this tutorial](http://mr.schochastics.net/netVizR.html). For a more interactive way of visualizing networks, especially large ones, check our [tutorial on visualization with Gephi]().
+You can learn more about how to customize ggraph visualization in [this tutorial](http://mr.schochastics.net/netVizR.html). In addition, a great tool to customize visualizations, especially for large networks, is [Gephi](https://gephi.org/).
+
