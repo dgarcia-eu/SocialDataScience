@@ -63,7 +63,7 @@ The course is organized in five blocks with several topics each. Each block has 
 5.5. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
 5.6. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests)   
 5.7. [Network analysis in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/057_Tidygraph2/tidygraph2.html)  
-5.8. Exercise: Assortativity among Swiss politicians on Twitter -- [[Exercise github folder]]()  
+5.8. [Exercise: Assortativity among Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/058_PoliticianAssortativity/PoliticianAssortativity.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/058_PoliticianAssortativity)  
 
 ## Where to access materials
 
