@@ -58,7 +58,7 @@ The course is organized in five blocks with several topics each. Each block has 
 5. **Social network phenomena**  
 5.1. [Social resilience](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/051_SocialResilience/SocialResilience.html)  
 5.2. [SDS story: the death of social networks](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/052_SocialNetworkDeath/SocialNetworkDeath.html)  
-5.3. Structural holes and communities  
+5.3. [Structural holes and communities](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/053_StructuralHoles/StructuralHoles.html)  
 5.4. Assortativity  
 5.5. [Network models](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/046_NetworkModels/NetworkModels)  
 5.6. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests)   
