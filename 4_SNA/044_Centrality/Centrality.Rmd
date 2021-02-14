@@ -12,7 +12,7 @@ A common question when analyzing organizations or societies is how important an 
 2. Betweenness centrality
 3. Closeness centrality
 
-In the [social resilience topic]() you can learn about a fourth centrality topic, coreness centrality.
+In the [social resilience topic](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/051_SocialResilience/SocialResilience.html) you can learn about a fourth centrality topic, coreness centrality.
 
 ### Degree centrality
 
@@ -20,7 +20,7 @@ In the [social resilience topic]() you can learn about a fourth centrality topic
 <img src="networkDirected.png" alt="Network example." width=300px/>  
 </div>
 
-The importance of a node might grow with number of other nodes you can reach from it. In this case, degree centrality can be used to measure importance. As we saw in [the introduction to social networks](), a node's **degree** measures the number of links connected to it. In undirected networks, there is only one measure of degree $d(i)$, which is exactly the number of edges connected to the node $i$. This can be a measure of importance for example in a friendship network like we saw for the friendship paradox, where importance is the number of friends of a person.
+The importance of a node might grow with number of other nodes you can reach from it. In this case, degree centrality can be used to measure importance. As we saw in [the introduction to social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/041_SNAIntro/SNAIntro.html), a node's **degree** measures the number of links connected to it. In undirected networks, there is only one measure of degree $d(i)$, which is exactly the number of edges connected to the node $i$. This can be a measure of importance for example in a friendship network like we saw for the friendship paradox, where importance is the number of friends of a person.
 
 In directed networks there are two kinds of degree: **in-degree** $d_{in}(i)$ that is the number of edges ending in $i$, i.e. $(j,i)$ and **out-degree** $d_{out}(i)$ that is the number of edges leaving from $i$, i.e. $(i,j)$. In the network example of the right, $d_{in}(c) = 1$ and $d_{out}(c) = 2$. If importance on Twitter is the number of followers of an account, in-degree centrality is a way to measure it. An example of out-degree centrality as a measure of importance is an information forwarding network in an organization, where the person that forwards information to the most people would be the most important.
 
@@ -78,7 +78,7 @@ In human social networks, the typical group size predicted by Dunbar's finding i
 
 Information and Communication Technologies help us to overcome some of our cognitive limits. Your phone lets you talk with people far away and your contact lists help you to be in touch with them without having to remember their numbers or where they live. Online social media might serve the same purpose and allow us to have more contacts than we can have in offline life, thus increasing the average number of friends that people have in society.
 
-Robin Dunbar [tested this in a survey study](https://royalsocietypublishing.org/doi/10.1098/rsos.150292#d3e431) asking people how many friends they have on Facebook in two different surveys. You can see the distribution of responses in the figure on the right, both distribution have means around Dunbar's number (155 and 182). You might remember similar observations from the big data study from Facebook in the [friendship paradox topic](), where the mean was 190.
+Robin Dunbar [tested this in a survey study](https://royalsocietypublishing.org/doi/10.1098/rsos.150292#d3e431) asking people how many friends they have on Facebook in two different surveys. You can see the distribution of responses in the figure on the right, both distribution have means around Dunbar's number (155 and 182). You might remember similar observations from the big data study from Facebook in the [friendship paradox topic](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/042_FriendshipParadox/FriendshipParadox.html), where the mean was 190.
 
 Social media allow some people to have lots of friends, even thousands, but the average person still has a number of friends close to the same number they have offline. Seems that the limit for the number of friends is not just about remembering them, but also about having time to invest in keeping in contact with them.
 
