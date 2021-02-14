@@ -44,7 +44,7 @@ Animation of differentiation and imitation.
 The mechanism of **differentiation** is what high-status individuals follow when the don't have who to imitate. Once a status symbol has been adopted by a majority of the population, it loses its association with status. In this case, high-status individuals choose new symbols that make them look different from the rest, signaling their status by that differentiation. Thse new symbols might be arbitrary new ones, can be exotic symbols from far cultures, old symbols not widely adopted any more, or niche symbols from the least visible parts of society. 
 The mechanism of differentiation is also observable in animals when they display distinctive visible traits (e.g. coloring of a bird's feathers) to attract the attention of others, especially in reproductive scenarios.
 
-An example of differentiation is *countersignalling*, which is adopting a symbol as different as possible to the current norm, specially when the current trand has lasted long. You can see an example of countersignalling in the color of the logo of the [death metal band *Party Cannon*](https://www.buzzfeed.com/patricksmith/party-cannon).
+An example of differentiation is *countersignalling*, which is adopting a symbol as different as possible to the current norm, specially when the current trend has lasted long. You can see an example of countersignalling in the color of the logo of the [death metal band *Party Cannon*](https://www.buzzfeed.com/patricksmith/party-cannon).
 
 
 ### The case of baby names
@@ -59,7 +59,7 @@ First names can be status symbols and carry subjective and social values. Copyin
 First names can be the basis of discrimination and stereotypes once they become widely adopted. An example is the stereotypes about the name "Kevin" in German-speaking countries. A German dictionary asked young people for neologisms to include in the dictionary and "Alpha-Kevin" was one of the runner ups. This [derogatory term](https://www.welt.de/kultur/article144361408/Alpha-Kevin-laeuft-bei-Dir.html) is used to stereotype misbehaving or unintelligent children and teenagers, and thus was [excluded from the dictionary to avoid promoting discrimination](http://www.spiegel.de/kultur/gesellschaft/
 alpha-kevin-darf-nicht-jugendwort-des-jahres-werden-a-1045350.html).
 
-The figure shows the number of new Kevins in the US and in Switzerland per year. While in the US it was popular for a long time and slowly lost popularity as a traditional name, the trend in Switzerland is typical of the Simmel effect, with a sharper increase and decrease in the adoption of this initially foreign status symbol. The data for Switzerland in the plot is taken from the [BFS database of baby names](https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/geburten-todesfaelle/vornamen-schweiz.assetdetail.969898.html). The [US Social Security reports naming data](https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-level-data) for more than 300 million babies since 1880. It is often used to study baby name trends, as we will see in our [Social Data Science story about baby names]().
+The figure shows the number of new Kevins in the US and in Switzerland per year. While in the US it was popular for a long time and slowly lost popularity as a traditional name, the trend in Switzerland is typical of the Simmel effect, with a sharper increase and decrease in the adoption of this initially foreign status symbol. The data for Switzerland in the plot is taken from the [BFS database of baby names](https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/geburten-todesfaelle/vornamen-schweiz.assetdetail.969898.html). The [US Social Security reports naming data](https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-level-data) for more than 300 million babies since 1880. It is often used to study baby name trends, as we will see in our [Social Data Science story about baby names](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/023_BabyNameTrends/BabyNameTrends.html).
 
 ### Social trends in online platforms
 
@@ -82,7 +82,7 @@ tsunami. Such sudden peak is what is called an exogenous burst of activity, whic
 These two properties are not exclusive, leading to four types of responses:  
 
 1. Endogenous sub-critical: no clear peak, absence of trend.
-2. Endogenous critrical: "viral" peak driven by word of mouth.
+2. Endogenous critical: "viral" peak driven by word of mouth.
 3. Exogenous sub-critical: sharp peak but fast decay due to lack of strong social interaction.
 4. Exogenous critical: sharp peak but slow decay due to strong interaction after shock.
 
@@ -103,4 +103,4 @@ The four examples shown in the figure are:
 - \#watchmen: discussions about a movie release that started before the movie (endogenous) and were discussed also afterwards (critical)
 - \#masters: discussions before a sports event that lost interest after the event (anticipated shock).
 
-Gathering this kind of volume data is best done by using the Twitter API. You can learn how to do this from R in the [Twitter API tutorial.]()
+Gathering this kind of volume data is best done by using the Twitter API. You can learn how to do this from R in the [Twitter API tutorial.](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/027_rtweet/rtweet.html)
