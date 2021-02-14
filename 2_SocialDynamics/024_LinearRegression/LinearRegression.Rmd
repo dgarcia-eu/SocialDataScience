@@ -21,7 +21,7 @@ $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 ... + \epsilon$
 - $Y$ is called the dependent variable
 - $X_1$, $X_2$, $X_3$, etc are called independent variables
 - $a$ is the intercept, which measures the expected value of $Y$ that does not depend on the dependent variables
-- $b_1$, $b_2$, $b_3$, etc are called the slopes or the coefficients of the independent variables. They measure how much $Y$ grows with the corresponding variable. These coefficents are measure in the units of $Y$ divided by the units of $X$
+- $b_1$, $b_2$, $b_3$, etc are called the slopes or the coefficients of the independent variables. They measure how much $Y$ grows with the corresponding variable. These coefficients are measure in the units of $Y$ divided by the units of $X$
 - $\epsilon$ are the residuals, as in the equation before
 
 For example, when we studied how GDP per capita depended on the FOI, we have a case where $Y$ is GDP and there is one independent variable $X$, the FOI. Here you see a scatter plot of GDP vs FOI with a line that shows a regression result:
@@ -120,7 +120,7 @@ summary(model)
 summary(model)$r.squared
 ```
 
-The table shows you the estimates of the coefficients, in this case there is an intercept and a coefficient for FOI. The last column of the table shows what is called a p-value, if you want to learn more about that, check the [permutation tests tutorial](). The $R^2$ of 0.44 we get means that we can explain 44\% of the variance of the GPD per capita with the FOI values of the countries alone.
+The table shows you the estimates of the coefficients, in this case there is an intercept and a coefficient for FOI. The last column of the table shows what is called a p-value, if you want to learn more about that, check the [permutation tests tutorial](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests). The $R^2$ of 0.44 we get means that we can explain 44\% of the variance of the GPD per capita with the FOI values of the countries alone.
 
 The coefficient of determination is called $R^2$ because it is a way to measure the correlation coefficient between the true values of the dependent variable $Y$ and the estimated ones $\hat Y$. You can verify this in R:
 ```{r }
@@ -167,7 +167,7 @@ The example above is close to a normal distribution, as it is symmetric, has a m
 
 Other assumptions are that residuals are uncorrelated with predicted values:
 ```{r }
-cor(residuals(model))
+cor(residuals(model), predict(model))
 ```
 
 and that the variance of residuals is constant across the predicted value range. You can have an idea of that by looking at a scatter plot of residuals and predicted values:
@@ -178,4 +178,5 @@ plot(predict(model), residuals(model))
 
 In this case you see that the spread of residuals is a bit lower for low predicted values, but overall the difference in the spread along the X axis is not very dramatic.
 
-You can apply what you learned here in the [Twitter Division of Impact exercise](https://dgarcia-eu.github.io/SocialDataScience/028_SITTwitter/SIT_Twitter.html), but before I recommend you to check the handout about [bootstrapping]() and the tutorials about [data wrangling]() and about the [Twitter API in R]().
+You can apply what you learned here in the [Twitter Division of Impact
+exercise](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html), but before I recommend you to check the handout about [bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/025_Bootstrapping/Bootstrapping.html) and the tutorials about [data wrangling](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/026_dplyr/dplyr.html) and about the [Twitter API in R](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/027_rtweet/rtweet.html).
