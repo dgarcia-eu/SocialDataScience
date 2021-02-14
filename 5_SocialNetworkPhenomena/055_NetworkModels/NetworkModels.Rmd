@@ -52,7 +52,7 @@ We can increase the rewire probability to generate long-distance connections:
 plot(play_smallworld(n_dim=1 , dim_size=10 , p_rewire=0.1, order=2))
 ```
 
-Just with a probability of 0.1, the result is pretty different. This model can generate networks with a high clustering coefficient and a low average path length, similar as some social networks you can learn about in the [structural holes topic]().
+Just with a probability of 0.1, the result is pretty different. This model can generate networks with a high clustering coefficient and a low average path length, similar as some social networks you can learn about in the [structural holes topic](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/053_StructuralHoles/StructuralHoles.html).
 
 ### Scale-free networks: The Barabási-Albert model
 
@@ -73,7 +73,7 @@ hist(play_barabasi_albert(n = 1000, growth = 2, power=1) %>% activate(nodes) %>%
 
 ### Fixed degree frequencies
 
-Sometimes we want to compare a social network to a random one that has the same sequence of degrees. This allows us to see if some other property can be explained by the degree sequence alone, as we do in the [permutation tests topic](). Tidygraph helps for this with the play_degree() function, which generates networks of fixed degree sequences but with edges distributed at random. For example:
+Sometimes we want to compare a social network to a random one that has the same sequence of degrees. This allows us to see if some other property can be explained by the degree sequence alone, as we do in the [permutation tests topic](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests). Tidygraph helps for this with the play_degree() function, which generates networks of fixed degree sequences but with edges distributed at random. For example:
 
 ```{r}
 plot(play_degree(out_degree = c(1,2,3,3,3)))
@@ -98,7 +98,7 @@ plot(play_degree(in_degree = indegs, out_degree = outdegs, method="simple.no.mul
 
 ### Fixed communities: The Stochastic Block Model
 
-Social networks also tend to have communities with higher density inside. You can learn more about this in the [structural holes]() topic. You can generate random networks with a given community structure using the play_blocks() function, which uses a [Stochasic Block Model](https://en.wikipedia.org/wiki/Stochastic_block_model). To this function, you have to tell the number of nodes, a vector of sizes of communities (blocks) that sum up to the number of nodes, and a matrix of probabilities of connection within blocks and across blocks in the same spirit as the Gilbert model. 
+Social networks also tend to have communities with higher density inside. You can learn more about this in the [structural holes](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/053_StructuralHoles/StructuralHoles.html) topic. You can generate random networks with a given community structure using the play_blocks() function, which uses a [Stochasic Block Model](https://en.wikipedia.org/wiki/Stochastic_block_model). To this function, you have to tell the number of nodes, a vector of sizes of communities (blocks) that sum up to the number of nodes, and a matrix of probabilities of connection within blocks and across blocks in the same spirit as the Gilbert model. 
 
 In the example below, we generate a network with two communities of 20 and 30 nodes, with much higher density within the communities than across:
 
@@ -107,5 +107,5 @@ pm <- cbind( c(.5, .01), c(.01, .5) )
 plot(play_blocks(n=50, size_blocks = c(30,20), p_between = pm, directed=F))
 ```
 
-The models to generate networks with fixed degree sequences and community structures are useful to ask ourselves if something we observe can be explained because of the distribution of degrees or because these communities are present. You can use these as null models as in a permutation test to discard those explanations following what you can learn in the [permutation tests tutorial]().
+The models to generate networks with fixed degree sequences and community structures are useful to ask ourselves if something we observe can be explained because of the distribution of degrees or because these communities are present. You can use these as null models as in a permutation test to discard those explanations following what you can learn in the [permutation tests tutorial](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests).
 
