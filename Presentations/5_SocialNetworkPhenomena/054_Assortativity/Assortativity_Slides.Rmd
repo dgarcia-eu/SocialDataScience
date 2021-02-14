@@ -1,0 +1,102 @@
+---
+title: "Assortativity"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science, 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+
+---
+
+# Assortativity
+
+.center[![:scale 30%](highDegreeAssortativity.png)  ![:scale 35%](https://dgarcia.eu/wp-content/uploads/2015/07/supports-660x661.png)]
+
+> **Assortativity:** A network property by which similar nodes are more likely to be connected than dissimilar nodes
+
+---
+
+# Measuring Assortativity
+
+Similarity is based on some node property, e.g. degree, age, political orientation, gender... 
+Can be measured with the **assortativity coefficient**:
+
+\begin{equation*}
+r=\frac{\sum_c e_{cc}-\sum_c a_c b_c}{1-\sum_c a_c b_c}
+\end{equation*}
+
+- $c$ are the classes of nodes
+- $e_{cd}$ is the* **fraction of all edges** connecting nodes of class $c$ with nodes of class $d$
+- $e_{cc}$ is the fraction of all edges connecting two nodes of class $c$
+- $a_c=\sum_d e_{cd}$, and $b_c=\sum_d e_{dc}$ (endpoint class fractions)
+
+
+---
+
+## Three mechanisms that generate assortativity
+
+![:scale 33%](homophilyToyExample2.png) ![:scale 33%](contagionToyExample.png) ![:scale 30%](confounds.png)
+
+.center[**Homophily, social contagion, and confounding**]
+
+---
+
+
+## Homophily
+
+![:scale 33%](homophilyToyExample2.png) ![:scale 33%](contagionToyExample.png) ![:scale 30%](confounds.png)
+
+> **Homophily:** Phenomenon in which people are more likely to create social links to similar than to dissimilar people
+
+---
+
+## Social Contagion
+
+![:scale 33%](homophilyToyExample2.png) ![:scale 33%](contagionToyExample.png) ![:scale 30%](confounds.png)
+
+> **Social contagion:** Phenomenon in which people tend to adopt behaviors of their social contacts
+
+---
+
+## Confounding
+
+![:scale 33%](homophilyToyExample2.png) ![:scale 33%](contagionToyExample.png) ![:scale 30%](confounds.png)
+
+> **Confounding:** External effects can produce both link creation and node attributes (independent of the network topology)
+
+---
+
+# Assortativity of happiness
+
+.center[![:scale 70%](happinessNetwork.jpg)]
+
