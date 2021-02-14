@@ -7,7 +7,7 @@ output: html_document
 
 ### Permutation tests
 
-Once we have measured something or got a statistical result from our analysis, we might ask ourselves: What are the chances that this result was produced purely by chance? For example, imagine that we measure the correlation coefficient between two variables $X$ and $Y$: $\rho(X,Y)$. We should ask ourselves what is the probability that we could measure a similar or even stronger correlation if $X$ and $Y$ were independent. Since our sample sizes are finite, there is always a chance that we measure some nonzero correlation, thus we need an idea of how plausible is this measurement in a situation in which there is no real association between variables.
+Once we have measured something or got a statistical result from our analysis, we might ask ourselves: What is the probability that this result can appear due to chance alone? For example, imagine that we measure the correlation coefficient between two variables $X$ and $Y$: $\rho(X,Y)$. We should ask ourselves what is the probability that we could measure a similar or even stronger correlation if $X$ and $Y$ were completely independent. Since our sample sizes are finite, there is always a chance that we measure some nonzero correlation, thus we need an idea of how plausible is this measurement in a situation in which there is no real association between variables.
 
 We can answer this questions with a permutation test. A permutation test has four parts:
 
@@ -36,7 +36,7 @@ mdata$GDP <- mdata$NY.GDP.PCAP.PP.KD
 mdata %>% filter(!is.na(GDP) & !is.na(FOI)) -> mdata
 ```
 
-At the end of the [GDP and FOI exercise](), we permuted the FOI vector and calculated the correlation coefficient. Before the permutation, the scatter plot and correlation between GDP and FOI looked like this:
+At the end of the [GDP and FOI exercise](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/018_FOIExercise/GDP_FOI.html), we permuted the FOI vector and calculated the correlation coefficient. Before the permutation, the scatter plot and correlation between GDP and FOI looked like this:
 ```{r }
 plot(mdata$FOI, mdata$GDP)
 cor(mdata$FOI, mdata$GDP)
@@ -72,7 +72,7 @@ hist(corPerm, xlim=range(c(corPerm,corObserved)))
 abline(v=corObserved, col="red")
 ```
  
-When the empirical value is very far from the permutation results, like in the case above, we can be pretty sure that a correlation coefficient like the one we measured is **unlikely to have been caused by chance alone.**
+When the empirical value is very far from the permutation results, like in the case above, we can be pretty sure that a correlation coefficient as strong as the one we measured is **unlikely to appear in a situation of pure chance** when the variables are truly independent.
  
 ### The p-value of a permutation test
 
@@ -94,7 +94,7 @@ Above, we measure the area under the histogram of permutation values above the e
 
 A common threshold to argue about p-values is 0.05. Many scientific communities call this a "significant" result, but the term is rather confusing because it does not mean anything about the importance of the result. If you want to be confident that your measured p is below 0.05, it is recommended to permute at least $10000$ times so that you have enough permutations. When running some R package for statistical analysis, you will often get some p-value results in the output.  Before coming to conclusions, it is important that you read the documentation to find out how it has been calculated and what are the null and alternative hypotheses. In case of doubt, it never hurts to do your own permutation tests.
 
-Permutations here are just an example of what is called a **null model**. You can do the same as you did here for any null model to understand the plausibility that what you observe is due to chance in a null model with some properties. This is especially useful in network analysis, where you can simulate null models like the ones in the [network models topic](), measure something on each simulation, and compare the values with what you measured in your network data.
+Permutations here are just an example of what is called a **null model**. You can do the same as you did here for any null model to understand the plausibility of your empirical measurement in a random model that keeps some properties as your original data. This is especially useful in network analysis, where you can simulate null models like the ones in the [network models topic](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/055_NetworkModels/NetworkModels), measure something on each simulation, and compare the values with what you measured in your network data.
 
 
 
