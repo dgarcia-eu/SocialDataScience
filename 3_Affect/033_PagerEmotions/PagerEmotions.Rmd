@@ -53,7 +53,7 @@ Even if you clean bots from your data, you should always take a good look at you
 
 ### Appendix: Do it Yourself
 
-You can find the text of the pagers on the [github repository of this topic](). Using LIWC requires you to request a license, but you can do a similar analysis with the [NRC emotion lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) through the [syuzhet R package](https://cran.r-project.org/web/packages/syuzhet/index.html). Here you have the code to start with, but be careful because running syuzhet might take some time!
+You can find the text of the pagers on the [github repository of this topic](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/033_PagerEmotions). Using LIWC requires you to request a license, but you can do a similar analysis with the [NRC emotion lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) through the [syuzhet R package](https://cran.r-project.org/web/packages/syuzhet/index.html). Here you have the code to start with, but be careful because running syuzhet might take some time!
 
 ```{r eval=F}
 text <- readLines(gzfile("messages_all.txt.gz"))

@@ -451,7 +451,7 @@ summary {
 </div>
 <div id="appendix-do-it-yourself" class="section level3">
 <h3>Appendix: Do it Yourself</h3>
-<p>You can find the text of the pagers on the <a href>github repository of this topic</a>. Using LIWC requires you to request a license, but you can do a similar analysis with the <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC emotion lexicon</a> through the <a href="https://cran.r-project.org/web/packages/syuzhet/index.html">syuzhet R package</a>. Here you have the code to start with, but be careful because running syuzhet might take some time!</p>
+<p>You can find the text of the pagers on the <a href="https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/033_PagerEmotions">github repository of this topic</a>. Using LIWC requires you to request a license, but you can do a similar analysis with the <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC emotion lexicon</a> through the <a href="https://cran.r-project.org/web/packages/syuzhet/index.html">syuzhet R package</a>. Here you have the code to start with, but be careful because running syuzhet might take some time!</p>
 <pre class="r"><code>text &lt;- readLines(gzfile(&quot;messages_all.txt.gz&quot;))
 
 timestamps &lt;- as.POSIXct(substr(text, 1, 19))
