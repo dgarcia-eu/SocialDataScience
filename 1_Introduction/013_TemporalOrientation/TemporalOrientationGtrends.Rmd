@@ -6,7 +6,7 @@ output: html_document
 
 ### Time, culture, and the economy
 
-What is the relationship between culture and the economy? Max Weber proposed that culture shapes economic activity, especially as individualist cultures develop free markets. Karl Marx proposed the opposite: that economic relationships shape cultural values and shape institutions. These are not exclusive, there is an interplay between cluture and the economy, and this topic focuses on a particular aspect of culture:
+What is the relationship between culture and the economy? Max Weber proposed that culture shapes economic activity, especially as individualist cultures develop free markets. Karl Marx proposed the opposite: that economic relationships shape cultural values and shape institutions. These are not exclusive, there is an interplay between culture and the economy, and this topic focuses on a particular aspect of culture:
 
 > **Long-Term Orientation (Geert Hofstede)**  
 Long-term oriented societies believe that the most important events in life will occur in the future; short-term oriented societies believe that those events occurred in the past or take place now.
@@ -30,7 +30,7 @@ $FOI_{c,y} = \frac{G(y+1,y,c)}{G(y-1,y,c)}$
 
 where $G(y_1,y_2,c)$ is the Google Trends volume for searches for $y_1$ during year $y_2$ from country $c$. Essentially it measures the ratio of search volume from a country for next year divided by the search volume for the previous year in the same country.
 
-Remember that Google trends gives you search volume information for a search query, in this case a year expressed with Arab numerals (e.g. "2016"). Check out the [Social Data Science story about Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/012_GoogleFluTrends/GoogleFluTrends.html) to learn more about Google Trends.
+Remember that Google trends gives you search volume information for a search query, in this case a year expressed with Arab numerals (e.g. "2016"). Check out the [Social Data Science story about Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/012_GoogleFluTrends/GoogleFluTrends.html) to learn more about Google Trends.
 
 A measurement of the FOI for a year in many countries can be done with one visit to Google Trends. For example, for the year 2014:
 
