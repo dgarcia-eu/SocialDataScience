@@ -123,5 +123,5 @@ Running the following code will take you to the vignette. Follow the steps in th
 vignette("auth", package = "rtweet")
 ```
 
-Once you have the token created, it will be saved and you can loaded automatically in future R sessions. Other tutorials and exercises in this course will use this functionality, for example the [Twitter networks tutorial](), but if you run the code in an interactive R session, you can still run the tutorial even if you didn't get a developer account yet.
+Once you have the token created, it will be saved and you can loaded automatically in future R sessions. Other tutorials and exercises in this course will use this functionality, for example the [Twitter network data tutorial](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html), but if you run the code in an interactive R session, you can still run the tutorial even if you didn't get a developer account yet.
 
