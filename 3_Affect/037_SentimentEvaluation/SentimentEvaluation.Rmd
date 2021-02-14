@@ -6,6 +6,8 @@ output: html_document
 
 In this exercise we will learn how to use Syuzhet and VADER for social media texts. We will use evaluation datasets of annotated text to compare Syuzhet and VADER against GoogleNLP in Youtube and Twitter datasets.
 
+You can find the markdown files and data for this exercise in the [corresponding Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation).
+
 ## Tasks:
 
 1. Install packages and load evaluation datasets with Google NLP scores
