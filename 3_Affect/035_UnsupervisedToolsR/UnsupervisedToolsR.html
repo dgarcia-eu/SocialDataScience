@@ -416,10 +416,10 @@ summary {
 </div>
 
 
-<p>The R community has developed a lot of packages to run off-the-shelf unsupervised sentiment analysis methods. Once a method is published for another language (e.g. Python), it is just a matter of time that an R developer does the R version of the package. Furthermore, there are useful packages to access dictionaries and other useful resources directly from R. In this tutorial, you will see some examples of how to use these resources. You can find the sources to run this yourself in the associated <a href>Github repostory</a>.</p>
+<p>The R community has developed a lot of packages to run off-the-shelf unsupervised sentiment analysis methods, also called dictionary methods. Once a method is published for another language (e.g. Python), it is just a matter of time that an R developer does the R version of the package. Furthermore, there are useful packages to access dictionaries and other useful resources directly from R. In this tutorial, you will see some examples of how to use these resources. You can find the sources to run this yourself in the associated <a href="https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/035_UnsupervisedToolsR">Github repostory</a>.</p>
 <div id="vader" class="section level3">
 <h3>VADER</h3>
-<p>As we saw in the <a href>unsupervised sentiment analysis</a> topic, <a href="https://github.com/cjhutto/vaderSentiment">VADER</a> is one of the best unsupervised methods to analyze social media text, in particular Twitter. A recently developed R package makes it very easy to run VADER from R. To install and load the package, you just need to do as with any other R package:</p>
+<p>As we saw in the <a href="https://dgarcia-eu.github.io/SocialDataScience/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html">unsupervised sentiment analysis</a> topic, <a href="https://github.com/cjhutto/vaderSentiment">VADER</a> is one of the best unsupervised methods to analyze social media text, in particular Twitter. A recently developed R package makes it very easy to run VADER from R. To install and load the package, you just need to do as with any other R package:</p>
 <pre class="r"><code>install.packages(&quot;vader&quot;)</code></pre>
 <pre class="r"><code>library(vader)</code></pre>
 <p>The vader package includes a function called get_vader() that will run the VADER method over a text you give it:</p>
@@ -522,8 +522,6 @@ vader_df(texts)</code></pre>
 <pre><code>## [1] 3 0 0 1 0 3</code></pre>
 <p>When combined with dplyr data wrangling tools, packages like syuzhet make it very easy to compute sentiment aggregates. Here we run Syuzhet over all the lines in The Office, since it’s much faster than VADER. We make a ranking by mean sentiment over the main characters of the series:</p>
 <pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## Warning: replacing previous import &#39;vctrs::data_frame&#39; by &#39;tibble::data_frame&#39;
-## when loading &#39;dplyr&#39;</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -538,7 +536,6 @@ theoffice %&gt;%
   summarise(sent=mean(sentiment), n=n()) %&gt;% 
   arrange(desc(n)) %&gt;% head(n=20) %&gt;% 
   arrange(desc(sent))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 20 x 3
 ##    character  sent     n
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt;
@@ -666,12 +663,11 @@ wordsdf %&gt;%
   group_by(character) %&gt;%
   summarize(nuh=n()) -&gt; uhcount</code></pre>
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre class="r"><code>wordsdf %&gt;% 
   group_by(character) %&gt;%
-  summarize(n=n()) -&gt; charcount</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre class="r"><code>inner_join(uhcount,charcount) %&gt;% filter(n&gt;5000) %&gt;% mutate(ratioUh = nuh/n) %&gt;% arrange(desc(ratioUh))</code></pre>
+  summarize(n=n()) -&gt; charcount
+
+inner_join(uhcount,charcount) %&gt;% filter(n&gt;5000) %&gt;% mutate(ratioUh = nuh/n) %&gt;% arrange(desc(ratioUh))</code></pre>
 <pre><code>## Joining, by = &quot;character&quot;</code></pre>
 <pre><code>## # A tibble: 19 x 4
 ##    character   nuh      n ratioUh
@@ -745,7 +741,7 @@ wordsdf %&gt;%
 ##  9 abandonment anger    
 ## 10 abandonment fear     
 ## # … with 13,891 more rows</code></pre>
-<p>As you see, AFINN has a numerical score per word, bing has words in classes of positivity and negativity, and the NRC lexicon maps words to emotions (these are emotions from Plutchik’s wheel, you can learn more about it in the <a href>affect topic</a>).</p>
+<p>As you see, AFINN has a numerical score per word, bing has words in classes of positivity and negativity, and the NRC lexicon maps words to emotions (these are emotions from Plutchik’s wheel, you can learn more about it in the <a href="https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html">measuring emotions topic</a>).</p>
 <p>You can easily match words in texts to these lexica with tidytext. The code below takes the tokens data frame, matches words with the corresponding scores in the AFINN lexicon, and calculates a ranking of main characters in The Office by the mean sentiment score of the words they say.</p>
 <pre class="r"><code>wordsdf %&gt;% 
   inner_join(get_sentiments(&quot;afinn&quot;)) %&gt;%
@@ -755,7 +751,6 @@ wordsdf %&gt;%
   head(20) %&gt;%
   arrange(desc(sent)) -&gt; afinndf</code></pre>
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre class="r"><code>afinndf</code></pre>
 <pre><code>## # A tibble: 20 x 3
 ##    character  sent     n
@@ -780,7 +775,7 @@ wordsdf %&gt;%
 ## 18 Nellie    0.330   573
 ## 19 Angela    0.303  1175
 ## 20 Stanley   0.260   415</code></pre>
-<p>As you see, even the most negative character (Stanley) still has a positive mean sentiment score. This is called the postivity bias of language and you can see more examples about it in the <a href>Twitter sentiment exercise</a>.</p>
+<p>As you see, even the most negative character (Stanley) still has a positive mean sentiment score. This is called the postivity bias of language and you can see more examples about it in the <a href="https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html">Twitter sentiment exercise</a>.</p>
 <p>You can do the same as above but based on a file. <a href="https://www.saifmohammad.com/">Saif Mohammad</a> developed the NRC lexica and one of the latests is the <a href="https://saifmohammad.com/WebPages/nrc-vad.html">NRC Valence, Arousal, and Dominance lexicon (NRC-VAD)</a>. The following code downloads the NRC-VAD files and unzips them in your local folder.</p>
 <pre class="r"><code>download.file(&quot;https://saifmohammad.com/WebDocs/VAD/NRC-VAD-Lexicon-Aug2018Release.zip&quot;, destfile=&quot;NRCVAD.zip&quot;)
 unzip(&quot;NRCVAD.zip&quot;)</code></pre>
@@ -797,7 +792,6 @@ vdf &lt;- tibble(Valencedf)</code></pre>
   head(20) %&gt;%
   arrange(desc(meanvalence)) -&gt; nrcdf</code></pre>
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre class="r"><code>nrcdf</code></pre>
 <pre><code>## # A tibble: 20 x 3
 ##    character meanvalence     n
@@ -840,7 +834,7 @@ text(joindf$meanvalence, joindf$sent, joindf$character)</code></pre>
 ## sample estimates:
 ##       cor 
 ## 0.7634204</code></pre>
-<p>Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the <a href>validating sentiment analsysis exercise</a>.</p>
+<p>Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the <a href="https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html">validating sentiment analsysis exercise</a>.</p>
 </div>
 
 

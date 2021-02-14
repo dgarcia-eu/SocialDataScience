@@ -4,11 +4,11 @@ author: "Dr. David Garcia"
 output: html_document
 ---
 
-The R community has developed a lot of packages to run off-the-shelf unsupervised sentiment analysis methods. Once a method is published for another language (e.g. Python), it is just a matter of time that an R developer does the R version of the package. Furthermore, there are useful packages to access dictionaries and other useful resources directly from R. In this tutorial, you will see some examples of how to use these resources. You can find the sources to run this yourself in the associated [Github repostory]().
+The R community has developed a lot of packages to run off-the-shelf unsupervised sentiment analysis methods, also called dictionary methods. Once a method is published for another language (e.g. Python), it is just a matter of time that an R developer does the R version of the package. Furthermore, there are useful packages to access dictionaries and other useful resources directly from R. In this tutorial, you will see some examples of how to use these resources. You can find the sources to run this yourself in the associated [Github repostory](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/035_UnsupervisedToolsR).
 
 ### VADER
 
-As we saw in the [unsupervised sentiment analysis]() topic, [VADER](https://github.com/cjhutto/vaderSentiment) is one of the best unsupervised methods to analyze social media text, in particular Twitter. A recently developed R package makes it very easy to run VADER from R. To install and load the package, you just need to do as with any other R package:
+As we saw in the [unsupervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html) topic, [VADER](https://github.com/cjhutto/vaderSentiment) is one of the best unsupervised methods to analyze social media text, in particular Twitter. A recently developed R package makes it very easy to run VADER from R. To install and load the package, you just need to do as with any other R package:
 
 ```{r eval=F}
 install.packages("vader")
@@ -197,7 +197,7 @@ get_sentiments("bing")
 ```{r}
 get_sentiments("nrc")
 ```
-As you see, AFINN has a numerical score per word, bing has words in classes of positivity and negativity, and the NRC lexicon maps words to emotions (these are emotions from Plutchik's wheel, you can learn more about it in the [affect topic]()).
+As you see, AFINN has a numerical score per word, bing has words in classes of positivity and negativity, and the NRC lexicon maps words to emotions (these are emotions from Plutchik's wheel, you can learn more about it in the [measuring emotions topic](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html)).
 
 You can easily match words in texts to these lexica with tidytext. The code below takes the tokens data frame, matches words with the corresponding scores in the AFINN lexicon, and calculates a ranking of main characters in The Office by the mean sentiment score of the words they say.
 
@@ -212,7 +212,7 @@ wordsdf %>%
 
 afinndf
 ```
-As you see, even the most negative character (Stanley) still has a positive mean sentiment score. This is called the postivity bias of language and you can see more examples about it in the [Twitter sentiment exercise]().
+As you see, even the most negative character (Stanley) still has a positive mean sentiment score. This is called the postivity bias of language and you can see more examples about it in the [Twitter sentiment exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html).
 
 You can do the same as above but based on a file. [Saif Mohammad](https://www.saifmohammad.com/) developed the NRC lexica and one of the latests is the [NRC Valence, Arousal, and Dominance lexicon (NRC-VAD)](https://saifmohammad.com/WebPages/nrc-vad.html). The following code downloads the NRC-VAD files and unzips them in your local folder.
 
@@ -253,4 +253,4 @@ As you see, there is some correlation but still quite some disagreement for some
 ```{r}
 cor.test(joindf$meanvalence, joindf$sent)
 ```
-Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the [validating sentiment analsysis exercise]().
+Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the [validating sentiment analsysis exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html).
