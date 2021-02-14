@@ -129,3 +129,5 @@ Small world networks have the following three properties:
 
 # The Bacon number
 .center[![:scale 85%](bacon.png)]
+
+
