@@ -6,6 +6,8 @@ output: html_document
 
 In this exercise we will test a hypothesis from Social Impact Theory against data from Twitter users. We will use the Twitter API to collect data, so for that reason you need a Twitter user account to do this exercise.
 
+You can find the markdown files and data for this exercise in the [corresponding Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter).
+
 You will use a list of Twitter users of your choice or a random sample of users. First, we will measure their number of followers. Then we will retrieve the last tweets of each user and measure the average number of retweets they receive, as a measure of their social impact. We will fit a regression model of their impact as a function of their amount of followers, and test this way if there is a sublinear (but positive) relationship between the size of their audience and the extent of their impact.
 
 ## Tasks:
