@@ -4,7 +4,7 @@ author: "Dr. David Garcia"
 output: html_document
 ---
 
-In this tutorial we will learn how to analyze network data in R to measure complex metrics. As in the [introduction tutorial about how to handle network data in R](), we are going to use as an example the social network of interactions between the characters of [Star Wars Episode IV](http://evelinag.com/blog/2015/12-15-star-wars-social-network/).
+In this tutorial we will learn how to analyze network data in R to measure complex metrics. As in the [introduction tutorial about how to handle network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html), we are going to use as an example the social network of interactions between the characters of [Star Wars Episode IV](http://evelinag.com/blog/2015/12-15-star-wars-social-network/).
 
 ### Aggregate network metrics
 
