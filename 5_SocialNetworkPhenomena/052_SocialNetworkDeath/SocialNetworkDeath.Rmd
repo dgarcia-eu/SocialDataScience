@@ -9,7 +9,7 @@ output: html_document
 
 Some online social networks lost so many users at such a fast speed that they can be considered collapsed. Some lost millions of users in a matter of weeks. You can see this in the Google trends volume for some deceased online social networks:
 
-**Friendster,** as we saw in the [social resilience topic](), went from 80 Million active users to disappear completely.
+**Friendster,** as we saw in the [social resilience topic](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/051_SocialResilience/SocialResilience.html), went from 80 Million active users to disappear completely.
 
 ```{r echo=F, fig.width=8, fig.height=3, message=FALSE}
 library(gtrendsR)
