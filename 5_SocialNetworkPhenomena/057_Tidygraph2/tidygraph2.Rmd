@@ -74,7 +74,6 @@ starwars %>%
   activate(nodes) %>% 
   mutate(assort = graph_assortativity(attr=side)) %>% 
   pull(assort) %>% 
-  as_tibble() %>% 
   head(1)
 ```
 
@@ -91,7 +90,6 @@ starwars %>%
   mutate(deg=centrality_degree()) %>% 
   mutate(assort = graph_assortativity(attr=deg)) %>% 
   pull(assort) %>% 
-  as_tibble() %>% 
   head(1)
 ```
 
@@ -125,7 +123,6 @@ starwars %>%
   activate(nodes) %>% 
   mutate(modularity = graph_modularity(group=community)) %>% 
   pull(modularity) %>% 
-  as_tibble() %>% 
   head(1)
 ```
 
@@ -135,7 +132,6 @@ starwars %>%
   activate(nodes) %>% 
   mutate(modularity = graph_modularity(group=side)) %>% 
   pull(modularity) %>% 
-  as_tibble() %>% 
   head(1)
 ```
 
@@ -146,7 +142,6 @@ starwars %>%
   mutate(community=as.character(group_fast_greedy())) %>% 
   mutate(modularity = graph_modularity(group=community)) %>% 
   pull(modularity) %>% 
-  as_tibble() %>% 
   head(1)
 ```
 
