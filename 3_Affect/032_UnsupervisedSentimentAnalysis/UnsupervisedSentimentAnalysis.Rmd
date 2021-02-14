@@ -19,7 +19,7 @@ Sentiment analysis is a subfield of Natural Language Processing. It can be combi
 
 ![](SentimentSchema.png)
 
-There has been a scientific boom in sentiment analysis with several workshops, journal issues, and books devoted to the topic. Every year there are hundreds of research papers on the topic. You can see this rise in the [Google Trends volume]() for the term "sentiment analysis":
+There has been a scientific boom in sentiment analysis with several workshops, journal issues, and books devoted to the topic. Every year there are hundreds of research papers on the topic. You can see this rise in the [Google Trends volume](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/017_gtrendsR/gtrendsR.html) for the term "sentiment analysis":
 
 ```{r echo=F, fig.width=8, fig.height=3}
 library(gtrendsR)
@@ -43,11 +43,11 @@ While peak interest seems to have been reached in 2019, there is still a lot of 
 - Annotations can come from readers or the authors of texts  
 - Pros: Automatic calibration, high precision  
 - Cons: Lower recall and coverage, need very large training datasets  
-- You can find more about in the [Supervised Sentiment analysis topic]()
+- You can find more about in the [Supervised Sentiment analysis topic](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)
 
 Both approaches can be combined in what is called semi-supervised or ensemble methods. Some of these approaches mix supervised and unsupervised models in one classifier. 
 
-Evaluation and generalizability are key arguments when choosing a sentiment analysis method. You can learn more about them at the end of the [Supervised Sentiment analysis topic]() and compare yourself supervised and unsupervised methods in [Evaluating sentiment analysis methods exercise]().
+Evaluation and generalizability are key arguments when choosing a sentiment analysis method. You can learn more about them at the end of the [Supervised Sentiment analysis topic](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html) and compare yourself supervised and unsupervised methods in [Evaluating sentiment analysis methods exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html).
 
 In this topic we are going to cover various approaches to unsupervised sentiment analysis with examples of methods and software you can use.
 
@@ -74,7 +74,7 @@ LIWC first tokenizes the text, i.e. it identifies words by looking for separatio
 
 In the example above you can see that words can belong to several word lists, for example the entry for "worr*" is in the "affect" list, in the "negemo" list, and in the "anxiety" list. After running these matchings, LIWC produces a list of frequency measures as the percentage of words in the whole text that are matched against each word list. In the example above, there are 12.5\% words of the "negemo" list and 0\% words of the "posemo" list.
 
-The 2015 version of LIWC includes netspeak terms such as "WTF" or "LOL" and emoticons like ":)", LIWC is a very popular tool due to the ease to use it, for example it offers a way to visualize which words are matched. It is very important to look at these matches to understand LIWC emotion word frequencies, as you can learn in the [Social Data Science story about 9/11 pagers]().
+The 2015 version of LIWC includes netspeak terms such as "WTF" or "LOL" and emoticons like ":)", LIWC is a very popular tool due to the ease to use it, for example it offers a way to visualize which words are matched. It is very important to look at these matches to understand LIWC emotion word frequencies, as you can learn in the [Social Data Science story about 9/11 pagers](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/033_PagerEmotions/PagerEmotions.html).
 
 ### SentiStrength
 
@@ -109,7 +109,7 @@ VADER is a tool very similar to SentiStrength, tailored to detect sentiment on T
  
 VADER's name suggests it is the "dark version" of LIWC ("Luke"). As the authors of VADER say: *"VADER distinguishes itself from LIWC in that it is more sensitive to sentiment expressions in social media contexts."*
 
-VADER was implemented in Python and distributed as an [open source package on Github](https://github.com/cjhutto/vaderSentiment) and as part of the [NLTK python library](https://www.nltk.org/_modules/nltk/sentiment/vader.html) for NLP. Its performance was validated against annotated tweets, correlating the scores given by tweet readers with the output of VADER. VADER can be run in R with the [package vader](https://cran.r-project.org/web/packages/vader/index.html). You can learn more about how to use it in the [Running sentiment analysis tutorial]().
+VADER was implemented in Python and distributed as an [open source package on Github](https://github.com/cjhutto/vaderSentiment) and as part of the [NLTK python library](https://www.nltk.org/_modules/nltk/sentiment/vader.html) for NLP. Its performance was validated against annotated tweets, correlating the scores given by tweet readers with the output of VADER. VADER can be run in R with the [package vader](https://cran.r-project.org/web/packages/vader/index.html). You can learn more about how to use it in the [Running sentiment analysis tutorial](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html).
 
 
 ### Evaluating Unsupervised Sentiment Analysis
@@ -117,8 +117,8 @@ VADER was implemented in Python and distributed as an [open source package on Gi
 <img src="SentiBench.jpg" alt="SentiBench" width="350px"/>  
 </div>
 
-Sentiment analysis methods are very easy to use, but that does not mean that their output is always accurate. It is important to choose a sentiment analysis method that captures the type of expression we want and that has been validated for the text we plan to analyze. Even if it has been validated before, you can always do a small validation yourself by annotating a random sample of texts from your dataset and following the steps of the [evaluating sentiment analysis exercise]().
+Sentiment analysis methods are very easy to use, but that does not mean that their output is always accurate. It is important to choose a sentiment analysis method that captures the type of expression we want and that has been validated for the text we plan to analyze. Even if it has been validated before, you can always do a small validation yourself by annotating a random sample of texts from your dataset and following the steps of the [evaluating sentiment analysis exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html).
 
 A guide to see an overview of off-the-self (i.e. ready to use) sentiment analysis methods is [SentiBench](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-016-0085-1). The figure shows a summary of the accuracy of 24 methods and the original article reports various quality metrics for different kinds of texts like movie reviews, newspaper comments, and tweets. The review includes SentiStrength, LIWC, and VADER, which for some datasets can be the best performing among the surveyed methods.
 
-Once we choose a method, then we run the analysis and assess the results. It is important not to choose a lot of different methods to see "which one works" in the statistical analysis, reporting only the ones that give results that we like. This is what is often called [p-haking](https://osf.io/preprints/socarxiv/np5wa/) and can give you misleading results. The best is to run an evaluation like in our [evaluating sentiment analysis exercise]() to make an informed decision about which method to use before applying it.
+Once we choose a method, then we run the analysis and assess the results. It is important not to choose a lot of different methods to see "which one works" in the statistical analysis, reporting only the ones that give results that we like. This is what is often called [p-haking](https://osf.io/preprints/socarxiv/np5wa/) and can give you misleading results. The best is to run an evaluation like in our [evaluating sentiment analysis exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html) to make an informed decision about which method to use before applying it.
