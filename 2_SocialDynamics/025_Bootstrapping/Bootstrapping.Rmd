@@ -14,7 +14,7 @@ Imagine that we want to measure the mean height of the people in a country. To h
 
 To perform bootstraping, we generate bootstrap samples from the original sample we had. Bootstrap samples are samples of the same size as our original sample but **with replacement**, which means that every time we sample an element, we put it back and it could be sampled again. This way we could sample some elements more than once and others maybe not even once. Then over this bootstrap sample, we measure the same metric, in our example is the mean of the height of people. Then we repeat this bootstrap sampling many times, for example 10000 times, and record the same metric on every sample. The resulting distribution of metric values gives us an idea of what would be the value of the mean if we applied it to other subsamples of the total population.
 
-When we bootstrap we are simulating the sampling process that gave us the original sample. It is a good way to understand the uncertainty of the metric if the original sample we had was representative of the total population. You can learn some examples of what can happen when samples are not representative in the Social [Data Science Story about predicting elections with Twitter]().
+When we bootstrap we are simulating the sampling process that gave us the original sample. It is a good way to understand the uncertainty of the metric if the original sample we had was representative of the total population. You can learn some examples of what can happen when samples are not representative in the Social [Data Science Story about predicting elections with Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/043_TwitterOpinions/TwitterOpinions.html).
 
 ### R example 1: the mean of a variable
 
@@ -72,7 +72,7 @@ As you see, the standard deviation is very low, way less than one, and 95% of th
 
 ### R example 2: the slope of a regression model
 
-We can apply bootstrapping to many measurements. The estimation of a regression coefficient or of a correlation coefficient are examples where you can apply bootstrapping. Let's see how bootstrapping can be useful in the case of the regression model of [GDP as a function of FOI](https://dgarcia-eu.github.io/SocialDataScience/024_LinearRegression/LinearRegression.html) we saw earlier.
+We can apply bootstrapping to many measurements. The estimation of a regression coefficient or of a correlation coefficient are examples where you can apply bootstrapping. Let's see how bootstrapping can be useful in the case of the regression model of [GDP as a function of FOI](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/024_LinearRegression/LinearRegression.html) we saw earlier.
 
 First, we load the data, fit the model, and see the value of the slope we got in our fit:
 ```{r echo=F, message=F, results='hide'}
@@ -121,7 +121,7 @@ for(i in 1:1000)
 abline(model$coefficients[1], model$coefficients[2], col="red")
 ```
 
-### Faster bootstrapping in R
+### Faster bootstrapping with the boot library
 
 Bootstrapping with loops as above is a good way to start, but you can do it much, much faster with the boot library. First, you have to code a function that calculates your metric over the bootstrap sample when given the indices of the entries to use in the calculation. Here is an example for the mean: 
 
