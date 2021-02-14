@@ -161,7 +161,7 @@ The division of impact can be seen on Twitter too. [In my own research,](https:/
 
 ![Growth of total impact of a Twitter user (mean retweets) with the number of people targetted (popularity).](SIT-Twitter.png){width=75%}
 
-On the above figure you can see the results of the analysis of the mean number of retweets of users as a function of their number of followers (popularity). The various lines you see correspond to users with different centralities, calculated with a method that you can learn in the [centrality topic of the course](). You can see that most lines are sublinear, lending evidence to the division of impact hypothesis. Only for very central users it seems to approach linearity, but not really becoming superlinear. The exercise of this block will be another test of the division of impact hypothesis on Twitter.
+On the above figure you can see the results of the analysis of the mean number of retweets of users as a function of their number of followers (popularity). The various lines you see correspond to users with different centralities, calculated with a method that you can learn in the [centrality topic of the course](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html). You can see that most lines are sublinear, lending evidence to the division of impact hypothesis. Only for very central users it seems to approach linearity, but not really becoming superlinear. The exercise of this block will be another test of the division of impact hypothesis on Twitter.
 
 
 
