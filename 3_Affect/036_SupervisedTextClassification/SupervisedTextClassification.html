@@ -527,7 +527,7 @@ sum(trueclass==results &amp; trueclass==1)/sum(trueclass==1)</code></pre>
 </div>
 <div id="comparing-with-dictionary-methods" class="section level1">
 <h1>5. Comparing with dictionary methods</h1>
-<p>The code below uses a similar approach as what you can find in the <a href>unsupervised sentiment analysis tutorial</a>. We use tidytext to process the data and to match words with the entries of the NRC emotion dictionary, which is distributed through tidytext. We classify a tweet as angry if it contains at least one word from the dictionary and measure the accuracy, precision, and recall of this approach:</p>
+<p>The code below uses a similar approach as what you can find in the <a href="https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html">unsupervised sentiment analysis tutorial</a>. We use tidytext to process the data and to match words with the entries of the NRC emotion dictionary, which is distributed through tidytext. We classify a tweet as angry if it contains at least one word from the dictionary and measure the accuracy, precision, and recall of this approach:</p>
 <pre class="r"><code>library(tidytext)
 library(dplyr)</code></pre>
 <pre><code>## 
@@ -575,7 +575,7 @@ sum(nrcdf$trueclass==nrcdf$results &amp; nrcdf$trueclass==1)/sum(nrcdf$trueclass
 <ol style="list-style-type: decimal">
 <li>The SemEval dataset contains other emotions like sadness. Try another emotion label and compare whether your results are better or worse than for anger. Some of these cases also appear in the NRC lexicon, so you can also compare with a dictionary method.</li>
 <li>Try other ML models, e.g. neural networks (NNET) and random forests (RF). This might take a bit of time to train depending on your PC, but can give you an idea of what can outperform SVM.</li>
-<li>The SemEval datasets also include polarity data in which tweets are classified as positive, negative, or neutral. Try the supervised approach in that classfication case or using the same datasets as in the unsupervised sentiment analysis tutorial.</li>
+<li>The SemEval datasets also include polarity data in which tweets are classified as positive, negative, or neutral. Try the supervised approach in that classification case or using the same datasets as in the unsupervised sentiment analysis tutorial.</li>
 </ol>
 </div>
 

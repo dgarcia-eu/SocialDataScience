@@ -124,7 +124,7 @@ As you see, the precision is high but the recall is low. The model has learned w
 
 # 5. Comparing with dictionary methods
 
-The code below uses a similar approach as what you can find in the [unsupervised sentiment analysis tutorial](). We use tidytext to process the data and to match words with the entries of the NRC emotion dictionary, which is distributed through tidytext. We classify a tweet as angry if it contains at least one word from the dictionary and measure the accuracy, precision, and recall of this approach:
+The code below uses a similar approach as what you can find in the [unsupervised sentiment analysis tutorial](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html). We use tidytext to process the data and to match words with the entries of the NRC emotion dictionary, which is distributed through tidytext. We classify a tweet as angry if it contains at least one word from the dictionary and measure the accuracy, precision, and recall of this approach:
 
 ```{r }
 library(tidytext)
