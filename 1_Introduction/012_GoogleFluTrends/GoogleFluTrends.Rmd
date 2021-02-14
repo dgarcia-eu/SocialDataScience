@@ -12,7 +12,7 @@ Google Trends is a website hosted by Google that allows you to get a measurement
 <img src="EU.png" alt="" width="600"/>  
 Example of Google Trends volume for "european union" from the United Kindgom around the Brexit vote.
 
-You can learn more about Google Trends in the next topic [Measuring temporal orientation with Google Trends]() and in the [gtrendsR tutorial]().
+You can learn more about Google Trends in the next topic [Measuring temporal orientation with Google Trends](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/013_TemporalOrientation/TemporalOrientationGtrends.html) and in the [gtrendsR tutorial](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/017_gtrendsR/gtrendsR.html).
 
 ### Nowcasting flu incidence with Google Trends
 
