@@ -128,4 +128,4 @@ Small world networks have the following three properties:
 ---
 
 # The Bacon number
-.center[![:scale 85%](http://www.thegamewiz.com/wp-content/uploads/2015/02/kevin-bacon.png)]
+.center[![:scale 85%](bacon.png)]
