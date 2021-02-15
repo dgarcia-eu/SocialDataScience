@@ -24,7 +24,7 @@ The presence or actions of others can be:
 - *imagined:* mental representation of others, e.g. supporters of your team when watching TV sports
 
 
-[Solomon Asch's conformity experiments](https://en.wikipedia.org/wiki/Asch_conformity_experiments) showed some early evidence of how social impact works. These experiments focused on how often people change their behavior due to peer pressure in a group. In the elevator experiment, a group of experiment helpers (also called confederates), display some behavior different to the one of an unsuspecting experiment participant. The recorded outcome is whether the participant imitates their behavior, for example looking away from the elevator entrance. In the experiment, they changed the number of confederates, finding that the more people are exerting peer pressure, the higher the probability of the participant to change their behavior. You can see a comedic version of the experiment for the Candid Camera TV show in 1962: 
+[Solomon Asch's conformity experiments](https://en.wikipedia.org/wiki/Asch_conformity_experiments) showed some early evidence of how social impact works. These experiments focused on how often people change their behavior due to peer pressure in a group. In the elevator experiment, a group of experiment helpers (also called confederates), display some behavior different to the one of an unsuspecting experiment participant. The recorded outcome is whether the participant imitates their behavior, for example looking away from the elevator entrance. In the experiment, they changed the number of confederates, finding that the more people are exerting peer pressure, the higher the probability of the participant to change their behavior. You can see a comedic version of the experiment for the [Candid Camera TV show in 1962](https://www.youtube.com/watch?v=XZDLbbfT9_Q): 
 
 [![Elevator experiment](Elevator.png){width=100%}](https://www.youtube.com/watch?v=XZDLbbfT9_Q "Elevator experiment in Candid Camera (1962)")
 
@@ -89,7 +89,7 @@ The strength in Social Impact Theory is the perceived social status, power, weal
 
 The result: anxiety grows with N and is larger for the high strength condition.
 
-> **Multiplicative effect:** The impact of the numbner of sources grows faster when they are stronger
+> **Multiplicative effect:** The impact of the number of sources grows faster when they are stronger
 
 ### i: Immediacy of sources
 
@@ -102,11 +102,11 @@ Newspaper experiment result.
 
 Immediacy is defined as the proximity between the sources and the target of social impact. Immediacy can be spatial, as in the example of Zuckerberg's squirrel, it could be in time, where recent events are more immediate than long past ones, or social, where sources with social ties with the target or perceived as similar would have more impact.
 
-The effect of immediacy can be observed in media bias experiments. Students are asked to write a newspaper with a fixed space, assigning space to different news pieces. The information about an accident is manipulated to measure its impact based on the space the students dedicate to the accident. In this experiment:
+The effect of immediacy can be observed in media bias experiments. Students are asked to write a newspaper issue with a fixed space, assigning space to different news pieces. The information about an accident is manipulated to measure its impact based on the space the students dedicate to the accident. In this experiment:
 
 - $I$: number of lines used to report the news by the students
 - $N$: number of people reported dead in the accident
-• $i$: is the distance to the place of the accident (close vs far conditions)
+- $i$: is the distance to the place of the accident (close vs far conditions)
 
 Results: Space increased sublinearly with N (psychosocial law). The close condition had higher impact than the far one. There was a multiplicative effect: The amount of space given to each new person involved in the accident grows faster for the immediate event.
 
