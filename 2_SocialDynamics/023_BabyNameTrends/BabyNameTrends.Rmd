@@ -1,12 +1,15 @@
 ---
-title: "Social Data Science Story: Baby name trends"
+title: "<span style=\"color: darkgreen\">Baby name trends</span>"
+subtitle: "<span style=\"color: darkgreen\">A Social Data Science Story</span>"
 author: "David Garcia, 2021"
 output: html_document
 ---
 
+
+
 ### Baby name data
 
-The website of the US Social Security Administration provides baby name data, but sometimes it can be a bit unstable or hard to reach. In the github repository of this script you can find a file with the latest data (BabyData2019.csv.gz), so far including baby name statistics between 1880 and 2019. If you want to know more about how to access and process this data, as well as codes to reproduce this analysis, check the [Rmd version of this handout on Github](https://github.com/dgarcia-eu/SocialDataScience/blob/master/023_BabyNameTrends/BabyNameTrends.Rmd). Fist, let's look at how much data per year we get from the dataset:
+The website of the US Social Security Administration provides baby name data, but sometimes it can be a bit unstable or hard to reach. In the github repository of this script you can find a file with the latest data (BabyData2019.csv.gz), so far including baby name statistics between 1880 and 2019. If you want to know more about how to access and process this data, as well as codes to reproduce this analysis, check the [Rmd version of this handout on Github](https://github.com/dgarcia-eu/SocialDataScience/blob/master/2_SocialDynamics/023_BabyNameTrends/BabyNameTrends.Rmd). Fist, let's look at how much data per year we get from the dataset:
 
 ```{r, echo=F, eval=F}
 library(crunch)
