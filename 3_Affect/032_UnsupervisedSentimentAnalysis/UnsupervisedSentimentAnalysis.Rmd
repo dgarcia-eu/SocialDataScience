@@ -33,12 +33,14 @@ While peak interest seems to have been reached in 2019, there is still a lot of 
 ### Supervised vs Unsupervised sentiment analysis
 
 **Unsupervised sentiment analysis:**  
+
 - Uses expert knowledge (e.g. from psychologists) to quantify emotions  
 - Expert knowledge is encoded as a set of rules or a lexicon (dictionary) of words  
 - Pros: Simple implementation, large coverage and recall  
 - Cons: Hard to customize for a particular context, low precision, expert bias
 
 **Supervised sentiment analysis:**  
+
 - Uses a set of annotated texts to fit a model  
 - Annotations can come from readers or the authors of texts  
 - Pros: Automatic calibration, high precision  
@@ -70,6 +72,7 @@ LIWC (pronounced "Luke") was developed as a click-and-run software by [James Pen
 Here you can see an example of how LIWC words on a text:
 
 ![](LIWCexample.png){width=50%}
+
 LIWC first tokenizes the text, i.e. it identifies words by looking for separations like whitespaces and punctuation. Then LIWC iterates over each token (word) and checks if it matches any word list in the dictionary. These matches can be "hard" matches for the same exact character string, or "soft" matches with Kleene stems that are prefixes of a word. These are entries in the dictionary that end with a star symbol ("\*"). You see this in the example for the entry "worr\*" that matches "worry" and for "pizza\*" that matches "pizza".
 
 In the example above you can see that words can belong to several word lists, for example the entry for "worr*" is in the "affect" list, in the "negemo" list, and in the "anxiety" list. After running these matchings, LIWC produces a list of frequency measures as the percentage of words in the whole text that are matched against each word list. In the example above, there are 12.5\% words of the "negemo" list and 0\% words of the "posemo" list.
@@ -83,9 +86,10 @@ The 2015 version of LIWC includes netspeak terms such as "WTF" or "LOL" and emot
 ![](SentiStrength.png){width=60%}
 
 SentiStrength processess text in three steps:
-  1. Text preprocessing: correcting misspellings, vowel repetitions, translating emoticons and idioms, etc  
-  2. Match words from scored list of words in the scale [-5,+5]  
-  3. Apply modifiers (negation, amplification, de-amplification). These modifiers change the polarity of words and their strength. The final scores are an aggregate of these polarities.
+  
+1. Text preprocessing: correcting misspellings, vowel repetitions, translating emoticons and idioms, etc  
+2. Match words from scored list of words in the scale [-5,+5]  
+3. Apply modifiers (negation, amplification, de-amplification). These modifiers change the polarity of words and their strength. The final scores are an aggregate of these polarities.
 
 SentiStrength takes two sources of expert input: a word list with sentiment scores and a list of modifier rules including terms for negation, amplification, etc.
 
