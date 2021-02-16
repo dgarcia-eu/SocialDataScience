@@ -149,4 +149,4 @@ This is much faster than a loop! Now you have the results of the measurement ove
 hist(results$t)
 ```
 
-The boot function is very useful when you are doing all kinds of resampling tasks. For example, if you want to speed up your computations in the [permutation tests tutorial](), you can use boot() with the parameter *sim* set to 'permutation'.
+The boot function is very useful when you are doing all kinds of resampling tasks. For example, if you want to speed up your computations in the [permutation tests tutorial](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests), you can use boot() with the parameter *sim* set to 'permutation'.
