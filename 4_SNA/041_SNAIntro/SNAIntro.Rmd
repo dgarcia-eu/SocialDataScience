@@ -36,7 +36,6 @@ $V = {a, b, c, d, e}$
 $E = {(b, a),(c, a),(e, a),(d, e),(c, b),(b, c)}$
 
 The above list is what is called an *edge list*, but there are other ways to represent a network. A common one is to use an **adjacency matrix** $\mathbf{A}$, defined as:
-			{\small
 				\vspace{-.1cm}
 				\[ A_{ij} = \left\{
 				\begin{array}{l l}
@@ -44,7 +43,6 @@ The above list is what is called an *edge list*, but there are other ways to rep
 				0 & \quad \text{else}
 				\end{array} \right.
 				\]
-			}
 
 where $i$ refers to the **row** and $j$ refers to the **column**. For the example of the figure, the adjacency matrix is: 
 $$
@@ -57,7 +55,7 @@ $$
 			e&1&0&0&0&0
 \end{array}\right]
 $$ 
-Adjacency matrices are useful to think about networks because we can model network changes and other properties as linear algebra operations over the adjacency matrix. They are not so useful as a way to store social network data in memory because the required memory grows with the squared number of nodes in the network. As social networks tend to be **sparse**, i.e. they have few edges per node, large network datasets are better stored as edge lists. If Facebook stored the friendship network data of 2.7 Billion users as an adjacency matrix and each entry in the matrix took just one bit, it would take 455 Petabytes (455.000 Terabytes) to store that data alone.
+Adjacency matrices are useful to think about networks because we can model network changes and other properties as linear algebra operations over the adjacency matrix. They are not so useful as a way to store social network data in memory because the required memory grows with the square of the number of nodes in the network. As social networks tend to be **sparse**, i.e. they have few edges per node, large network datasets are better stored as edge lists. If Facebook stored the friendship network data of 2.7 Billion users as an adjacency matrix and each entry in the matrix took just one bit, it would take 455 Petabytes (455.000 Terabytes) to store just the presence or absence of friendships between users.
 
 ### Types of networks
 <div style="float:right">
@@ -101,6 +99,7 @@ Weighted networks can be use to simplify multi-edge networks. The count of edges
 another can be replaced by one weighted edge having weight equal to the count or to the sum of their weights. 
 
 Link weights can capture different aspects of *link strength* between two nodes. Example of edge weights are:  
+
 - the frequency or duration of contacts between two actors in a social network  
 - the level of trust between two actors in a social network  
 - the number of co-authored papers in a co-authorship network  
@@ -115,7 +114,7 @@ Link weights can capture different aspects of *link strength* between two nodes.
 <div style="float:right">
 <img src="pathsExample.png" alt="Social network example." width=240px/>  
 </div>
-One of the most important concepts in a network is that of a **path**. A path is defined as a sequence of nodes, where any pair of consecutive nodes is connected by a link. The length of the path is the number of links traversed by the path. In communication networks, this definition has a natural interpretation as the number of hops a message requires to move from the origin to the destination.
+One of the most important concepts in a network is a **path**. A path is defined as a sequence of nodes in which each pair of consecutive nodes is connected by a link. The length of the path is the number of links traversed by the path. In communication networks, this definition has a natural interpretation as the number of hops a message requires to move from the origin to the destination.
 
 For any two nodes, there can be many different paths which connect them. For the example on the right, there is only one path of exactly length two from node $b$ to node $e$, but there is another path of length three which first passes through $c$. Note that a path between two nodes does not necessarily need to follow the shortest route.
 
@@ -123,9 +122,9 @@ A path between nodes *v* and *w* can be formalized as a sequence of nodes $(p_0,
 1. $p_i \in V$  
 2. $p_0 = v$, $p_l = w$  
 3. $(p_i, p_{i+1}) \in E$  
-The length of the path is the number of edges in it, i.e. $len(p_0, ... , p_l) = l$
+The length of the path is the number of edges in it, i.e. $len(p_0, ... , p_l) = l$. Depending on the context, most definitions also add the condition that each node appears at most once in the path.
 
-A **cycle** is a path starting and ending in the same node, which means that $p_0=p_l$. A **triangle** is a cycle of length 3, in the example the nodes $a$, $b$ and $c$ form a triangle.
+A **cycle** is a path starting and ending in the same node, which means that $p_0=p_l$, and in which no node appears more than once. A **triangle** is a cycle of length 3, in the example the nodes $a$, $b$ and $c$ form a triangle.
 
 <div style="float:right">
 <img src="networkSelfLoops.png" alt="Social network example." width=240px/>  
