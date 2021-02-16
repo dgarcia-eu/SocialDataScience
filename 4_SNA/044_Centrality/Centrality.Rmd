@@ -32,7 +32,7 @@ The weight of a link can play a role in the calculation of importance, for examp
 <img src="undirNetworkBtw.png" alt="Network betweenness example." width=300px/>  
 </div>
 
-Sometimes the importance of a person is quantified as the number of shortest paths between two other people that pass through this person. This can happen for example when you look at how information flows in an organization, where usually secretaries and other administration personell lie on many paths connecting departments and many other people. In these cases, betweenness centrality measures the imporance of people in a social network, calculated as:
+Sometimes the importance of a person is quantified as the number of shortest paths between two other people that pass through this person. This can happen for example when you look at how information flows in an organization, where usually secretaries and other administration personnel lie on many paths connecting departments and many other people. In these cases, betweenness centrality measures the importance of people in a social network, calculated as:
 
 $$C_B(i) = \sum_{s \neq i, t \neq i} n_i(s,t) $$
 Where $n_i(s,t)$ is the number of shortest paths from $s$ to $t$ that pass through $i$. In the example on the right, $C_B(b) = 16$, as all the shortest paths from any node from the set ${a,c}$ to any node from the set ${d,e,f,g}$ pass through $b$. Keep in mind that the count is from all sorted pairs of nodes, so paths are counted in one direction and back. This is rather trivial in undirected social networks, but can easily make a difference in directed ones.
@@ -49,7 +49,7 @@ Where $dist(i, j)$ is the distance from $i$ to $j$ and $n$ is the number of node
 
 On the example above, $C_C(d)=0.75$, as $d$ is at distance 1 from 4 nodes and at distance 2 from 2 nodes. Then $\sum_{j\neq d} dist(d,j) = 1 + 1 + 1 + 1 + 2 + 2 = 8$. Since there are 7 nodes in the network, the numerator of the equation above is 6, then the closeness centrality of $d$ is $6/8=0.75$. If there was one node connected to all others, as in a star, the closeness centrality of that node would be the maximum value of $1$.
 
-Different from betweenness centrality, the closeness centralities of neighbouring nodes are usually correlated. Closeness centrality is also a non-local measure as betweenness centrality.
+Different from betweenness centrality, the closeness centralities of neighboring nodes are usually correlated. Closeness centrality is also a non-local measure as betweenness centrality.
 
 
 ### Neocortex Size as a limit to degree centrality
