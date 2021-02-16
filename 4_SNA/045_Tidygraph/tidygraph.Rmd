@@ -29,7 +29,7 @@ plot(ringgraph)
 
 As you see, the nodes of the graph above form a single cycle, a ring, and are numbered from 1 to 12.
 
-You can generate other kinds of graphs, some of them with a random component. You can learn more about these models in the [network models]() tutorial.
+You can generate other kinds of graphs, some of them with a random component. You can learn more about these models in the [network models](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/055_NetworkModels/NetworkModels) tutorial.
 
 ### Reading network data
 
@@ -88,7 +88,7 @@ starwars %>% activate(edges) %>% pull(weight) -> frequencies
 hist(frequencies)
 ```
 
-You can do similar operations with other dplyr verbs. For example, here we first operate on the edges to remove the ones with weight lower than or equal to 10, then caculate node degree in the resulting network, and plot with the nodes that had degree larger than zero:
+You can do similar operations with other dplyr verbs. For example, here we first operate on the edges to remove the ones with weight lower than or equal to 10, then calculate node degree in the resulting network, and plot with the nodes that had degree larger than zero:
 
 ```{r}
 starwars %>% activate(edges) %>% filter(weight>10) %>% activate(nodes) %>% mutate(degree=centrality_degree()) %>% filter(degree>0) %>% plot()
