@@ -109,7 +109,7 @@ starwars %>%
   as_tibble()
 ```
 
-You can see the communities by drawing the nework with nodes colored by community. We casted the comunity values to characters so they get very distinct colors in the plot:
+You can see the communities by drawing the network with nodes colored by community. We casted the community values to characters so they get very distinct colors in the plot:
 
 ```{r }
 starwars %>% 
