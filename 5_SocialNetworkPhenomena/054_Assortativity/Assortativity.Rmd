@@ -22,7 +22,7 @@ r=\frac{\sum_c e_{cc}-\sum_c a_c b_c}{1-\sum_c a_c b_c}
 \end{equation*}
 
 - $c$ are the classes of nodes
-- $e_{cd}$ is the \textbf{fraction of all edges} connecting nodes of class $c$ with nodes of class $d$
+- $e_{cd}$ is the **fraction of all edges** connecting nodes of class $c$ with nodes of class $d$
 - $e_{cc}$ is the fraction of all edges connecting two nodes of class $c$
 - $a_c=\sum_d e_{cd}$, and $b_c=\sum_d e_{dc}$ (endpoint class fractions)
 
@@ -49,7 +49,7 @@ Assortativity is just some type of correlation you can observe in a social netwo
 
 > **Homophily:** Phenomenon in which people are more likely to create social links to similar than to dissimilar people
 
-The mechanism of homophily captures the popular proverb "Birds of a feather flock together". It tells us that the individuals in the network create links in a way that favor connecting to other individuals of the same property. In the case of homophily, attribues of the nodes might not change but the network must change or be formed to be influenced by the attributes.
+The mechanism of homophily captures the popular proverb "Birds of a feather flock together". It tells us that the individuals in the network create links in a way that favor connecting to other individuals of the same property. In the case of homophily, attributes of the nodes might not change but the network must change or be formed to be influenced by the attributes.
 
 In the network example, if homophily is present and a new green node $f$ enters the network, it would have a stronger tendency to connect to $e$ and $d$ than to $a$, $b$, or $c$. 
 
