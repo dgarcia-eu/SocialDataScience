@@ -33,7 +33,7 @@ library(vader)
 
 **1.3 Load datasets**
 
-Read the two .csv files into three data frames (twitterdf, youtubedf). Set the stringsAsFactors parameter to FALSE so the texts do not get converted into factors.
+Read the two .csv files into two data frames (twitterdf, youtubedf). Set the stringsAsFactors parameter to FALSE so the texts do not get converted into factors.
 ```{r}
 #Your code here
 ```
@@ -88,7 +88,7 @@ for (i in seq(1,5))
 
 **3.2 Apply syuzhet to all texts**
 
-For each text in the BBC, Twitter, and YouTube datasets, run the get_sentiment function of syuzhet. You can use get_sentiment for the whole column of texts to get a new column of sentiment values without coding a loop. It's very fast!
+For each text in the Twitter and YouTube datasets, run the get_sentiment function of syuzhet. You can use get_sentiment for the whole column of texts to get a new column of sentiment values without coding a loop. It's very fast!
 
 ```{r, eval=TRUE, warning=FALSE}
 #Your code here

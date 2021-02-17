@@ -30,7 +30,7 @@ library(vader)
 
 **1.3 Load datasets**
 
-Read the two .csv files into three data frames (twitterdf, youtubedf). Set the stringsAsFactors parameter to FALSE so the texts do not get converted into factors.
+Read the two .csv files into two data frames (twitterdf, youtubedf). Set the stringsAsFactors parameter to FALSE so the texts do not get converted into factors.
 ```{r}
 #Your code here
 ```
