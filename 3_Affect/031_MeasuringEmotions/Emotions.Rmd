@@ -20,7 +20,7 @@ Emotional or affective behavior of an individual takes place at various timescal
 Affective Science is the (interdisciplinary) scientific study of emotions. Computational Affective Science applies methods from Computer Science and Data Science to Affective Science. Some examples are:
 
 - Affective Computing: Development of systems that detect, process, and elicit emotion  
-- Cyberpsychology of Affect: Understanding the interplay between emotions and ICT  
+- Cyberpsychology of Affect: Understanding the interplay between emotions and information and communication technologies 
 - Emotion Recognition: Identification of human emotion using any kind of modality: text, voice, facial expression, physiological signals (skin conductance, muscle activity, EEG, fMRI), etc  
 - Sentiment Analysis: Detection of subjective states from (textual) data, including emotion
 
