@@ -72,7 +72,7 @@ Run the get_sentiment function of syuzhet over the first 5 examples of tweets. P
 
 **3.2 Apply syuzhet to all texts**
 
-For each text in the BBC, Twitter, and YouTube datasets, run the get_sentiment function of syuzhet. You can use get_sentiment for the whole column of texts to get a new column of sentiment values without coding a loop. It's very fast!
+For each text in the Twitter and YouTube datasets, run the get_sentiment function of syuzhet. You can use get_sentiment for the whole column of texts to get a new column of sentiment values without coding a loop. It's very fast!
 
 ```{r, eval=TRUE, warning=FALSE}
 #Your code here
