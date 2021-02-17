@@ -29,7 +29,7 @@ plot(ringgraph)
 
 As you see, the nodes of the graph above form a single cycle, a ring, and are numbered from 1 to 12.
 
-You can generate other kinds of graphs, some of them with a random component. You can learn more about these models in the [network models](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/055_NetworkModels/NetworkModels) tutorial.
+You can generate other kinds of graphs, some of them with a random component. If you want to learn more, here is an additional tutorial on [network models in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/055_NetworkModels/NetworkModels).
 
 ### Reading network data
 
