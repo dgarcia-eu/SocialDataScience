@@ -72,12 +72,10 @@ repliesdf %>%
 head(edgesdf)
 ```
 
-We can convert the user ids to their corresponding ids with as.factor and then as.numeric, to then create the graph and plot it:
+We can then create the graph and plot it:
 ```{r }
 library(tidygraph)
-edgesdf$from <- as.numeric(as.factor(edgesdf$from))
-edgesdf$to <- as.numeric(as.factor(edgesdf$to))
-graph<-tbl_graph(data.frame(id=as.numeric(as.factor(userids))),edgesdf, directed=F)
+graph<-tbl_graph(data.frame(id=userids),edgesdf, directed=F, node_key = "id")
 plot(graph)
 ```
 
@@ -107,9 +105,7 @@ head(edgesdf)
 
 And then we can plot as we did with the replies network:
 ```{r }
-edgesdf$from <- as.numeric(as.factor(edgesdf$from))
-edgesdf$to <- as.numeric(as.factor(edgesdf$to))
-graph<-tbl_graph(data.frame(id=as.numeric(as.factor(userids))),edgesdf, directed=F)
+graph<-tbl_graph(data.frame(id=userids),edgesdf, directed=F, node_key = "id")
 plot(graph)
 ```
 
