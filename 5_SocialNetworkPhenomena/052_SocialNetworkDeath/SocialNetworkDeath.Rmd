@@ -20,7 +20,7 @@ trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)
 ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Friendster") + theme_bw()
 ```
 
-**MySpace** went from being valued more than 12 Billion USD in 2008 to be bought by [Justin Timberlake for 35 Million USD](https://www.theguardian.com/technology/2011/jun/30/myspace-internet). It's still online, but not very far from the user base it had in the past.
+**MySpace** went from being valued more than 12 Billion USD in 2008 to be bought by [Justin Timberlake for 35 Million USD](https://www.theguardian.com/technology/2011/jun/30/myspace-internet). It's still online, but very far from the user base it had in the past.
 
 ```{r echo=F, fig.width=8, fig.height=3}
 trend <- gtrends("MySpace", time="all")
