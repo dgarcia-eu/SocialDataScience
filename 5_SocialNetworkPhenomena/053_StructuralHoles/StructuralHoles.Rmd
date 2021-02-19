@@ -10,7 +10,7 @@ output: html_document
 <img src="closedTriad.png" alt="Closing a triad." width=200pt/>
 </div>
 
-If a node $a$ has two neighbours $b$ and $c$: does a link exist between $b$ and $c$? If that is the case, we call the edges $(a, b)$, $(a, c)$ and $(b, c)$ a closed triad. Close triads are commin in social networks due to the process of triadic closure:
+If a node $a$ has two neighbours $b$ and $c$: does a link exist between $b$ and $c$? If that is the case, we call the edges $(a, b)$, $(a, c)$ and $(b, c)$ a closed triad. Close triads are common in social networks due to the process of triadic closure:
 
 >  **Triadic closure:** The tendency of individuals in social networks to create links to neighbors at distance 2
 
@@ -121,7 +121,7 @@ To apply the second version, it is necessary to have information on the growth o
 </div>
 The small world phenomenon became popular after an experiment by [Stanley Milgram's](https://en.wikipedia.org/wiki/Stanley_Milgram)^[The ideas was pat of a 1929 theater play by Hungarian author Frigyes Karinthy, as explained by Albert-László Barabási in his book [Linked](https://barabasi.com/book/linked)] experiment. He chose 160 random people in Omaha, Nebraska. He asked them to send a letter to a particular stockbroker in Boston, Massachussetts. The experiment participants were asked to contact only acquaintances that they knew on a first-name basis, asking them to forward the letter to their contact that they thought it was the closest to reach the target.
 
-Out of the 160 letters, [44 reached the target](http://snap.stanford.edu/class/cs224w-readings/milgram67smallworld.pdf). On average, letters required six hops, a length much shorter than initially estimated, although this calculation understimates the real distance between the sources and the target because many letters were lost. Nevertheless, the experiment shows two things: social networks have short distances even between random nodes, and they are navigable, i.e. people knew how to route the letters so that they were getting closer to their destination.
+Out of the 160 letters, [44 reached the target](http://snap.stanford.edu/class/cs224w-readings/milgram67smallworld.pdf). On average, letters required six hops, a length much shorter than initially estimated, although this calculation underestimates the real distance between the sources and the target because many letters were lost. Nevertheless, the experiment shows two things: social networks have short distances even between random nodes, and they are navigable, i.e. people knew how to route the letters so that they were getting closer to their destination.
 
 Later studies have confirmed the same observation with other kinds of social network data, including large-scale [analysis of Facebook data that showed a mean distance of 4.5](https://research.fb.com/blog/2016/02/three-and-a-half-degrees-of-separation/). You can find more context about that analysis in this [blog post by Duncan Watts](https://medium.com/@duncanjwatts/how-small-is-the-world-really-736fa21808ba).
 
