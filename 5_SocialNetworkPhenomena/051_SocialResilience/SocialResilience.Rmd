@@ -57,7 +57,7 @@ The above definition of costs and benefits leads to the decision rule of users b
 $$ b *k_u < c $$
 Where $k_u$ is the number of active friends of user $u$, $b$ is the benefit received per active friend, and $c$ is the cost of using the social network. Note that becoming inactive does not mean deleting your account, it only implies not logging in or not using the network sufficiently to generate benefit to other users.
 
-This models a dependency between users becoming inactive. When a user becomes inactive, it does not generate benefit for its friends any more, possibly bringing their total benefit below the cost and making other users inactive. The animation below shows what happens in a mock-up network when the benefit suddenly increases. Before, any user with at least two friends would be active, but if the cost is too high for that, some users will leave and trigger a cascade of other users leaving too.
+This models a dependency between users becoming inactive. When a user becomes inactive, it does not generate benefit for its friends any more, possibly bringing their total benefit below the cost and making other users inactive. The animation below shows what happens in a mock-up network when the cost suddenly increases. Before, any user with at least two friends would be active, but if the cost is too high for that, some users will leave and trigger a cascade of other users leaving too.
 
 <center>
 ![](cascade.gif){width=50%}    
