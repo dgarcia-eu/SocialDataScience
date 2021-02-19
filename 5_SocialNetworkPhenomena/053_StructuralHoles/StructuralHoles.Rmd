@@ -19,7 +19,7 @@ This property is also called *transitivity* and it captures the tendency of node
 The concept of triadic closure can be measured with the **clustering coefficient**. In an undirected network, the clustering coefficient of a node $i$ with degree larger than $1$ is measured as:
 
 $$ C_i = \frac{2*t(i)}{d_i *(d_i−1)}$$
-Where $d_{out}(i)$ is the outdegree of $i$ and $t(i)$ is the number of pairs of neighbors of $i$ that are connected, i.e. they form a triangle with $i$. The factor $2$ above comes from making a fraction between the number of connected neighbors and all unsorted pairs of neighbors, which is $\frac{d_i(d_i-1)}{2}$. 
+Where $d(i)$ is the degree of $i$ and $t(i)$ is the number of pairs of neighbors of $i$ that are connected, i.e. they form a triangle with $i$. The factor $2$ above comes from making a fraction between the number of connected neighbors and all unsorted pairs of neighbors, which is $\frac{d_i(d_i-1)}{2}$. 
 
 The above equation measures the **local clustering coefficient** of each node. A **global clustering coefficient** can be calculated by dividing the number of triangles in the network over the number of wedges (pairs of two edges that share a node). The mean of local clustering coefficients and the global one do not need to agree, as nodes contribute to different numbers of wedges depending on their degree.
 
