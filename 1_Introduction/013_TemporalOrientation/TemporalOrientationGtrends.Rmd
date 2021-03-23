@@ -11,10 +11,10 @@ What is the relationship between culture and the economy? Max Weber proposed tha
 > **Long-Term Orientation (Geert Hofstede)**  
 Long-term oriented societies believe that the most important events in life will occur in the future; short-term oriented societies believe that those events occurred in the past or take place now.
 
-Geert Hofstede developed a model of culture based on surveys to IBM employees around the world, which then he expanded to culture in general. He identified six dimensions tha differentiated work cultures:
+Geert Hofstede developed a model of culture based on surveys to IBM employees around the world, which then he expanded to culture in general. He identified six dimensions that differentiated work cultures:
 individualism, uncertainty avoidance, power distance, masculinity, long-term orientation, and indulgence. You can see the values measured for various cultures on [this website](https://www.hofstede-insights.com/product/compare-countries/).
 
-Long-term orientation is postulated to have a relationship with economic development. In particular [Hofstede hypothesizes](http://mchmielecki.pbworks.com/w/file/fetch/64591689/hofstede_dobre.pdf) that a poor country that is short-term oriented usually has little to no economic development, while long-term oriented countries continue to develop to a point. 
+Long-term orientation is postulated to have a relationship with economic development. In particular [Hofstede hypothesizes](http://mchmielecki.pbworks.com/w/file/fetch/64591689/hofstede_dobre.pdf) that a poor country that is short-term oriented usually has little to no economic development, while long-term oriented countries continue to develop up to a certain point. 
 
 If we measure economic development as the Gross Domestic Product per capita of a country, this hypothesis can be depicted as a function like this:
 
@@ -28,7 +28,7 @@ If we measure economic development as the Gross Domestic Product per capita of a
 $FOI_{c,y} = \frac{G(y+1,y,c)}{G(y-1,y,c)}$
 </p>
 
-where $G(y_1,y_2,c)$ is the Google Trends volume for searches for $y_1$ during year $y_2$ from country $c$. Essentially it measures the ratio of search volume from a country for next year divided by the search volume for the previous year in the same country.
+where $G(y_1,y_2,c)$ is the Google Trends volume for searches for $y_1$ during year $y_2$ from country $c$. Essentially, this measures the ratio of search volume from a country for next year divided by the search volume for the previous year.
 
 Remember that Google trends gives you search volume information for a search query, in this case a year expressed with Arab numerals (e.g. "2016"). Check out the [Social Data Science story about Google Flu Trends](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/012_GoogleFluTrends/GoogleFluTrends.html) to learn more about Google Trends.
 
