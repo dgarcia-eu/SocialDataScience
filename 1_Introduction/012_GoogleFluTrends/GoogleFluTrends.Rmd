@@ -22,7 +22,7 @@ Google Flu Trends aimed at nowcasting influenza-related physician visits based o
 
 <img src="GoogleFluTrends.jpg" alt="drawing" width="600"/>  
 
-As reported in the [Nature paper](http://www.nature.com/nature/journal/v457/n7232/full/nature07634.html), Google Flu Trends achieved a high weekly accuracy between 2003 and 2008. It was applied worked for various regions in the US, not just the total. The figure above shows the nowcast of Google Flu Trends two weeks ahead of the report from the CDC.
+As reported in the [Nature paper](http://www.nature.com/nature/journal/v457/n7232/full/nature07634.html), Google Flu Trends achieved a high weekly accuracy between 2003 and 2008. It worked for various regions in the US, not just the total. The figure above shows the nowcast of Google Flu Trends two weeks ahead of the report from the CDC.
 
 ### When Google Flu Trends Stopped working
 

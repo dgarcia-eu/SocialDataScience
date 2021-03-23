@@ -111,7 +111,7 @@ With the great potential of digital traces, aslo come great challenges:
 
 - **Data gatekeepers:** Not everyone can access some data sources
 
-- **Performative behavior:** Talking online is not the same than offline.
+- **Performative behavior:** Talking online is not the same as offline.
 
 - **Representativity issues:** Not everyone leaves digital traces. 
 
