@@ -32,7 +32,7 @@ Crash course overview:
 
 # 0. Getting help
 
-If you don't know what a function does, try searching for help wiht "?"
+If you don't know what a function does, try searching for help with "?"
 ```{r}
 ? mean
 ```
@@ -40,6 +40,8 @@ If you don't know what a function does, try searching for help wiht "?"
 If you don't know how to do something, your fellow programmer is your friend. For example:
 
 https://stats.stackexchange.com/questions/157661/how-to-calculate-mean-median-mode-std-dev-from-distribution
+
+This is a really useful search engine (Google plus filter for R-relevant content): https://rseek.org/
 
 
 # 1. Simple operations
@@ -172,7 +174,7 @@ Your turn:
 
 # 3. Reading data
 
-Data is essential for our tasks.  A table can be easily imported from local files csv file via read.csv(). Or you may try other functions like read.table() and adjust to different data formats. In this exercise, we use a survey result stored in a .csv file:
+Data is essential for our tasks.  A table can be easily imported from local files as a csv file via read.csv(). Or you may try other functions like read.table() and adjust to different data formats. In this exercise, we use a survey result stored in a .csv file:
 
 ```{r}
 testDF <- read.csv("TutorialHeights_Test.csv", header = TRUE, sep = ",", quote = "\"",
@@ -186,7 +188,7 @@ The read.csv and read.table functions have some important parameters:
 - header (TRUE/FALSE) whether the first line of the file contains the names of the columns
 - sep: character that separates columns in the file
 - quote: character that defines strings in the file, to prevent strings to be divided in two columns
-- stringsAsFactors (TRUE/FALSE) whether strings should be converted in categorical factors
+- stringsAsFactors (TRUE/FALSE) whether strings should be converted to categorical factors
 
 Your turn:
 
@@ -231,7 +233,7 @@ SurveyDF$sequence <- seq(1,nrow(SurveyDF))
 head(SurveyDF, n=3)
 ```
 
-You can manually produce your own data frame. Use NA (Not Available) to mark missing values
+You can manually produce your own data frame. Use NA (Not Available) to mark missing values.
 ```{r}
 newrow <- data.frame(Timestamp=NA, Age=31, Gender="Male", Height=185, sequence=0)
 print(newrow)
@@ -269,6 +271,7 @@ unique(SurveyDF$Gender)
 ```
 
 Some genders might not be in our list of values and capitalization should be taken into account. To clean genders:
+
 ```{r}
 SurveyDF$Gender <- tolower(SurveyDF$Gender)
 err <- SurveyDF$Gender!= "male" & SurveyDF$Gender != "female"
@@ -278,6 +281,7 @@ unique(SurveyDF$Gender)
 ```
 
 Now we make a better scatter plot with points colored by gender and proper axes labels:
+
 ```{r}
 plot(SurveyDF$Age, SurveyDF$Height, xlab="Age", 
      ylab="Heights (cm)", main="Scatter Plot of Height~Age", pch=19,
@@ -316,7 +320,7 @@ Your turn:
 
 # 6. Sampling and histograms
 
-Now we will learn Gaussian distribution and plot it in R. The rnorm function lets you sample values from a normal distribution, and hist shows a histogram of values.
+Now we will learn about the Gaussian distribution and plot it in R. The rnorm function lets you sample values from a normal distribution, and hist shows a histogram of values.
 
 ```{r, fig.height=3}
 # Set seed for random generator
