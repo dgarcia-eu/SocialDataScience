@@ -41,7 +41,7 @@ The course is organized in five blocks with several topics each. Each block has 
 3.2. [Unsupervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html)  
 3.3. [SDS Story: Emotions in pagers after 9/11](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/033_PagerEmotions/PagerEmotions.html)  
 3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html)  
-3.5. [The Semantic Differential]()
+3.5. [The Semantic Differential](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/039_SemanticDifferential/SemanticDifferential.html)  
 3.6. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html)  
 3.7. [Exercise 3: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
 
@@ -65,4 +65,4 @@ The course is organized in five blocks with several topics each. Each block has 
 ## Where to access materials
 
 - Handouts, codes, and data can be found on the [Github repository of the course](https://github.com/dgarcia-eu/SocialDataScience).
-- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=14192) to get videos and additional information and to participate in the forums and quizzes.
+- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=16747) to get videos and additional information and to participate in the forums and quizzes.
