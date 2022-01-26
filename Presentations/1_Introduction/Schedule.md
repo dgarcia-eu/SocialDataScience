@@ -1,7 +1,7 @@
 # Schedule for Social Data Science day 1
 ## Introduction to Social Data Science
 
-[David Garcia](http://dgarcia.eu), 2021
+[David Garcia](http://dgarcia.eu)
 
 ### Morning session
 9:00 - [Course kickoff in Zoom](https://ethz.zoom.us/s/95606086212)
@@ -21,7 +21,7 @@ Afternoon session materials:
 1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/015_RCrashCourse/RCrashCourse.html) -- [[R crash course github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/015_RCrashCourse) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1046310/mod_resource/content/1/14_RCrashCourse.mp4)  
 1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/016_WDI/WDI.html)  
 1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/017_gtrendsR/gtrendsR.html)  
-1.8. [Exercise: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise)
 
 15:00 - [Q&A in Zoom](https://ethz.zoom.us/s/95606086212)  
-15:50 - [Day 1 Quiz](https://moodle-app2.let.ethz.ch/mod/quiz/view.php?id=547517)
+
+[Exercise 1 start: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise)

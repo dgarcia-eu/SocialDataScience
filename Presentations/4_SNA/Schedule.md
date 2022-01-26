@@ -1,10 +1,10 @@
 # Schedule for Social Data Science day 4
 ## Social Network Analysis
 
-[David Garcia](http://dgarcia.eu), 2021
+[David Garcia](http://dgarcia.eu)
 
 ### Morning session
-9:00 - [Day 4 kickoff in Zoom](https://ethz.zoom.us/s/95606086212)
+9:15 - [Day 4 kickoff in Zoom](https://ethz.zoom.us/s/95606086212) **Note slightly later starting time**
 
 Morning session materials:  
 
@@ -23,9 +23,9 @@ Morning session materials:
 Afternoon session materials:  
 
 4.5. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1051005/mod_resource/content/1/044_Tidygraph.mp4)  
-4.6. [Twitter network data](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html)  
-4.7. [Exercise: Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/048_PoliticiansNetwork/PoliticiansNetwork) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/048_PoliticiansNetwork)  
+4.6. [Twitter network data tutorial](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html)  
 
 
-15:00 - [Q&A in Zoom](https://ethz.zoom.us/s/95606086212)  
-15:50 - [Day 4 Quiz](https://moodle-app2.let.ethz.ch/mod/quiz/view.php?id=547519)
+15:00 - [Q&A in Zoom, Discussion of solution to Exercise 3](https://ethz.zoom.us/s/95606086212)  
+
+[Exercise 4 start: Assortativity among Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/058_PoliticianAssortativity/PoliticianAssortativity.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/058_PoliticianAssortativity)  

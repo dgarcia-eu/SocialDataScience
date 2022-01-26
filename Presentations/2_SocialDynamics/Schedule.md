@@ -1,7 +1,7 @@
 # Schedule for Social Data Science day 2
 ## Social Dynamics
 
-[David Garcia](http://dgarcia.eu), 2021
+[David Garcia](http://dgarcia.eu)
 
 ### Morning session
 9:00 - [Day 2 kickoff in Zoom](https://ethz.zoom.us/s/95606086212)
@@ -21,8 +21,7 @@ Afternoon session materials:
 2.5. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/025_Bootstrapping/Bootstrapping.html) -- [[Github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/025_Bootstrapping)  
 2.6. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/026_dplyr/dplyr.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/026_dplyr) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1046335/mod_resource/content/1/24_dplyr.mp4)  
 2.7. [The Twitter API in R](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/027_rtweet/rtweet.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/027_rtweet) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1046336/mod_resource/content/1/25_rtweet.mp4)  
-2.8. [Exercise: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter)
 
-15:00 - [Q&A in Zoom](https://ethz.zoom.us/s/95606086212)  
-15:50 - [Day 2 Quiz](https://moodle-app2.let.ethz.ch/mod/quiz/view.php?id=547518)
+15:00 - [Q&A in Zoom, discussion of solution to Exercise 1](https://ethz.zoom.us/s/95606086212)  
 
+[Exercise 2 start: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter)

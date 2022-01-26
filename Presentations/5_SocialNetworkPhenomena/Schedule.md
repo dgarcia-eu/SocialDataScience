@@ -1,7 +1,7 @@
 # Schedule for Social Data Science day 5
 ## Social Network Phenomena
 
-[David Garcia](http://dgarcia.eu), 2021
+[David Garcia](http://dgarcia.eu)
 
 ### Morning session
 9:00 - [Day 5 kickoff in Zoom](https://ethz.zoom.us/s/95606086212)
@@ -23,7 +23,8 @@ Afternoon session materials:
 
 5.5. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests)   
 5.6. [Network analysis in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/057_Tidygraph2/tidygraph2.html)  -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1054258/mod_resource/content/1/057_Tidygraph2.mp4)  
-5.7. [Exercise: Assortativity among Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/058_PoliticianAssortativity/PoliticianAssortativity.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/058_PoliticianAssortativity)  
 
-15:00 - [Q&A in Zoom](https://ethz.zoom.us/s/95606086212)  
-15:50 - [Day 5 Quiz](https://moodle-app2.let.ethz.ch/mod/quiz/view.php?id=547520)
+
+15:00 - [Q&A in Zoom, Discussion of solution to Exercise 4](https://ethz.zoom.us/s/95606086212)  
+
+16:00 - Course closing
