@@ -23,7 +23,7 @@ Morning session materials:
 Afternoon session materials:  
 
 4.5. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1051005/mod_resource/content/1/044_Tidygraph.mp4)  
-4.6. [Twitter network data tutorial](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html)  
+4.6. [Twitter network data tutorial](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html) -- [[Direct dowload link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/047_TwitterNetwork)  
 
 
 15:00 - [Q&A in Zoom, Discussion of solution to Exercise 3](https://ethz.zoom.us/s/95606086212)  
