@@ -24,4 +24,4 @@ Afternoon session materials:
 
 15:00 - [Q&A in Zoom](https://ethz.zoom.us/s/95606086212)  
 
-[Exercise 1 start: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise)
+[Exercise 1 start: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/018_FOIExercise/GDP_FOI.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/018_FOIExercise)
