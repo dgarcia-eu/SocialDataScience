@@ -22,7 +22,7 @@ Morning session materials:
 
 Afternoon session materials:  
 3.5. [The Semantic Differential](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/039_SemanticDifferential/SemanticDifferential.html)  
-3.6. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1048472/mod_resource/content/1/34_SentimentTutorialR.mp4)  
+3.6. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/035_UnsupervisedToolsR) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/035_UnsupervisedToolsR) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1048472/mod_resource/content/1/34_SentimentTutorialR.mp4)  
   
 
 
