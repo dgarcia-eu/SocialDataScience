@@ -19,8 +19,8 @@ Morning session materials:
 
 Afternoon session materials:  
 1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/015_RCrashCourse/RCrashCourse.html) -- [[R crash course github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/015_RCrashCourse) -- [[Direct dowload link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/015_RCrashCourse) --  [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1046310/mod_resource/content/1/14_RCrashCourse.mp4)  
-1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/016_WDI/WDI.html)  
-1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/017_gtrendsR/gtrendsR.html)  
+1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/016_WDI/WDI.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/016_WDI) -- [[Direct dowload link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/016_WDI)  
+1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/017_gtrendsR/gtrendsR.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/017_gtrendsR) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/1_Introduction/017_gtrendsR)  
 
 15:00 - [Q&A in Zoom](https://ethz.zoom.us/s/95606086212)  
 
