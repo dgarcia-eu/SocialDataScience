@@ -24,4 +24,4 @@ Afternoon session materials:
 
 15:00 - [Q&A in Zoom, discussion of solution to Exercise 1](https://ethz.zoom.us/s/95606086212)  
 
-[Exercise 2 start: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter)
+[Exercise 2 start: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html) -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter)
