@@ -21,8 +21,8 @@ Morning session materials:
 
 Afternoon session materials:  
 
-5.5. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests)   
-5.6. [Network analysis in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/057_Tidygraph2/tidygraph2.html)  -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1054258/mod_resource/content/1/057_Tidygraph2.mp4)  
+5.5. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests) -- [[Tutorial Github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/056_PermutationTests) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/056_PermutationTests)   
+5.6. [Network analysis in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/057_Tidygraph2/tidygraph2.html) -- [[Tutorial github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/057_Tidygraph2) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/057_Tidygraph2) -- [**[Video]**](https://moodle-app2.let.ethz.ch/pluginfile.php/1054258/mod_resource/content/1/057_Tidygraph2.mp4)  
 
 
 15:00 - [Q&A in Zoom, Discussion of solution to Exercise 4](https://ethz.zoom.us/s/95606086212)  
