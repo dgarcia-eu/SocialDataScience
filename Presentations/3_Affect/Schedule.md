@@ -28,5 +28,5 @@ Afternoon session materials:
 
 15:00 - [Q&A in Zoom, Discussion of solution to Exercise 2](https://ethz.zoom.us/s/95606086212)  
 
-[Exercise 3 start: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
+[Exercise 3 start: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise github folder]](https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation) -- [[Direct download link]](https://downgit.github.io/#/home?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
 
