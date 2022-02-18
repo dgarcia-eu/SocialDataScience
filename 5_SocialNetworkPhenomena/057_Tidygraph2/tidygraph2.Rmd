@@ -121,7 +121,7 @@ As other functions, you can calculate the Q-modularity of the network with respe
 ```{r }
 starwars %>% 
   activate(nodes) %>% 
-  mutate(modularity = graph_modularity(group=community)) %>% 
+  mutate(modularity = graph_modularity(group=as.factor(community))) %>% 
   pull(modularity) %>% 
   head(1)
 ```
@@ -130,7 +130,7 @@ You can calculate the Q-modularity for any partition of the nodes. For example, 
 ```{r }
 starwars %>% 
   activate(nodes) %>% 
-  mutate(modularity = graph_modularity(group=side)) %>% 
+  mutate(modularity = graph_modularity(group=as.factor(side))) %>% 
   pull(modularity) %>% 
   head(1)
 ```
