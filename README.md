@@ -65,4 +65,4 @@ The course is organized as a block course in five days with several topics each.
 ## Where to access materials
 
 - Handouts, codes, and data can be found on the [Github repository of the course](https://github.com/dgarcia-eu/SocialDataScience).
-- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=19372) to get get information about evaluation criteria for the course and to participate in online quizzes.
+- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=19372) to get information about evaluation criteria for the course and to participate in online quizzes.
