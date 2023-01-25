@@ -1,6 +1,6 @@
 # Social Data Science
 
-[David Garcia](http://dgarcia.eu), 2022
+[David Garcia](http://dgarcia.eu), 2023
 
 Welcome to the online materials for Social Data Science.
 
@@ -10,11 +10,11 @@ This course focuses both on the fundamentals and applications of Data Science in
 
 ## Who am I?
 
-I am the Professor for Computational Behavioral and Social Sciences the Graz University of Technology, where I lead the [Computational Social Science Lab](http://www.csslab.at). I am also group leader at the Medical University of Vienna and at the Complexity Science Hub Vienna and I am external lecturer at ETH Zurich, where I teach this course every February. My background is Computer Science but I worked my whole career with psychologists, sociologists and physicists to learn new ways to understand human behavior. I got my PhD from ETH Zurich in 2012 and a habilitation in 2018, starting to work as full professor TU Graz in 2020. To learn more about my research, check my [publications](https://dgarcia.eu/full-publication-list/).
+I am the Professor for Social and Behavioral Data Science at the University of Konstanz. You can find more about my research group here: http://dgarcia.eu. My background is Computer Science but I worked my whole career with psychologists, sociologists and physicists to learn new ways to understand human behavior. I got my PhD from ETH Zurich in 2012 and a habilitation in 2018, starting to work as full professor TU Graz in 2020 and then at the University of Konstanz in 2022. To learn more about my research, check my [publications](https://dgarcia.eu/full-publication-list/).
 
 ## Course Contents
 
-The course is organized in five blocks with several topics each. Each block has one or more exercises for you to apply what you learned in the block. In exercises, you collect your own data and try to answer Social Data Science questions. The online materials do not contain the solutions to the exercises, but if you are stuck or want to start from an easier point, in the github folder of the exercise you can find a version of the exercise with hints.
+The course is organized as a block course in five days with several topics each. There is an R crash course and four exercises for you to apply what you learned in the block. In exercises, you collect your own data to answer Social Data Science questions. The online materials do not contain the solutions to the exercises, but if you are stuck or want to start from an easier point, in the github folder of the exercise you can find a version of the exercise with hints in the form of parts of the code of the solution.
 
 1. **Introduction to Social Data Science**  
 1.1. [What is Social Data Science?](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/011_IntroductionToSDS/Introduction.html)  
@@ -65,4 +65,4 @@ The course is organized in five blocks with several topics each. Each block has 
 ## Where to access materials
 
 - Handouts, codes, and data can be found on the [Github repository of the course](https://github.com/dgarcia-eu/SocialDataScience).
-- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=16747) to get videos and additional information and to participate in the forums and quizzes.
+- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=19372) to get videos and additional information and to participate in the forums and quizzes.
