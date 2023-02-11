@@ -5,9 +5,8 @@ output: html_document
 ---
 
 In this exercise, we will test the hypothesis of division of impact from Social Impact Theory against data from US congress members on Twitter. This hypothesis states that the extent of social impact exercised by a source on each of the members of a group decreases with the size of the group (the number of targets). On Twitter, this happens when someone tweets to their followers (the group) and they retweet or not (social impact). The hypothesis implies that aggregating the total impact grows with the number of targets, but does so sublinearly, i.e. slower than a straight line.
-
-We will use the official list of US Congress members on Twitter as of 2023, you can find the current list here: https://twitter.com/cspan/lists/members-of-congress/members. We will use a dataset of the latest tweets by these accounts in early February 2023, which you can find here: LINK. It is a static dataset that contains less than 50.000 public tweets posted by elected congress members in their official Twitter accounts and thus contain data that cannot considered private as they posted them as part of their public role.
-This dataset contains all public tweets by each congress member that were between one day and one month old when the data was retrieved, so you can assume that the number of retweets nor the number of followers would change a lot in this time period.
+ 
+We will use the official list of US Congress members on Twitter as of 2023, you can find the current list here: https://twitter.com/cspan/lists/members-of-congress/members. We will use a dataset of the latest tweets by these accounts in early February 2023, which you can find here: https://github.com/dgarcia-eu/SocialDataScience/raw/master/2_SocialDynamics/028_SITTwitter/USCongress-tweets.json.gz . This dataset contains all public tweets by each congress member that were between one day and one month old when the data was retrieved, so you can assume that the number of retweets nor the number of followers would change a lot in this time period.
 
 We will read this json dataset and inspect its content to then measure the number of followers of each user in the dataset. Then we will study tweets by these users to calculate the average number of retweets they receive, as a measure of their social impact. We will fit a regression model of their impact as a function of their number of followers, and test this way if there is a sublinear (but positive) relationship between the size of their audience and the extent of their impact. In the end, we will assess the uncertainty in our estimate of the exponent of this relationship by bootstrapping.
 
@@ -36,6 +35,8 @@ library(dplyr)
 ```
 
 **1.2 Read tweets JSON data**
+
+We will read a dataset in JSON format using the jsonlite library. In the next codes you can find an example how to read this kind of data. If you want to learn more about JSON and jsonlite, [here you can find a tutorial](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html).
 
 The tweets JSON data is compressed in the file USCongress-tweets.json.gz. Use gzfile and readLines to read all its content into one variable and then look at the content of a single line at random in the dataset. How does that look like?
 ```{r readdata}

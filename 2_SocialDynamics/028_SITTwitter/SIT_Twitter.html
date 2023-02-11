@@ -368,14 +368,11 @@ i.e. slower than a straight line.</p>
 <p>We will use the official list of US Congress members on Twitter as of
 2023, you can find the current list here: <a href="https://twitter.com/cspan/lists/members-of-congress/members" class="uri">https://twitter.com/cspan/lists/members-of-congress/members</a>.
 We will use a dataset of the latest tweets by these accounts in early
-February 2023, which you can find here: LINK. It is a static dataset
-that contains less than 50.000 public tweets posted by elected congress
-members in their official Twitter accounts and thus contain data that
-cannot considered private as they posted them as part of their public
-role. This dataset contains all public tweets by each congress member
-that were between one day and one month old when the data was retrieved,
-so you can assume that the number of retweets nor the number of
-followers would change a lot in this time period.</p>
+February 2023, which you can find here: <a href="https://github.com/dgarcia-eu/SocialDataScience/raw/master/2_SocialDynamics/028_SITTwitter/USCongress-tweets.json.gz" class="uri">https://github.com/dgarcia-eu/SocialDataScience/raw/master/2_SocialDynamics/028_SITTwitter/USCongress-tweets.json.gz</a>
+. This dataset contains all public tweets by each congress member that
+were between one day and one month old when the data was retrieved, so
+you can assume that the number of retweets nor the number of followers
+would change a lot in this time period.</p>
 <p>We will read this json dataset and inspect its content to then
 measure the number of followers of each user in the dataset. Then we
 will study tweets by these users to calculate the average number of
@@ -405,11 +402,17 @@ data. Also load the dplyr library, we will use it later.</p>
 library(jsonlite)
 library(dplyr)</code></pre>
 <p><strong>1.2 Read tweets JSON data</strong></p>
+<p>We will read a dataset in JSON format using the jsonlite library. In
+the next codes you can find an example how to read this kind of data. If
+you want to learn more about JSON and jsonlite, <a href="https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html">here
+you can find a tutorial</a>.</p>
 <p>The tweets JSON data is compressed in the file
 USCongress-tweets.json.gz. Use gzfile and readLines to read all its
 content into one variable and then look at the content of a single line
 at random in the dataset. How does that look like?</p>
-<pre class="r"><code>#Your code here</code></pre>
+<pre class="r"><code>lines &lt;- readLines(gzfile(&quot;USCongress-tweets.json.gz&quot;))
+lines[sample(length(lines), 1)]</code></pre>
+<pre><code>## [1] &quot;{\&quot;created_at\&quot;:\&quot;Wed Jan 11 00:08:07 +0000 2023\&quot;,\&quot;id\&quot;:1612964536591470000,\&quot;id_str\&quot;:\&quot;1612964536591466503\&quot;,\&quot;full_text\&quot;:\&quot;Banning TikTok, empowering the Arkansas Dept. of Education to fight back against CRT, the list goes on…it’s only day 1 and @SarahHuckabee is off to a great start! https://t.co/CbkknjmPGF\&quot;,\&quot;truncated\&quot;:false,\&quot;display_text_range\&quot;:[0,162],\&quot;entities\&quot;:{\&quot;hashtags\&quot;:[],\&quot;symbols\&quot;:[],\&quot;user_mentions\&quot;:[{\&quot;screen_name\&quot;:\&quot;SarahHuckabee\&quot;,\&quot;name\&quot;:\&quot;Sarah Huckabee Sanders\&quot;,\&quot;id\&quot;:5509762,\&quot;id_str\&quot;:\&quot;5509762\&quot;,\&quot;indices\&quot;:[123,137]}],\&quot;urls\&quot;:[{\&quot;url\&quot;:\&quot;https://t.co/CbkknjmPGF\&quot;,\&quot;expanded_url\&quot;:\&quot;https://twitter.com/foxnewspolitics/status/1612903186146140161\&quot;,\&quot;display_url\&quot;:\&quot;twitter.com/foxnewspolitic…\&quot;,\&quot;indices\&quot;:[163,186]}],\&quot;media\&quot;:{}},\&quot;source\&quot;:\&quot;&lt;a href=\\\&quot;http://twitter.com/download/iphone\\\&quot; rel=\\\&quot;nofollow\\\&quot;&gt;Twitter for iPhone&lt;/a&gt;\&quot;,\&quot;user\&quot;:{\&quot;id\&quot;:968650362,\&quot;id_str\&quot;:\&quot;968650362\&quot;,\&quot;name\&quot;:\&quot;Tom Cotton\&quot;,\&quot;screen_name\&quot;:\&quot;SenTomCotton\&quot;,\&quot;location\&quot;:\&quot;\&quot;,\&quot;description\&quot;:\&quot;U.S. Senator proudly serving the state of Arkansas.\&quot;,\&quot;url\&quot;:\&quot;http://t.co/gR93LLUqRV\&quot;,\&quot;entities\&quot;:{\&quot;url\&quot;:{\&quot;urls\&quot;:[{\&quot;url\&quot;:\&quot;http://t.co/gR93LLUqRV\&quot;,\&quot;expanded_url\&quot;:\&quot;http://cotton.senate.gov\&quot;,\&quot;display_url\&quot;:\&quot;cotton.senate.gov\&quot;,\&quot;indices\&quot;:[0,22]}]},\&quot;description\&quot;:{\&quot;urls\&quot;:[]}},\&quot;protected\&quot;:false,\&quot;followers_count\&quot;:646108,\&quot;friends_count\&quot;:365,\&quot;listed_count\&quot;:3758,\&quot;created_at\&quot;:\&quot;Sat Nov 24 19:33:10 +0000 2012\&quot;,\&quot;favourites_count\&quot;:140,\&quot;geo_enabled\&quot;:true,\&quot;verified\&quot;:true,\&quot;statuses_count\&quot;:11459,\&quot;contributors_enabled\&quot;:false,\&quot;is_translator\&quot;:false,\&quot;is_translation_enabled\&quot;:true,\&quot;profile_background_color\&quot;:\&quot;022330\&quot;,\&quot;profile_background_image_url\&quot;:\&quot;http://abs.twimg.com/images/themes/theme15/bg.png\&quot;,\&quot;profile_background_image_url_https\&quot;:\&quot;https://abs.twimg.com/images/themes/theme15/bg.png\&quot;,\&quot;profile_background_tile\&quot;:true,\&quot;profile_image_url\&quot;:\&quot;http://pbs.twimg.com/profile_images/568884049058357248/M-VeVL9u_normal.jpeg\&quot;,\&quot;profile_image_url_https\&quot;:\&quot;https://pbs.twimg.com/profile_images/568884049058357248/M-VeVL9u_normal.jpeg\&quot;,\&quot;profile_banner_url\&quot;:\&quot;https://pbs.twimg.com/profile_banners/968650362/1366831169\&quot;,\&quot;profile_link_color\&quot;:\&quot;0084B4\&quot;,\&quot;profile_sidebar_border_color\&quot;:\&quot;FFFFFF\&quot;,\&quot;profile_sidebar_fill_color\&quot;:\&quot;DDEEF6\&quot;,\&quot;profile_text_color\&quot;:\&quot;333333\&quot;,\&quot;profile_use_background_image\&quot;:true,\&quot;has_extended_profile\&quot;:false,\&quot;default_profile\&quot;:false,\&quot;default_profile_image\&quot;:false,\&quot;following\&quot;:false,\&quot;follow_request_sent\&quot;:false,\&quot;notifications\&quot;:false,\&quot;translator_type\&quot;:\&quot;none\&quot;,\&quot;withheld_in_countries\&quot;:[]},\&quot;is_quote_status\&quot;:true,\&quot;retweet_count\&quot;:122,\&quot;favorite_count\&quot;:1197,\&quot;favorited\&quot;:false,\&quot;retweeted\&quot;:false,\&quot;lang\&quot;:\&quot;en\&quot;,\&quot;possibly_sensitive\&quot;:false,\&quot;extended_entities\&quot;:{\&quot;media\&quot;:{}},\&quot;retweeted_status\&quot;:{\&quot;display_text_range\&quot;:{},\&quot;entities\&quot;:{\&quot;hashtags\&quot;:{},\&quot;symbols\&quot;:{},\&quot;user_mentions\&quot;:{},\&quot;urls\&quot;:{},\&quot;media\&quot;:{}},\&quot;extended_entities\&quot;:{\&quot;media\&quot;:{}},\&quot;user\&quot;:{\&quot;entities\&quot;:{\&quot;url\&quot;:{\&quot;urls\&quot;:{}},\&quot;description\&quot;:{\&quot;urls\&quot;:{}}},\&quot;withheld_in_countries\&quot;:{}}},\&quot;quoted_status_id\&quot;:1612903186146140000,\&quot;quoted_status_id_str\&quot;:\&quot;1612903186146140161\&quot;,\&quot;quoted_status_permalink\&quot;:{\&quot;url\&quot;:\&quot;https://t.co/CbkknjmPGF\&quot;,\&quot;expanded\&quot;:\&quot;https://twitter.com/foxnewspolitics/status/1612903186146140161\&quot;,\&quot;display\&quot;:\&quot;twitter.com/foxnewspolitic…\&quot;},\&quot;quoted_status\&quot;:{\&quot;created_at\&quot;:\&quot;Tue Jan 10 20:04:20 +0000 2023\&quot;,\&quot;id\&quot;:1612903186146140000,\&quot;id_str\&quot;:\&quot;1612903186146140161\&quot;,\&quot;full_text\&quot;:\&quot;Sarah Huckabee Sanders bans TikTok on state devices in first move as Arkansas governor https://t.co/mrgDOGPdX1\&quot;,\&quot;truncated\&quot;:false,\&quot;display_text_range\&quot;:[0,110],\&quot;entities\&quot;:{\&quot;hashtags\&quot;:[],\&quot;symbols\&quot;:[],\&quot;user_mentions\&quot;:[],\&quot;urls\&quot;:[{\&quot;url\&quot;:\&quot;https://t.co/mrgDOGPdX1\&quot;,\&quot;expanded_url\&quot;:\&quot;https://fxn.ws/3GU5JTD\&quot;,\&quot;display_url\&quot;:\&quot;fxn.ws/3GU5JTD\&quot;,\&quot;indices\&quot;:[87,110]}],\&quot;media\&quot;:{}},\&quot;extended_entities\&quot;:{\&quot;media\&quot;:{}},\&quot;source\&quot;:\&quot;&lt;a href=\\\&quot;http://www.socialflow.com\\\&quot; rel=\\\&quot;nofollow\\\&quot;&gt;SocialFlow&lt;/a&gt;\&quot;,\&quot;user\&quot;:{\&quot;id\&quot;:16032925,\&quot;id_str\&quot;:\&quot;16032925\&quot;,\&quot;name\&quot;:\&quot;Fox News Politics\&quot;,\&quot;screen_name\&quot;:\&quot;foxnewspolitics\&quot;,\&quot;location\&quot;:\&quot;Washington, D.C.\&quot;,\&quot;description\&quot;:\&quot;Follow us for the latest political news and updates!\&quot;,\&quot;url\&quot;:\&quot;http://t.co/hp4EoFaNoR\&quot;,\&quot;entities\&quot;:{\&quot;url\&quot;:{\&quot;urls\&quot;:[{\&quot;url\&quot;:\&quot;http://t.co/hp4EoFaNoR\&quot;,\&quot;expanded_url\&quot;:\&quot;http://www.foxnews.com/politics\&quot;,\&quot;display_url\&quot;:\&quot;foxnews.com/politics\&quot;,\&quot;indices\&quot;:[0,22]}]},\&quot;description\&quot;:{\&quot;urls\&quot;:[]}},\&quot;protected\&quot;:false,\&quot;followers_count\&quot;:1842364,\&quot;friends_count\&quot;:249,\&quot;listed_count\&quot;:7829,\&quot;created_at\&quot;:\&quot;Thu Aug 28 21:16:38 +0000 2008\&quot;,\&quot;favourites_count\&quot;:6,\&quot;geo_enabled\&quot;:false,\&quot;verified\&quot;:true,\&quot;statuses_count\&quot;:52719,\&quot;contributors_enabled\&quot;:false,\&quot;is_translator\&quot;:false,\&quot;is_translation_enabled\&quot;:false,\&quot;profile_background_color\&quot;:\&quot;FCFCFC\&quot;,\&quot;profile_background_image_url\&quot;:\&quot;http://abs.twimg.com/images/themes/theme1/bg.png\&quot;,\&quot;profile_background_image_url_https\&quot;:\&quot;https://abs.twimg.com/images/themes/theme1/bg.png\&quot;,\&quot;profile_background_tile\&quot;:false,\&quot;profile_image_url\&quot;:\&quot;http://pbs.twimg.com/profile_images/1028984467447341059/yha4NYkt_normal.jpg\&quot;,\&quot;profile_image_url_https\&quot;:\&quot;https://pbs.twimg.com/profile_images/1028984467447341059/yha4NYkt_normal.jpg\&quot;,\&quot;profile_link_color\&quot;:\&quot;294461\&quot;,\&quot;profile_sidebar_border_color\&quot;:\&quot;FFFFFF\&quot;,\&quot;profile_sidebar_fill_color\&quot;:\&quot;F4F4F4\&quot;,\&quot;profile_text_color\&quot;:\&quot;000000\&quot;,\&quot;profile_use_background_image\&quot;:false,\&quot;has_extended_profile\&quot;:false,\&quot;default_profile\&quot;:false,\&quot;default_profile_image\&quot;:false,\&quot;following\&quot;:false,\&quot;follow_request_sent\&quot;:false,\&quot;notifications\&quot;:false,\&quot;translator_type\&quot;:\&quot;none\&quot;,\&quot;withheld_in_countries\&quot;:[]},\&quot;is_quote_status\&quot;:false,\&quot;retweet_count\&quot;:19,\&quot;favorite_count\&quot;:167,\&quot;favorited\&quot;:false,\&quot;retweeted\&quot;:false,\&quot;possibly_sensitive\&quot;:false,\&quot;lang\&quot;:\&quot;en\&quot;}}&quot;</code></pre>
 <p><strong>1.3 Convert one line from JSON</strong></p>
 <p>Choose another random line in the variable with the file lines and
 parse its JSON content with the fromJSON file. Then look at its content
@@ -417,7 +420,16 @@ and look for four pieces of information we are interested on: the id of
 the user that posted the tweet, the number of followers of that user,
 the number of retweets of the tweet, and if it was a retweet, the id of
 the retweeted tweet.</p>
-<pre class="r"><code>#Your code here</code></pre>
+<pre class="r"><code>tweet &lt;- fromJSON(lines[sample(length(lines), 1)])
+
+tweet$user$id_str</code></pre>
+<pre><code>## [1] &quot;1343597700542038017&quot;</code></pre>
+<pre class="r"><code>tweet$user$followers_count</code></pre>
+<pre><code>## [1] 100749</code></pre>
+<pre class="r"><code>tweet$retweet_count</code></pre>
+<pre><code>## [1] 21</code></pre>
+<pre class="r"><code>tweet$retweeted_status$id_str</code></pre>
+<pre><code>## NULL</code></pre>
 <p><strong>1.4 Convert the full dataset from JSON</strong></p>
 <p>Now you can use what you did in the chunk above to go over each tweet
 in the dataset. Write a loop that goes over each line and checks if the
@@ -425,7 +437,13 @@ tweet of that line is a retweet or not. If it is not a retweet, then
 save the id of the user that posted it, its number of followers, and the
 number of retweets of the tweet. Then save this information into a data
 frame with three columns, one for each variable.</p>
-<pre class="r"><code>#Your code here</code></pre>
+<pre class="r"><code>#Your code here
+for (line in lines)
+{
+  tweet &lt;- fromJSON(line)
+  #Your code here
+}
+#Your code here</code></pre>
 </div>
 <div id="calculate-relevant-variables" class="section level1">
 <h1>2. Calculate relevant variables</h1>
