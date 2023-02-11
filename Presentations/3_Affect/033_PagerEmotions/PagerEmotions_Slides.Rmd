@@ -2,7 +2,7 @@
 title: "Emotions in pagers after 9/11"
 subtitle: "A Social Data Science story"
 author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
-date: "Social Data Science, 2021"
+date: "Social Data Science"
 output:
   xaringan::moon_reader:
     lib_dir: libs 
@@ -79,4 +79,4 @@ Even if you clean bots from your data, you should always take a good look at you
 
 ---
 .center[![:scale 78%](https://i.imgflip.com/z1sfe.jpg)]
----
+

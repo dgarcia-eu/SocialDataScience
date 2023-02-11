@@ -2,7 +2,7 @@
 title: "What to learn from baby names"
 subtitle: "A Social Data Science Story"
 author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
-date: "Social Data Science, 2021"
+date: "Social Data Science"
 output:
   xaringan::moon_reader:
     lib_dir: libs 
