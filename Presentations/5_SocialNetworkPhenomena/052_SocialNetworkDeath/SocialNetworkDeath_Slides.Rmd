@@ -1,0 +1,178 @@
+---
+title: "The death of online social networks"
+author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+date: "Social Data Science"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+layout: true
+
+<div class="my-footer"><span>David Garcia - Foundations of Computational Social Systems</span></div> 
+---
+
+
+# So Far
+
+- Computational Social Systems and new social data
+
+- Search behavior and future orientation
+
+- The Simmel effect and Social Impact Theory
+
+- Text and Sentiment Analysis: Theoretical basis and methods
+
+- Introduction to social networks
+  - Terminology, adjacency matrices, measures
+  - Centrality: degree, closeness, betweenness
+  - The friendship paradox
+
+---
+
+# The rise and fall of Friendster
+
+**Friendster** went from 80 Million active users to disappear completely.
+
+```{r echo=F, fig.width=15, fig.height=5.5, message=FALSE, cache=T}
+library(gtrendsR)
+library(ggplot2)
+library(dplyr)
+trend <- gtrends("Friendster", time="all")
+trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
+ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Friendster") + theme_bw() + theme(text = element_text(size = 30))
+```
+
+---
+
+# The rise and fall of MySpace
+
+**MySpace** went from being valued more than 12 Billion USD in 2008 to be bought by [Justin Timberlake for 35 Million USD](https://www.theguardian.com/technology/2011/jun/30/myspace-internet). 
+
+```{r echo=F, fig.width=15, fig.height=5.5, message=FALSE, cache=T}
+trend <- gtrends("MySpace", time="all")
+trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
+ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("MySpace") + theme_bw()+ theme(text = element_text(size = 30))
+```
+
+---
+
+# The rise and fall of Orkut
+
+**Orkut** was the first attempt of Google to launch an online social network. It was very popular in some countries but lost users to Facebook and it was eventually taken offline.
+
+```{r echo=F, fig.width=15, fig.height=5.5, message=FALSE, cache=T}
+trend <- gtrends("Orkut", time="all")
+trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
+ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Orkut") + theme_bw()+ theme(text = element_text(size = 30))
+```
+
+---
+
+# The Google+ spike
+
+**Google+** was the much promoted second attempt at social networks by Google. Despite the initial hype, it lost users pretty quickly and it has been discontinued too.
+
+```{r echo=F, fig.width=15, fig.height=5.5, message=FALSE, cache=T}
+trend <- gtrends("Google Plus", time="all")
+trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
+ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Google+") + theme_bw()+ theme(text = element_text(size = 30))
+```
+
+---
+
+
+# Predicting Facebook's collapse
+
+.pull-left[![](facebookQueries.png)]
+.pull-right[
+
+- Cannarella and Spechler, 2014
+
+- Epidemics model applied to the decay of online social networks
+
+- Google trends to measure the number of active Facebook users
+
+- Extrapolation predicted that Facebook would lose 80% of its users by 2017
+
+- What happened?
+]
+
+---
+
+# Stretching the Google trends method
+
+Data scientists at Facebook [replied to the Arxiv paper](https://www.facebook.com/notes/mike-develin/debunking-princeton/10151947421191849/) showing the problem with measuring social network use levels using Google Trends data. Applying the same methodology, Facebook researchers reached the conclusion that Princeton would lose 80% of its students by 2021:
+
+![](princetonQueries.png)
+
+---
+
+# Stretching the Google trends method
+
+You can even apply it to air and come to the conclusion that the atmosphere will run out of air by 2060:
+
+![](airQueries.png)
+
+---
+
+# Google trends for Facebook
+
+The Facebook examples show that decrease in search volume is a decrease in information searching about the social network, not a decrease in access and use.
+
+```{r echo=F, fig.width=15, fig.height=5.5, message=FALSE, cache=T}
+trend <- gtrends("Facebook", time="all")
+trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
+ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Facebook") + theme_bw()+ theme(text = element_text(size = 30))
+```
+
+---
+
+# Google trends for Twitter
+
+Twitter is not living a second growth, in fact it's growth has been rather slow to stagnant for a few years, even though it appears it is gaining users after Trump's permanent suspension.
+
+```{r echo=F, fig.width=15, fig.height=5.5, message=FALSE, cache=T}
+trend <- gtrends("Twitter", time="all")
+trend$interest_over_time %>% filter(hits!="<1") %>% mutate(hits=as.numeric(hits)) -> interest
+ggplot(interest, aes(x=date, y=hits)) + geom_line() + ylab("Google search volume") + xlab("Date") + ggtitle("Twitter") + theme_bw()+ theme(text = element_text(size = 30))
+```
+
+---
+
+# Temporal validity issues
+
+</br>
+A more accurate way to measure activity in a social network is Bruno Ribeiro's [approach using Alexa data](https://dl.acm.org/doi/abs/10.1145/2566486.2567984), but Alexa focuses on website visits without considering access through mobile apps. 
+
+
+</br>
+Measurement is always an important issue in Computational Social Systems, and just because a paper used a measurement method few years ago, it does not mean it is valid today.
+
+</br>
+> **Take home message:** Your measures based on today's digital traces might not work on tomorrow's

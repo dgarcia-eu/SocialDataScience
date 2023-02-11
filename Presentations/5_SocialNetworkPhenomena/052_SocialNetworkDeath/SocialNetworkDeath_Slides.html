@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Centrality in Social Networks</title>
+    <title>The death of online social networks</title>
     <meta charset="utf-8" />
     <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Centrality in Social Networks
+# The death of online social networks
 ]
 .author[
 ### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
@@ -32,93 +32,121 @@ class: center, middle, inverse, title-slide
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt; 
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Foundations of Computational Social Systems&lt;/span&gt;&lt;/div&gt; 
+---
+
+
+# So Far
+
+- Computational Social Systems and new social data
+
+- Search behavior and future orientation
+
+- The Simmel effect and Social Impact Theory
+
+- Text and Sentiment Analysis: Theoretical basis and methods
+
+- Introduction to social networks
+  - Terminology, adjacency matrices, measures
+  - Centrality: degree, closeness, betweenness
+  - The friendship paradox
+
+---
+
+# The rise and fall of Friendster
+
+**Friendster** went from 80 Million active users to disappear completely.
+
+![](SocialNetworkDeath_Slides_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+---
+
+# The rise and fall of MySpace
+
+**MySpace** went from being valued more than 12 Billion USD in 2008 to be bought by [Justin Timberlake for 35 Million USD](https://www.theguardian.com/technology/2011/jun/30/myspace-internet). 
+
+![](SocialNetworkDeath_Slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+# The rise and fall of Orkut
+
+**Orkut** was the first attempt of Google to launch an online social network. It was very popular in some countries but lost users to Facebook and it was eventually taken offline.
+
+![](SocialNetworkDeath_Slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+# The Google+ spike
+
+**Google+** was the much promoted second attempt at social networks by Google. Despite the initial hype, it lost users pretty quickly and it has been discontinued too.
+
+![](SocialNetworkDeath_Slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 
 
-# The concept of centrality
+# Predicting Facebook's collapse
 
-Social network analysis can be used to measure the importance of a person as a function of the social structure of a community or organization. 
+.pull-left[![](facebookQueries.png)]
+.pull-right[
 
-In social networks, **centrality** measures this kind of structural importance of the node of a person. There are various centrality measures that stem from different kinds of structural importance. 
+- Cannarella and Spechler, 2014
 
-In this topic you will learn about three centrality measures:
+- Epidemics model applied to the decay of online social networks
 
-1. Degree centrality
-2. Betweenness centrality
-3. Closeness centrality
+- Google trends to measure the number of active Facebook users
 
-+ Coreness centrality (in social resilience topic)
+- Extrapolation predicted that Facebook would lose 80% of its users by 2017
 
----
-
-# Degree centrality
-
-&lt;div style="float:right"&gt;
-&lt;img src="networkDirected.png" alt="Network example." width=400px/&gt;  
-&lt;/div&gt;
-
-A node's **degree centrality** measures the number of links connected to it. 
-
-In directed networks:
-- **in-degree** `\(d_{in}(i)\)` that is the number of edges ending in `\(i\)`, i.e. `\((j,i)\)` 
-- **out-degree** `\(d_{out}(i)\)` that is the number of edges leaving from `\(i\)`, i.e. `\((i,j)\)`
-
-`\(d_{in}(c) = 1\)` and `\(d_{out}(c) = 2\)`
-
-If importance on Twitter is the number of followers of an account, in-degree centrality is a way to measure it.
----
-
-# Betweenness Centrality
-
-&lt;div style="float:right"&gt;
-&lt;img src="undirNetworkBtw.png" alt="Network betweenness example." width=400px/&gt;  
-&lt;/div&gt;
-
-Sometimes the importance of a person is quantified as the number of shortest paths between two other people that pass through this person. In this case, **betweenness** centrality measures importance:
-`$$C_B(i) = \sum_{s \neq i, t \neq i} n_i(s,t)$$`
-
-Where `\(n_i(s,t)\)` is the number of shortest paths from `\(s\)` to `\(t\)` that pass through `\(i\)`.
-
-Example: `\(C_B(b) = 16\)`
+- What happened?
+]
 
 ---
 
-# Closeness Centrality
+# Stretching the Google trends method
 
-&lt;div style="float:right"&gt;
-&lt;img src="undirNetworkBtw.png" alt="Network betweenness example." width=400px/&gt;  
-&lt;/div&gt;
+Data scientists at Facebook [replied to the Arxiv paper](https://www.facebook.com/notes/mike-develin/debunking-princeton/10151947421191849/) showing the problem with measuring social network use levels using Google Trends data. Applying the same methodology, Facebook researchers reached the conclusion that Princeton would lose 80% of its students by 2021:
 
-Sometimes the most important people in a group are the ones that can reach everyone with the least effort. In these cases, **closeness** centrality measures importance as:
-`$$C_C(i) = \frac{n-1}{\sum_{j\neq i} dist(i,j)}$$`
-Where `\(dist(i, j)\)` is the distance from `\(i\)` to `\(j\)` and `\(n\)` is the number of nodes in the network. 
-
-Example: `\(C_C(d)=0.75\)`
+![](princetonQueries.png)
 
 ---
 
+# Stretching the Google trends method
 
-## Neocortex Size as a limit to degree centrality
+You can even apply it to air and come to the conclusion that the atmosphere will run out of air by 2060:
 
-![:scale 47%](Neocortex.png)![:scale 53%](Dunbar.png)
-
----
-
-
-## Dunbar's number in Online Social Networks
-
-.center[![:scale 90%](DunbarB.jpeg)]
-
+![](airQueries.png)
 
 ---
 
+# Google trends for Facebook
 
-# Dunbar's number on Twitter
+The Facebook examples show that decrease in search volume is a decrease in information searching about the social network, not a decrease in access and use.
 
-.center[![:scale 52%](Dunbar2.png)]
+![](SocialNetworkDeath_Slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
+---
+
+# Google trends for Twitter
+
+Twitter is not living a second growth, in fact it's growth has been rather slow to stagnant for a few years, even though it appears it is gaining users after Trump's permanent suspension.
+
+![](SocialNetworkDeath_Slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+# Temporal validity issues
+
+&lt;/br&gt;
+A more accurate way to measure activity in a social network is Bruno Ribeiro's [approach using Alexa data](https://dl.acm.org/doi/abs/10.1145/2566486.2567984), but Alexa focuses on website visits without considering access through mobile apps. 
+
+
+&lt;/br&gt;
+Measurement is always an important issue in Computational Social Systems, and just because a paper used a measurement method few years ago, it does not mean it is valid today.
+
+&lt;/br&gt;
+&gt; **Take home message:** Your measures based on today's digital traces might not work on tomorrow's
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

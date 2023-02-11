@@ -4,6 +4,7 @@
     <title>Structural Holes and Communities</title>
     <meta charset="utf-8" />
     <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/footer.css" type="text/css" />
   </head>
@@ -11,9 +12,15 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Structural Holes and Communities
+]
+.author[
 ### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
-### Social Data Science, 2021
+]
+.date[
+### Social Data Science
+]
 
 ---
 
@@ -120,6 +127,8 @@ Small world networks have the following three properties:
 
 # The Bacon number
 .center[![:scale 85%](bacon.png)]
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -169,6 +178,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
