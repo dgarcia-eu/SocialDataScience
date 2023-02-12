@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Food Polarization on Social Media</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia   ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Food Polarization on Social Media
+]
+.author[
+### David Garcia <br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+
+## Approaches to Polarization
+
+**Opinion polarization:** Two opinion groups with extreme distance in between
+[Political Polarization in the American Public. Fiorina &amp; Abrams. Annual Review of Political Science (2008)](https://www.annualreviews.org/doi/10.1146/annurev.polisci.11.053106.153836)
+
+**Relational polarization:** Social structure divided into two groups with high internal connectivity and low inter-group connectivity  
+[A sign of the times? Weak and strong polarization in the U.S. Congress, 1973–2016. Neal. Social Networks (2020)](https://www.sciencedirect.com/science/article/abs/pii/S0378873317303039)
+
+**Affective polarization:** Extreme support within groups and hate across groups
+[The Origins and Consequences of Affective Polarization in the United States. Iyengar et al. Annual Review of Political Science (2019)](https://www.annualreviews.org/doi/abs/10.1146/annurev-polisci-051117-073034)
+
+
+**Political sectarianism:** Integration into an interdisciplinary theory  
+[Political sectarianism in America. Finkel et al. Science (2020)](https://science.sciencemag.org/content/370/6516/533)
+
+---
+
+# Hyperpolarization
+
+&lt;img src="figures/Hyperpolarization.png" width="950" style="display: block; margin: auto;" /&gt;
+&lt;center&gt;
+*Hyperpolarization: Opinion extremeness x Opinion constraint*
+
+---
+
+## Weighted Balance Theory and hyperpolarization
+
+.pull-left[
+- Cognitive balance +   
+ evaluative extremeness
+
+- ABM show emergence of hyperpolarization
+
+- **Predicts that issues become aligned and polarized over time**
+]
+
+.pull-right[
+&lt;img src="figures/WBT.png" width="450" /&gt;
+]
+
+[A Weighted Balance Model of Opinion Hyperpolarization. Schweighofer, Schweitzer &amp; Garcia, JASSS (2020)](http://jasss.soc.surrey.ac.uk/23/3/5.html)
+
+---
+class:center
+
+## Hyperpolarization in Weighted Balance Theory
+
+
+&lt;iframe width="800" height="500" src="https://www.youtube.com/embed/y4rvLMgqwXQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href=https://doi.org/10.1016/S0140-6736(19)32526-7&gt; EATLancet vs yes2meat: the digital backlash to the planetary health diet. David Garcia, Victor Galaz, Stefan Daume. The Lancet (2019)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
+---
+
+## Emergence of polarization in food habits
+
+.pull-left[
+- US Food demand Survey
+
+- Self-reported meat consumption intention over time
+
+- Color: party alignment
+
+- Initial increasing trend for both parties
+
+- Start of alignment with party from 2016: eating meat becomes a political issue
+
+]
+.pull-right[
+
+&lt;img src="figures/Trends.png" width="450" /&gt;
+]
+
+---
+
+## A case of food polarization: the EAT-Lancet report
+
+&lt;img src="figures/eatlancet.png" width="1000" /&gt;
+
+*The first full scientific review of what constitutes a healthy diet from a sustainable food system, and which actions can support and speed up food system transformation. (eatforum.org)*
+
+---
+
+## \#yes2meat: the digital backlash to EAT-Lancet
+
+&lt;img src="figures/yes2meat.png" width="1100" /&gt;
+---
+
+## Twitter data on EAT-Lancet and yes2meat
+
+- List of original tweets that contain “EAT-Lancet” (or similar) or “yes2meat” from Twitter search interface (Dec 2018 - April 2019):
+  - 7281 EAT-Lancet tweets, 8586 yessmeat tweets, 347 tweets mention both
+- Tweet metadata from Twitter API: retweets, links, user profile (4278 users)
+  - User profiles and self-description from Twitter API
+  - Retrieved list of accounts they follow: 4.9 Million follower links
+  - Retrieved timeline up to last (approx)  3200 tweets. 8 Million tweets in total
+  - Analyzed automated behavior with botometer (4,203 users)
+  - 2,376 unique links shared from tweets
+
+- Manual sentiment annotations (Pro EAT-Lancet, Against EAT-Lancet, neutral, irrelevant) for varous samples (top URLS and samples from each community)
+---
+
+class:center
+
+## Time series and URL shares
+
+&lt;img src="figures/TS-eatlancet.png" width="950" /&gt;
+
+---
+
+## Social network analysis
+.pull-left[
+&lt;img src="figures/Net.png" width="500" /&gt;
+]
+.pull-right[
+
+]
+---
+
+## Social network analysis
+.pull-left[
+&lt;img src="figures/Net.png" width="500" /&gt;
+]
+.pull-right[
+&lt;img src="figures/WCblue.png" width="950" /&gt;
+]
+---
+
+## Social network analysis
+.pull-left[
+&lt;img src="figures/Net.png" width="500" /&gt;
+]
+.pull-right[
+&lt;img src="figures/WCred.png" width="950" /&gt;
+]
+---
+
+## Social network analysis
+.pull-left[
+&lt;img src="figures/Net.png" width="500" /&gt;
+]
+.pull-right[
+&lt;img src="figures/WCgreen.png" width="490" /&gt;
+]
+---
+
+## Social network analysis
+.pull-left[
+&lt;img src="figures/Net.png" width="500" /&gt;
+]
+.pull-right[
+&lt;img src="figures/WCyellow.png" width="950" /&gt;
+]
+---
+
+## Retweet changes in yellow community
+.pull-left[
+&lt;img src="figures/Net.png" width="500" /&gt;
+]
+.pull-right[
+&lt;img src="figures/YellowRT.png" width="450" /&gt;
+]
+---
+
+## EAT-Lancet and yes2meat: Summary
+
+- We mapped the digital backlash to EAT-Lancet on Twitter through #yes2meat
+- Birth of #yes2meat preceded the release of the report
+- Four communities: pro-EAT-Lancet, skeptic, pro-yes2meat, and vegan
+- Information flow from pro-yes2meat to skeptic community after report
+- Diet polarization: liberal vegan vs conservative keto
+
+Example of emerging polarization towards hyperpolarization as in Weighted Balance Theory
+
+**EATLancet vs yes2meat: the digital backlash to the planetary health diet.**  
+David Garcia, Victor Galaz, Stefan Daume. The Lancet 394(10215) (2019)
+https://doi.org/10.1016/S0140-6736(19)32526-7
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

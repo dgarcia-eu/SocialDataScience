@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Measuring large-scale emotion aggregates through social media text</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia   ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Measuring large-scale emotion aggregates through social media text
+]
+.author[
+### David Garcia <br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Computational Social Science Lab - TU Graz + CSH Vienna&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+&lt;img src="figures/earth.svg" width="950" style="display: block; margin: auto;" /&gt;
+
+---
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href=https://arxiv.org/abs/2107.13236&gt; Social media emotion macroscopes reflect emotional experiences in society at large. David Garcia, Max Pellert, Jana Lasser, Hannah Metzler. https://arxiv.org/abs/2107.13236 (2021)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
+---
+
+# Social Media Macroscopes of Emotions
+
+.pull-left[
+&lt;img src="figures/Macy.jpg" width="1100" /&gt;
+&lt;font size="5"&gt;
+&lt;a href="https://science.sciencemag.org/content/333/6051/1878/"&gt; Diurnal and seasonal mood vary with work, sleep, and daylength across diverse cultures. Golder &amp; Macy, Science (2011) &lt;/a&gt;
+&lt;/font&gt;
+]
+
+.pull-right[
+&lt;img src="figures/hedonometer.png" width="1100" /&gt;
+
+&lt;font size="5"&gt;
+&lt;a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0026752"&gt; Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. Dodds et al. PLoS One (2011) &lt;/a&gt;
+&lt;/font&gt;
+]
+
+---
+
+# Social Media Macroscopes of Emotions
+.pull-left[
+&lt;img src="figures/Paris.png" width="500" /&gt;
+&lt;font size="5"&gt; &lt;a href="https://journals.sagepub.com/doi/full/10.1177/0956797619831964"&gt; Collective Emotions and Social Resilience in the Digital Traces After a Terrorist Attack. Garcia &amp; Rime, Psychological Science (2019) &lt;/a&gt;
+&lt;/font&gt;
+]
+
+.pull-right[
+&lt;img src="figures/COVID.png" width="1100" /&gt;
+
+&lt;font size="5"&gt;
+&lt;a href="https://psyarxiv.com/qejxv"&gt; Collective Emotions During the COVID-19 Outbreak. Metzler et al. Psyarxiv (2021) &lt;/a&gt;
+&lt;/font&gt;
+]
+
+---
+
+## Limits of Social Media Data to Study Emotion
+
+&lt;img src="figures/Jaidka.png" width="1100" /&gt;
+
+[Estimating geographic subjective well-being from Twitter: A comparison of dictionary and data-driven language methods. Jaidka et al. PNAS (2020)](https://www.pnas.org/content/117/19/10165.short)
+
+---
+
+# Validating a UK emotion macroscope
+
+&lt;img src="figures/MacroTest2.svg" width="975" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+# Validating a UK emotion macroscope
+1. Two years of weekly representative UK emotion survey by YouGov
+2. UK Twitter data for the same period: 1.5 Billion tweets (without RT)
+3. Text analysis: dictionary-based (LIWC) and supervised (RoBERTa)
+4. Gender detection of twitter users based on profile
+5. Gender-rescaled time series of emotional expression
+
+&lt;img src="figures/Data.svg" width="900" style="display: block; margin: auto;" /&gt;
+
+---
+# Sadness in Twitter and YouGov
+
+&lt;img src="figures/Sadness.svg" width="1200" style="display: block; margin: auto;" /&gt;
+
+- Similar results with dictionary-based and supervised (r~0.65)
+---
+
+# Anxiety in Twitter and YouGov
+
+&lt;img src="figures/Anxiety.svg" width="1200" style="display: block; margin: auto;" /&gt;
+
+- Better results with dictionary-based method and with gender rescaling
+- Results robust to autocorrelation and heteroskedasticity
+
+---
+
+# Joy in Twitter and YouGov
+
+&lt;img src="figures/Joy.svg" width="1200" style="display: block; margin: auto;" /&gt;
+
+- Substantially better results with supervised method than dictionary-based
+---
+
+# Exploring 12 emotional states
+.pull-left[
+
+- Time series of number sentences like "I am [emotion]" on Twitter
+
+- Weak correlations happen for infrequent emotions in text
+
+- Comparison: US weekly pre-election polls correlate with 0.66
+
+- Arxiv preprint at https://arxiv.org/abs/2107.13236
+
+]
+
+.pull-right[
+&lt;img src="figures/Figure2.svg" width="700" /&gt;
+]
+
+---
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+Validating daily social media macroscopes of emotions. Max Pellert, Hannah Metzler, Michael Matzenberger, David Garcia. Working Paper (2021)&lt;/span&gt;&lt;/div&gt;
+
+---
+
+## Study 2: Validating an Austrian macroscope
+
+.pull-left[
+
+- 20-day emotion survey in derstandard.at (N=268,128)
+- Daily frequency, 3-day windows
+
+- Text from Der Standard forum (N=452,013)
+
+- Austrian tweets (N=515,187) filtered as UK macroscope
+
+- Compared dictionary-based (LIWC) and supervised model (GS)
+
+]
+.pull-right[
+&lt;img src="figures/DS1.svg" width="800" /&gt;
+]
+
+---
+
+## Twitter sentiment and Der Standard survey
+
+&lt;img src="figures/DS2.svg" width="1000" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Correlations with new COVID-19 cases
+
+.pull-left[
+&lt;img src="figures/DS31.svg" width="600" /&gt;
+]
+.pull-right[
+&lt;img src="figures/DS32.svg" width="600" /&gt;
+]
+
+- Do correlations attenuate due to additional social media measurement error?
+- Survey emotion correlation with new cases as strong as Twitter sentiment
+- Errors sources might be different: Need for conceptual validations
+
+---
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href=https://arxiv.org/abs/2107.13236&gt; Social media emotion macroscopes reflect emotional experiences in society at large. David Garcia, Max Pellert, Jana Lasser, Hannah Metzler. https://arxiv.org/abs/2107.13236 (2021)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
+---
+
+# Social Sensing Emotions
+
+&lt;img src="figures/socialsensing.svg" width="725" style="display: block; margin: auto;" /&gt;
+
+3rd person and tweet emotion: +74.85% in anx. +62.12% in sad +34.97% in pos.
+
+---
+
+&lt;img src="figures/summary1.svg" width="1050" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="figures/summary2.svg" width="1050" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="figures/summary3.svg" width="1050" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+# To learn more
+
+&lt;img src="figures/WHR.png" width="1050" style="display: block; margin: auto;" /&gt;
+
+[**Using social media data to capture emotions before and during COVID-19.** Hannah Metzler, Max Pellert, David Garcia. World Happiness Report (2022)](https://worldhappiness.report/ed/2022/using-social-media-data-to-capture-emotions-before-and-during-covid-19/)  
+[**Social media emotion macroscopes reflect emotional experiences in society at large.** David Garcia, Max Pellert, Jana Lasser, Hannah Metzler. Arxiv preprint (2021)](https://arxiv.org/abs/2107.13236)  
+[**Validating daily social media macroscopes of emotions.** Max Pellert, Hannah Metzler, Michael Matzenberger, David Garcia. Scientific Reports (2022)](https://www.nature.com/articles/s41598-022-14579-y)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

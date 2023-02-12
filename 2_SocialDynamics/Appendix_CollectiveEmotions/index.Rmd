@@ -1,0 +1,246 @@
+---
+title: "Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack"
+author: "David Garcia <br> *ETH Zurich*"
+date: "Social Data Science"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs 
+    css: [xaringan-themer.css, "libs/footer.css"]
+    nature:
+      beforeInit: ["libs/perc.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This block contains the theme configuration for the CSS lab slides style
+library(xaringanthemer)
+library(showtext)
+style_mono_accent(
+  base_color = "#5c5c5c",
+  text_font_size = "1.5rem",
+  header_font_google = google_font("Arial"),
+  text_font_google   = google_font("Arial", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+layout: true
+<div class="my-footer"><span>David Garcia - Computational Social Science Lab - TU Graz + CSH Vienna</span></div> 
+
+---
+
+## The Social Function of Collective Emotions
+
+<center>
+```{r, echo=FALSE, out.width=900}
+knitr::include_graphics("figures/ColectiveEmotions.png")
+```
+</center>
+
+- **Theory of collective effervescence (Durkheim, 1912):**
+Shared emotions generate social identity, reinforce shared beliefs, and lead to higher solidarity
+
+- **Collective emotions (von Scheve and Salmela, 2014):**   
+Emotional states shared by a large amount of people at the same time
+
+
+---
+
+background-size: 40%
+background-image: url(figures/Trauma.png)
+background-position: 90% 60%
+
+
+## Emotional Responses to Collective Traumas
+
+**How do societies respond to traumatic events?**  
+**Is there a social function of collective emotions?**
+.pull-left[
+- Emotional synchronization: Experience of simultaneous negative emotions
+
+- Collective emotion lasts longer than individual emotional reactions
+
+- Individuals that participate in the collective emotions show higher levels of long-term solidarity ]
+
+---
+
+## Twitter Digital Traces after a Terrorist Attack
+
+Focus on Paris Attacks of of Nov 13, 2015  
+Removed bots, news media, and organizations. Final sample of 62,114 users  
+Retrieved historical timeline of users. Total of more than 27 Million tweets (no RT)
+<center>
+```{r, echo=FALSE, out.width=900}
+knitr::include_graphics("figures/ParisCase.png")
+```
+
+---
+
+## Linguistic Signals
+
+**Linguistic Inquiry and Word Count, LIWC (pronounced “Luke”)**  
+- Simple word matching method  
+- Validated by psychologists, years of implementation (2001-2015)  
+- Multiple classes, calibrated for netspeak and neologisms
+
+
+.pull-left[
+```{r, echo=FALSE, out.width=1000}
+knitr::include_graphics("figures/LIWC.png")
+```
+]
+.pull-right[
+**LIWC classes in this study:**  
+Positive Affect, Negative Affect  
+Anxiety, Sadness, Anger  
+Social processes  
+Prosocial terms (Frimer, et. al, 2014)  
+French values (libert*, egalit*, fraternit*)
+]
+
+---
+
+## Agent-Based Modelling of Collective Emotions
+
+.pull-left[
+```{r, echo=FALSE, out.width=1000}
+knitr::include_graphics("figures/Framework.png")
+```
+
+ABM calibrated with experiment data
+- φ: post-shock AR(1) term
+- φ~0: subcritical response
+- φ>0: critical, collective behavior
+]
+
+.pull-right[
+```{r, echo=FALSE, out.width=450}
+knitr::include_graphics("figures/Simulation.png")
+```
+<center>
+Mean valence in simulations
+</center>
+]
+
+<div style="font-size:14pt">
+[The Dynamics of Emotions in Online Interaction. Garcia et al. Royal Society Open Science 3 (2016)](https://royalsocietypublishing.org/doi/full/10.1098/rsos.160059)
+
+---
+
+## Evidence of Collective Emotions
+<center>
+```{r, echo=FALSE, out.width=750}
+knitr::include_graphics("figures/TS.png")
+```
+</center>
+
+---
+
+### Collective Dynamics of Social Resilience Indicators
+<center>
+```{r, echo=FALSE, out.width=720}
+knitr::include_graphics("figures/TS2.png")
+```
+</center>
+
+
+---
+
+# Emotional Synchronization Effect
+
+.pull-left[
+<center>
+```{r, echo=FALSE, out.width=470}
+knitr::include_graphics("figures/TS3.png")
+```
+</center>
+]
+
+.pull-right[
+Division of users into two groups based on their emotional expression two weeks after the attacks
+
+Frequency of social process terms:
+- Very similar before the attacks
+- Strong difference after the attacks
+- Difference lasts for months
+
+Similar effect for prosocial terms and shared values terms
+]
+
+---
+
+class:center
+
+## The Vienna terrorist attack of Nov 2nd, 2020
+
+<img width=900 src="https://pbs.twimg.com/media/EmAWjtSXUAEd2Wx?format=jpg&name=large">
+
+---
+
+class:center
+
+## Austrian Emotions on Twitter
+
+```{r, echo=FALSE, out.width=900}
+knitr::include_graphics("figures/Dashboard1.png")
+```
+
+<div style="font-size:15pt"> 
+Paper: [Dashboard of Sentiment in Austrian Social Media During COVID-19. Frontiers in Big Data. Pellert et al. (2020)](https://www.frontiersin.org/articles/10.3389/fdata.2020.00032/full)  
+Dashboard: https://mpellert.at/covid19_monitor_austria
+---
+
+class:center
+
+## Austrian Emotions in Der Standard Tickers
+
+```{r, echo=FALSE, out.width=900}
+knitr::include_graphics("figures/Dashboard2.png")
+```
+<div style="font-size:15pt"> 
+Paper: [Dashboard of Sentiment in Austrian Social Media During COVID-19. Frontiers in Big Data. Pellert et al. (2020)](https://www.frontiersin.org/articles/10.3389/fdata.2020.00032/full)  
+Dashboard: https://mpellert.at/covid19_monitor_austria
+
+---
+
+background-size: 50%
+background-image: url(figures/OpenDoor.gif)
+background-position: 90% 60%
+
+
+## Shelter offerings on Twitter
+
+.pull-left[
+<img width=1000 src="https://pbs.twimg.com/media/EmAbRICXYAA0WqB?format=png&name=large">
+- Number of tweets with hashtags similar to [#Schwedenplatztür](https://twitter.com/hashtag/schwedenplatzt%C3%BCr)
+- More in Twitte thread:
+https://twitter.com/dgarcia_eu/status/1324097342551842817
+]
+
+---
+
+# Conclusions
+
+- Terrorist attacks trigger collective emotions that we can observe online
+
+- Terms related to social resilience increase after collective emotions
+
+- Individuals expressing stronger emotions used on average more terms related to social processes, prosocial behavior, and shared values
+
+- Collective emotions are not just venting, they can keep us together
+
+- Negative effects: inter-group conflict, intolerance, short-term orientation...
+
+- Online interactive visualization at: http://dgarcia.eu/ParisAttacks.html
+
+[**Collective Emotions and Social Resilience in the Digital Traces After a Terrorist Attack. David Garcia Bernard Rimé. Psychological Science (2019)**](https://journals.sagepub.com/doi/full/10.1177/0956797619831964)
+
