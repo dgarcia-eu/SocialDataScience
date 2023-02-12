@@ -71,6 +71,6 @@ The course is organized as a block course in five days with several topics each.
 1. [Measuring Gender Divides with Facebook Data](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/Appendix_FacebookGenderDivide/index.html)
 2. [Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/Appendix_CollectiveEmotions/index.html)
 3. [Measuring large-scale emotion aggregates through social media text](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/Appendix_EmotionMacroscopes/index.html)
-4. [Complex Privacy in Online Social Networks](https://dgarcia-eu.github.io/SocialDataScience/SDS_Github/4_SNA/Appendix_ShadowProfiles/index.html)
+4. [Complex Privacy in Online Social Networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/Appendix_ShadowProfiles/index.html)
 5. [Food Polarization on Social Media](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/Appendix_FoodPolarization/index.html)
 
