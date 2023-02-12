@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Complex Privacy in Online Social Networks</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia   ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Complex Privacy in Online Social Networks
+]
+.author[
+### David Garcia <br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href=https://advances.sciencemag.org/content/3/8/e1701172.full&gt; Leaking privacy and shadow profiles in online social networks. David Garcia. Science Advances (2017) &lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
+---
+
+# Privacy Risks in Online Platforms
+
+- A risk for informational self-determination:
+Private traits and attributes are predictable from digital records of human behavior [(Kosinski et al, 2013)](https://www.pnas.org/content/110/15/5802)
+
+- Facebook Likes predict personality, sexual orientation, etc
+
+Individualized solutions to privacy risks
+&gt; ”Providing users with transparency and control over their information, leading to an individually controlled balance between the promises and perils of the Digital Age.” *(Kosinski et al, 2013)*
+
+&lt;center&gt;
+**Can we guarantee individual control over online privacy?**
+
+---
+background-size: 20%
+background-image: url(figures/puzzle.jpg)
+background-position: 98% 70%
+
+## The Problem of Shadow Profiles
+
+**Facebook Shadow Profile:**  
+A file that Facebook keeps on you containing data it pulls from looking at the information that your friends voluntarily provide. [*(Digital Trends, 2013)*](https://www.digitaltrends.com/social-media/what-exactly-is-a-facebook-shadow-profile/)
+
+- 2011: Europe-vs-Facebook files complaint on shadow profiles
+
+- 2013: Bug reveals private information of 6 million users
+
+- Some users notice their shadow profiles with mobile numbers
+
+- Apr 2014: 1B users of Facebook for mobile share  contact lists
+
+- Aug 2016: Whatsapp and Facebook share information
+
+Not a problem unique to Facebook: also in Twitter, Google, Amazon...
+
+---
+
+## Auditing Shadow Profiles
+
+**Shadow profile hypothesis:**
+The data shared by the users of an online platform predicts of personal information of non-users
+
+&lt;img src="figures/shadowidea.png" width="600" style="display: block; margin: auto;" /&gt;
+**Approach:** historical audit to evaluate how social networking sites could have predicted information of individuals who were not users yet 
+&lt;div style="font-size:15pt"&gt; 
+[One Plus One Makes Three (for Social Networks). Emöke-Ágnes Horvát, Michael Hanselmann, Fred Hamprecht, Katharina Zweig. Plos ONE (2012)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034740)
+
+---
+
+## Study 1: Friendster
+.pull-left[
+&lt;img src="figures/FriendsterLogo.png" width="550" style="display: block; margin: auto;" /&gt;
+- Internet Archive dataset
+- Full track of publicly available data
+- Focus on first 20 million users
+- 3M profiles with public information
+- Profiles contain gender, marital status, and relationship interests
+]
+.pull-right[
+&lt;img src="figures/FriendsterNet.png" width="450" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Assortativity of sensitive features in Friendster
+
+&lt;img src="figures/Radars.png" width="870" style="display: block; margin: auto;" /&gt;
+---
+
+## Unsupervised prediction based on friends
+
+&lt;br&gt;
+
+&lt;img src="figures/ROCs.png" width="1100" style="display: block; margin: auto;" /&gt;
+
+---
+### Predictive power grows with network size and disclosure
+
+&lt;img src="figures/preds.png" width="1100" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;
+Performance of predictor of personal information of non-users grows with: 
+network size (t), disclosure tendencies of users (ρ), and their product (t∗ρ)
+
+---
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href=https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-018-0130-3&gt; Collective aspects of privacy in the Twitter social network. David Garcia, Mansi Goel, Amod Agrawal, Ponnurangam Kumaraguru. EPJ Data Science (2018)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
+---
+
+## Study 2: Location in Twitter
+
+.pull-left[
+&lt;img src="figures/TwitterLocation.png" width="1100" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+- Random sample of 1,017 users
+  - excl. bots, mass media
+- Ego network of reply links
+  - 68,447 alters
+- Timelines: 157M tweets
+- Location from profile text + Google Maps API
+- Tweet metadata to identify users sharing contact lists
+]
+
+---
+
+## Twitter shadow profile test
+
+&lt;img src="figures/TwitterProblem.png" width="1100" style="display: block; margin: auto;" /&gt;
+
+- Data represents a bidirectional social network
+- Joined date of users shows network growth
+- Tweet metadata contains posting app: disclosing users are only those who post at least once from Twitter mobile apps (shared contact lists)
+- Predicting location of users who didn't join yet based on disclosing friends already on Twitter
+---
+
+## Location prediction and heterogeneity
+
+&lt;img src="figures/alters.png" width="1000" style="display: block; margin: auto;" /&gt;
+
+- Location prediction of non-users greatly outperforms null model
+- Individuals with more alters sharing contact lists in Twitter have lower error
+
+---
+
+## Shadow profiles after leaving a social network
+
+&lt;img src="figures/Shadow2.png" width="800" style="display: block; margin: auto;" /&gt;
+&lt;div style="font-size:15pt"&gt; 
+[**Privacy beyond the individual.** David Garcia. Nature Human Behavior (2019)](https://www.nature.com/articles/s41562-018-0513-2)
+
+[**Information flow reveals prediction limits in online social activity.** James Bagrow, Xipei Liu &amp; Lewis Mitchell. Nature Human Behavior (2019)](https://doi.org/10.1038/s41562-018-0510-5)
+
+---
+
+### Complex privacy: Online privacy as a collective phenomenon
+
+.pull-left[
+- The decision of individuals to share data is mediated by the decisions of others
+- Privacy externalities of the contract between a user and a platform
+- Complex problems, collective solutions: International data cooperatives
+]
+.pull-right[
+&lt;img src="figures/wired.png" width="500" style="display: block; margin: auto;" /&gt;
+]
+&lt;div style="font-size:16pt"&gt; 
+[**Online privacy as a collective phenomenon.** E. Sarigol, D. Garcia, F. Schweitzer. Second ACM Conference on Online Social Networks (COSN) (2014)](https://dl.acm.org/doi/10.1145/2660460.2660470)  
+[**Leaking privacy and shadow profiles in online social networks.** D. Garcia, Science Advances, 3 (8) e1701172 (2017)](https://advances.sciencemag.org/content/3/8/e1701172.full)  
+[**Collective Aspects of Privacy in the Twitter Social Network.** D. Garcia, M. Goel, A. Agrawal, P. Kumaraguru, EPJ Data Science, 7(3) (2018)](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-018-0130-3)  
+[**Privacy beyond the individual.** D. Garcia. Nature Human Behavior (2019)](https://www.nature.com/articles/s41562-018-0513-2)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
