@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Measuring Gender Divides with Facebook Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia   ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Measuring Gender Divides with Facebook Data
+]
+.author[
+### David Garcia <br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science&lt;/span&gt;&lt;/div&gt; 
+
+---
+class:center
+
+# How can social media affect our society?
+
+.pull-left[
+Opportunities and benefits
+
+&lt;img src="figures/FBmap.png" width="950" /&gt;
+]
+--
+.pull-right[
+Risks and problems
+
+&lt;img src="figures/zuck.png" width="950" /&gt;
+]
+---
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href=http://www.pnas.org/content/early/2018/06/12/1717781115&gt; Analyzing gender inequality through large-scale Facebook advertising data. David Garcia et al. Proceedings of the National Academy of Sciences (2018)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
+---
+
+
+# Inequality and gender in social media
+
+- The Internet as the Great Potential Equalizer (Hargittai &amp; Hsieh 2013): 
+  - Providing opportunities and  information access to everyone?
+
+- "Unequal distribution of Internet access might exacerbate socioeconomic inequalities."
+&lt;div style="text-align: right"&gt; &lt;em property="italic"&gt; World Bank: World Development Report 2016: Digital Dividends &lt;/em&gt;&lt;/div&gt;
+
+- "One in five female Internet users live in countries where harassment and abuse of women online is extremely unlikely to be punished." 
+&lt;div style="text-align: right"&gt; &lt;em property="italic"&gt; The Web and Rising Global Inequality.  World Wide Web Foundation, 2015 &lt;/em&gt;&lt;/div&gt;
+
+---
+
+## The Facebook Ads API in demographics
+
+&lt;img src="figures/FBAPI.png" width="800" style="display: block; margin: auto;" /&gt;
+- Programmatic Interface to automate marketing campaign in Facebook
+- Audiences can be tuned by demographic attributes (gender, age, income...) or interests (sports, political parties, entertainment...) 
+- Accessible for everyone with a Facebook account - audience metrics for everyone
+- Used in demographics and development research (e.g. [Zagheni, Weber, &amp; Gummadi, 2017;](https://doi.org/10.1111/padr.12102) [Mejova et al., 2018;](https://dl.acm.org/doi/abs/10.1145/3209811.3212698) [Fatehkia, Kashyap, &amp; Weber, 2018](https://www.sciencedirect.com/science/article/pii/S0305750X18300883))
+- Python package to use it: https://github.com/maraujo/pySocialWatcher
+
+---
+
+## The Facebook Gender Divide 
+
+`\(R_{g,c}\)`: Ratio of Facebook active users of gender *g* over all inhabitants of gender *g* in country *c*
+
+&lt;center&gt;
+
+Facebook Gender Divide for country c:  
+&lt;br&gt;$$FGD_c= log\left(\frac{R_{Male,c}}{R_{Female_c}}\right)$$&lt;/center&gt;
+
+Validation with survey data:
+- FGD (217 countries)
+- Global Web Index (34 countries)
+- Pew Internet research (19 countries)
+
+---
+
+# Validation against international surveys
+
+.pull-left[
+&lt;img src="figures/FGDval1.png" width="500" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="figures/FGDval2.png" width="550" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+## The Facebook Gender Divide across countries
+
+&lt;img src="figures/FGDmap.jpg" width="1100" style="display: block; margin: auto;" /&gt;
+
+---
+# Basics: Linear Regression
+
+Regression models formalize an equation in which one numeric variable `\(Y\)` is formulated as a linear function of other variables `\(X_1\)`, `\(X_2\)`, `\(X_3\)`, etc: &lt;center&gt;
+`\(Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 ... + \epsilon\)`
+&lt;/center&gt;
+- `\(Y\)` is called the dependent variable
+
+- `\(X_1\)`, `\(X_2\)`, `\(X_3\)`, etc are called independent variables
+
+- `\(a\)` is the intercept, which measures the expected value of `\(Y\)` that does not depend on the dependent variables
+
+- `\(b_1\)`, `\(b_2\)`, `\(b_3\)`, etc are called the slopes or the coefficients
+
+- `\(\epsilon\)` are the residuals, the errors of the equation in the data
+
+
+---
+
+## The FGD and offline gender inequality
+
+&lt;img src="figures/FGDreg.jpg" width="1100" style="display: block; margin: auto;" /&gt;
+- Regression of FGD rank on WEF gender indices and controls
+- Most explanatory variable: Education Gender Equality
+---
+
+
+## The FGD and changes in gender inequality
+
+.pull-left[
+&lt;img src="figures/FGDdelta.png" width="550" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+- Changes in FGD and WEF gender equality indicators (2015-2016)
+- FGD in 2015 improves prediction of changes in economic gender equality
+- The reverse case is not present
+- Not observable for other equality indices
+
+On average, countries with high FGD rank 
+in 2015 (low FGD) tended to approach economic gender equality in 2016
+]
+---
+
+## Positive externalities in Facebook use
+
+.pull-left[
+&lt;img src="figures/Externalities.jpg" width="450" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="figures/Scaling.png" width="550" style="display: block; margin: auto;" /&gt;
+]
+- Superlinear scaling of activity ratio versus total penetration
+- Positive externality: value of using Facebook grows with other people using it
+
+---
+
+## The Facebook Gender Divide: Summary
+
+- Measure of gender divide with FB data comparable to surveys
+- This measure captures offline gender equality indices across countries
+- Temporal correlation between FGD and changes in economic gender eq.
+- Superlinear scaling of FB activity with penetration: positive externality
+
+Social media might also work as a *digital provide*. Is Facebook helping women to find employment in countries with high gender inequality?
+
+---
+
+# To learn more
+
+
+&lt;img src="figures/PNAS.png" width="1100" style="display: block; margin: auto;" /&gt;
+
+[**Analyzing gender inequality through large-scale Facebook advertising data.** David Garcia et al. Proceedings of the National Academy of Sciences (2018)](http://www.pnas.org/content/early/2018/06/12/1717781115)
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
