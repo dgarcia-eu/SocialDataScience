@@ -1,0 +1,181 @@
+---
+title: "Twitter social networks of Swiss politicians"
+author: "David Garcia"
+output: html_document
+---
+
+You can find the markdown files and data for this exercise in the corresponding [Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/058_PoliticianAssortativity).
+
+## Tasks:
+
+1. Load the timeline data of Twitter user accounts of Swiss politicians
+
+2. Build social network of retweets
+
+3. Calculate assortativity
+
+4. Permutation tests
+
+5. Community detection
+
+# 1. Load the timeline data of Twitter user accounts of Swiss politicians
+
+First load the packages we will use in this exercise: dplyr, tidygraph, jsonlite, and ggraph.
+```{r, message=FALSE}
+#Your code here
+```
+
+Download the file SwissPoliticians.csv and read it as a csv in R. Take into account that separators are tabs. Change the screen names of accounts to lower case and add a column with a sequential id from 1 to the number of politicians.
+
+```{r}
+#Your code here
+```
+
+Read the politician tweets file taking into account that it is compressed. Print a random line and its content read as JSON. Check Exercise 2 (SIT on Twitter) if you need an example of how to do this.
+
+```{r}
+lines <- readLines(gzfile("SwissPoliticians-tweets.json.gz"))
+#Your code here
+```
+
+Iterate over all the lines you read from the file, interpreting each one as a JSON object with the data of a tweet. For each tweet that is a retweet, save the screen name of the user who tweeted it and the screen name of the user who made the tweet being retweeted. Save these two in a data frame with two columns.
+
+```{r}
+#Your code here
+for (line in lines)
+{
+  tweet <- fromJSON(line)
+  if (!is.null(tweet$retweeted_status$id_str))
+  {
+   #Your code here
+  } 
+}
+#Your code here
+```
+
+
+As a last step, filter the data frame to remove cases in which a politician was retweeting themselves. How many tweets did you have in the dataset before and after this filter?
+
+```{r}
+#Your code here
+```
+
+# 2. Build social network of retweets
+
+Using inner_join, merge the tweets data frame with the politicians data frame such that each row also contains the information of the politician who wrote the tweet. After this, each tweet should be in one row including also the id of the user that posted it and the political party they belong to.
+
+```{r}
+mergedf1 <- inner_join(tweetsdf, poldf, by=c("userName"="screenName"))
+names(mergedf1) <- c("userName", "RTuserName", "userParty", "userid")
+```
+
+Similarly as above, use inner_join to merge the result of the previous chunk with the politicians data frame, but now to match by the screen name of the politician being retweeted. After this, the resulting data frame should contain the id and the party of both the politician retweeting and being retweeted.
+
+```{r}
+mergedf2 <- inner_join(mergedf1, poldf, by=c("RTuserName"="screenName"))
+names(mergedf2) <- c("userName", "RTuserName", "userParty", "userid", "RTparty", "RTuserid")
+```
+
+Build the vertices and edges data frames for the network. The vertices data frame only needs to contain the id of each politician, their screen name (as a column called "name"), and the party they belong to. The edges dataframe needs the id of the user being retweeted as "from" and the id of the user retweeting as "to". This way edges mark information flow. Use group_by to aggregate the multiple instances of these pairs such that the weight of edges is the number of times a user retweeted another.
+
+```{r}
+poldf %>% select(id=id, name=screenName, party) -> vertices
+mergedf2 %>% select(from=RTuserid, to=userid) %>% group_by(from, to) %>% summarize(weight=n()) -> edges
+```
+
+Now do the corresponding call to tbl_graph to build the graph as an **undirected** graph, using the column id of nodes as identifier (node_key).
+```{r}
+#Your code here
+```
+
+Show a simple visualization of the graph with the FR layout algorithm. Does it look like a social network?
+```{r }
+#Your code here
+```
+
+# 3. Calculate assortativity
+
+Use the graph_assortativity function to calculate the assortativity with respect to party labels. How high is the value?
+```{r }
+graph %>% 
+  mutate(assort=graph_assortativity(party)) %>% 
+  pull(assort)  %>% 
+  head(1)
+```
+
+
+To see if the assortativity value fits your expectations, use ggraph to plot the network coloring each node according to the political party label of the politician. Does the pattern of colors fit the value of assortativity?
+```{r }
+#Your code here
+```
+
+# 4. Permutation tests
+
+The above result looks assortative, but how can we test if it could have happened at random and not because of party identity? Here were are going to test it with a permutation test.
+
+First, let's run a permutation. Perform the same assortativity calculation as above but permuting the party labels of nodes. You can do this very efficiently by using the sample() function when you call the graph_assortativity() function.
+```{r }
+#Your code here
+```
+
+Is the value much closer to zero?
+Repeat the calculation with 1000 permutations and plot the histogram of the resulting values. Add a line with the value of the assortativity without permutation. Is it far or close to the permuted values?
+```{r }
+#Your code here
+N <- 1000
+permassort <- NULL
+for (i in seq(1,N))
+{
+  #Your code here
+  permassort <- c(permassort, res)
+}
+
+#Your code here
+```
+
+To be sure, let's calculate a p-value for the null hypothesis that the assortativity is zero and the alternative hypothesis that it is positive (what we expected):
+
+```{r }
+#Your code here
+```
+
+After looking at the above results, do you think it is likely that the assortativity we found in the data was produced by chance?
+
+# 5. Community detection
+
+Let's test if Twitter communities match political affiliations. Remove nodes with degree zero in the network and run the Louvain community detection algorithm. Visualize the result coloring nodes by community labels (cast the label to a character so you have distinct colors).
+
+```{r }
+#Your code here
+```
+
+Run the graph_modularity function with the above community labels. Is it high enough to think that the network has a community structure?
+
+```{r }
+#Your code here
+```
+
+Repeat but using the party labels (you might have to cast to factor) instead of the communities detected with Louvain. Is it higher or lower? How far is this modularity from the maximal one found with Louvain?
+```{r }
+graph %>% 
+  mutate(modularity = graph_modularity(as.factor(party))) %>% 
+  pull(modularity) %>% 
+  head(1)
+```
+
+Finally, to understand which parties are represented in each community, build a data frame for nodes with two columns: one with the party label and another one with the community label. Use the table() function to print a contingency table. Can you guess which party or parties compose each community?
+```{r }
+#Your code here
+
+table(nodesdf$party, nodesdf$community)
+```
+
+
+# To learn more:
+
+- How well can you predict the party of a politician from its neighbors in the network? Here you can use the rule of predicting the party as the majority party among its neighbors and evaluate accuracy of this approach.
+- What would be the results if we use the network of replies? Do you expect assortativity and modularity to be higher or lower?
+- If you retrieved data of follower links, you can repeat the above analysis for undirected following relationships. Do you expect a higher or lower assortativity?
+
+
+
