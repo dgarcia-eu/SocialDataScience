@@ -129,12 +129,14 @@ The code below uses a similar approach as what you can find in the [unsupervised
 ```{r }
 library(tidytext)
 library(dplyr)
+library(textdata)
 
 texts <- df$Tweet[testids]
 textdf <- tibble(text=texts, anger=df$anger[testids], ID=df$ID[testids])
 
 textdf %>% 
   unnest_tokens(word, text) -> wordsdf
+
 
 wordsdf %>% 
   inner_join(get_sentiments("nrc")) %>%
