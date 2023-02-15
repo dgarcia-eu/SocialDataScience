@@ -38,27 +38,6 @@ layout: true
 
 ---
 
-# So Far
-
-- Introduction to Computational Social Systems
-- Search behavior
-  - Google trends for FOI, flu trends
-- Social trends
-  - The Simmel effect, baby name trends
-- Social impact theory
-  - Application to social media influence
-
-
-- Text analysis
-  - Principles of measurement of emotions
-  - Unsupervised sentiment analysis
-
-
-- After this: tutorial on how to run unsupervised sentiment analysis in R
-- Next week: solution of Division of Impact exercise (deadline 1.12.2021)
-
----
-
 ### Psycholinguistics: How individuals use and adopt language
 
 .center[![:scale 60%](Communication.jpg)]   
