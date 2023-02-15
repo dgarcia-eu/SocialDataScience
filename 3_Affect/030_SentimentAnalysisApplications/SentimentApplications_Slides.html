@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Sentiment Analysis Applications</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Sentiment Analysis Applications
+]
+.author[
+### David Garcia <br><br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Foundations of Computational Social Systems&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# Applications of sentiment analysis
+
+&lt;/br&gt;
+## 1. Example applications to art and design
+
+## 2. Applications in the digital humanities
+
+## 3. Applications in business and finance
+
+---
+
+# London eye
+.center[![:scale 55%](LondonEye.png)] 
+- London Eye showing sentiment in Tweets during the 2012 Olympics
+- The output of SentiStrength was converted to the color over the ferris wheel
+
+---
+
+# Automated album covers
+.center[![:scale 55%](Beatles.jpg)] 
+- Visualization of emotions in the titles of songs of an album
+- Word classification combining ANEW and SentiStrength
+
+---
+
+# Digital humanities: Music lyrics
+
+.center[![:scale 65%](Music.png)] 
+- Application of ANEW lexicon to lyrics of songs since the 1960's
+- Downward trend replicated in several later articles
+
+---
+# Syuzhet: plot sentiment
+.center[![:scale 95%](Book.png)] 
+- Application of MPQA lexicon to the text of novels
+- Used to identify the six patterns of plots theorized by Kurt Vonnegut
+---
+
+# Google books misery
+
+.center[![:scale 68%](History.png)] 
+
+- Literary misery in Google Books: LIWC NA score (Germany example)
+- Literary misery is correlated with economic misery of the previous decade
+
+---
+
+# Business: Sentiment about products
+
+.center[![:scale 60%](2a.png)] 
+
+- Netbase Brand passion indices using Twitter, Facebook, product reviews...
+- Vaguely documented sentiment analysis: rule-based method with lexicon
+
+---
+
+# Twitter mood and the stock market
+
+.center[![:scale 58%](methologieTwitter.png)] 
+
+- MPQA lexicon, also called OpinionFinder, applied to "I feel" tweets + adaptation of POMS (Profile of Mood States)
+- Predicting movements of the Dow Jones Industrial Average (DJIA) using sentiment aggregates from tweets (Bollen et al, 2011)
+
+---
+
+# Trump2Cash
+
+.pull-left[![:scale 90%](Trump2Cash.png)
+- Google NLP API to classify sentiment about companies in Trump's tweets-
+- Trading based on tweets: 59% annualized return (Feb 2017)
+
+]  
+.pull-right[![:scale 100%](Trump2CashPerformance.png)] 
+
+---
+
+![](profit.jpg)
+
+---
+
+# Summary of day 3
+
+- **The Semantic Differential**
+  - Quantifying meanings of symbols through adjective ratings
+  - Dimensionality reduction shows three dimensions:  
+  Evaluation, Potency, and Activation
+
+
+- **Supervised Sentiment Analysis**
+  - Using labelled texts to train a model
+  - Text representation and model selection are important
+  - Evaluation metrics: Precision, Recall, `\(F_1\)`
+
+
+- **Applications of Sentiment Analysis**
+  - Applications to art, digital humanities, and business
+  - Always think whose sentiment you are measuring!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
