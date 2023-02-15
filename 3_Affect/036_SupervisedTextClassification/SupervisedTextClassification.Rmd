@@ -137,11 +137,18 @@ textdf <- tibble(text=texts, anger=df$anger[testids], ID=df$ID[testids])
 textdf %>% 
   unnest_tokens(word, text) -> wordsdf
 
+download.file("http://saifmohammad.com/WebDocs/Lexicons/NRC-Emotion-Lexicon.zip", destfile="NRC-Emotion.zip")
+unzip("NRC-Emotion.zip")
+
+Angerdf <- read.table("NRC-Emotion-Lexicon/OneFilePerEmotion/anger-NRC-Emotion-Lexicon.txt", header=F, sep="\t")
+names(Angerdf) <- c("word","angerWord")
+vdf <- tibble(Angerdf)
+
 
 wordsdf %>% 
-  inner_join(get_sentiments("nrc")) %>%
+  inner_join(vdf) %>%
   group_by(ID) %>%
-  summarize(sent=sum(sentiment=="anger"), n=n()) -> nrcdf
+  summarize(sent=sum(angerWord==1), n=n()) -> nrcdf
 
 nrcdf <- full_join(nrcdf, data.frame(ID=df$ID[testids], trueclass=df$anger[testids]))
 
