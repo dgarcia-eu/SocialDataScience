@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Permutation Tests</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    TU Graz" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Permutation Tests
+]
+.author[
+### David Garcia <br><br> <em>TU Graz</em>
+]
+.date[
+### Foundations of Computational Social Systems
+]
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Foundations of Computational Social Systems&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# Null models
+
+Once we have measured something or got a statistical result from our analysis, we might ask ourselves: What is the probability that this result can appear due to chance alone? 
+
+![](Coins.png)
+
+- If the coin is fair: P(H) = 1/2 and P(HHHHH) = 1/32
+- In the case of getting five heads, how plausible is that the coin is fair?
+
+---
+
+# Permutation tests
+
+- Example: correlation coefficient between two variables `\(X\)` and `\(Y\)`: `\(\rho(X,Y)\)`
+- What is the probability that we could measure a similar or even stronger correlation if `\(X\)` and `\(Y\)` were completely independent?
+- We can answer this questions with a permutation test 
+- A permutation test has four components:
+
+1. A **test statistic**,  e.g. `\(\rho(X,Y)\)`
+2. A **null hypothesis**, which is a statement about the value of our test statistic when "nothing interesting happens". 
+  - It is often denoted as `\(H_0\)` and in this case it would be `\(H_0: \rho(X,Y)=0\)`.
+
+---
+# Permutation tests
+1. A **test statistic**,  e.g. `\(\rho(X,Y)\)`
+2. A **null hypothesis**, which is a statement about the value of our test statistic when "nothing interesting happens". 
+  - It is often denoted as `\(H_0\)` and in this case it would be `\(H_0: \rho(X,Y)=0\)`.
+3. An **alternative hypothesis**, which is another statement about the value of the test statistic that stems from our theory or research question. It is often denoted as `\(H_1\)` and, for example, it could be `\(H_1: \rho(X,Y)&gt;0\)`. 
+  - The alternative hypothesis and the null hypothesis have to be contradictory. Both can't be true at the same time, but both could be false.
+4. A **permutation set** with `\(N\)` random permutations or shuffles of the data. Permutations in this set model a world in which the null hypothesis is true and any measurement different than the one specified in the null hypothesis is due to chance alone.
+
+---
+
+# Permutation tests in R: FOI and GDP
+
+
+.pull-left[
+- Example: correlation between the Future Orientation Index and the GDP per capita of countries
+
+Correlation in this example: 0.6841329
+]
+.pull-right[
+![](Cor1.png)
+]
+---
+
+# Permuted data
+
+.pull-left[
+- If we shuffle one of the columns, the correlation will be close to zero, for example 0.08600673
+
+- Idea: repeat this many times to estimate the chances of having a high correlation even though data was permuted
+]
+.pull-right[
+![](ShufCor.png)
+]
+
+---
+
+
+# Histogram of permutation results
+
+.center[![](Hist2.png)]
+
+The red line shows the original correlation without reshuffling
+
+---
+
+# The p-value of a permutation test
+
+The p-value is a way to summarize the results of a permutation test. 
+
+&gt; **p-value:** Given that the null hypothesis is true, the p-value is the probability that we measure a statistic at least as extreme as the observed result
+
+- **A common misconception is that the p-value measures the probability that the null hypothesis is true**. 
+
+- The p-value measures the plausibility of what we measure under the null hypothesis, which is very different. 
+---
+
+# Calculating a p-value 
+
+- *one-sided p-value*: proportion of permutations with a value of the statistic at least as large as the observed one. 
+- *two-sided p-value*: proportion of permutations with an absolute value of the statistic at least as large as the observed one.
+
+
+We can calculate the one-sided p-value from the permutation test:
+
+```r
+p_value_Cor = (sum(corPerm&gt;=corObserved)+1)/length(corPerm)
+```
+ 
+- We add one to the numerator to ensure we don't say zero
+- The result is "significant" (p&lt;0.05), but careful interpreting that word!
+- How many times to permute: `\(10000\)` times is safe for (p&lt;0.05)
+
+---
+
+# Summary of block 8
+
+- **Social network structures**
+  - Triadic closure
+  - The strength of weak ties
+  - Structural holes and communities
+  - Small worlds
+
+
+- **Assortativity: when nodes have attributes**
+  - Assortativity coefficient
+  - Three processes to generate assortative networks
+
+
+- **Permutation tests**
+  - How plausible is that I get a result as extreme as this purely by chance?
+  - Permuting to simulate a null model
+  - P-values as a way to summarize the result
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
