@@ -21,7 +21,7 @@ library(vader)
 The vader package includes a function called get_vader() that will run the VADER method over a text you give it:
 
 ```{r}
-get_vader("This book is horrible, but I love it.")
+get_vader(":) ")
 ```
 The result is an R vector with named entries:  
 - word_scores: a string that contains an ordered list with the matched scores for each of the words in the text. In the example you can see the negative score for "horrible" and the postive score for "love".

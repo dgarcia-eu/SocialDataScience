@@ -1,0 +1,155 @@
+
+THE NRC VALENCE, AROUSAL, AND DOMINANCE LEXICON aka THE NRC VAD LEXICON 
+-----------------------------------------------------------------------
+
+Version: 1
+http://saifmohammad.com/WebPages/nrc-vad.html
+Contact: Saif M. Mohammad (saif.mohammad@nrc-cnrc.gc.ca)
+
+Words play a central role in language and thought. Several influential factor analysis studies have shown that
+the primary dimensions of word meaning are valence, arousal, and dominance (VAD). 
+- valence is the positive--negative or pleasure--displeasure dimension; 
+- arousal is the excited--calm or active--passive dimension; and 
+- dominance is the powerful--weak or 'have control'--'have no control' dimension.
+
+The NRC Valence, Arousal, and Dominance (VAD) Lexicon includes a list of more than 20,000 English words and
+their valence, arousal, and dominance scores.  For a given word and a dimension (V/A/D), the scores range from
+0 (lowest V/A/D) to 1 (highest V/A/D).  The lexicon with its fine-grained real-valued scores was created by
+manual annotation using best--worst scaling.  The lexicon is markedly larger than any of the existing VAD
+lexicons. We also show that the ratings obtained are substantially more reliable than those in existing
+lexicons. (See associated paper for details.)
+
+Despite some cultural differences, it has been shown that a majority of affective norms are stable across
+languages. Thus we provide versions of the VAD lexicon in over one hundred languages by translating the
+English terms using Google Translate (July 2018).
+
+Applications: The NRC VAD Lexicon has a broad range of applications in Computational Linguistics, Psychology,
+Digital Humanities, Computational Social Sciences, and beyond. Notably it can be used to:
+- study how people use words to convey emotions.
+- study how different genders and personality traits impact how we view the world around us.
+- study how emotions are conveyed through literature, stories, and characters.
+- obtain features for machine learning systems in sentiment, emotion, and other affect-related tasks and 
+  to create emotion-aware word embeddings and emotion-aware sentence representations.
+- evaluate automatic methods of determining V, A, and D (using NRC VAD entries as gold/reference scores).
+- study the interplay between the basic emotion model and the VAD model of emotions.
+- study the role of high VAD words in high emotion intensity sentences, tweets, snippets from literature.
+
+An Interactive Visualization of the NRC VAD Lexicon is available here: 
+http://saifmohammad.com/WebPages/nrc-vad.html#Viz
+
+Companion lexicons -- the NRC Emotion Lexicon and the NRC Emotion Intensity Lexicon are available here:
+http://saifmohammad.com/WebPages/lexicons.html
+
+This study was approved by the NRC Research Ethics Board (NRC-REB) under protocol number 2017-98. REB review
+seeks to ensure that research projects involving humans as participants meet Canadian standards of ethics.
+
+
+PAPER
+-----
+
+Details of the NRC VAD Lexicon are available in this paper:
+
+Obtaining Reliable Human Ratings of Valence, Arousal, and Dominance for 20,000 English Words.  Saif M.
+Mohammad. In Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics,
+Melbourne, Australia, July 2018.
+
+Please cite the paper if you use it or when referring to the lexicon. A copy of the paper is included in this 
+package (VAD-ACL2018.pdf).
+
+
+Also relevant:
+Saif M. Mohammad. Practical and Ethical Considerations in the Effective use of Emotion and Sentiment Lexicons. arXiv preprint arXiv:2011.03492. November 2020. 
+
+
+
+FILES AND FORMAT
+----------------
+
+1. NRC-VAD-Lexicon.txt: This is the main lexicon file with entries for 20,0007 English words. It has four columns
+(separated by tabs):
+- Word: The English word for which V, A, and D scores are provided. The words are listed in alphabetic order.
+- Valence: valence score of the word
+- Arousal: arousal score of the word
+- Dominance: dominance score of the word
+
+2. The directory 'OneFilePerDimension' has the same information as in NRC-VAD-Lexicon.txt, but in multiple files
+-- one for each dimension: 
+- v-scores: Includes valence scores. The words are sorted in decreasing order of valence.
+- a-scores: Includes arousal scores. The words are sorted in decreasing order of arousal.
+- d-scores: Includes dominance scores. The words are sorted in decreasing order of dominance.
+
+3. NRC-VAD-Lexicon-ForVariousLanguages.txt: This files has the same first four columns as the NRC-VAD-Lexicon.txt.  
+Additionally, it has columns pertaining to over 100 languages. Each of these columns
+lists the translations of the English words into the corresponding language. For example, the column
+Japanese-ja contains the Japanese translations of the English words. ('ja' is the ISO-639-1 Code for
+Japanese.) The translations were obtained using Google Translate in July 2018. Occasionally, Google Translate
+fails to provide a translation. In such cases, the file shows "NO TRANSLATION" instead of the translation.
+
+4. The directory 'OneFilePerLanguage' has the same information as in NRC-VAD-Lexicon-ForVariousLanguages.txt,
+but in multiple files -- one for each language.  Each of these files has five columns. The first column is for
+the English words. The second column is the translation of the English words to a different language -- the
+language corresponding to the file name. The third, fourth, and fifth columns are for valence, arousal, and
+dominance scores.  So if one is interested only in the Japanese version of the NRC VAD Lexicon, then they can
+simply use Japanese-ja-NRC-VAD-Lexicon.txt.
+
+5. VAD-ACL2018.pdf: The research paper describing the NRC VAD Lexicon.
+
+You can view the lexicon files using most text editors, Microsoft Excel, etc. You might have to make sure that
+the viewer supports characters from various languages, i.e., set the encoding option in the viewer to UTF-8, etc.
+For example, to view in excel, follow these steps:
+- open excel
+- click on File -> Import
+- select file type as 'Text file' 
+- select the lexicon file to import in the dialog box that opens up
+- select 'File Origin' type as 'Unicode (UTF-8)'
+- click 'Finish'
+
+VAD-ACL2018.pdf will require a suitable pdf reader such as Acrobat or Preview.
+
+
+TERMS OF USE
+------------
+- The lexicons mentioned in this page can be used freely for research purposes.
+- If you use a lexicon, then cite the associated papers.
+- If interested in commercial use of any of these lexicons, send email to the contact. 
+  Use of the lexicons in commercial applications without express consent from NRC is strictly prohibited.
+- If you use a lexicon in a product or application, then please credit the authors and NRC appropriately. 
+- Do not redistribute the data. Direct interested parties to the lexicon's webpage.
+- National Research Council Canada (NRC) disclaims any responsibility for the use of the lexicons listed here 
+  and does not provide technical support. 
+
+FEEDBACK
+-------- 
+We will be happy to hear from you, especially if:
+- you give us feedback regarding these lexicons.
+- you tell us how you have (or plan to) use the lexicons.
+- you are interested in having us analyze your data for sentiment, emotion, and other affectual information.
+- you are interested in a collaborative research project. 
+
+Email Saif M. Mohammad: saif.mohammad@nrc-cnrc.gc.ca
+
+************************************************************
+More Information
+************************************************************
+
+Details of the NRC VAD Lexicon are available in this paper:
+
+Obtaining Reliable Human Ratings of Valence, Arousal, and Dominance for 20,000 English Words.  Saif M.
+Mohammad. In Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics,
+Melbourne, Australia, July 2018.
+
+Please cite the paper if you use it or when referring to the lexicon. A copy of the paper is included in this 
+package (Paper_NRC_VAD_Lexicon.pdf).
+
+Please see the paper:
+Saif M. Mohammad. Practical and Ethical Considerations in the Effective use of Emotion and Sentiment Lexicons. arXiv preprint arXiv:2011.03492. November 2020. 
+For important ethical considerations in the use of the lexicon.
+
+Note that the labels for words are *associations* (and not denotations). As noted in the paper above, they are limited by when the dataset was annotated, by the people that annotated them, historical perceptions, and biases. (See bullets c through h in the paper). It is especially worth noting that identity terms, such as those referring to groups of people may be particularly prone to inappropriate biases. Further, marginalized groups have historically faced more negative perceptions. Thus some terms that are associated with marginalized groups may be marked as having associations with negative emotions by the annotators. For example, group X marked as being associated with negative emotions could imply that they have historically faced negative emotions or that some people have negative associations with group X, or there is some other reason for the negative association. The exact relationship is not listed in the lexicon. In order to avoid misinterpretation and misuse, and as recommended generally in the ethical considerations paper, we have removed entries for a small number of terms (about 25) that are associated with identity groups. For the vast majority of sentiment and emotion analysis requirements this removal will likely have no impact or will be beneficial. 
+
+The list of identity terms used is taken from this list developed in 2019 on an offensive language project (abusive language is often directed at some identity groups):
+https://github.com/hadarishav/Ruddit/blob/main/Dataset/identityterms_group.txt
+Only some of these terms occurred in our lexicon. This is not an exhaustive list; users may choose to filter out additional terms for their particular task. We also welcome requests for removal of additional terms from the list. Simply email us with the term or terms and reason for removal.
+ 
+
+

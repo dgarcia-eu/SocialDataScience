@@ -42,16 +42,15 @@ nrow(users)
 We are going to focus on a random sample of 100 and retrieve their latest 100 tweets with the get_timelines() function:
 
 ```{r }
-
 user_expansions()
 tweet_expansions()
+
 userids <- sample(users$user_id, 100)
 tweets <- get_timelines(userids, n=100)
 
 userdf <- users_data(tweets)
 tweets$user_id <- userdf$id_str
 head(tweets)
-
 ```
 
 Accessing timelines in Twitter has a much higher limit of 900 requests per 15-minute window. This way you can get at most 3200 tweets per user and you have another limit of at most [100000 calls per 24-hour period.](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline)
@@ -74,6 +73,7 @@ And construct the edges by counting reply instances as their weight:
 ```{r }
 names(repliesdf) <- c("from", "to")
 repliesdf %>% 
+  filter(from != to) %>%
   group_by(to, from) %>%
   summarize(weight = n()) -> edgesdf
 head(edgesdf)
