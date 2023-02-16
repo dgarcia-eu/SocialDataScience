@@ -42,24 +42,31 @@ nrow(users)
 We are going to focus on a random sample of 100 and retrieve their latest 100 tweets with the get_timelines() function:
 
 ```{r }
+
+user_expansions()
+tweet_expansions()
 userids <- sample(users$user_id, 100)
 tweets <- get_timelines(userids, n=100)
+
+userdf <- users_data(tweets)
+tweets$user_id <- userdf$id_str
 head(tweets)
+
 ```
 
 Accessing timelines in Twitter has a much higher limit of 900 requests per 15-minute window. This way you can get at most 3200 tweets per user and you have another limit of at most [100000 calls per 24-hour period.](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline)
 
 Tweets that are replies will generate rows in the result with the reply_to_user_id column set to the numeric id of the user being replied to:
 ```{r }
-head(tweets$reply_to_user_id, n=20)
+head(tweets$in_reply_to_user_id_str, n=20)
 ```
 We can extract all reply links in our data by taking this information and filtering for users in our sample:
 ```{r }
 tweets %>% 
-  select(user_id, reply_to_user_id) %>% 
-  filter(!is.na(reply_to_user_id)) %>% 
+  select(user_id, in_reply_to_user_id_str) %>% 
+  filter(!is.na(in_reply_to_user_id_str)) %>% 
   inner_join(data.frame(user_id=userids)) %>%
-  inner_join(data.frame(reply_to_user_id=userids)) -> repliesdf
+  inner_join(data.frame(in_reply_to_user_id_str=userids)) -> repliesdf
 dim(repliesdf)
 ```
 
@@ -86,11 +93,27 @@ If you see many self-loops, that might be due to accounts building threads of re
 You can follow a similar process to build a retweet network. First, we extract entries using the retweet_user_id column:
 
 ```{r }
+
+retweeted_users <- NULL
+for (tweet in tweets$retweeted_status)
+{
+  if (!is.na(tweet))
+  {
+    retweeted_users <- c(retweeted_users, tweet$user$id_str)
+  }
+  else
+  {
+    retweeted_users <- c(retweeted_users, NA)
+  }
+}
+
+tweets$retweeted_user <- retweeted_users
+
 tweets %>% 
-  select(user_id, retweet_user_id) %>% 
-  filter(!is.na(retweet_user_id)) %>% 
+  select(user_id, retweeted_user) %>% 
+  filter(!is.na(retweeted_user)) %>% 
   inner_join(data.frame(user_id=userids)) %>%
-  inner_join(data.frame(retweet_user_id=userids)) -> retweetsdf
+  inner_join(data.frame(retweeted_user=userids)) -> retweetsdf
 dim(retweetsdf)
 ```
 
