@@ -3,7 +3,7 @@
   <head>
     <title>Permutation Tests</title>
     <meta charset="utf-8" />
-    <meta name="author" content="David Garcia    TU Graz" />
+    <meta name="author" content="David Garcia    ETH Zurich" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/footer.css" type="text/css" />
@@ -16,10 +16,10 @@ class: center, middle, inverse, title-slide
 # Permutation Tests
 ]
 .author[
-### David Garcia <br><br> <em>TU Graz</em>
+### David Garcia <br><br> <em>ETH Zurich</em>
 ]
 .date[
-### Foundations of Computational Social Systems
+### Social Data Science
 ]
 
 ---
@@ -130,27 +130,6 @@ p_value_Cor = (sum(corPerm&gt;=corObserved)+1)/length(corPerm)
 - We add one to the numerator to ensure we don't say zero
 - The result is "significant" (p&lt;0.05), but careful interpreting that word!
 - How many times to permute: `\(10000\)` times is safe for (p&lt;0.05)
-
----
-
-# Summary of block 8
-
-- **Social network structures**
-  - Triadic closure
-  - The strength of weak ties
-  - Structural holes and communities
-  - Small worlds
-
-
-- **Assortativity: when nodes have attributes**
-  - Assortativity coefficient
-  - Three processes to generate assortative networks
-
-
-- **Permutation tests**
-  - How plausible is that I get a result as extreme as this purely by chance?
-  - Permuting to simulate a null model
-  - P-values as a way to summarize the result
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
