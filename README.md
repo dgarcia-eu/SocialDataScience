@@ -1,6 +1,6 @@
 # Social Data Science
 
-[David Garcia](http://dgarcia.eu), 2023
+[David Garcia](http://dgarcia.eu), 2024
 
 Welcome to the online materials for Social Data Science.
 
@@ -30,29 +30,29 @@ The course is organized as a block course in five days with several topics each.
 2.1. [Social Impact Theory](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/021_SocialImpactTheory/SIT.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/021_SocialImpactTheory/SIT_Slides.html)  
 2.2. [The Simmel Effect](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/022_SimmelEffect/SimmelEffect.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/022_SimmelEffect/SimmelEffect_Slides.html)  
 2.3. [SDS Story: Baby name trends](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/023_BabyNameTrends/BabyNameTrends.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/023_BabyNameTrends/BabyNameTrends_Slides.html)  
-2.4. [Linear regression](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/024_LinearRegression/LinearRegression.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/024_LinearRegression/LinearRegression_Slides.html)  
-2.5. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/025_Bootstrapping/Bootstrapping.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/025_Bootstrapping)  
-2.6. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/026_dplyr/dplyr.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/026_dplyr)  
-2.7. [The Twitter API in R](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/027_rtweet/rtweet.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/027_rtweet)  
-[Exercise 2: Division of impact on Twitter](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/028_SITTwitter/SIT_Twitter.html) -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/028_SITTwitter)
+2.4. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/026_dplyr/dplyr.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/026_dplyr)  
+2.5. [Linear regression](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/024_LinearRegression/LinearRegression.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/024_LinearRegression/LinearRegression_Slides.html)  
+2.6. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/025_Bootstrapping/Bootstrapping.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/025_Bootstrapping)  
+2.7. [Accessing the Reddit API from R]() -- [[Tutorial files]]()  
+[Exercise 2: Division of impact on Reddit]() -- [[Exercise materials]]()
 	
 3. **Computational Affective Science**  
 3.1. [Measuring emotions](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/031_MeasuringEmotions/Emotions_Slides.html)  
 3.2. [Unsupervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/032_UnsupervisedSentimentAnalysis/UnsupervisedSentimentAnalysis_Slides.html)  
 3.3. [SDS Story: Emotions in pagers after 9/11](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/033_PagerEmotions/PagerEmotions.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/033_PagerEmotions/PagerEmotions_Slides.html)  
-3.4. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis_Slides.html)  
-3.5. [The Semantic Differential](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/039_SemanticDifferential/SemanticDifferential.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/035_SemanticDifferential/SemanticDifferential_Slides.html)  
-3.6. Sentiment Analysis Applications -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/036_SentimentAnalysisApplications/SentimentApplications_Slides.html)  
-3.7. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/035_UnsupervisedToolsR)  
+3.4. [Running unsupervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/035_UnsupervisedToolsR)  
+3.5. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis_Slides.html)  
+3.6. [The Semantic Differential](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/039_SemanticDifferential/SemanticDifferential.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/035_SemanticDifferential/SemanticDifferential_Slides.html)  
+3.7. Sentiment Analysis Applications -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/036_SentimentAnalysisApplications/SentimentApplications_Slides.html)  
 3.8. [Training supervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/036_SupervisedTextClassification/SupervisedTextClassification.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/036_SupervisedTextClassification)  
 [Exercise 3: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html)  -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/3_Affect/037_SentimentEvaluation)  
 
 4. **Social network analysis**  
 4.1. [Introduction to social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/041_SNAIntro/SNAIntro.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/041_SNAIntro/SNAIntro_Slides.html)  
 4.2. [The Friendship paradox](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/042_FriendshipParadox/FriendshipParadox.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/042_FriendshipParadox/FriendshipParadox_Slides.html)  
-4.3. [SDS story: sampling opinions on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/043_TwitterOpinions/TwitterOpinions.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/044_TwitterOpinions/TwitterOpinions_Slides.html)  
-4.4. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/043_Centrality/Centrality_Slides.html)  
-4.5. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/045_Tidygraph)  
+4.3. [Handling network data in R](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/045_Tidygraph/tidygraph.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/045_Tidygraph)  
+4.4. [SDS story: sampling opinions on Twitter](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/043_TwitterOpinions/TwitterOpinions.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/044_TwitterOpinions/TwitterOpinions_Slides.html)  
+4.5. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/044_Centrality/Centrality.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/043_Centrality/Centrality_Slides.html)  
 4.6. [Twitter network data](https://dgarcia-eu.github.io/SocialDataScience/4_SNA/047_TwitterNetwork/TwitterNetwork.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/4_SNA/047_TwitterNetwork)  
 4.7. Privacy in online social networks -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/045_PrivacyIssues/Privacy_Slides.html)  
 [Exercise 4: Assortativity among Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/058_PoliticianAssortativity/PoliticianAssortativity.html) -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/058_PoliticianAssortativity)  
@@ -61,15 +61,15 @@ The course is organized as a block course in five days with several topics each.
 5.1. [Social resilience](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/051_SocialResilience/SocialResilience.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/051_SocialResilience/SocialResilience_Slides.html)  
 5.2. [SDS story: the death of social networks](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/052_SocialNetworkDeath/SocialNetworkDeath.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/052_SocialNetworkDeath/SocialNetworkDeath_Slides.html)  
 5.3. [Structural holes and communities](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/053_StructuralHoles/StructuralHoles.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/053_StructuralHoles/StructuralHoles_Slides.html)  
-5.4. Ethics in social data science -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/055_Ethics/Ethics_slides.html)  
-5.5. [Assortativity](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/054_Assortativity/Assortativity.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/054_Assortativity/Assortativity_Slides.html)  
-5.6. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests) -- [[Tutorial materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/056_PermutationTests)   
+5.4. [Permutation tests](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/056_PermutationTests/PermutationTests) -- [[Tutorial materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/056_PermutationTests)   
+5.5. Ethics in social data science -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/055_Ethics/Ethics_slides.html)  
+5.6. [Assortativity](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/054_Assortativity/Assortativity.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/054_Assortativity/Assortativity_Slides.html)  
 5.7. [Network analysis in R](https://dgarcia-eu.github.io/SocialDataScience/5_SocialNetworkPhenomena/057_Tidygraph2/tidygraph2.html) -- [[Tutorial materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/057_Tidygraph2)  
 
 ## Where to access materials
 
 - Handouts, codes, and data can be found on the [Github repository of the course](https://github.com/dgarcia-eu/SocialDataScience).
-- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=19372) to get information about evaluation criteria for the course and to participate in online quizzes.
+- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=21125) to get information about evaluation criteria for the course and to participate in online quizzes.
 
 ## To learn more about my research in Social Data Science
 1. [Measuring Gender Divides with Facebook Data](https://dgarcia-eu.github.io/SocialDataScience/1_Introduction/Appendix_FacebookGenderDivide/index.html)
