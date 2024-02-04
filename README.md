@@ -33,8 +33,8 @@ The course is organized as a block course in five days with several topics each.
 2.4. [Data wrangling with dplyr](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/026_dplyr/dplyr.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/026_dplyr)  
 2.5. [Linear regression](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/024_LinearRegression/LinearRegression.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/024_LinearRegression/LinearRegression_Slides.html)  
 2.6. [Bootstrapping](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/025_Bootstrapping/Bootstrapping.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/025_Bootstrapping)  
-2.7. [Accessing the Reddit API from R]() -- [[Tutorial files]]()  
-[Exercise 2: Division of impact on Reddit]() -- [[Exercise materials]]()
+2.7. [Accessing the Reddit API from R](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/027_APIs-Reddit/APIS-Reddit.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/027_APIs-Reddit)  
+[Exercise 2: Division of impact on Reddit](https://dgarcia-eu.github.io/SocialDataScience/2_SocialDynamics/029_SIT-Reddit/SIT_Reddit.html) -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/2_SocialDynamics/029_SIT-Reddit)
 	
 3. **Computational Affective Science**  
 3.1. [Measuring emotions](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/031_MeasuringEmotions/Emotions_Slides.html)  
