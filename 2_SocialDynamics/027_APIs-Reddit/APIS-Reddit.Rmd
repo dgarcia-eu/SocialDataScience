@@ -20,7 +20,7 @@ There are many kinds of API:
     - The [Perspective API](https://perspectiveapi.com/) is an API which classifies the degree of toxicity in a text (on a scale of 0 to 1)
     - The [Spotify API](https://developer.spotify.com/documentation/web-api) can determine some features of a song (danceability, tempo, instrumentalness, etc.)
 
-![title](API_Illustration.jpg)
+![](API_Illustration.jpg)
 
 There are different types of APIs, differing in their architectural structure and usage (for more information, see this [blog](https://blog.postman.com/soap-vs-rest/)). The two major types are:
 
@@ -68,7 +68,7 @@ APIs therefore provide a standardized way of accessing the data and enable fast 
 
 In the same way as with webscraping we also have to make *requests* to an API in order to get a *response*.
 
-![title](api-request.svg)
+![](api-request.svg)
 
 
 * 1. The first step is to **request** a URL. 
@@ -143,7 +143,8 @@ Since it is independent of a programming language is is mainly used to exchange 
 
 JSON-files are in their structure similar to named lists or data frames. Below you can see a response-example from the Twitter API:
 
-![title](JSON_response.png)
+![](JSON_response.png)
+
 # Reddit API example
 
 Reddit as an API to access its content. You can make an account and authenticate to make a lot of requests following its documentation, but you can also make simple requests for JSON versions of what you see while browsing. For example, you can request the frontpage of a subreddit like this:
