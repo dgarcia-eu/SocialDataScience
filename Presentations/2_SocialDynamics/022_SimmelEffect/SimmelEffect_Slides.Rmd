@@ -109,9 +109,31 @@ These two properties are not exclusive, leading to four types of responses:
 
 ---
 
+# What trend class is this Twitter trend?
+.center[
+![:scale 47%](TwitterTrends-1.png)]
+---
+
+# What trend class is this Twitter trend?
+.center[
+![:scale 47%](TwitterTrends-2.png)]
+---
+
+# What trend class is this Twitter trend?
+.center[
+![:scale 47%](TwitterTrends-3.png)]
+---
+
+# What trend class is this Twitter trend?
+.center[
+![:scale 47%](TwitterTrends-4.png)]
+---
+
+
 # Trends on Twitter
 
-This model has been applied to classify Twitter hashtag trends by [Lehmann et al](http://dl.acm.org/citation.cfm?id=2187871). The figure shows activity volumes related to three of the classes in the model. 
+This model has been applied to classify Twitter hashtag trends by [Lehmann et al](http://dl.acm.org/citation.cfm?id=2187871). 
 
 ![Trend classes in Twitter hashtags.](TwitterTrends.png)
-Gathering this kind of volume data is best done by using the Twitter API. You can learn how to do this from R in the [Twitter API tutorial.]()
+- The case of #winnenden is exo-critical, the case of #watchmen is endo-critical, the case of #sotu is exo-subcritical
+- The case of the #masters hashtag is an anticipatory trend that does not fit the endo-exo classification.
