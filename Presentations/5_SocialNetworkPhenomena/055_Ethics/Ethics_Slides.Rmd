@@ -111,6 +111,18 @@ knitr::include_graphics("figures/Kramer.svg")
 [Experimental evidence of massive-scale emotional contagion through social networks. Kramer et al, PNAS (2014)](https://www.pnas.org/content/111/24/8788)
 ---
 
+## When can you say that consent was informed?
+
+```{r, echo=FALSE, out.width=900, fig.align='center'}
+knitr::include_graphics("figures/FBconsent.png")
+```
+
+- "Blanket consent" without explicit purpose is not considered informed
+- The GDPR regulates this and similar clauses are not legal in the EU any more
+
+[Experimental evidence of massive-scale emotional contagion through social networks. Kramer et al, PNAS (2014)](https://www.pnas.org/content/111/24/8788)
+---
+
 ## What is personally identifiable information (PII)? 
 .pull-left[
 
@@ -132,13 +144,40 @@ knitr::include_graphics("figures/Netflix.png")
 ]
 ---
 
-## Privacy expectations: when public is not enough
+## Use expectations: when public is not enough
 
 ```{r, echo=FALSE, out.width=1300, fig.align='center'}
 knitr::include_graphics("figures/Kosinski.png")
 ```
 
 [Deep Neural Networks Are More Accurate Than Humans at Detecting Sexual Orientation From Facial Images. Kosinski and Wang (2018)](https://www.gsb.stanford.edu/sites/default/files/publication-pdf/wang_kosinski.pdf)
+
+---
+
+## Downstream consequences: coding stereotypes
+
+.center[![:scale 100%](figures/AMT.png)]
+
+[Do algorithms reveal sexual orientation or just expose our stereotypes? Blaise Aguera y Arcas, Alexander Todorov and Margaret Mitchell (2018)](https://medium.com/@blaisea/do-algorithms-reveal-sexual-orientation-or-just-expose-our-stereotypes-d998fafdf477)
+
+---
+## Downstream consequences: coding stereotypes
+
+.center[![:scale 100%](figures/Faces.png)]
+
+[Do algorithms reveal sexual orientation or just expose our stereotypes? Blaise Aguera y Arcas, Alexander Todorov and Margaret Mitchell (2018)](https://medium.com/@blaisea/do-algorithms-reveal-sexual-orientation-or-just-expose-our-stereotypes-d998fafdf477)
+
+---
+
+# A note on "ethics approval"
+
+.center[![](figures/IRB.png)]
+
+- IRB only provide statements that a research project design complies with the regulations of the institution regarding human subjects research
+- IRB are not "ethics approvals" or "ethics certificates", but they are proof that researchers have followed certain due process to consider ethics issues
+- IRB focus on direct harm in experiments (e.g. health adverse effects) and do not consider other downstream social or technical risks
+
+[Authors' note: Deep neural networks are more accurate than humans at detecting sexual orientation from facial images. M. Kosinski & Y. Wang (last update 2022)](https://docs.google.com/document/d/11oGZ1Ke3wK9E3BtOFfGfUQuuaSMR8AO2WfWH3aVke6U)
 
 ---
 
@@ -162,7 +201,7 @@ knitr::include_graphics("figures/Schwartz.png")
 
 ---
 
-# Recommendations about ethics in CSS
+# Recommendations about ethics in SDS
 
 - Weigh benefit and risk before deciding to start research
 
@@ -183,6 +222,19 @@ knitr::include_graphics("figures/Schwartz.png")
 
 
 
+---
+# A recent case: Koko and GPT-3
+
+.center[![:scale 80%](figures/koko1.png)]
+---
+
+# A recent case: Koko and GPT-3
+
+.center[![:scale 90%](figures/koko2.png)]
+---
+
+# A recent case: Koko and GPT-3
+.center[![:scale 75%](figures/koko3.png)]
 
 
 
