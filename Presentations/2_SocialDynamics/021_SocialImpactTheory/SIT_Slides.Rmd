@@ -56,6 +56,25 @@ The presence or actions of others can be:
 
 ---
 
+
+# The case of conformity
+
+
+.pull-left[**Pair up and discuss:**
+
+- What do you expect from one person entering an elevator with two people inside looking away from the door?
+- What would be different if there is only one person inside?
+- And if there are four people inside the same way?
+- What would be different if two people enter together and four are inside looking away?
+]
+
+.pull-right[
+![:scale 100%](Elevator-1.png)
+
+]
+---
+
+
 # Asch's conformity experiments
 
 ![:scale 130%](Elevator.png)
