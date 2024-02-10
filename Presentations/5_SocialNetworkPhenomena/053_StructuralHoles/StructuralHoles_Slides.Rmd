@@ -119,10 +119,10 @@ Small world networks have the following three properties:
 
 **Stanley Milgram's experiment:**
 
-- 160 people in Omaha try to reach one person in Boston by mail to their acquitances
+- 160 people in Omaha try to reach one person in Boston by mail to their acquaintances
 - 44 letters reached the target with six steps on average
 - Short path length as evidence of small-world
-- Average path length on Facebook is 4.5
+- **Guess: what is the average path length on Facebook?**
 
 
 ---
