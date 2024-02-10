@@ -48,7 +48,9 @@ layout: true
 - **two** have more friends than the average of their friends (Sue and Alice)  
 - **one** has as many friends as the average of her friends (Carol)  
 
-Most girls will think that they have less friends than the norm! If we average all numbers, the average number of friends is **2.5** and the average number of friends of friends is **2.99**. 
+Most girls will think that they have less friends than the norm! If we average all numbers, the average number of friends is **2.5** and the average number of friends of friends is **2.99**.
+
+**Guess: what is the average number of friends of Facebook users?**
 
 ---
 
