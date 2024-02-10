@@ -58,6 +58,20 @@ layout: true
 </center>
 ---
 
+# Another example of digital traces
+.pull-left[
+**Pair up and guess together:** 
+
+- What kind of traces are show in the figure on the right?
+
+- How were they collected?
+
+- What can we learn about human behavior with this kind of data?
+
+]
+.pull-right[.center[![:scale 100%](Net.png)]]
+
+---
 # What is data?
 
 > **Data:** Facts in the form of stored and transmittable information.  
