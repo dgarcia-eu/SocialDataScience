@@ -38,6 +38,23 @@ layout: true
 
 ---
 
+# Who is the most important in a network?
+
+.pull-left[![](GOT.png)]
+.pull-right[
+- Network based on Game of Thrones books
+- Nodes are characters
+- Edges are weighted according to the number of times the are mentioned within 15 words
+
+**Pair up and discuss:**
+
+- Who is the most important character?
+- Why? Who else could be?
+
+
+[Data on Github](https://github.com/mathbeveridge/asoiaf) and [Image source](https://predictivehacks.com/social-network-analysis-of-game-of-thrones/)
+]
+---
 
 # The concept of centrality
 
