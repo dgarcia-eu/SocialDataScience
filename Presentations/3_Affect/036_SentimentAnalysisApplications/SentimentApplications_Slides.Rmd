@@ -106,8 +106,8 @@ layout: true
 # Trump2Cash
 
 .pull-left[![:scale 90%](Trump2Cash.png)
-- Google NLP API to classify sentiment about companies in Trump's tweets-
-- Trading based on tweets: 59% annualized return (Feb 2017)
+- Google NLP API to classify sentiment about companies in Trump's tweets and trade
+- **What do you think was its return in early 2017?**
 
 ]  
 .pull-right[![:scale 100%](Trump2CashPerformance.png)] 
