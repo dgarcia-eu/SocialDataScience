@@ -194,9 +194,6 @@ get_sentiments("afinn")
 get_sentiments("bing")
 ```
 
-```{r}
-get_sentiments("nrc")
-```
 As you see, AFINN has a numerical score per word, bing has words in classes of positivity and negativity, and the NRC lexicon maps words to emotions (these are emotions from Plutchik's wheel, you can learn more about it in the [measuring emotions topic](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/031_MeasuringEmotions/Emotions.html)).
 
 You can easily match words in texts to these lexica with tidytext. The code below takes the tokens data frame, matches words with the corresponding scores in the AFINN lexicon, and calculates a ranking of main characters in The Office by the mean sentiment score of the words they say.
@@ -212,13 +209,15 @@ wordsdf %>%
 
 afinndf
 ```
-As you see, even the most negative character (Stanley) still has a positive mean sentiment score. This is called the postivity bias of language and you can see more examples about it in the [Twitter sentiment exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html).
+As you see, even the most negative character (Stanley) still has a positive mean sentiment score. This is called the postivity bias of language and you can see more examples about it if you run other sentiment analysis methods.
+
+in the [Twitter sentiment exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/038_TwitterSentiment/Twitter_Sentiment.html).
 
 You can do the same as above but based on a file. [Saif Mohammad](https://www.saifmohammad.com/) developed the NRC lexica and one of the latests is the [NRC Valence, Arousal, and Dominance lexicon (NRC-VAD)](https://saifmohammad.com/WebPages/nrc-vad.html). The following code downloads the NRC-VAD files and unzips them in your local folder.
 
 ```{r, eval=F}
-download.file("https://saifmohammad.com/WebDocs/VAD/NRC-VAD-Lexicon-Aug2018Release.zip", destfile="NRCVAD.zip")
-unzip("NRCVAD.zip")
+#download.file("https://saifmohammad.com/WebDocs/VAD/NRC-VAD-Lexicon-Aug2018Release.zip", destfile="NRCVAD.zip")
+#unzip("NRCVAD.zip")
 ```
 
 To use the lexicon, we have to read the valence file in English, name its columns, and convert it into a tibble:
@@ -254,3 +253,45 @@ As you see, there is some correlation but still quite some disagreement for some
 cor.test(joindf$meanvalence, joindf$sent)
 ```
 Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the [validating sentiment analsysis exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html).
+
+### Sentiment analysis with Transformer models
+
+**Run this part in an interactive R console rather than in the markdown file or knitting**
+
+You can use off-the-shelf state-of-the-art sentiment analysis models based on the Transformers architecture (which ChatGPT uses). You need to install the reticulate package, which allows you to install a way to use python code within R called miniconda. You only need to run this install_miniconda once and it will be set up.
+```{r, eval=F}
+install.packages("reticulate")
+library(reticulate)
+install_miniconda()
+```
+
+Once you have that set up, you can install the latest version of the huggingfaceR package, which lets you use models stored in the HuggingFace repository. To set up this link to HuggingFace, you need to run hf_python_depends() to download dependencies within Python, so you can just focus on your R code.
+```{r, eval=F}
+devtools::install_github("farach/huggingfaceR")
+library(huggingfaceR)
+hf_python_depends() 
+```
+
+Now you can download and run models from HuggingFace. For example, you can use DistilBERT for text classification into sentiment:
+```{r, eval=F}
+library(huggingfaceR)
+
+distilBERT <- hf_load_pipeline(
+	model_id = "distilbert-base-uncased-finetuned-sst-2-english", 
+	task = "text-classification"
+	)
+
+distilBERT("I like you. I love you")
+```
+
+Or LEIA (Linguistic Embeddings for the Identification of Affect) for emotion identification:
+```{r, eval=F}
+LEIA <- hf_load_pipeline(
+	model_id = "LEIA/LEIA-base", 
+	task = "text-classification"
+	)
+
+LEIA("I am so angry right now.")
+```
+
+[If you want to learn more about LEIA, check our recent paper about it.](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-023-00427-0)
