@@ -1,0 +1,100 @@
+---
+title: "Reading Twitter network data from JSON"
+author: "David Garcia"
+output: html_document
+---
+
+For this tutorial, download the file [SwissPoliticians-tweets.json.gz (~21MB)](https://github.com/dgarcia-eu/SocialDataScience/raw/master/Exercises/04_Assortativity_Twitter/SwissPoliticians-tweets.json.gz)
+and [SwissPoliticians.csv](https://raw.githubusercontent.com/dgarcia-eu/SocialDataScience/master/Exercises/04_Assortativity_Twitter/SwissPoliticians.csv).
+
+Today, we will go together through the introductory part of the fourth exercise, where we will analyze the network of Swiss politicians on Twitter. Here, we will do the basics of loading and processing Twitter data from a file with tweets in JSON.
+
+# 1. Load the timeline data of Twitter user accounts of Swiss politicians
+
+First load the packages we will use in this exercise: dplyr, tidygraph, jsonlite, and ggraph.
+```{r, message=FALSE}
+library(dplyr)
+library(tidygraph)
+library(jsonlite)
+library(ggraph)
+```
+
+Download the file SwissPoliticians.csv and read it as a csv in R. Take into account that separators are tabs. Change the screen names of accounts to lower case and add a column with a sequential id from 1 to the number of politicians.
+
+```{r}
+poldf <- read.csv("SwissPoliticians.csv",sep="\t",header=TRUE, stringsAsFactors=FALSE)
+poldf$screenName <- tolower(poldf$screenName)
+poldf$id <- seq(1, nrow(poldf))
+```
+
+Read the politician tweets file taking into account that it is compressed. Print a random line and its content read as JSON. Check Exercise 2 (SIT on Twitter) if you need an example of how to do this.
+
+```{r}
+lines <- readLines(gzfile("SwissPoliticians-tweets.json.gz"))
+line <- lines[sample(length(lines), 1)]
+line
+fromJSON(line)
+```
+
+Iterate over all the lines you read from the file, interpreting each one as a JSON object with the data of a tweet. For each tweet that is a retweet, save the screen name of the user who tweeted it and the screen name of the user who made the tweet being retweeted. Save these two in a data frame with two columns.
+
+```{r}
+userName <- NULL
+RTuserName <- NULL
+for (line in lines)
+{
+  tweet <- fromJSON(line)
+  if (!is.null(tweet$retweeted_status$id_str))
+  {
+    userName[length(userName)+1] <- tweet$user$screen_name
+    RTuserName[length(RTuserName)+1] <- tweet$retweeted_status$user$screen_name
+  } 
+}
+tweetsdf <- data.frame(userName = tolower(userName), RTuserName = tolower(RTuserName))
+```
+
+
+As a last step, filter the data frame to remove cases in which a politician was retweeting themselves. How many tweets did you have in the dataset before and after this filter?
+
+```{r}
+nrow(tweetsdf)
+tweetsdf %>% filter(userName != RTuserName) -> tweetsdf
+nrow(tweetsdf)
+```
+
+# 2. Build social network of retweets
+
+Using inner_join, merge the tweets data frame with the politicians data frame such that each row also contains the information of the politician who wrote the tweet. After this, each tweet should be in one row including also the id of the user that posted it and the political party they belong to.
+
+```{r}
+mergedf1 <- inner_join(tweetsdf, poldf, by=c("userName"="screenName"))
+names(mergedf1) <- c("userName", "RTuserName", "userParty", "userid")
+```
+
+Similarly as above, use inner_join to merge the result of the previous chunk with the politicians data frame, but now to match by the screen name of the politician being retweeted. After this, the resulting data frame should contain the id and the party of both the politician retweeting and being retweeted.
+
+```{r}
+mergedf2 <- inner_join(mergedf1, poldf, by=c("RTuserName"="screenName"))
+names(mergedf2) <- c("userName", "RTuserName", "userParty", "userid", "RTparty", "RTuserid")
+```
+
+Build the vertices and edges data frames for the network. The vertices data frame only needs to contain the id of each politician, their screen name (as a column called "name"), and the party they belong to. The edges dataframe needs the id of the user being retweeted as "from" and the id of the user retweeting as "to". This way edges mark information flow. Use group_by to aggregate the multiple instances of these pairs such that the weight of edges is the number of times a user retweeted another.
+
+```{r}
+poldf %>% select(id=id, name=screenName, party) -> vertices
+mergedf2 %>% select(from=RTuserid, to=userid) %>% group_by(from, to) %>% summarize(weight=n()) -> edges
+```
+
+Now do the corresponding call to tbl_graph to build the graph as an **undirected** graph, using the column id of nodes as identifier (node_key).
+```{r}
+graph <- tbl_graph(nodes=vertices, edges = edges, node_key = "id", directed = FALSE)
+graph
+```
+
+Show a simple visualization of the graph with the FR layout algorithm. Does it look like a social network?
+```{r }
+graph %>% 
+  ggraph("fr") + geom_edge_link() + geom_node_point() + theme_graph()
+```
+
+
