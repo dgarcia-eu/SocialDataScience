@@ -4,7 +4,7 @@ author: "David Garcia"
 output: html_document
 ---
 
-You can find the markdown files and data for this exercise in the corresponding [Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/5_SocialNetworkPhenomena/058_PoliticianAssortativity).
+You can find the markdown files and data for this exercise in the corresponding [Github folder](https://github.com/dgarcia-eu/SocialDataScience/tree/master/Exercises/04_Assortativity_Twitter).
 
 ## Tasks:
 
