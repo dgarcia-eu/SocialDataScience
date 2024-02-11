@@ -375,7 +375,10 @@ politicians</p></li>
 politicians</h1>
 <p>First load the packages we will use in this exercise: dplyr,
 tidygraph, jsonlite, and ggraph.</p>
-<pre class="r"><code>#Your code here</code></pre>
+<pre class="r"><code>library(dplyr)
+library(tidygraph)
+library(jsonlite)
+library(ggraph)</code></pre>
 <p>Download the file SwissPoliticians.csv and read it as a csv in R.
 Take into account that separators are tabs. Change the screen names of
 accounts to lower case and add a column with a sequential id from 1 to
@@ -411,7 +414,9 @@ tweetsdf &lt;- data.frame(userName = tolower(userName), RTuserName = tolower(RTu
 <p>As a last step, filter the data frame to remove cases in which a
 politician was retweeting themselves. How many tweets did you have in
 the dataset before and after this filter?</p>
-<pre class="r"><code>#Your code here, keep the result after filtering in tweetsdf</code></pre>
+<pre class="r"><code>nrow(tweetsdf)
+tweetsdf %&gt;% filter(userName != RTuserName) -&gt; tweetsdf
+nrow(tweetsdf)</code></pre>
 </div>
 <div id="build-social-network-of-retweets" class="section level1">
 <h1>2. Build social network of retweets</h1>
@@ -446,7 +451,8 @@ identifier (node_key).</p>
 graph</code></pre>
 <p>Show a simple visualization of the graph with the FR layout
 algorithm. Does it look like a social network?</p>
-<pre class="r"><code>#Your code here</code></pre>
+<pre class="r"><code>graph %&gt;% 
+  ggraph(&quot;fr&quot;) + geom_edge_link() + geom_node_point() + theme_graph()</code></pre>
 </div>
 <div id="calculate-assortativity" class="section level1">
 <h1>3. Calculate assortativity</h1>

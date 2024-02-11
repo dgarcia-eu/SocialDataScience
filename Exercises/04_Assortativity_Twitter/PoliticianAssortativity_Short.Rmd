@@ -22,7 +22,10 @@ You can find the markdown files and data for this exercise in the corresponding 
 
 First load the packages we will use in this exercise: dplyr, tidygraph, jsonlite, and ggraph.
 ```{r, message=FALSE}
-#Your code here
+library(dplyr)
+library(tidygraph)
+library(jsonlite)
+library(ggraph)
 ```
 
 Download the file SwissPoliticians.csv and read it as a csv in R. Take into account that separators are tabs. Change the screen names of accounts to lower case and add a column with a sequential id from 1 to the number of politicians.
@@ -62,8 +65,10 @@ tweetsdf <- data.frame(userName = tolower(userName), RTuserName = tolower(RTuser
 
 As a last step, filter the data frame to remove cases in which a politician was retweeting themselves. How many tweets did you have in the dataset before and after this filter?
 
-```{r}
-#Your code here, keep the result after filtering in tweetsdf
+```{r, eval=F}
+nrow(tweetsdf)
+tweetsdf %>% filter(userName != RTuserName) -> tweetsdf
+nrow(tweetsdf)
 ```
 
 # 2. Build social network of retweets
@@ -96,8 +101,9 @@ graph
 ```
 
 Show a simple visualization of the graph with the FR layout algorithm. Does it look like a social network?
-```{r }
-#Your code here
+```{r, eval=F}
+graph %>% 
+  ggraph("fr") + geom_edge_link() + geom_node_point() + theme_graph()
 ```
 
 # 3. Calculate assortativity
