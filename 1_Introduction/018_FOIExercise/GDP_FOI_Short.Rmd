@@ -46,7 +46,7 @@ From the WDI we need three indicators:
 - The total population (described as as "Population, Total", "SP.POP.TOTL")
 
 In the following code chunk, download all data (including extras) for all countries in year 2014.
-```{r WDIdata}
+```{r WDIdata, eval=F}
 WDIdf <- WDI(indicator = c("NY.GDP.PCAP.PP.KD", "SP.POP.TOTL", "IT.NET.USER.ZS"),
              start = 2014, end = 2014, extra = TRUE)
 ```
@@ -55,7 +55,7 @@ WDIdf <- WDI(indicator = c("NY.GDP.PCAP.PP.KD", "SP.POP.TOTL", "IT.NET.USER.ZS")
 
 Some entries are not complete and some others are not countries, but regions. In the following code chunk, make sure that you only use complete rows (use the complete.cases function) and ignore groups of countries and regions by deleting rows 'Aggregates' on the region column.
 
-```{r cleanData}
+```{r cleanData, eval=F}
 newdf <- WDIdf[complete.cases(WDIdf) & WDIdf$region != "Aggregates",]
 ```
 
@@ -106,7 +106,7 @@ In the following code chunk, make a new column in the google trends dataframe wi
 
 Merge the WDI and google trends data frames, using the name of the country. (Hint: use 
 "merge" or "inner_join")
-```{r MergeData}
+```{r MergeData, eval=F}
 allDF <- merge(GoogleDF, filteredDF) #filteredDF here is the data frame you produced for task 2.3
 ```
 
@@ -131,7 +131,7 @@ In the following chunk, calculate Pearson's correlation coefficient between GDP 
 **4.3 Measure correlation after shuffling**
 
 What happens if we shuffle the data (e.g. shuffle the FOIs) and repeat the above analysis? Do you find any difference between the two plots and two Pearson's correlation coefficients?
-```{r shuffletest}
+```{r shuffletest, eval=F}
 shufdata <- allDF[sample(nrow(allDF)),]
 #Your code here
 ```
