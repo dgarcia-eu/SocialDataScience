@@ -104,28 +104,30 @@ seq(1,7,by=2)
 rev(seq(1,7))
 ```
 
-Your turn:
+More examples:
 
-**1.1) We create a vector V with the even numbers between 1 and 10. Show its content.**
+We create a vector V with the even numbers between 1 and 10. Show its content.
 ```{r}
 V <- seq(by =2, from=2, to =10)
 V
 ```
 
-**1.2) We look at its third entry and test if it is larger than 3.**
+We look at its third entry and test if it is larger than 3.
 ```{r}
 V[3] > 3
 
 ```
 
-**1.3) Reverse its order and divide each of its entries by 2.**
+Reverse its order and divide each of its entries by 2.
 ```{r}
 rev(V/2)
 ```
 
-**1.4) Calculate the 10 modulo 7. (Hint: search in Google or Stackoverflow)**
-```{r}
+**Your turn:**
 
+**Calculate the reminder of 10 divided by 7 (i.e. 10 modulo 7). (Hint: search in Google or Stackoverflow)**
+```{r}
+# Your code here
 ```
 
 
@@ -165,18 +167,10 @@ while (i<5)
 
 **Note:** control flow is very inefficient in R, we will learn faster methods for large datasets later in the course
 
-Your turn: 
-
-**2.1) Iterate over the numbers from 1 to 50 and print the ones divisible by 7.**
+**Your turn: **
+**Iterate over the numbers from 1 to 50 and print the ones divisible by 7.**
 ```{r}
-for(i in seq(1,50))
-{
-  if (i %% 7 == 0)
-  {
-    print(i)
-  }
-  
-}
+#Your code here
 ```
 
 
@@ -198,9 +192,8 @@ The read.csv and read.table functions have some important parameters:
 - quote: character that defines strings in the file, to prevent strings to be divided in two columns
 - stringsAsFactors (TRUE/FALSE) whether strings should be converted to categorical factors
 
-Your turn:
-
-**3.1) Open the file "TutorialHeightsSurvey.dat" in a plain text reader to see its content. Then load it into R and name it SurveyDF. Print its first 7 lines.**
+Another example:
+Open the file "TutorialHeightsSurvey.dat" in a plain text reader to see its content. Then load it into R and name it SurveyDF. Print its first 7 lines.
 
 ```{r}
 SurveyDF <- read.table(file = "TutorialHeightsSurvey.dat", header=T, sep = "\t",stringsAsFactors = F )
@@ -254,15 +247,16 @@ tail(SurveyDF2)
 df <- NULL
 ```
 
-Your turn:
+**Your turn:**
 
-**4.1) Save the first, third, and fifth rows of SurveyDF in another data frame and print its first column.**
+**Save the first, third, and fifth rows of SurveyDF in another data frame and print its first column.**
 ```{r}
 #Your code here
 ```
 
-**4.2) Print the heights of the rows in SurveyDF of gender "female".**
+Another example: Print the heights of the rows in SurveyDF of gender "female".
 ```{r}
+# change this code for the data frame and columns to fit your code
 SurveyDF$Height[SurveyDF$Gender=="female"]
 
 ```
@@ -313,14 +307,14 @@ mean(FemaleDF$Height, na.rm=TRUE)
 sd(FemaleDF$Height, na.rm=TRUE)
 ```
 
-Your turn:
+**Your turn:**
 
-**5.1) Sort the height values and plot them in sequence with squares as symbols.**
+**Sort the height values and plot them in sequence.**
 ```{r}
 #Your code here
 ```
 
-**5.2) Print the mean and median height. Then print the standard deviation of the age of females (Hint: check ?sd).**
+**Print the mean and median height. Then print the standard deviation of the age of females (Hint: check ?sd).**
 ```{r}
 #Your code here
 ```
@@ -352,7 +346,7 @@ plot(x,y, type="l")
 
 Your turn:
 
-**6.1) Plot the histogram of 1000 values sampled from the uniform distribution between -10 and 10. If you get lost, type ?distribution or search online.**
+**Plot the histogram of 1000 values sampled from the uniform distribution between -10 and 10. If you get lost, type ?distribution or search online.**
 
 ```{r, fig.height=3}
 #Your code here
@@ -360,36 +354,12 @@ Your turn:
 
 # 7. To practice more...
 
-**7.1) Print the Fibonacci sequence up to the last number below 100.**
-
-```{r}
-#Your code here
-```
-
-
-**7.2) Print the height values of the survey dataframe that are higher than the height of the row above them.**
-```{r}
-#Your code here
-```
-
-
-**7.3) On the same figure, plot the sorted heights of each gender with points and lines between them, coloring them according to gender. Double the size of points and make axis labels 50% larger.**
-```{r}
-#Your code here
-```
-
-**7.4) Run through the following code to install and load the rtweet package. Go through the authentication vignette to create an app and a developer account that allows you to access Twitter data.**
-```{r, eval=FALSE}
-install.packages("rtweet")
-library(rtweet)
-vignette("auth", package = "rtweet")
-```
-
-
-**7.5) Load the data from the file BMI-steps.csv. Is there a correlation between BMI and steps? Is it different for women and men? Do you notice anything else?**
+**Load the data from the file BMI-steps.csv. Is there a correlation between BMI and steps? Is it different for women and men? Do you notice anything else?**
 ```{r, eval=FALSE}
 df <- read.csv("BMI-steps.csv")
+#Your code here
 ```
+
 
 
 # 8. To learn more about R and Markdown
