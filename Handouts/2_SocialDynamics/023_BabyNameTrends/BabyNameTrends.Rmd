@@ -13,7 +13,7 @@ The website of the US Social Security Administration provides baby name data, bu
 
 ```{r, echo=F, eval=F}
 library(crunch)
-
+# https://www.ssa.gov/oact/babynames/names.zip
 unzip("names.zip", exdir="namedata")
 
 df <- data.frame(name=NULL, gender=NULL, count=NULL, year=NULL)
