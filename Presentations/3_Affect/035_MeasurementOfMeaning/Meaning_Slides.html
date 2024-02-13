@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The measurement of meaning from text</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# The measurement of meaning from text
+]
+.author[
+### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# Outline
+
+## 1. The semantic differential
+
+## 2. Word embeddings
+
+---
+
+### Psycholinguistics: How individuals use and adopt language
+
+.center[![:scale 60%](Communication.jpg)]   
+
+**De Saussure's model of language**
+- Language as association between signified (meaning) and signifier (word)
+- Associations are normative and agreed through learning
+- Human communication is composed of two steps: 
+  1. **Encoding:** Transforming thoughts into words
+  2. **Decoding:** Translating words into thoughts
+
+---
+
+# Connotative vs denotative meanings
+
+![:scale 45%](dictionary.jpg) ![:scale 45%](hands.jpg)
+
+
+- **Denotative meaning:** Definition of a word in reference to other meanings
+- **Connotative meaning:** Emotional association of the use of a word
+- Sentiment analysis aims to measure the **connotative meaning** of texts
+
+---
+
+# The Semantic Differential
+
+**Charles Osgood's Semantic Differential:**
+ Rating scales to measure the connotative meanings of words, objects, events (or symbols in general)
+
+Osgood's method to find the dimensions of meaning:
+
+  1. Select a set of objects/words/symbols to measure their meaning
+  2. Design a large set of questions or scales about the symbols
+  3. Ask some people to rate the symbols according to the scales
+  4. Apply dimensionality reduction/factor analysis
+  5. Interpret factors into dimensions of meaning
+
+*The measurement of meaning. C. Osgood, G. Suci, P. Tannenbaum, 1957*
+
+---
+
+# Word ratings for the semantic differential
+
+.center[![:scale 45%](WordRatings.png)]   
+
+
+- Stimulus: One word, in this case *polite*
+- Response: Ratings of each participant for the word in relation to adjectives
+
+---
+
+## Semantic differential example: fonts
+
+.center[![:scale 60%](Ratings.png)]
+
+---
+.center[![:scale 40%](FontRatings.png)]
+---
+
+## Dimensionality reduction: Factor analysis
+.center[![:scale 70%](PCA.jpg)]
+
+- The N-dimensional cloud of (average) ratings of words is processed with factor analysis
+- Each factor is a vector in the N-dimensional space. Factors are orthogonal
+- Factors are ordered such that the first one has the most variance
+- The result is a smaller set of dimensions that represents the ratings of words to certain extent (explained variance)
+
+---
+
+# Three dimensions of meaning
+
+.pull-left[.center[![:scale 75%](SD.jpg)]]
+
+.pull-right[
+
+The dimensions of the Semantic Differential (EPA):
+- **Evaluation:** good, desirable -- bad, undesirable
+- **Potency:** strong, powerful -- weak, powerless
+- **Activation:** active, fast -- passive, slow]
+
+- Evaluation has the most variance, i.e is the most explanatory
+- Potency and Activation have similar explanatory level below Evaluation
+
+---
+
+# Word embeddings
+
+## 1. The semantic differential
+
+## *2. Word embeddings*
+
+---
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;Speech and Language Processing. Daniel Jurafsky &amp; James H. Martin. (2023)&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# Documents as vectors
+
+![](TDM1.png)
+
+- Remember bag of words: term frequency counts ignoring order
+- Example just for four words in four books as documents
+- Here, each book is represented by a four-dimensional vector (vertical here)
+
+[Speech and Language Processing. Daniel Jurafsky &amp; James H. Martin. (2023)](https://web.stanford.edu/~jurafsky/slp3/6.pdf)
+
+---
+# Documents as vectors
+
+.center[![:scale 90%](TDM2.png)]
+
+---
+# Measuring similarity
+
+The similarity between the content of two documents can be measured with the cosine similarity of their vector representations:
+
+`$$sim(u,v) = cos(\theta) = \frac{u\cdot v}{\|u\| \|v\|} = \frac{\sum^n_{i=1}{u_iv_i}}{ \sqrt{\sum^n_{i=1} u_i^2} \sqrt{\sum^n_{i=1} v_i^2}}$$`
+
+`$$sim(d_1, d_2) = \frac{1*0 + 114*80 + 36 * 58 + 20 * 15}{\sqrt{1+114^2+36^2+20^2} \sqrt{80^2+58^2+15^2}} \sim 0.95$$`
+- `\(d_1\)`: As You Like It
+- `\(d_2\)`: Twelfth Night
+
+---
+
+# Cosine similarity example
+
+.center[![:scale 100%](TDM3.png)]
+---
+
+# Words as vectors
+
+.center[![:scale 100%](TDM4.png)]
+
+- Instead of looking at document vectors, we can use word vectors
+- These vectors can approximate the meaning similarity between words
+- `\(sim(fool, wit) \sim 0.93\)`
+- `\(sim(fool, battle) \sim 0.09\)`
+- *fool* is not a synonym of *wit*, but its meaning is closer to *wit* than to *battle*
+
+---
+
+## Language sparsness and the curse of dimensionality
+
+.pull-left[
+- Human languages have lots of different words
+- Heap's law: Vocabulary size grows (sublinearly) with corpus size
+  - More documents, more words
+- Word and document matrices become too sparse
+  - Hard to do statistics or train models when the vast majority of variables are zeroes
+  - Larger corpora might not exist!
+]
+.pull-right[![](Heaps_law_plot.png)
+Number of distinct words (vocabulary size) versus corpus size (in tokens)]
+
+---
+
+# Latent Semantic Analysis
+
+- Aim of LSA: making word and document vectors denser (less dimensions)
+- Idea: Singular Value Decomposition of word-document matrix
+- Problem: Very computationally intensive as soon as matrix gets large
+
+.center[![](LSA.png)]
+
+https://www.geeksforgeeks.org/latent-semantic-analysis/
+
+---
+
+# Distributed representations
+
+**The distributional hypothesis: Words that occur in similar contexts tend to have similar
+meanings** -- "You Shall Know a Word by the Company It Keeps"
+
+.center[![:scale 90%](TDM5.png)]
+
+---
+
+## Self-supervision: Continuous Bag Of Words
+
+- Idea: training a model to predict words from their context:
+
+.center[the quick brown fox ... over the lazy dog]
+
+- Self-supervision: train it with corpus, without annotations
+- Represent each word `\(w\)` with a vector `\(\mu_{w}\)` in a lower-dimensional space compared to the word-document matrix (50-700 dimensions)
+- Fit the values of `\(\mu_w\)` with self-supervision such that:
+
+$$ argmax_{\mu_w} = \frac{exp(\mu_w \cdot \vec{v})}{\sum_j exp(\mu_j \cdot \vec{v})} $$
+where `\(\vec{v}\)` is the mean vector for the words in the context and `\(j\)` iterates over the words in the language
+
+---
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science&lt;/span&gt;&lt;/div&gt; 
+
+---
+.pull-left[
+# ML Warning
+
+In this lecture we focus on applications, not development
+
+We will gloss over details, see references and related courses to learn more
+]
+
+.pull-right[![:scale 100%](ML.png)]
+
+---
+# Word embeddings
+
+- After fitting, the resulting `\(\mu_w\)` are called **word embeddings**
+- Also called word representations: `\(R(w)\)`
+- Operating on embeddings space allow us to extract dimensions of meaning or compute analogies:
+.center[![:scale 50%](Analogy.svg)]
+---
+
+# Word embeddings in practice
+
+You don't need to fit your own word embeddings model, several alternatives exist that are already trained:
+
+- word2vec [(Mikolov, Chen, Corrado, and Dean, 2013)](https://arxiv.org/abs/1301.3781)
+    - Developed by Google - trained against Wikipedia
+    - Based on CBOW and Skipgrams (predict context from word)
+ 
+    
+- GloVe [(Pennington, Socher, Manning, 2014)](https://aclanthology.org/D14-1162/)
+    - "global" embeddings using a larger definition of context
+    - Developed by Stanford NLP group, similar to word2vec
+
+
+- fastText [(Bojanowski, Grave, Joulin, Mikolov, 2017)](https://arxiv.org/abs/1607.04606)
+    - Developed by Facebook - trained against Wikipedia in many languages
+    - Uses character-level tokenization: it can embed new words based on how they are written (e.g. composite words from the embeddings of lemmas)
+
+---
+# Distributed Dictionary Representation
+.center[![:scale 100%](DDR.svg)]
+
+[Dictionaries and distributions: Combining expert knowledge and large scale textual data content analysis. J. Garten, J. Hoover, K. Johnson, R. Boghrati, C. Iskiwitch &amp; M. Dehghani. Behavior Research Methods (2018)](https://link.springer.com/article/10.3758/s13428-017-0875-9)
+
+---
+
+# Distributed Dictionary Representation
+.center[![:scale 100%](DDRres.png)]
+
+- Two tests: predicting if movie reviews are positive or negative and identifying moral foundations in tweets
+- DDR outperforms word counting and performs best when applied on a smaller dictionary - larger dictionaries is not better in this case
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
