@@ -1,0 +1,233 @@
+---
+title: "Exercise: How well can we measure sentiment in text?"
+author: "David Garcia, 2023"
+output: html_document
+---
+
+In this exercise we will learn how to use various sentiment analysis methods and apply them to a dataset with sentiment labels of tweets. We will evaluate each method and compare their performance.
+
+## Tasks:
+
+1. Install packages and test sample from SemEval
+
+2. Run VADER over the test sample
+
+3. Run syuzhet over the test sample
+
+4. Run a RoBERTa model over a subset of the test sample
+
+5. Evaluate against sentiment annotations and compare methods
+
+6. A small test with ChatGPT
+
+
+# 1. Install packages and test sample from SemEval
+
+In this exercise, we will usea few packages. The first two, vader and syuzhet, contain simple unsupervised methods and should be easy to install. Then we will use huggingfaceR, check **the unsupervised sentiment analysis tutorial on how to set it up**. Finally, we will use MLmetrics to reuse their function to calculate F1, dplyr for data wrangling, and jsonlite to do a small test with ChatGPT.
+
+```{r}
+library(vader)
+library(syuzhet)
+library(huggingfaceR)
+library(MLmetrics)
+library(dplyr)
+library(jsonlite)
+```
+
+Load the data contained in the file "SemEval2017-task4-test.subtask-A.english.txt". This file is part of a sentiment analysis competition that released a "training" sample for people to develop methods that then were evaluated against this "test" sample in a private evaluation for the competition. Now we can use the test sample to evaluate sentiment analysis methods.
+
+```{r}
+tweets <- read.table("SemEval2017-task4-test.subtask-A.english.txt", header=F, sep="\t", comment="", quote="", colClasses = c("character", "character", "character"))
+# We read the id column as a character to avoid rounding errors - a typical issue wit tweet IDs
+
+names(tweets) <- c("id", "label", "text")
+head(tweets)
+```
+
+# 2. Run VADER over the test sample
+
+**2.1 Run VADER over the first tweet**
+
+Use the get_vader function over the text of the tweet in positon 4242. Look at the text and the output of VADER. Does it look like a good classification? Try with some other tweets to get a better view of VADER.
+```{r}
+#Your code here
+```
+
+**2.2 Run VADER over each text**
+
+Run VADER over each tweet text and save the compound result in a new column of the data frame. You might need to wait a bit for this and give it a few minutes.
+```{r}
+#Your code here
+```
+
+Plot the histogram of VADER compound scores. What do you notice about it?
+```{r}
+#Your code here
+```
+
+**2.3 VADER as a classifier**
+
+Convert the compound score into classes by using -0.05 and 0.05 as thresholds. In the following, create a new column with the VADER class for each dataset that is "negative" if the score is below -0.05, "positive" if it is above 0.05, and "neutral" otherwise.
+
+```{r}
+#Your code here
+```
+
+
+# 3. Run syuzhet over the test sample
+
+**3.1 Syuzhet test**
+
+Run the get_sentiment function of syuzhet over the first 5 examples of tweets. Print the text, the result of syuzhet, and the annotations of each text.
+
+```{r, warning=FALSE, message=FALSE}
+for (i in seq(1,5))
+{
+  text <- as.character(tweets$text[i])
+  print(text)
+  print(get_sentiment(text))
+  print(tweets$label[i])
+}
+```
+
+
+**3.2 Apply syuzhet to all texts**
+
+For each text in the dataset, run the get_sentiment function of syuzhet. You can use get_sentiment for the whole column of texts to get a new column of sentiment values without coding a loop. It's very fast!
+
+```{r}
+#Your code here
+```
+
+Plot the histogram of syuzhet scores. What is the difference you notice with VADER scores?
+```{r, eval=F}
+hist(tweets$Syuzhet)
+```
+
+**3.3 Syuzhet as a classifier**
+
+As with VADER, compute classes from Syuzhet using -0.5 and 0.5 as thresholds.
+
+```{r}
+#Your code here
+```
+
+# 4. Run a RoBERTa model over a subset of the test sample
+
+Using the function hf_load_pipeline load the sentiment model "cardiffnlp/twitter-roberta-base-sentiment" from the huggingface repositories. You can learn more about the model and try it yourself here: https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment
+
+```{r, eval=F}
+hf_python_depends() # We need this to set up all dependencies for the model
+ROBERTA <- hf_load_pipeline(
+	model_id = "cardiffnlp/twitter-roberta-base-sentiment", 
+	task = "text-classification"
+	)
+```
+
+This model is very powerful but also very demanding of computing power when classifying due to its many parameters. Select a random sample of 100 tweets and classify them with the model. If you are not using a very powerful computer or a GPU, this will take a few minutes.
+
+```{r, eval=F}
+set.seed(1985)
+tweets %>% sample_n(100) -> tweetssubset
+classif <- ROBERTA(tweetssubset$text)
+tweetssubset$ROBERTAclass <- NA
+for (i in seq(1, length(classif)))
+{
+  tweetssubset$ROBERTAclass[i] <- classif[[i]]$label
+}
+head(tweetssubset)
+```
+
+Now translate the labels that the RoBERTA mode to be comparable to the rest. At https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment, it says "Labels: 0 -> Negative; 1 -> Neutral; 2 -> Positive".
+
+```{r}
+#Your code here
+```
+
+
+# 5. Evaluate against sentiment annotations and compare methods
+
+Calculate precision, recall, and F1 score of VADER for the negative class for the full tweets dataset. Now use the function F1_Score of MLmetrics to check that you get the same.
+
+```{r, eval=F}
+#Your code here
+F1_Score(tweets$label, tweets$VADERclass, positive="negative")
+# If you got the value right, you can use the F1_Score function from now on
+```
+
+Now calculate the F1 score of each class in VADER and the mean of all three F1 scores. Do the same for the Syuzhet classifications. Which one is higher?
+
+```{r, eval=F}
+NegativeF1 <- F1_Score(tweets$label, tweets$VADERclass, positive="negative")
+NeutralF1 <- F1_Score(tweets$label, tweets$VADERclass, positive="neutral")
+PositiveF1 <- F1_Score(tweets$label, tweets$VADERclass, positive="positive")
+VADERF1 <- mean(c(NeutralF1, NegativeF1, PositiveF1))
+
+NeutralF1 <- F1_Score(tweets$label, tweets$Syuzhetclass, positive="neutral")
+NegativeF1 <- F1_Score(tweets$label, tweets$Syuzhetclass, positive="negative")
+PositiveF1 <- F1_Score(tweets$label, tweets$Syuzhetclass, positive="positive")
+SyuzhetF1 <- mean(c(NeutralF1, NegativeF1, PositiveF1))
+
+VADERF1
+SyuzhetF1
+```
+
+
+Which method has the highest F1? Can you tell why?
+
+Now repeat the calculation above but over the random subset of 100 tweets that you processed with the RoBERTA model. Calculate the F1 of all three methods in this subset.
+
+```{r, eval=F}
+NegativeF1 <- F1_Score(tweetssubset$label, tweetssubset$VADERclass, positive="negative")
+NeutralF1 <- F1_Score(tweetssubset$label, tweetssubset$VADERclass, positive="neutral")
+PositiveF1 <- F1_Score(tweetssubset$label, tweetssubset$VADERclass, positive="positive")
+VADERF1 <- mean(c(NeutralF1, NegativeF1, PositiveF1))
+
+NeutralF1 <- F1_Score(tweetssubset$label, tweetssubset$Syuzhetclass, positive="neutral")
+NegativeF1 <- F1_Score(tweetssubset$label, tweetssubset$Syuzhetclass, positive="negative")
+PositiveF1 <- F1_Score(tweetssubset$label, tweetssubset$Syuzhetclass, positive="positive")
+SyuzhetF1 <- mean(c(NeutralF1, NegativeF1, PositiveF1))
+
+NeutralF1 <- F1_Score(tweetssubset$label, tweetssubset$ROBERTAclass, positive="neutral")
+NegativeF1 <- F1_Score(tweetssubset$label, tweetssubset$ROBERTAclass, positive="negative")
+PositiveF1 <- F1_Score(tweetssubset$label, tweetssubset$ROBERTAclass, positive="positive")
+ROBERTAF1 <- mean(c(NeutralF1, NegativeF1, PositiveF1))
+
+VADERF1
+SyuzhetF1
+ROBERTAF1
+```
+
+Which method has the highest F1? Can you tell why?
+
+# 6. A small test with ChatGPT
+
+Make a version of your dataframe with 100 random tweets that contains only the columns "id" and "text". Convert it to JSON and save it in plain text.
+
+```{r, eval=F}
+tweetssubset %>% select(id, text) -> tdf
+cat(toJSON(tdf), "seltweets.json")
+```
+
+Now go to the web interface of ChatGPT (chat.openai.com) and ask ChatGPT to detect the sentiment of the tweets, giving the content of the tweets to ChatGPT in JSON format and asking for an answer in JSON format too. Feel free to write your own prompt, an example is:
+> Please estimate the sentiment of these tweets. Reply in JSON format and only with the id of each tweet and its sentiment classification into "negative", "positive", or "neutral". These are the tweets:
+
+Followed by the JSON content. You might have to tell the web interface to continue generating once or twice, then copy the resulting JSON and paste it in a plain text file.
+
+Now you can read that file, do an inner join with the data frame with the original labels (by id) and calculate F1 again. How does it compare to RoBERTa?
+
+```{r, eval=F}
+chatgpt <- fromJSON(readLines("chatgpt.json"))
+ndf <- inner_join(chatgpt, tweetssubset)
+NeutralF1 <- F1_Score(ndf$label, ndf$sentiment, positive="neutral")
+NegativeF1 <- F1_Score(ndf$label, ndf$sentiment, positive="negative")
+PositiveF1 <- F1_Score(ndf$label, ndf$sentiment, positive="positive")
+ChatGPTF1 <- mean(c(NeutralF1, NegativeF1, PositiveF1))
+ChatGPTF1
+```
+
+If you have access to GPT-4, you can do the same to compare. If not, you can find the output for the above prompt with GPT-4 (turbo) for a random subset of the tweets in "GPT-4.json".
+
+```{r}
+#Your code here
+```
