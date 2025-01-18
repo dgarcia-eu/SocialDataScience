@@ -1,6 +1,6 @@
 # Social Data Science
 
-[David Garcia](http://dgarcia.eu), 2024
+[David Garcia](http://dgarcia.eu), 2025
 
 Welcome to the online materials for Social Data Science.
 
