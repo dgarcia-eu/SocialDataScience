@@ -1,0 +1,29 @@
+---
+title: "Ethics and privacy in social media data analysis"
+author: "David Garcia"
+output: html_document
+---
+
+[**[You can find the lecture slides here]**](https://dgarcia-eu.github.io/SocialMediaDataAnalysis/03_EthicsAndPrivacy/Slides/Slides.html)
+
+Beyond the class discussion, this session is supplemented best by recommended readings.
+
+### Recommended Readings
+
+1. [Ten simple rules for responsible big data research. Zook et al. (2017)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005399)
+
+2. [Responses to Critiques on Machine Learning of Criminality Perceptions (Addendum of arXiv:1611.04135), Wu and Zhang (2017)](https://arxiv.org/abs/1611.04135)
+
+3. [Experimental evidence of massive-scale emotional contagion through social networks. Kramer et al, PNAS (2014)](https://www.pnas.org/content/111/24/8788)
+
+4. [Private traits and attributes are predictable from digital records of human behavior (Kosinski et al, 2013)](https://www.pnas.org/content/110/15/5802)
+
+
+### Additional Readings
+
+-  [Internet Research: Ethical Guidelines 3.0. Association of Internet Researchers (2019)](https://aoir.org/reports/ethics3.pdf)
+
+-  [Users' Views of Ethics in Social Media Research: Informed Consent, Anonymity, and Harm. Williams et al, 2017](https://www.emerald.com/insight/content/doi/10.1108/S2398-601820180000002002/full/html)
+
+- [Collective Aspects of Privacy in the Twitter Social Network. D. Garcia, M. Goel, A. Agrawal, P. Kumaraguru, EPJ Data Science, 7(3) (2018)](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-018-0130-3)  
+

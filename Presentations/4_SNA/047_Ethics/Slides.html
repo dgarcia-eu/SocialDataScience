@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Ethical issues in Social Data Science</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia    ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Ethical issues in Social Data Science
+]
+.author[
+### David Garcia <br><br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# When social research can do harm
+
+.pull-left[
+&lt;img src="figures/Milgram.jpeg" width="550" style="display: block; margin: auto;" /&gt;
+
+Milgram's authority experiment (1961)
+]
+
+.pull-right[
+&lt;img src="figures/Zimbardo.jpg" width="450" style="display: block; margin: auto;" /&gt;
+
+Zimbardo's prison experiment (1971)
+
+]
+
+---
+
+# Research ethics
+
+- **Beneficence and No harm principle:** The purpose of research is to discover new information that would be helpful to society. The purpose of research should never be to hurt anyone or find out information at the expense of other people.
+
+- Researchers often seek to evaluate benefits and harms of their research to indicate that **benefits greatly outweigh potential harms**.
+
+- **Institutional Review Boards (IRB)** for ethics: University processes to safeguard ethical principles in academic research. Scientists submit research designs and the board reviews them and makes a statement about whether the design respects the ethics regulations of the university.
+
+
+[First do no harm: An exploration of researchers' ethics of conduct in Big Data behavioral studies. Favaretto et al (2020)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0241865)
+
+---
+
+## Ethics Commission at ETH Zurich
+
+.center[![:scale 65%](figures/ETHEThics.png)]
+
+https://ethz.ch/en/the-eth-zurich/organisation/boards-university-groups-commissions/ethics-commission.html
+---
+
+## Example reference: the Declaration of Helsinki
+
+.center[![](figures/Helsinki.png)]
+https://www.wma.net/policies-post/wma-declaration-of-helsinki-ethical-principles-for-medical-research-involving-human-subjects/
+---
+# Ethics of social media research
+
+Beyond the No harm principle:
+ - Respecting privacy expectations of **data subjects**: Data are people
+ - Downstream consequences of technological development
+ - Right to information in the digital society
+ 
+There is no *magic rule* or *solution* in research ethics: Every research design has to be evaluated in detail and its risks and benefits considered carefully
+
+How to do that is evolving over time, building on examples that expose research ethics issues. Here we are going to see a few that have shaped current research ethics in the analysis of social media data and other digital traces
+
+[Internet Research: Ethical Guidelines 3.0. Association of Internet Researchers (2019)](https://aoir.org/reports/ethics3.pdf)
+
+---
+
+# Preventing harm: Informed consent
+.pull-left[
+![](figures/InformedConsent.png)
+]
+
+.pull-right[
+
+- A way to verify that harm is reduced is to check that research subjects consent to participate in the experiment
+- Gathering that consent in an informed way can be challenging
+  - Long forms with jargon
+  - Unconscious participants
+  - Non-invasive or in vivo research
+
+[Users' Views of Ethics in Social Media Research: Informed Consent, Anonymity, and Harm. Williams et al, 2017](emerald.com/insight/content/doi/10.1108/S2398-601820180000002002/full/html)
+]
+---
+
+## When can you say that consent was informed?
+
+&lt;img src="figures/Kramer.svg" width="1200" style="display: block; margin: auto;" /&gt;
+
+[Experimental evidence of massive-scale emotional contagion through social networks. Kramer et al, PNAS (2014)](https://www.pnas.org/content/111/24/8788)
+---
+
+
+## When can you say that consent was informed?
+
+&lt;img src="figures/FBconsent.png" width="900" style="display: block; margin: auto;" /&gt;
+
+- "Blanket consent" without explicit purpose is not considered informed
+- The GDPR regulates this and similar clauses are not legal in the EU any more
+
+[Experimental evidence of massive-scale emotional contagion through social networks. Kramer et al, PNAS (2014)](https://www.pnas.org/content/111/24/8788)
+---
+
+## Use expectations: when public is not enough
+
+&lt;img src="figures/Kosinski.png" width="1300" style="display: block; margin: auto;" /&gt;
+
+[Deep Neural Networks Are More Accurate Than Humans at Detecting Sexual Orientation From Facial Images. Kosinski and Wang (2018)](https://www.gsb.stanford.edu/sites/default/files/publication-pdf/wang_kosinski.pdf)
+
+---
+## Downstream consequences: coding stereotypes
+
+.center[![:scale 100%](figures/AMT.png)]
+
+[Do algorithms reveal sexual orientation or just expose our stereotypes? Blaise Aguera y Arcas, Alexander Todorov and Margaret Mitchell (2018)](https://medium.com/@blaisea/do-algorithms-reveal-sexual-orientation-or-just-expose-our-stereotypes-d998fafdf477)
+
+---
+## Downstream consequences: coding stereotypes
+
+.center[![:scale 100%](figures/Faces.png)]
+
+[Do algorithms reveal sexual orientation or just expose our stereotypes? Blaise Aguera y Arcas, Alexander Todorov and Margaret Mitchell (2018)](https://medium.com/@blaisea/do-algorithms-reveal-sexual-orientation-or-just-expose-our-stereotypes-d998fafdf477)
+
+---
+
+# A note on "ethics approval"
+
+.center[![](figures/IRB.png)]
+
+- IRB only provide statements that a research project design complies with the regulations of the institution regarding human subjects research
+- IRB are not "ethics approvals" or "ethics certificates", but they are proof that researchers have followed certain due process to consider ethics issues
+- IRB focus on direct harm in experiments (e.g. health adverse effects) and do not consider other downstream social or technical risks
+
+[Authors' note: Deep neural networks are more accurate than humans at detecting sexual orientation from facial images. M. Kosinski &amp; Y. Wang (last update 2022)](https://docs.google.com/document/d/11oGZ1Ke3wK9E3BtOFfGfUQuuaSMR8AO2WfWH3aVke6U)
+
+---
+
+## Downstream consequences: technology misuse
+.center[![:scale 50%](figures/criminals.png)]
+[Responses to Critiques on Machine Learning of Criminality Perceptions (Addendum of arXiv:1611.04135), Wu and Zhang (2017)](https://arxiv.org/abs/1611.04135)
+
+---
+
+# Terms of Service vs Right to Information
+
+&lt;img src="figures/Schwartz.png" width="1000" style="display: block; margin: auto;" /&gt;
+
+[Federal Court Rules 'Big Data' Discrimination Studies Do Not Violate Federal Anti-Hacking Law. Americal Civil Liberties Union (2020)](https://www.aclu.org/press-releases/federal-court-rules-big-data-discrimination-studies-do-not-violate-federal-anti)
+
+---
+
+# A recent case: Koko and GPT-3
+
+.center[![:scale 80%](figures/koko1.png)]
+---
+
+# A recent case: Koko and GPT-3
+
+.center[![:scale 90%](figures/koko2.png)]
+---
+
+# A recent case: Koko and GPT-3
+.center[![:scale 75%](figures/koko3.png)]
+---
+
+# Summary
+
+- **Ethics in social media data analysis**
+  - No harm principle
+  - Cases of previous ethical issues in digital trace data research
+  - Recommendations for Big Data research
+
+  
+- **A recent case**
+  - Reasons to do it? benefit for participants and society?
+  - Risks to participants? Harm or also privacy?
+  - Other downstream risks/benefits
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

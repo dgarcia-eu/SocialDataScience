@@ -1,6 +1,6 @@
 ---
 title: "Accessing the World Development Indicators from R"
-author: "David Garcia, 2021"
+author: "David Garcia"
 output: html_document
 ---
 

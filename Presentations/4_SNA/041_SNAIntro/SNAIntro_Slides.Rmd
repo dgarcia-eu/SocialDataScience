@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Social Networks"
-author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:

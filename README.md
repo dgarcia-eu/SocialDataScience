@@ -23,7 +23,8 @@ The course is organized as a block course in five days with several topics each.
 1.4. [Measuring correlation](https://dgarcia-eu.github.io/SocialDataScience/Handouts/1_Introduction/014_Correlation/MeasuringCorrelation.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/1_Introduction/014_Correlation/MeasuringCorrelation_Slides.html)  
 1.5. [R crash course](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/1_Introduction/015_RCrashCourse/RCrashCourse.html) -- [[R crash course materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Tutorials/1_Introduction/015_RCrashCourse)  
 1.6. [Accessing the World Development Indicators from R](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/1_Introduction/016_WDI/WDI.html) - [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Tutorials/1_Introduction/016_WDI)  
-1.7. [Google Trends data in R  ](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/1_Introduction/017_gtrendsR/gtrendsR.html) - [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Tutorials/1_Introduction/017_gtrendsR)  
+1.7. [Google Trends data in R](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/1_Introduction/017_gtrendsR/gtrendsR.html) - [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Tutorials/1_Introduction/017_gtrendsR)  
+1.8. [Research example: Measuring Gender Divides with Facebook Data](https://www.pnas.org/doi/abs/10.1073/pnas.1717781115) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/1_Introduction/Appendix_FacebookGenderDivide/index.html)   
 [Exercise 1: Future orientation and economic development](https://dgarcia-eu.github.io/SocialDataScience/Exercises/01_FOI_Gtrends/GDP_FOI_Short.html) -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Exercises/01_FOI_Gtrends)
 
 2. **Social dynamics**  
@@ -44,7 +45,8 @@ The course is organized as a block course in five days with several topics each.
 3.5. [The Measurement of meaning from text](https://dgarcia-eu.github.io/SocialDataScience/Handouts/3_Affect/039_SemanticDifferential/SemanticDifferential.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/035_MeasurementOfMeaning/Meaning_Slides.html)  
 3.6. [Supervised sentiment analysis](https://dgarcia-eu.github.io/SocialDataScience/Handouts/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/034_SupervisedSentimentAnalysis/SupervisedSentimentAnalysis_Slides.html)  
 3.7. Sentiment Analysis Applications -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/036_SentimentAnalysisApplications/SentimentApplications_Slides.html)  
-3.8. [Training supervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/3_Affect/036_SupervisedTextClassification/SupervisedTextClassification.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Tutorials/3_Affect/036_SupervisedTextClassification)  
+3.8. [Training supervised sentiment analysis in R](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/3_Affect/036_SupervisedTextClassification/SupervisedTextClassification.html) -- [[Tutorial files]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Tutorials/3_Affect/036_SupervisedTextClassification)   
+3.9. [Research example: Linguistic Embeddings for the Identification of Affect](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-023-00427-0) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_LEIA/index.html)  
 [Exercise 3: Evaluating sentiment analysis methods](https://dgarcia-eu.github.io/SocialDataScience/Exercises/03_Sentiment_Analysis_Evaluation/SentimentEvaluation_Short.html)  -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Exercises/03_Sentiment_Analysis_Evaluation)  
 
 4. **Social network analysis**  
@@ -54,7 +56,8 @@ The course is organized as a block course in five days with several topics each.
 4.4. [SDS story: sampling opinions on Twitter](https://dgarcia-eu.github.io/SocialDataScience/Handouts/4_SNA/043_TwitterOpinions/TwitterOpinions.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/044_TwitterOpinions/TwitterOpinions_Slides.html)  
 4.5. [Centrality in social networks](https://dgarcia-eu.github.io/SocialDataScience/Handouts/4_SNA/044_Centrality/Centrality.html) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/043_Centrality/Centrality_Slides.html)  
 4.6. [Handling Twitter network data](https://dgarcia-eu.github.io/SocialDataScience/Tutorials/4_SNA/047_TwitterNetworkJSON/TwitterNetworkJSON.html) -- [[Tutorial files in Exercise 4 folder]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Exercises/04_Assortativity_Twitter)  
-4.7. Privacy in online social networks -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/045_PrivacyIssues/Privacy_Slides.html)  
+4.7. [Ethical issues in Social Data Science]() -- [[Slides]]()
+4.8. [Research example: Complex privacy in online social networks](https://epjdatascience.springeropen.com/articles/10.1140/epjds/s13688-018-0130-3) -- [[Slides]](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/045_PrivacyIssues/Privacy_Slides.html)  
 [Exercise 4: Assortativity among Swiss politicians on Twitter](https://dgarcia-eu.github.io/SocialDataScience/Exercises/04_Assortativity_Twitter/PoliticianAssortativity_Short.html) -- [[Exercise materials]](https://download-directory.github.io/?url=https://github.com/dgarcia-eu/SocialDataScience/tree/master/Exercises/04_Assortativity_Twitter)  
 
 5. **Social network phenomena**  
@@ -72,10 +75,8 @@ The course is organized as a block course in five days with several topics each.
 - Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=21125) to get information about evaluation criteria for the course and to participate in online quizzes.
 
 ## To learn more about my research in Social Data Science
-1. [Measuring Gender Divides with Facebook Data](https://dgarcia-eu.github.io/SocialDataScience/Presentations/1_Introduction/Appendix_FacebookGenderDivide/index.html)
-2. [Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/Appendix_CollectiveEmotions/index.html)
-3. [Measuring large-scale emotion aggregates through social media text](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_EmotionMacroscopes/index.html)
-4. [Complex Privacy in Online Social Networks](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/Appendix_ShadowProfiles/index.html)
+1. [Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/Appendix_CollectiveEmotions/index.html)
+2. [Measuring large-scale emotion aggregates through social media text](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_EmotionMacroscopes/index.html)
+
 5. [Food Polarization on Social Media](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/Appendix_FoodPolarization/index.html)
-6. [Linguistic Embeddigs for the Identification of Affect](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_LEIA/index.html)
 

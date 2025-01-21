@@ -1,5 +1,5 @@
 ---
-title: "Privacy in Online Social Networks"
+title: "Complex Privacy in Online Social Networks"
 author: "David Garcia <br> *ETH Zurich*"
 date: "Social Data Science"
 output:
