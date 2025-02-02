@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Simulating coordination   among LLM agents</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Garcia     ETH Zurich" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/footer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Simulating coordination <br> among LLM agents
+]
+.author[
+### David Garcia <br> <br> <em>ETH Zurich</em>
+]
+.date[
+### Social Data Science
+]
+
+---
+
+
+
+
+
+
+layout: true
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+# LLMs Within Society
+
+.center[![:scale 88%](figures/AIeverywhere.png)]
+- AI agents promise to interact with each other in our behalf
+- Coordination and competition (reservations, negotiations, applications)
+- **Could norms emerge, for example rules to be more efficient?** 
+- **Could they have systemic risks, like flash crashes?**
+
+---
+
+# LLMs as Social Brains
+.pull-left[![:scale 100%](figures/DunbarQuestion.svg)]
+.pull-right[
+
+- Group formation and sustainability: size depends on cognitive ability
+
+
+- Memory of identity to predict behavior and cooperation
+
+
+- Essential coordination on arbitrary norms without ground truth
+  - E.g. pack moves left or right
+
+
+- Language as a tool for humans to make larger groups:
+  - Dunbar's number (150-250)
+
+
+]
+---
+
+# Opinion Dynamics in LLM Agents
+.pull-left[.center[![:scale 75%](figures/OP.png)]]
+.pull-right[
+- Simulation of a tight group of N interacting agents
+- Agents start with a random opinion of two options
+- Each iteration, they see the opinions of all others (prompt)
+- They respond to the question of their opinion
+- Opinion labels need to be random and shuffled to avoid token biases
+- Consensus is achieved if all have the same opinion
+]
+
+---
+
+# LLM-Dependent Consensus Formation
+.center[![:scale 75%](figures/Consensus.png)]
+Some LLMs can reach consensus for completely arbitrary decisions (50 agents)
+
+---
+
+# Understanding LLM Opinion Dynamics
+
+.center[![:scale 94%](figures/Sigma.png)]
+Agent opinion changes follow an S-function parametrized by a majority force `\(\beta\)`
+---
+
+# Majority Force Factors
+.center[![:scale 95%](figures/plot2.png)]
+- Majority force is higher for models with higher language understanding capabilities (MMLU benchmark)
+- Majority force decreases for larger group sizes
+
+---
+
+# Ising model warning
+
+&lt;/br&gt;
+
+&gt; &lt;font size="45"&gt;
+No please, not another Ising model
+&lt;/font&gt; 
+
+&lt;/br&gt;
+
+*&lt;div style="text-align: right"&gt; 
+David Garcia, Vienna, 2017-2020, every week
+&lt;/div&gt;*
+
+
+
+---
+## Critical Group Size and Consensus Time `\(T_c\)`
+.pull-right[![:scale 100%](figures/CW.png)]
+
+- Analysis of critical group size `\(N_c\)`
+
+
+- `\(N&gt;N_c\)`: time to consensus grows expontentially with `\(N\)`
+
+
+- Above critical size, consensus is unfeasible and happens only by chance
+
+
+- `\(T_c\)` can be calculated from `\(\beta\)` as in the Curie-Weiss model (i.e. time to magnetization as a function of inverse temperature)
+
+- `\(N_c\)` can be derived from  `\(\beta\)` as the point of phase transition of `\(T_c\)` ( `\(\beta_c=1\)` )
+
+
+---
+
+# Group Size and Language Understanding
+.pull-right[![:scale 90%](figures/Scaling.png)]
+
+- Analysis of majority force and exhaustive simulations to measure **critical consensus size**
+
+- Exponential function of MMLU benchmark
+
+- Humans close to the line
+
+- GPT4 and Claude 3.5 Sonnet reach consensus for `\(N=1000\)`
+  - LLM emergent consensus scale beyond humans
+
+
+---
+
+# Summary
+
+- LLM consensus scale predicted by language understanding capabilities
+- LLMs can reach emergent consensus at scales beyond humans
+- **Opportunity: decision-making or coordination?**
+- **Risk: undesired synchronization like a flash crash?**
+- **Future: Social simulation with LLMs **
+
+&lt;a href="https://arxiv.org/abs/2409.02822"&gt; Language Understanding as a Constraint on Consensus Size in LLM Societies. G de Marzo, C. Castellano, D. Garcia. Arxiv (2014) &lt;/a&gt;
+
+.center[**More at: [www.dgarcia.eu](https://dgarcia.eu)**]
+.center[**[Bluesky: @dgarcia.eu](https://bsky.app/profile/dgarcia.bsky.social)**]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/perc.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
