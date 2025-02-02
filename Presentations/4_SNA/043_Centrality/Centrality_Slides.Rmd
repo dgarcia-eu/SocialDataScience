@@ -1,6 +1,6 @@
 ---
 title: "Centrality in Social Networks"
-author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -34,7 +34,7 @@ options(htmltools.dir.version = FALSE)
 
 layout: true
 
-<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Social Data Science"
-author: "David Garcia <br> *ETH Zurich*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -34,7 +34,7 @@ options(htmltools.dir.version = FALSE)
 
 layout: true
 
-<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
 
 ---
 # What is the aim of Social Data Science?

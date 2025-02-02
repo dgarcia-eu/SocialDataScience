@@ -397,11 +397,7 @@ text. The second one is RTextTools, which includes machine learning
 models and useful functions for text classification:</p>
 <pre class="r"><code>library(RTextTools)</code></pre>
 <pre><code>## Loading required package: SparseM</code></pre>
-<pre><code>## 
-## Attaching package: &#39;SparseM&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     backsolve</code></pre>
+<pre><code>## Warning: package &#39;SparseM&#39; was built under R version 4.4.2</code></pre>
 <pre class="r"><code>library(tm)</code></pre>
 <pre><code>## Loading required package: NLP</code></pre>
 <p>Using these two libraries it is very easy to pre-process the data
@@ -579,9 +575,9 @@ wordsdf %&gt;%
   inner_join(vdf) %&gt;%
   group_by(ID) %&gt;%
   summarize(sent=sum(angerWord==1), n=n()) -&gt; nrcdf</code></pre>
-<pre><code>## Joining, by = &quot;word&quot;</code></pre>
+<pre><code>## Joining with `by = join_by(word)`</code></pre>
 <pre class="r"><code>nrcdf &lt;- full_join(nrcdf, data.frame(ID=df$ID[testids], trueclass=df$anger[testids]))</code></pre>
-<pre><code>## Joining, by = &quot;ID&quot;</code></pre>
+<pre><code>## Joining with `by = join_by(ID)`</code></pre>
 <pre class="r"><code>nrcdf$results &lt;- rep(0,nrow(nrcdf))
 nrcdf$results[nrcdf$sent&gt;0] &lt;- 1
 table(nrcdf$trueclass, nrcdf$results)</code></pre>

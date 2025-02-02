@@ -139,7 +139,7 @@ Finding a partition of the network into communities that maximizes Q-modularity 
 ```{r }
 starwars %>% 
   activate(nodes) %>% 
-  mutate(community=as.character(group_fast_greedy())) %>% 
+  mutate(community=as.factor(group_fast_greedy())) %>% 
   mutate(modularity = graph_modularity(group=community)) %>% 
   pull(modularity) %>% 
   head(1)

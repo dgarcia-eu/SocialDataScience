@@ -1,6 +1,6 @@
 ---
 title: "The measurement of meaning from text"
-author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:

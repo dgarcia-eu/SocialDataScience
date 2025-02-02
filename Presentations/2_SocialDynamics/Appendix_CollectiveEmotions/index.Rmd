@@ -1,6 +1,6 @@
 ---
 title: "Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack"
-author: "David Garcia <br> *ETH Zurich*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -34,7 +34,7 @@ options(htmltools.dir.version = FALSE)
 
 
 layout: true
-<div class="my-footer"><span>David Garcia - Computational Social Science Lab - TU Graz + CSH Vienna</span></div> 
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
 
 ---
 

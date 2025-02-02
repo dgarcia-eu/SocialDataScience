@@ -1,6 +1,6 @@
 ---
 title: "Measuring Gender Divides with Facebook Data"
-author: "David Garcia <br> *ETH Zurich*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -34,7 +34,7 @@ options(htmltools.dir.version = FALSE)
 
 
 layout: true
-<div class="my-footer"><span>David Garcia - Social Data Science</span></div> 
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
 
 ---
 class:center
@@ -57,13 +57,6 @@ knitr::include_graphics("figures/zuck.png")
 ```
 ]
 ---
-
-layout: true
-<div class="my-footer"><span>
-<a href=http://www.pnas.org/content/early/2018/06/12/1717781115> Analyzing gender inequality through large-scale Facebook advertising data. David Garcia et al. Proceedings of the National Academy of Sciences (2018)</a></span></div>
-
----
-
 
 # Inequality and gender in social media
 

@@ -447,8 +447,12 @@ package</a> provides a way to access Google Trends from R. It is useful
 to make searches reproducible, but <strong>do not make many calls in a
 short period of time because Google will block you.</strong> Always save
 the data as soon as you got it.</p>
-<p>Installing the package is as simple as any other package:</p>
-<pre class="r"><code>install.packages(&quot;gtrendsR&quot;)</code></pre>
+<p>Installing the package can be done like other packages, but since the
+Google Trends API changes all the time, it is better to install the
+latest github version with devtools:</p>
+<pre class="r"><code># instead of install.packages(&quot;gtrendsR&quot;)
+install.packages(&quot;devtools&quot;)  # pay attention at possible software you might have to install for devtools
+devtools::install_github(&quot;PMassicotte/gtrendsR&quot;)</code></pre>
 <p>And loading it as well:</p>
 <pre class="r"><code>library(gtrendsR)</code></pre>
 <p>Its main fuction is call gtrends, which allows you to query Google
@@ -476,20 +480,20 @@ column “hits”:</p>
 <pre class="r"><code>head(result$interest_over_time)</code></pre>
 <pre><code>##         date hits keyword   geo                  time gprop category
 ## 1 2013-12-29   78    2013 world 2014-01-01 2014-12-31   web        0
-## 2 2014-01-05   54    2013 world 2014-01-01 2014-12-31   web        0
-## 3 2014-01-12   46    2013 world 2014-01-01 2014-12-31   web        0
-## 4 2014-01-19   41    2013 world 2014-01-01 2014-12-31   web        0
-## 5 2014-01-26   38    2013 world 2014-01-01 2014-12-31   web        0
-## 6 2014-02-02   37    2013 world 2014-01-01 2014-12-31   web        0</code></pre>
+## 2 2014-01-05   53    2013 world 2014-01-01 2014-12-31   web        0
+## 3 2014-01-12   48    2013 world 2014-01-01 2014-12-31   web        0
+## 4 2014-01-19   42    2013 world 2014-01-01 2014-12-31   web        0
+## 5 2014-01-26   40    2013 world 2014-01-01 2014-12-31   web        0
+## 6 2014-02-02   38    2013 world 2014-01-01 2014-12-31   web        0</code></pre>
 <p>And interest_by_country contains the volume across countries:</p>
 <pre class="r"><code>head(result$interest_by_country)</code></pre>
 <pre><code>##          location hits keyword   geo gprop
 ## 1         Algeria  100    2013 world   web
 ## 2         Moldova   92    2013 world   web
-## 3         Armenia   91    2013 world   web
-## 4        Pakistan   88    2013 world   web
-## 5      Kazakhstan   72    2013 world   web
-## 6 Wallis &amp; Futuna   71    2013 world   web</code></pre>
+## 3         Armenia   88    2013 world   web
+## 4        Pakistan   85    2013 world   web
+## 5 Wallis &amp; Futuna   74    2013 world   web
+## 6      Kazakhstan   69    2013 world   web</code></pre>
 </div>
 <div id="appendix-disambiguated-trends" class="section level3">
 <h3>Appendix: Disambiguated trends</h3>
@@ -515,11 +519,11 @@ directly:</p>
 head(result$interest_by_country)</code></pre>
 <pre><code>##         location hits   keyword   geo gprop
 ## 1        Liberia  100 /m/045m1_ world   web
-## 2       Kiribati   75 /m/045m1_ world   web
-## 3 American Samoa   68 /m/045m1_ world   web
-## 4          Tonga   67 /m/045m1_ world   web
-## 5       Eswatini   64 /m/045m1_ world   web
-## 6          Samoa   62 /m/045m1_ world   web</code></pre>
+## 2         Tuvalu   77 /m/045m1_ world   web
+## 3       Kiribati   75 /m/045m1_ world   web
+## 4 American Samoa   69 /m/045m1_ world   web
+## 5          Tonga   68 /m/045m1_ world   web
+## 6       Eswatini   65 /m/045m1_ world   web</code></pre>
 </div>
 
 

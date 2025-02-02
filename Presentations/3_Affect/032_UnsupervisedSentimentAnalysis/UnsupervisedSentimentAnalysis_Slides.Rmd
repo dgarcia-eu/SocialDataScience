@@ -1,6 +1,6 @@
 ---
 title: "Unsupervised Sentiment Analysis"
-author: "David Garcia <br><br> *ETH Zurich, Chair of Systems Design*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -34,7 +34,7 @@ options(htmltools.dir.version = FALSE)
 
 layout: true
 
-<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design</span></div> 
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
 
 ---
 
@@ -109,7 +109,7 @@ LIWC (pronounced "Luke") was developed as a click-and-run software by [James Pen
 
 # VADER 
 <div style="float:right">
-<img src="https://t-redactyl.io/figure/Vader_1.jpg" alt="VADER" width="395px"/>  
+<img src="vader_1.jpg" alt="VADER" width="395px"/>  
 </div>
 
 VADER (Valence Aware Dictionary and sEntiment Reasoner) is a tool very similar to SentiStrength in the steps it follows:

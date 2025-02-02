@@ -1,6 +1,6 @@
 ---
 title: "Food Polarization on Social Media"
-author: "David Garcia <br> *ETH Zurich*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -32,6 +32,11 @@ style_mono_accent(
 options(htmltools.dir.version = FALSE)
 ```
 
+layout: true
+
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
+
+---
 
 ## Approaches to Polarization
 
@@ -89,11 +94,6 @@ class:center
 
 ---
 
-layout: true
-<div class="my-footer"><span>
-<a href=https://doi.org/10.1016/S0140-6736(19)32526-7> EATLancet vs yes2meat: the digital backlash to the planetary health diet. David Garcia, Victor Galaz, Stefan Daume. The Lancet (2019)</a></span></div>
-
----
 
 ## Emergence of polarization in food habits
 

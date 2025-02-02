@@ -1,6 +1,6 @@
 ---
 title: "Complex Privacy in Online Social Networks"
-author: "David Garcia <br> *ETH Zurich*"
+author: "David Garcia <br><br> *ETH Zurich*"
 date: "Social Data Science"
 output:
   xaringan::moon_reader:
@@ -33,8 +33,7 @@ options(htmltools.dir.version = FALSE)
 ```
 
 layout: true
-<div class="my-footer"><span>
-<a href=https://advances.sciencemag.org/content/3/8/e1701172.full> Leaking privacy and shadow profiles in online social networks. David Garcia. Science Advances (2017) </a></span></div>
+<div class="my-footer"><span>David Garcia - Social Data Science - ETH Zurich</span></div> 
 
 ---
 

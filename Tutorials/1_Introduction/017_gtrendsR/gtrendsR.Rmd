@@ -75,9 +75,11 @@ head(geodf)
 
 The [gtrendsR package](https://cran.r-project.org/web/packages/gtrendsR/index.html) provides a way to access Google Trends from R. It is useful to make searches reproducible, but **do not make many calls in a short period of time because Google will block you.** Always save the data as soon as you got it.
 
-Installing the package is as simple as any other package:
+Installing the package can be done like other packages, but since the Google Trends API changes all the time, it is better to install the latest github version with devtools:
 ```{r, eval=F}
-install.packages("gtrendsR")
+# instead of install.packages("gtrendsR")
+install.packages("devtools")  # pay attention at possible software you might have to install for devtools
+devtools::install_github("PMassicotte/gtrendsR")
 ```
 
 And loading it as well:

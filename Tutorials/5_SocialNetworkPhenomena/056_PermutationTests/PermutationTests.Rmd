@@ -1,6 +1,6 @@
 ---
 title: "Permutation Tests"
-author: "David Garcia, 2021"
+author: "David Garcia"
 output: html_document
 ---
 

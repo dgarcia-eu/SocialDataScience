@@ -3,7 +3,7 @@
   <head>
     <title>Linear Regression</title>
     <meta charset="utf-8" />
-    <meta name="author" content="David Garcia    ETH Zurich, Chair of Systems Design" />
+    <meta name="author" content="David Garcia    ETH Zurich" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/footer.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Linear Regression
 ]
 .author[
-### David Garcia <br><br> <em>ETH Zurich, Chair of Systems Design</em>
+### David Garcia <br><br> <em>ETH Zurich</em>
 ]
 .date[
 ### Social Data Science
@@ -32,7 +32,7 @@ class: center, middle, inverse, title-slide
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich, Chair of Systems Design&lt;/span&gt;&lt;/div&gt; 
+&lt;div class="my-footer"&gt;&lt;span&gt;David Garcia - Social Data Science - ETH Zurich&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -84,13 +84,13 @@ The Ordinary Least Squares method (OLS) looks for the values of coefficients tha
 
 The lm() function in R fits a linear regression model with OLS. You have to specify the *formula* of your regression model. For the case of one independent variable, a formula reads like this:  
 
-```r
+``` r
 DependentVariable ∼ IndependentVariable
 ```
 If you print the result of lm(), you will see the best fitting values for the coefficients (intercept and slope):
 
 
-```r
+``` r
 model &lt;- lm(GDP~FOI, df)
 model$coefficients
 ```
@@ -112,7 +112,7 @@ This is captured by the coefficient of determination, also known as `\(R^2\)`:
 &lt;/center&gt;  
 For our model example:
 
-```r
+``` r
 1-var(residuals(model))/var(df$GDP)
 ```
 
@@ -126,12 +126,12 @@ For our model example:
 
 You can specify models with more than one independent variable by using "+":
 
-```r
+``` r
 DependentVariable ∼ IndependentVariable1 + IndependentVariable2 + IndependentVariable3
 ```
 If we wanted to fit a model of GDP as a linear combination of the FOI and the internet penetration in countries, we can do it as follows:
 
-```r
+``` r
 model2 &lt;- lm(GDP~FOI+IT.NET.USER.ZS, df)
 model2$coefficients
 ```
@@ -141,7 +141,7 @@ model2$coefficients
 ##    -16154.2983     20528.8273       539.8481
 ```
 
-```r
+``` r
 summary(model2)$r.squared
 ```
 
@@ -154,7 +154,7 @@ summary(model2)$r.squared
 # Regression diagnostics
 
 
-```r
+``` r
 hist(residuals(model), main="", cex.lab=1.5, cex.axis=2)
 ```
 
@@ -164,7 +164,7 @@ hist(residuals(model), main="", cex.lab=1.5, cex.axis=2)
 # Regression diagnostics
 
 
-```r
+``` r
 plot(predict(model), residuals(model), cex.lab=1.5, cex.axis=2)
 ```
 
