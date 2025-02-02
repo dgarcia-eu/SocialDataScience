@@ -1,0 +1,22 @@
+---
+title: "Sentiment Analysis Applications: Recommended Readings"
+author: "David Garcia"
+output: html_document
+---
+
+[**[You can find the lecture slides here]**](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/036_SentimentAnalysisApplications/SentimentApplications_Slides.html)
+
+Beyond the class discussion, this session is supplemented best by recommended readings.
+
+### Recommended Readings
+
+1. [Measuring the Happiness of Large-Scale Written Expression: Songs, Blogs, and Presidents. Peter Sheridan Dodds & Christopher M. Danforth. Journal of Happiness Studies (2010)](https://link.springer.com/article/10.1007/s10902-009-9150-9)
+2. [A Novel Method for Detecting Plot. Matthew Jockers (2015)](https://www.matthewjockers.net/2014/06/05/a-novel-method-for-detecting-plot/)
+3. [Books Average Previous Decade of Economic Misery. R. Alexander Bentley, Alberto Acerbi, Paul Ormerod, Vasileios Lampos. Plos One (2014)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0083147 )
+4. [Twitter mood predicts the stock market. Johan Bollen, Huina Mao, Xiaojun Zeng. Journal of Computational Science (2011)](https://www.sciencedirect.com/science/article/pii/S187775031100007X)
+
+
+
+
+
+
