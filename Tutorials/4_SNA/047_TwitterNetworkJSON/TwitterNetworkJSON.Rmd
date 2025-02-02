@@ -7,6 +7,8 @@ output: html_document
 For this tutorial, download the file [SwissPoliticians-tweets.json.gz (~21MB)](https://github.com/dgarcia-eu/SocialDataScience/raw/master/Exercises/04_Assortativity_Twitter/SwissPoliticians-tweets.json.gz)
 and [SwissPoliticians.csv](https://raw.githubusercontent.com/dgarcia-eu/SocialDataScience/master/Exercises/04_Assortativity_Twitter/SwissPoliticians.csv).
 
+[You can find the RMD file for this tutorial here.](https://raw.githubusercontent.com/dgarcia-eu/SocialDataScience/master/Tutorials/4_SNA/047_TwitterNetworkJSON/TwitterNetworkJSON.Rmd)  
+
 Today, we will go together through the introductory part of the fourth exercise, where we will analyze the network of Swiss politicians on Twitter. Here, we will do the basics of loading and processing Twitter data from a file with tweets in JSON.
 
 # 1. Load the timeline data of Twitter user accounts of Swiss politicians
