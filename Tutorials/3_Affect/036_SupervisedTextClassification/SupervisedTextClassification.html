@@ -536,6 +536,11 @@ sum(trueclass==results &amp; trueclass==1)/sum(trueclass==1)</code></pre>
 has learned well from the examples in its training data, but new
 expressions of anger might use words the model has never seen and thus
 it misses many other ways of expressing anger.</p>
+<p><strong>Your turn</strong></p>
+<p>Repeat the above exercise for another class less frequent than anger.
+Calculate the frequency of that emotion, and the precision, recall, and
+accuracy of your classifier.</p>
+<pre class="r"><code># Your code here</code></pre>
 </div>
 <div id="comparing-with-dictionary-methods" class="section level1">
 <h1>5. Comparing with dictionary methods</h1>
@@ -609,6 +614,20 @@ supervised models can “guess” the sentiment associated with words not
 appearing in the training data. In many current research cases,
 supervised models are outperforming dictionary methods thansk to these
 advances in NLP.</p>
+<p><strong>Your turn</strong></p>
+<p>Use LEIA as you learned in the unsupervised tools tutorial and
+classify a small subset of the texts in the test data. Depending on the
+capacity of your computer you will be able to classify more or less,
+start with 20 texts and increase the number if you see you can classify
+more. Then calculate the accuracy, precision, and recall for anger. How
+does this performance compare to the NRC dictionary and to the
+supervised methods above? (<em>Hint: the function unlist() can help to
+structure the output of classifications in huggingfaceR.</em>)</p>
+<pre class="r"><code># Your code here</code></pre>
+<p>Repeat the above analysis but with the
+cardiffnlp/twitter-roberta-base-emotion-multilabel-latest emotion
+classifier. Which one performs better for anger?</p>
+<pre class="r"><code># Your code here</code></pre>
 </div>
 <div id="further-exercises" class="section level1">
 <h1>6. Further exercises</h1>

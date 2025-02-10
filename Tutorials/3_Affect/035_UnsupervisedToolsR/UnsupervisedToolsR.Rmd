@@ -57,6 +57,14 @@ And negators reverse the valence of a word and weaken it a bit, based on empiric
 get_vader("This book is not bad")
 ```
 
+**Your turn**
+
+Let's break VADER! explore some sentences that VADER might analyze wrong in terms of valence. Can you tell why VADER does or does not work in those cases?
+```{r}
+# Your code here
+```
+
+
 The vader package also includes a vader_df() function to run VADER over a series of texts and produce results in a data frame. Here we use the schrute library to load the scripts of the US TV series "The Office" and run VADER over the first six lines of the series:
 
 ```{r}
@@ -79,14 +87,16 @@ install.packages("syuzhet")
 library(syuzhet)
 ```
 
-The syuzhet package provides the get_sentiment() function that works the same way as the get_vader() function, but runs the syuzhet lexicon and computes a mean over the words of the text:
+The syuzhet package provides the get_sentiment() function that works the same way as the get_vader() function, but runs the syuzhet lexicon and computes a mean over the words of the text.
+
+**Your turn**
+
+Run get_sentiment over a few sentences. As with VADER, let's try to break Syuzhet and find examples that get the wrong score. Is it easier or harder than with VADER?
 
 ```{r}
-get_sentiment("This book is horrible")
-get_sentiment("This book is horrible, but I love it")
-get_sentiment("This book is horrible, but I love it!")
+# Your code here
 ```
-As you see in the examples above, the first sentence is scored as negative, but the coexistence of a negative and a positive word in the second example makes them cancel out and give a zero. There are no modification rules, so having an exclamation mark makes no difference.
+
 
 The get_sentiment() function can be run for a vector with more than one text, making it simple to get many scores:
 ```{r}
@@ -239,20 +249,13 @@ wordsdf %>%
 nrcdf
 ```
 
-You can see that the ranking is somehow similar. We can compare the mean sentiment per character in AFINN and the NRC-VAD lexicon with a scatterplot:
+**Your turn**
+
+Compare the mean valence values for AFINN and the NRC-VAD lexicon. Are they correlated?
 
 ```{r}
-joindf <- inner_join(nrcdf, afinndf, by="character")
-plot(joindf$meanvalence, joindf$sent, type="n", xlab="NRC Valence", ylab="AFINN score")
-text(joindf$meanvalence, joindf$sent, joindf$character)
+# Your code here
 ```
-
-As you see, there is some correlation but still quite some disagreement for some characters, especially for the ones with the most negative means of sentiment. The correlation coefficient can be calculated like this:
-
-```{r}
-cor.test(joindf$meanvalence, joindf$sent)
-```
-Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the [validating sentiment analsysis exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html).
 
 ### Sentiment analysis with Transformer models
 

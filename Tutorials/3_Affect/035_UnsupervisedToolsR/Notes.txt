@@ -1,0 +1,41 @@
+
+install.packages("vader")
+
+install.packages("reticulate")
+library(reticulate)
+install_miniconda()
+
+devtools::install_github("farach/huggingfaceR")
+library(huggingfaceR)
+hf_python_depends() 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We can compare the mean sentiment per character in AFINN and the NRC-VAD lexicon with a scatterplot:
+
+```{r}
+joindf <- inner_join(nrcdf, afinndf, by="character")
+plot(joindf$meanvalence, joindf$sent, type="n", xlab="NRC Valence", ylab="AFINN score")
+text(joindf$meanvalence, joindf$sent, joindf$character)
+```
+
+As you see, there is some correlation but still quite some disagreement for some characters, especially for the ones with the most negative means of sentiment. The correlation coefficient can be calculated like this:
+
+```{r}
+cor.test(joindf$meanvalence, joindf$sent)
+```
+Something about 0.75 is not so strong given that these two measurements should be very similar. There is a lot of research going on comparing sentiment analyses like these, the most important is to choose one that can be validated for your application case as you can learn in the [validating sentiment analsysis exercise](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/037_SentimentEvaluation/SentimentEvaluation.html).

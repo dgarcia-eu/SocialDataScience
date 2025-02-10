@@ -1,0 +1,41 @@
+
+texts100 <- texts[1:20]
+anger100 <- trueclass[1:20]
+
+library(huggingfaceR)
+LEIA <- hf_load_pipeline(
+     model_id = "LEIA/LEIA-base", 
+     task = "text-classification"
+)
+lclasses <- LEIA(texts100)
+unlistedclasses <- unlist(lclasses)
+leiac <- unlistedclasses[names(unlistedclasses) == "label"]
+
+#Accuracy Anger
+sum( (leiac == "Anger" & anger100==1)  |  (leiac != "Anger" & anger100==0))/length(leiac)
+
+#Precision Anger
+sum(leiac == "Anger" & anger100==1)/sum(leiac == "Anger")
+
+#Recall Anger
+sum(leiac == "Anger" & anger100==1)/sum(anger100 == 1)
+
+
+
+ROBERTA <- hf_load_pipeline(
+     model_id = "cardiffnlp/twitter-roberta-base-emotion-multilabel-latest", 
+     task = "text-classification"
+)
+rclasses <- ROBERTA(texts100)
+unlistedclasses <- unlist(rclasses)
+robertac <- unlistedclasses[names(unlistedclasses) == "label"]
+
+
+#Accuracy Anger
+sum( (robertac == "anger" & anger100==1)  |  (robertac != "anger" & anger100==0))/length(robertac)
+
+#Precision Anger
+sum(robertac == "anger" & anger100==1)/sum(robertac == "anger")
+
+#Recall Anger
+sum(robertac == "anger" & anger100==1)/sum(anger100 == 1)

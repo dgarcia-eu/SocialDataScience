@@ -122,6 +122,16 @@ sum(trueclass==results & trueclass==1)/sum(trueclass==1)
 ```
 As you see, the precision is high but the recall is low. The model has learned well from the examples in its training data, but new expressions of anger might use words the model has never seen and thus it misses many other ways of expressing anger.
 
+**Your turn**
+
+Repeat the above exercise for another class less frequent than anger. Calculate the frequency of that emotion, and the precision, recall, and accuracy of your classifier.
+
+
+```{r }
+# Your code here
+```
+
+
 # 5. Comparing with dictionary methods
 
 The code below uses a similar approach as what you can find in the [unsupervised sentiment analysis tutorial](https://dgarcia-eu.github.io/SocialDataScience/3_Affect/035_UnsupervisedToolsR/UnsupervisedToolsR.html). We use tidytext to process the data and to match words with the entries of the NRC emotion dictionary, which is distributed through tidytext. We classify a tweet as angry if it contains at least one word from the dictionary and measure the accuracy, precision, and recall of this approach:
@@ -169,11 +179,24 @@ The result is a similar accuracy, a much lower precision, but a much higher reca
 
 In this example we found a trade off between precision and recall in the comparison between a supervised model and a dictionary method. Current approaches to supervised model use additional language models fitted against large corpora, such as BERT and RoBERTa. This way, supervised models can "guess" the sentiment associated with words not appearing in the training data. In many current research cases, supervised models are outperforming dictionary methods thansk to these advances in NLP.
 
+**Your turn**
+
+Use LEIA as you learned in the unsupervised tools tutorial and classify a small subset of the texts in the test data. Depending on the capacity of your computer you will be able to classify more or less, start with 20 texts and increase the number if you see you can classify more. Then calculate the accuracy, precision, and recall for anger. How does this performance compare to the NRC dictionary and to the supervised methods above? (*Hint: the function unlist() can help to structure the output of classifications in huggingfaceR.*)
+
+```{r }
+# Your code here
+```
+
+Repeat the above analysis but with the cardiffnlp/twitter-roberta-base-emotion-multilabel-latest emotion classifier. Which one performs better for anger?
+
+```{r }
+# Your code here
+```
+
+
 # 6. Further exercises
 
 1. The SemEval dataset contains other emotions like sadness. Try another emotion label and compare whether your results are better or worse than for anger. Some of these cases also appear in the NRC lexicon, so you can also compare with a dictionary method.
 2. Try other ML models, e.g. neural networks (NNET) and random forests (RF). This might take a bit of time to train depending on your PC, but can give you an idea of what can outperform SVM.
 3. The SemEval datasets also include polarity data in which tweets are classified as positive, negative, or neutral. Try the supervised approach in that classification case or using the same datasets as in the unsupervised sentiment analysis tutorial.
-
-
 
