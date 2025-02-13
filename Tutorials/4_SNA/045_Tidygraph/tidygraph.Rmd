@@ -88,6 +88,7 @@ starwars %>% activate(edges) %>% pull(weight) -> frequencies
 hist(frequencies)
 ```
 
+
 You can do similar operations with other dplyr verbs. For example, here we first operate on the edges to remove the ones with weight lower than or equal to 10, then calculate node degree in the resulting network, and plot with the nodes that had degree larger than zero:
 
 ```{r}
@@ -95,6 +96,13 @@ starwars %>% activate(edges) %>% filter(weight>10) %>% activate(nodes) %>% mutat
 ```
 
 Above we have visualized a kind of "network core" where only nodes connected to another node with sufficient weight are plotted.
+
+**Your turn**
+
+Which two characters have the strongest link? What character has the highest degree?
+```{r}
+#Your code here
+```
 
 Many calculations on a network depend on the neighbors of a node. The function local_members allows you to get neighborhoods at various distances, the first neighbors would be of order 1 but you can also get them for farther distances with higher orders. In the code below, we mutate each node to add its first-order neighbors and look at the neighborhood of the first:
 
@@ -146,3 +154,8 @@ starwars %>% ggraph(layout = "kk")  + geom_edge_link(color="gray") + geom_node_p
 
 You can learn more about how to customize ggraph visualization in [this tutorial](http://mr.schochastics.net/netVizR.html). In addition, a great tool to customize visualizations, especially for large networks, is [Gephi](https://gephi.org/).
 
+**Your turn**
+Change the parameters of the visualization and play around with different layouts. Which ones are better and which ones are worse?
+```{r}
+#Your code here
+```
