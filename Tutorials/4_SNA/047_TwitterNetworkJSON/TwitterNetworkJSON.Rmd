@@ -64,6 +64,13 @@ tweetsdf %>% filter(userName != RTuserName) -> tweetsdf
 nrow(tweetsdf)
 ```
 
+**Your turn**
+
+Which user has the highest degree? Which one is retweeted the most? Do you notice any difference in the type of accounts on the top of these two metrics?
+```{r}
+#Your code here
+```
+
 # 2. Build social network of retweets
 
 Using inner_join, merge the tweets data frame with the politicians data frame such that each row also contains the information of the politician who wrote the tweet. After this, each tweet should be in one row including also the id of the user that posted it and the political party they belong to.
@@ -99,4 +106,12 @@ graph %>%
   ggraph("fr") + geom_edge_link() + geom_node_point() + theme_graph()
 ```
 
+**Your turn**
+
+Rebuild the network above but instead of making links for retweets, do it for mentions of other users in tweets. Explore the JSON structure because a tweet can contain more than one mention. Visualize the network. Just from eyeballing the visualization, do you notice some differences? How can you turn them into a number?
+
+
+```{r}
+# Your code here
+```
 
