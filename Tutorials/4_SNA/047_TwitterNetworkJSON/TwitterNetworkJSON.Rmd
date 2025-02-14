@@ -68,7 +68,12 @@ nrow(tweetsdf)
 
 Which user has the highest degree? Which one is retweeted the most? Do you notice any difference in the type of accounts on the top of these two metrics?
 ```{r}
-#Your code here
+
+tweetsdf %>% group_by(userName) %>% summarize(deg=n()) %>% arrange(desc(deg)) %>% head()
+
+tweetsdf %>% group_by(RTuserName) %>% summarize(nRT = n()) %>% arrange(desc(nRT)) %>% head()
+
+
 ```
 
 # 2. Build social network of retweets

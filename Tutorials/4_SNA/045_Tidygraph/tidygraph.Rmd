@@ -92,7 +92,13 @@ hist(frequencies)
 You can do similar operations with other dplyr verbs. For example, here we first operate on the edges to remove the ones with weight lower than or equal to 10, then calculate node degree in the resulting network, and plot with the nodes that had degree larger than zero:
 
 ```{r}
-starwars %>% activate(edges) %>% filter(weight>10) %>% activate(nodes) %>% mutate(degree=centrality_degree()) %>% filter(degree>0) %>% plot()
+starwars %>% 
+  activate(edges) %>% 
+    filter(weight>10) %>% 
+      activate(nodes) %>% 
+        mutate(degree=centrality_degree()) %>% 
+          filter(degree>0) %>% 
+            plot()
 ```
 
 Above we have visualized a kind of "network core" where only nodes connected to another node with sufficient weight are plotted.
@@ -101,7 +107,33 @@ Above we have visualized a kind of "network core" where only nodes connected to 
 
 Which two characters have the strongest link? What character has the highest degree?
 ```{r}
-#Your code here
+starwars %>% 
+  activate(edges) %>% 
+    arrange(desc(weight)) %>%
+      as_tibble() %>%
+        head(1) -> topedge
+
+starwars %>% 
+  activate(nodes) %>%
+    as_tibble() -> nodesdf
+
+nodesdf$name[nodesdf$id==topedge$from]
+nodesdf$name[nodesdf$id==topedge$to]
+
+inner_join(topedge, nodesdf, by=c("from" = "id")) %>%
+  inner_join(nodesdf, by=c("to"="id")) -> edf
+
+
+starwars %>%
+  activate(nodes) %>%
+    mutate(degree=centrality_degree(weights = weight)) %>%
+        arrange(desc(degree)) %>%
+          as_tibble() %>%
+          head(1)
+
+
+
+
 ```
 
 Many calculations on a network depend on the neighbors of a node. The function local_members allows you to get neighborhoods at various distances, the first neighbors would be of order 1 but you can also get them for farther distances with higher orders. In the code below, we mutate each node to add its first-order neighbors and look at the neighborhood of the first:
@@ -137,7 +169,7 @@ The basic call to ggraph() generates an object to plot. The geom_node_point() fu
 
 ```{r, message=F}
 library(ggraph)
-starwars %>% ggraph() + geom_node_point() + geom_edge_link()  +  theme_graph()
+ggraph(starwars) + geom_node_point() + geom_edge_link()  +  theme_graph()
 ```
 
 Above you can get an idea of the network, but it is a very minimalistic plot without node names. You can add that by adding a "node text" with the geom_node_text() function. As a parameter it takes an aesthetics definition built with the function aes(), where we say that text labels should be the name variable of the node:
@@ -149,7 +181,7 @@ starwars %>% ggraph() + geom_node_point() + geom_edge_link()  + geom_node_text(a
 You can customize many things in ggraph visualization, for example here we use the Kamada-Kawai layout algorithm with gray edges, light blue large nodes, and moving the labels so they don't overlap:
 
 ```{r}
-starwars %>% ggraph(layout = "kk")  + geom_edge_link(color="gray") + geom_node_point(colour="lightblue", size=3) + geom_node_text(aes(label=name), repel=T) +  theme_graph()
+starwars %>% ggraph(layout = "circle")  + geom_edge_link(color="gray") + geom_node_point(colour="lightblue", size=3) + geom_node_text(aes(label=name), repel=T) +  theme_graph()
 ```
 
 You can learn more about how to customize ggraph visualization in [this tutorial](http://mr.schochastics.net/netVizR.html). In addition, a great tool to customize visualizations, especially for large networks, is [Gephi](https://gephi.org/).
