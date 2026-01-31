@@ -1,6 +1,6 @@
 # Social Data Science
 
-[David Garcia](http://dgarcia.eu), 2025
+[David Garcia](http://dgarcia.eu), 2026
 
 Welcome to the online materials for Social Data Science.
 
@@ -73,10 +73,15 @@ The course is organized as a block course in five days with several topics each.
 ## Where to access materials
 
 - Handouts, codes, and data can be found on the [Github repository of the course](https://github.com/dgarcia-eu/SocialDataScience).
-- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=21125) to get information about evaluation criteria for the course and to participate in online quizzes.
+- Students at ETH Zurich can access the [course moodle](https://moodle-app2.let.ethz.ch/course/view.php?id=26912) to get information about evaluation criteria for the course and to participate in online quizzes.
 
 ## To learn more about my research in Social Data Science
-1. [Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/Appendix_CollectiveEmotions/index.html)
-2. [Measuring large-scale emotion aggregates through social media text](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_EmotionMacroscopes/index.html)
+- [Measuring Gender Divides with Facebook Data](https://dgarcia-eu.github.io/SocialDataScience/Presentations/1_Introduction/Appendix_FacebookGenderDivide/index.html)
+- [Simulating coordination among LLM agents](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/Appendix_LLM-agents/index.html)
+- [Linguistic Embeddings for the Identification of Affect](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_LEIA/index.html)
+- [Complex Privacy in Online Social Networks](https://dgarcia-eu.github.io/SocialDataScience/Presentations/4_SNA/045_PrivacyIssues/Privacy_Slides.html)
+- [Food Polarization on Social Media](https://dgarcia-eu.github.io/SocialDataScience/Presentations/5_SocialNetworkPhenomena/Appendix_FoodPolarization/index.html)
+- [Analyzing the Digital Traces of Collective Emotions after a Terrorist Attack](https://dgarcia-eu.github.io/SocialDataScience/Presentations/2_SocialDynamics/Appendix_CollectiveEmotions/index.html)
+- [Measuring large-scale emotion aggregates through social media text](https://dgarcia-eu.github.io/SocialDataScience/Presentations/3_Affect/Appendix_EmotionMacroscopes/index.html)
 
 
